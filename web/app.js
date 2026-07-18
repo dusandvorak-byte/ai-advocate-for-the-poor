@@ -60,9 +60,9 @@ function renderMemory(memory) {
     const heading = document.createElement('h3');
     heading.textContent = branch.label;
     const list = document.createElement('ul');
-    for (const document of branch.documents) {
+    for (const branchDocument of branch.documents) {
       const entry = document.createElement('li');
-      entry.textContent = document.name;
+      entry.textContent = branchDocument.name;
       list.append(entry);
     }
     card.append(heading, list);
@@ -72,8 +72,8 @@ function renderMemory(memory) {
 
   const documents = $('memory-documents');
   documents.replaceChildren();
-  for (const document of memory.documents) {
-    const card = documentCard(document);
+  for (const memoryDocument of memory.documents) {
+    const card = documentCard(memoryDocument);
     documents.append(card);
   }
 

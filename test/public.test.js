@@ -37,3 +37,9 @@ test('Pages deployment runs tests and publishes only the reviewed web directory'
   assert.match(workflow, /path: '\.\/web'/);
   assert.doesNotMatch(workflow, /path: ['"]?\.['"]?\s*$/m);
 });
+
+test('browser rendering never shadows the global document object', async () => {
+  const app = await readFile(new URL('../web/app.js', import.meta.url), 'utf8');
+  assert.doesNotMatch(app, /for\s*\(const\s+document\s+of/);
+  assert.match(app, /const entry = document\.createElement\('li'\)/);
+});
