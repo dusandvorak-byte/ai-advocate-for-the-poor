@@ -1,23 +1,27 @@
 import { analyzeDocumentSet, SAMPLE_DOCUMENT } from './analysis.js';
-import { buildCaseMemory, DEMO_CASE_DOCUMENTS } from './memory.js';
+import { buildCaseMemory } from './memory.js';
 import { CASE_MEMORY } from './case-memory.js';
+import { localizeInstitutionalCaseMap } from './case-map.js';
 
 const $ = (id) => document.getElementById(id);
 const language = document.documentElement.lang === 'en' ? 'en' : 'cs';
 let preparedDocuments = [];
+let preparedInstitutionalMap = false;
 
 const UI = {
   cs: {
     confidence: 'Jistota', documents: 'dokumentů', branches: 'rozpoznaných větví', references: 'spisových značek', dates: 'dat',
     noBranch: 'Zatím nebyla rozpoznána žádná podporovaná větev.', noReference: 'Nebyla rozpoznána žádná spisová značka.', noDate: 'Nebylo rozpoznáno žádné datum.',
     documentReferences: 'spisových značek', documentDates: 'dat', noMetadata: 'Bez rozpoznaných spisových značek a dat', pasted: 'Vložený dokument',
-    empty: 'Nejprve vložte text nebo vyberte textové soubory.', demoLoaded: 'Načteny tři jasně označené fiktivní listiny. Klikněte na „Vytvořit mapu případu“.', mapCreated: 'Mapa případu byla vytvořena.'
+    empty: 'Nejprve vložte text nebo vyberte textové soubory.', demoLoaded: 'Načtena anonymizovaná institucionální mapa případu 2004–2026. Klikněte na „Vytvořit mapu případu“.', mapCreated: 'Mapa případu byla vytvořena.',
+    indexed: 'indexováno v projektových podkladech', creatorStated: 'tvrzení autora — připojit anonymizovaný pramen', relations: 'Vazby mezi institucemi', timeline: 'Časová osa', evidenceStatus: 'Stav zdroje'
   },
   en: {
     confidence: 'Confidence', documents: 'documents', branches: 'identified branches', references: 'case references', dates: 'dates',
     noBranch: 'No supported branch has been identified yet.', noReference: 'No case reference was identified.', noDate: 'No date was identified.',
     documentReferences: 'case references', documentDates: 'dates', noMetadata: 'No identified case references or dates', pasted: 'Pasted document',
-    empty: 'Paste text or select text files first.', demoLoaded: 'Three clearly labelled fictional documents are loaded. Click “Create case map”.', mapCreated: 'The case map was created.'
+    empty: 'Paste text or select text files first.', demoLoaded: 'The anonymized 2004–2026 institutional case map is loaded. Click “Create case map”.', mapCreated: 'The case map was created.',
+    indexed: 'indexed in project materials', creatorStated: 'creator-stated — attach anonymized source', relations: 'Institutional relationships', timeline: 'Timeline', evidenceStatus: 'Source status'
   }
 }[language];
 
@@ -89,6 +93,78 @@ function renderMemory(memory) {
     limitations.append(entry);
   }
   $('memory-out').hidden = false;
+}
+
+function renderInstitutionalMap(caseMap) {
+  $('memory-out').hidden = true;
+  $('analysis-out').hidden = true;
+  $('case-map-title').textContent = caseMap.title;
+  $('case-map-notice').textContent = caseMap.notice;
+
+  const metrics = $('case-metrics');
+  metrics.replaceChildren();
+  for (const metric of caseMap.metrics) {
+    const card = document.createElement('article');
+    card.className = 'metric-card';
+    const value = document.createElement('strong');
+    value.textContent = metric.value;
+    const label = document.createElement('span');
+    label.textContent = metric.label;
+    const status = document.createElement('small');
+    status.textContent = `${UI.evidenceStatus}: ${metric.status === 'indexed' ? UI.indexed : UI.creatorStated}`;
+    card.append(value, label, status);
+    metrics.append(card);
+  }
+
+  const groups = $('case-groups');
+  groups.replaceChildren();
+  const nodeLabels = new Map();
+  for (const group of caseMap.groups) {
+    const lane = document.createElement('section');
+    lane.className = `case-lane lane-${group.id}`;
+    const heading = document.createElement('h3');
+    heading.textContent = group.label;
+    const grid = document.createElement('div');
+    grid.className = 'case-node-grid';
+    for (const caseNode of group.nodes) {
+      nodeLabels.set(caseNode.id, caseNode.label);
+      const card = document.createElement('article');
+      card.className = 'case-node';
+      const nodeHeading = document.createElement('h4');
+      nodeHeading.textContent = caseNode.label;
+      const detail = document.createElement('p');
+      detail.textContent = caseNode.detail;
+      card.append(nodeHeading, detail);
+      grid.append(card);
+    }
+    lane.append(heading, grid);
+    groups.append(lane);
+  }
+
+  $('case-relations-title').textContent = UI.relations;
+  const relations = $('case-relations');
+  relations.replaceChildren();
+  for (const relation of caseMap.relations) {
+    const entry = document.createElement('li');
+    const from = document.createElement('strong');
+    from.textContent = nodeLabels.get(relation.from);
+    const to = document.createElement('strong');
+    to.textContent = nodeLabels.get(relation.to);
+    entry.append(from, document.createTextNode(' → '), to, document.createTextNode(` — ${relation.label}`));
+    relations.append(entry);
+  }
+
+  $('case-timeline-title').textContent = UI.timeline;
+  const timeline = $('case-timeline');
+  timeline.replaceChildren();
+  for (const event of caseMap.timeline) {
+    const entry = document.createElement('li');
+    const year = document.createElement('strong');
+    year.textContent = event.year;
+    entry.append(year, document.createTextNode(` — ${event.label}`));
+    timeline.append(entry);
+  }
+  $('institutional-map').hidden = false;
 }
 
 function documentCard(record) {
@@ -194,13 +270,16 @@ async function selectedDocuments() {
 
 $('load').addEventListener('click', () => {
   preparedDocuments = [];
+  preparedInstitutionalMap = false;
+  $('institutional-map').hidden = true;
   $('files').value = '';
   $('doc').value = SAMPLE_DOCUMENT;
   $('status').hidden = true;
 });
 
 $('load-case').addEventListener('click', () => {
-  preparedDocuments = DEMO_CASE_DOCUMENTS.map((document) => ({ ...document }));
+  preparedDocuments = [];
+  preparedInstitutionalMap = true;
   $('files').value = '';
   $('doc').value = '';
   showStatus(UI.demoLoaded, 'info');
@@ -208,14 +287,24 @@ $('load-case').addEventListener('click', () => {
 
 $('files').addEventListener('change', () => {
   preparedDocuments = [];
+  preparedInstitutionalMap = false;
+  $('institutional-map').hidden = true;
 });
 
 $('doc').addEventListener('input', () => {
   preparedDocuments = [];
+  preparedInstitutionalMap = false;
+  $('institutional-map').hidden = true;
 });
 
 $('analyse').addEventListener('click', () => {
   void (async () => {
+    if (preparedInstitutionalMap) {
+      renderInstitutionalMap(localizeInstitutionalCaseMap(language));
+      showStatus(UI.mapCreated, 'info');
+      window.scrollTo({ top: $('status').offsetTop, behavior: 'smooth' });
+      return;
+    }
     const documents = await selectedDocuments();
     if (!documents.length) return reject({ reason: UI.empty });
     renderMemory(buildCaseMemory(documents, language));

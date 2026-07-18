@@ -52,7 +52,9 @@ The project is building a long-term, source-grounded memory for a legal case. It
 - presents a public, consent-based living-memory case study alongside a separate anonymized supported sample;
 - maps 70 recorded decisions or procedural acts from 2010–2024 (31 first-instance, 10 Supreme Court, and 29 Constitutional Court nodes) while explicitly warning that this is not a claim of 70 separate cases;
 - keeps three active intervention-action branches before the Prague Municipal Court and the civil Czech Television lawsuit separate, each with a source and verification status;
-- separates extracted facts, a person's allegations, legal interpretation, uncertainty, and recommended next steps;
+- provides a one-click anonymized institutional map of a 2004–2026 European case, connecting the President, courts, public prosecutors, ministries, police, forensic bodies, European institutions, compensation, and the research program;
+- shows a timeline and headline counts while distinguishing indexed material from creator-stated figures still requiring an anonymized primary source;
+- separates extracted facts, legal interpretation, uncertainty, and recommended next steps for one anonymized supported sample;
 - displays an exact source quotation with every conclusion;
 - refuses to transfer the prepared interpretation to altered, unrelated, or multi-document inputs.
 

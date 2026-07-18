@@ -52,7 +52,9 @@ Projekt vytváří dlouhodobou, zdrojově ukotvenou paměť případu. První ve
 - vedle anonymizované podporované ukázky zobrazuje veřejnou kazuistiku živé paměti zveřejněnou se souhlasem autora;
 - v této kazuistice zpřístupňuje mapu 70 zachycených rozhodnutí či procesních úkonů z let 2010–2024 (31 prvoinstančních, 10 Nejvyššího soudu a 29 Ústavního soudu), přičemž výslovně odmítá vydávat tento součet za 70 samostatných kauz;
 - samostatně ukazuje tři aktivní zásahové žaloby u Městského soudu v Praze a civilní žalobu proti České televizi, každou se zdrojem a stavem ověření;
-- odděluje fakta, tvrzení člověka, právní interpretaci, nejistotu a doporučené kroky;
+- nabízí jedním kliknutím anonymizovanou institucionální mapu evropského případu 2004–2026 s vazbami na prezidenta republiky, soudy, státní zastupitelství, ministerstva, policii, forenzní orgány, evropské instituce, odškodnění a výzkumný program;
+- zobrazuje časovou osu a souhrnné počty a odlišuje indexované údaje od tvrzení autora, která ještě vyžadují anonymizovaný prvotní pramen;
+- na jednom anonymizovaném podporovaném vzorku odděluje fakta, právní interpretaci, nejistotu a doporučené kroky;
 - u každého zobrazeného závěru uvádí přesnou citaci;
 - odmítá přenést připravený právní výklad na pozměněný, cizí nebo vícedokumentový vstup.
 

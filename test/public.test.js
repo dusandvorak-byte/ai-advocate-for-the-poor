@@ -6,9 +6,12 @@ const requiredIds = [
   'files', 'load', 'load-case', 'doc', 'analyse', 'status', 'memory-out',
   'memory-summary', 'branches', 'memory-documents', 'memory-references',
   'memory-dates', 'memory-limitations', 'analysis-out', 'facts',
-  'interpretation', 'uncertainty', 'actions'
-  , 'registry', 'registry-statements', 'registry-pending', 'registry-cases',
-  'case-study', 'case-study-intro', 'case-study-timeline', 'case-study-conflicts'
+  'interpretation', 'uncertainty', 'actions', 'institutional-map',
+  'case-map-title', 'case-map-notice', 'case-metrics',
+  'case-groups', 'case-relations-title', 'case-relations', 'case-timeline-title',
+  'case-timeline', 'registry', 'registry-statements', 'registry-pending', 'registry-cases',
+  'case-study', 'case-study-intro', 'case-study-map', 'case-study-active',
+  'case-study-timeline', 'case-study-conflicts'
 ];
 
 test('Czech and English pages expose the same complete interactive surface', async () => {
@@ -43,5 +46,6 @@ test('Pages deployment runs tests and publishes only the reviewed web directory'
 test('browser rendering never shadows the global document object', async () => {
   const app = await readFile(new URL('../web/app.js', import.meta.url), 'utf8');
   assert.doesNotMatch(app, /for\s*\(const\s+document\s+of/);
+  assert.match(app, /from ['"]\.\/case-map\.js['"]/);
   assert.match(app, /const entry = document\.createElement\('li'\)/);
 });
