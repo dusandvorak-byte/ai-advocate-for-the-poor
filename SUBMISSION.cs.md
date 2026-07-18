@@ -16,7 +16,8 @@ Projekt vytváří dlouhodobou, zdrojově ukotvenou paměť případu. První ve
 
 - lokálně mapuje více textových listin bez jejich odesílání;
 - rozpoznává dokumenty, spisové značky, data a věcné či procesní větve;
-- nabízí jedním kliknutím fiktivní demonstrační případ bez osobních údajů;
+- nabízí jedním kliknutím anonymizovanou institucionální mapu evropského případu 2004–2026 s vazbami na prezidenta republiky, soudy, státní zastupitelství, ministerstva, policii, forenzní orgány, evropské instituce, odškodnění a výzkumný program;
+- zobrazuje časovou osu a souhrnné počty a odlišuje indexované údaje od tvrzení autora, která ještě vyžadují anonymizovaný prvotní pramen;
 - na jednom anonymizovaném podporovaném vzorku odděluje fakta, právní interpretaci, nejistotu a doporučené kroky;
 - u každého zobrazeného závěru uvádí přesnou citaci;
 - odmítá přenést připravený právní výklad na pozměněný, cizí nebo vícedokumentový vstup.
@@ -47,7 +48,7 @@ Veřejná verze pracuje pouze s textem a jedním ověřeným vzorkem. Neobsahuje
 ## Scénář demonstračního videa — 90 sekund
 
 1. **0–15 s — problém:** Ukažte neuspořádané právní podklady a vysvětlete informační nerovnost mezi institucí a člověkem bez prostředků.
-2. **15–35 s — mapa případu:** Klikněte na „Načíst fiktivní demonstrační případ“ a „Vytvořit mapu případu“. Ukažte tři dokumenty, větve, spisové značky a data.
+2. **15–35 s — mapa případu:** Klikněte na „Načíst anonymizovanou evropskou mapu případu“ a „Vytvořit mapu případu“. Ukažte prezidenta republiky, soudy, státní zastupitelství, ministerstva, policii, evropské orgány a jejich vazby.
 3. **35–55 s — bezpečnostní hranice:** Zdůrazněte, že mapa sama neurčuje nezákonnost ani správný opravný prostředek a že vícedokumentový režim nedostává připravený právní výklad.
 4. **55–75 s — ukotvená analýza:** Načtěte samostatnou ukázku KSZ Ostrava. Ukažte čtyři oddělené skupiny a přesné citace.
 5. **75–90 s — dopad:** Uzavřete: „Nechceme nahradit advokáta. Chceme dostat znevýhodněného člověka do stavu, kdy mu advokát může skutečně pomoci.“

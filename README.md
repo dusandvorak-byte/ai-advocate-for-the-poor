@@ -52,7 +52,8 @@ Nyní funguje:
 - lokální výběr více textových listin bez jejich odesílání na server;
 - orientační vytvoření mapy dokumentů, spisových značek, dat a větví;
 - konkrétní demonstrační scénář pro rodiny lidí ve výkonu trestu: rozsudky a protokoly měření THC.
-- jedním kliknutím načitatelný, výslovně fiktivní třílistinný případ pro okamžitou demonstraci mapy bez práce s osobními údaji.
+- jedním kliknutím načitatelná anonymizovaná institucionální mapa evropského případu 2004–2026: prezident republiky, soudy, státní zastupitelství, ministerstva, policie a forenzní orgány, evropská ochrana, odškodnění a výzkumný program;
+- viditelné směrované vazby mezi institucemi, časová osa a souhrnné počty; nedoložené souhrnné údaje jsou označeny jako tvrzení autora čekající na anonymizovaný prvotní pramen;
 - české a anglické veřejné rozhraní pro mezinárodní demonstraci.
 
 ### Konkrétní aplikace dostupná už nyní
@@ -74,6 +75,7 @@ Budoucí produkt má podporovat jednoduchý jazyk, ovládání klávesnicí a as
 ```text
 web/                  veřejná statická aplikace
   analysis.js         bezpečné rozpoznání a strukturovaný výstup
+  case-map.js         anonymizovaná institucionální mapa, vazby, metriky a časová osa
   memory.js           lokální mapa více dokumentů a věcných větví
   app.js              vykreslení výsledků
   index.html          veřejná prezentace a ukázka

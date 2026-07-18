@@ -32,8 +32,8 @@
 
     <section class="application">
       <p class="eyebrow">A CONCRETE USE CASE TODAY</p>
-      <h2>A family brings court decisions and THC measurement protocols</h2>
-      <p>The prototype creates a basic map of documents, case references, dates, and evidentiary or procedural branches. A verified memory can later connect a judgment to a laboratory protocol, identify inconsistencies, and prepare cited materials for further assistance.</p>
+      <h2>A 2004–2026 European case as a network of institutions, proceedings, and remedies</h2>
+      <p>The prototype displays an anonymized connection from the research program to the President, Czech courts and public prosecutors, ministries, police and forensic bodies, the CJEU, European Commission, and ECtHR. It distinguishes indexed material from creator-stated claims that still require an anonymized primary source.</p>
       <p><strong>Privacy in this demo:</strong> selected files are processed only in your browser. They are not uploaded and disappear when the page is refreshed.</p>
     </section>
 
@@ -41,13 +41,27 @@
       <h2>1. Input documents</h2>
       <label class="file-label" for="files">Select text documents (.txt or .md)</label>
       <input id="files" type="file" accept=".txt,.md,text/plain,text/markdown" multiple>
-      <p class="hint">The first safe stage processes text files. OCR for PDFs and photographs is planned.</p>
+      <p class="hint">You can first load the prepared anonymized European map. Your own text files are processed only locally; OCR for PDFs and photographs is planned.</p>
       <button id="load" type="button">Load the supported sample</button>
-      <button id="load-case" type="button" class="secondary">Load a fictional demo case</button>
+      <button id="load-case" type="button" class="secondary">Load the anonymized European case map</button>
       <textarea id="doc" rows="14" placeholder="Paste the supported KSZ Ostrava sample" aria-label="Document text"></textarea>
       <button id="analyse" type="button">Create case map</button>
     </section>
     <p id="status" class="status" role="status" hidden></p>
+    <section id="institutional-map" hidden>
+      <h2 id="case-map-title"></h2>
+      <p id="case-map-notice" class="case-map-notice"></p>
+      <div id="case-metrics" class="metric-grid"></div>
+      <div id="case-groups"></div>
+      <section class="relationship-panel">
+        <h3 id="case-relations-title"></h3>
+        <ol id="case-relations"></ol>
+      </section>
+      <section class="timeline-panel">
+        <h3 id="case-timeline-title"></h3>
+        <ol id="case-timeline"></ol>
+      </section>
+    </section>
     <section id="memory-out" hidden>
       <h2>2. Case map</h2>
       <p id="memory-summary" class="summary"></p>

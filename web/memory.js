@@ -11,21 +11,6 @@ const BRANCH_RULES = [
   { id: 'health', label: { cs: 'Zdravotní souvislosti', en: 'Health context' }, pattern: /\b(?:zdravot|diagnóz|lékař|nemoc|postižení)\w*/iu }
 ];
 
-export const DEMO_CASE_DOCUMENTS = [
-  {
-    name: '01_rozsudek_demo.txt',
-    text: 'FIKTIVNÍ LISTINA PRO DEMONSTRACI MAPOVÁNÍ. Okresní soud vydal dne 12. 6. 2025 rozsudek pod sp. zn. 3 T 10/2025 a uložil trest.'
-  },
-  {
-    name: '02_protokol_okte_demo.txt',
-    text: 'FIKTIVNÍ LISTINA PRO DEMONSTRACI MAPOVÁNÍ. OKTE dne 8. 7. 2026 provedlo laboratorní měření vzorku THC evidovaného pod č. j. KRP 123/2026-7.'
-  },
-  {
-    name: '03_procesni_sdeleni_demo.txt',
-    text: 'FIKTIVNÍ LISTINA PRO DEMONSTRACI MAPOVÁNÍ. Státní zastupitelství dne 10. 7. 2026 postoupilo podání pod sp. zn. 4 KZN 20/2026-3 k vyhodnocení a přijetí opatření.'
-  }
-];
-
 const unique = (values) => [...new Set(values.map((value) => value.replace(/\s+/g, ' ').trim()))];
 
 export function buildCaseMemory(documents, language = 'cs') {

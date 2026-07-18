@@ -16,7 +16,8 @@ The project is building a long-term, source-grounded memory for a legal case. It
 
 - maps multiple text documents locally without uploading them;
 - identifies documents, case references, dates, and factual or procedural branches;
-- provides a one-click fictional demo case with no personal data;
+- provides a one-click anonymized institutional map of a 2004–2026 European case, connecting the President, courts, public prosecutors, ministries, police, forensic bodies, European institutions, compensation, and the research program;
+- shows a timeline and headline counts while distinguishing indexed material from creator-stated figures still requiring an anonymized primary source;
 - separates extracted facts, legal interpretation, uncertainty, and recommended next steps for one anonymized supported sample;
 - displays an exact source quotation with every conclusion;
 - refuses to transfer the prepared interpretation to altered, unrelated, or multi-document inputs.
@@ -47,7 +48,7 @@ The public version accepts text and supports one verified sample. It does not ye
 ## 90-second demo video script
 
 1. **0–15 seconds — problem:** Show fragmented legal materials and explain the information imbalance between an institution and a person without resources.
-2. **15–35 seconds — case map:** Click “Načíst fiktivní demonstrační případ” and “Vytvořit mapu případu.” Show the three documents, branches, references, and dates.
+2. **15–35 seconds — case map:** Click “Load the anonymized European case map” and “Create case map.” Show the President, courts, public prosecutors, ministries, police, European bodies, and their relationships.
 3. **35–55 seconds — safety boundary:** Point out that the map does not decide legality or select a remedy, and that multi-document mode receives no prepared legal interpretation.
 4. **55–75 seconds — grounded analysis:** Load the standalone KSZ Ostrava sample. Show the four separate output groups and their exact quotations.
 5. **75–90 seconds — impact:** Close with: “We do not want to replace a lawyer. We want to help a disadvantaged person reach the point where a lawyer can actually help.”

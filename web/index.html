@@ -32,8 +32,8 @@
 
     <section class="application">
       <p class="eyebrow">KONKRÉTNÍ APLIKACE DNES</p>
-      <h2>Rodina člověka ve výkonu trestu přinese rozsudky a protokoly měření THC</h2>
-      <p>Prototyp vytvoří základní mapu listin, spisových značek, dat a důkazních či procesních větví. Ověřená paměť pak může v konkrétní větvi propojit závěr rozsudku s obsahem laboratorního protokolu, označit rozpory a připravit citované podklady pro další pomoc.</p>
+      <h2>Evropský případ 2004–2026 jako síť institucí, řízení a nápravných cest</h2>
+      <p>Prototyp zobrazuje anonymizovanou vazbu výzkumného programu na prezidenta republiky, české soudy a státní zastupitelství, ministerstva, policii a forenzní orgány, SDEU, Evropskou komisi a ESLP. Odděluje indexované údaje od tvrzení autora, která ještě vyžadují připojení anonymizovaného prvotního pramene.</p>
       <p><strong>Soukromí v této ukázce:</strong> vybrané soubory se zpracují pouze lokálně ve vašem prohlížeči. Nikam se neodesílají a po obnovení stránky zmizí.</p>
     </section>
 
@@ -41,13 +41,27 @@
       <h2>1. Vstupní dokumenty</h2>
       <label class="file-label" for="files">Vybrat textové listiny (.txt nebo .md)</label>
       <input id="files" type="file" accept=".txt,.md,text/plain,text/markdown" multiple>
-      <p class="hint">První bezpečná etapa zpracovává textové soubory. OCR dokumentů PDF a fotografií bude následovat.</p>
+      <p class="hint">Nejprve můžete načíst hotovou anonymizovanou evropskou mapu. Vlastní textové soubory se zpracují pouze lokálně; OCR dokumentů PDF a fotografií bude následovat.</p>
       <button id="load" type="button">Načíst ukázkový dokument</button>
-      <button id="load-case" type="button" class="secondary">Načíst fiktivní demonstrační případ</button>
+      <button id="load-case" type="button" class="secondary">Načíst anonymizovanou evropskou mapu případu</button>
       <textarea id="doc" rows="14" placeholder="Vložte podporovanou ukázku dokumentu KSZ Ostrava" aria-label="Text dokumentu"></textarea>
       <button id="analyse" type="button">Vytvořit mapu případu</button>
     </section>
     <p id="status" class="status" role="status" hidden></p>
+    <section id="institutional-map" hidden>
+      <h2 id="case-map-title"></h2>
+      <p id="case-map-notice" class="case-map-notice"></p>
+      <div id="case-metrics" class="metric-grid"></div>
+      <div id="case-groups"></div>
+      <section class="relationship-panel">
+        <h3 id="case-relations-title"></h3>
+        <ol id="case-relations"></ol>
+      </section>
+      <section class="timeline-panel">
+        <h3 id="case-timeline-title"></h3>
+        <ol id="case-timeline"></ol>
+      </section>
+    </section>
     <section id="memory-out" hidden>
       <h2>2. Mapa případu</h2>
       <p id="memory-summary" class="summary"></p>
