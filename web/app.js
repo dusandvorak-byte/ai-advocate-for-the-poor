@@ -1,5 +1,6 @@
 import { analyzeDocumentSet, SAMPLE_DOCUMENT } from './analysis.js';
 import { buildCaseMemory } from './memory.js';
+import { CASE_MEMORY } from './case-memory.js';
 import { localizeInstitutionalCaseMap } from './case-map.js';
 
 const $ = (id) => document.getElementById(id);
@@ -195,6 +196,71 @@ function renderTags(targetId, values, emptyText) {
   }
 }
 
+function renderRegistry() {
+  for (const record of CASE_MEMORY.verifiedStatements) {
+    const card = document.createElement('article'); card.className = 'claim';
+    const title = document.createElement('h3'); title.textContent = `${record.date} · ${record.reference} · ${record.institution}`;
+    const text = document.createElement('p'); text.textContent = record.statement;
+    const relation = document.createElement('p'); relation.textContent = `Vazba: ${record.branch}. ${record.proves} ${record.doesNotProve}`;
+    const citation = document.createElement('blockquote'); citation.textContent = `„${record.citation}“`;
+    card.append(title, text, relation, citation); $('registry-statements').append(card);
+  }
+  for (const node of CASE_MEMORY.pendingNodes) {
+    const item = document.createElement('li'); item.textContent = `${node.reference} — ${node.relation} Stav: ${node.verification}.`;
+    $('registry-pending').append(item);
+  }
+  for (const decision of CASE_MEMORY.jurisprudence) {
+    const card = document.createElement('article'); card.className = 'claim';
+    const title = document.createElement('h3'); const link = document.createElement('a');
+    link.href = decision.sourceUrl; link.target = '_blank'; link.rel = 'noreferrer';
+    link.textContent = `${decision.court} · ${decision.reference} · ${decision.date}`; title.append(link);
+    const principle = document.createElement('p'); principle.textContent = decision.principle;
+    const relation = document.createElement('p'); relation.className = 'confidence'; relation.textContent = `Vazba: ${decision.relation}`;
+    card.append(title, principle, relation); $('registry-cases').append(card);
+  }
+  const caseStudy = CASE_MEMORY.caseStudy;
+  $('case-study-intro').textContent = `${caseStudy.person} — ${caseStudy.role}. ${caseStudy.evidenceRule}`;
+  const map = $('case-study-map');
+  map.className = 'map-grid';
+  for (const metric of caseStudy.mapSummary.metrics) {
+    const card = document.createElement('article'); card.className = 'claim metric';
+    const value = document.createElement('strong'); value.textContent = metric.value;
+    const label = document.createElement('p'); label.textContent = language === 'en' ? metric.labelEn : metric.label;
+    const citation = document.createElement('blockquote'); citation.textContent = `„${metric.citation}“`;
+    const note = document.createElement('p'); note.className = 'evidence-note'; note.textContent = language === 'en' ? metric.noteEn : metric.note;
+    card.append(value, label, citation, note); map.append(card);
+  }
+  const active = $('case-study-active');
+  active.className = 'map-grid';
+  for (const branch of caseStudy.activeCourtBranches) {
+    const card = document.createElement('article'); card.className = 'claim';
+    const title = document.createElement('h3'); title.textContent = `${branch.type} · ${branch.defendant}`;
+    const reference = document.createElement('p'); reference.textContent = `${branch.court} · ${branch.reference}`;
+    const relation = document.createElement('p'); relation.textContent = `${language === 'en' ? 'Link' : 'Vazba'}: ${branch.relation}`;
+    const citation = document.createElement('blockquote'); citation.textContent = `„${branch.citation}“ — ${branch.source}`;
+    const status = document.createElement('p'); status.className = 'evidence-note'; status.textContent = branch.verification;
+    card.append(title, reference, relation, citation, status); active.append(card);
+  }
+  for (const node of caseStudy.timeline) {
+    const card = document.createElement('article'); card.className = 'claim';
+    const title = document.createElement('h3'); title.textContent = `${node.date} · ${node.actor} · ${node.reference}`;
+    const text = document.createElement('p'); text.textContent = node.statement;
+    const relation = document.createElement('p'); relation.textContent = `Vazba: ${node.relation}`;
+    const source = document.createElement('blockquote'); source.textContent = `${node.level} — Zdroj: ${node.source}, str. ${node.page}.`;
+    card.append(title, text, relation, source); $('case-study-timeline').append(card);
+  }
+  for (const conflict of caseStudy.candidateContradictions) {
+    const card = document.createElement('article'); card.className = 'claim';
+    const title = document.createElement('h3'); title.textContent = conflict.title;
+    const earlier = document.createElement('p'); earlier.textContent = `Dřívější výrok: ${conflict.earlier}`;
+    const intermediate = document.createElement('p'); intermediate.textContent = conflict.intermediate ? `Mezilehlý výrok: ${conflict.intermediate}` : '';
+    const later = document.createElement('p'); later.textContent = `Pozdější výrok: ${conflict.later}`;
+    const status = document.createElement('blockquote'); status.textContent = conflict.status;
+    card.append(title, earlier); if (conflict.intermediate) card.append(intermediate); card.append(later, status); $('case-study-conflicts').append(card);
+  }
+}
+
+renderRegistry();
 async function selectedDocuments() {
   const files = [...$('files').files];
   if (files.length) return Promise.all(files.map(async (file) => ({ name: file.name, text: await file.text() })));

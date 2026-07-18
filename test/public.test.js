@@ -9,7 +9,9 @@ const requiredIds = [
   'interpretation', 'uncertainty', 'actions', 'institutional-map',
   'case-map-title', 'case-map-notice', 'case-metrics',
   'case-groups', 'case-relations-title', 'case-relations', 'case-timeline-title',
-  'case-timeline'
+  'case-timeline', 'registry', 'registry-statements', 'registry-pending', 'registry-cases',
+  'case-study', 'case-study-intro', 'case-study-map', 'case-study-active',
+  'case-study-timeline', 'case-study-conflicts'
 ];
 
 test('Czech and English pages expose the same complete interactive surface', async () => {

@@ -65,3 +65,8 @@ test('English output preserves the same source grounding and referral safeguard'
     for (const entry of result[group]) assert.ok(SAMPLE_DOCUMENT.includes(entry.citation));
   }
 });
+
+test('public sample anonymizes the data subject', () => {
+  assert.doesNotMatch(SAMPLE_DOCUMENT, /Dušan\s+Dvořák/i);
+  assert.match(SAMPLE_DOCUMENT, /anonymizovaného podatele/i);
+});
