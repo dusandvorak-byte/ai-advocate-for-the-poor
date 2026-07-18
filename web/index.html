@@ -29,18 +29,33 @@
       <strong>Co právě vidíte:</strong> bezpečnou předem připravenou ukázku této metody na jediném dokumentu KSZ Ostrava. Nejde zatím o univerzální právní AI; jiné dokumenty prototyp odmítne.
     </aside>
 
+    <section class="application">
+      <p class="eyebrow">KONKRÉTNÍ APLIKACE DNES</p>
+      <h2>Rodina člověka ve výkonu trestu přinese rozsudky a protokoly měření THC</h2>
+      <p>Prototyp vytvoří základní mapu listin, spisových značek, dat a důkazních či procesních větví. Ověřená paměť pak může v konkrétní větvi propojit závěr rozsudku s obsahem laboratorního protokolu, označit rozpory a připravit citované podklady pro další pomoc.</p>
+      <p><strong>Soukromí v této ukázce:</strong> vybrané soubory se zpracují pouze lokálně ve vašem prohlížeči. Nikam se neodesílají a po obnovení stránky zmizí.</p>
+    </section>
+
     <section>
-      <h2>1. Podporovaný dokument</h2>
+      <h2>1. Vstupní dokumenty</h2>
+      <label class="file-label" for="files">Vybrat textové listiny (.txt nebo .md)</label>
+      <input id="files" type="file" accept=".txt,.md,text/plain,text/markdown" multiple>
+      <p class="hint">První bezpečná etapa zpracovává textové soubory. OCR dokumentů PDF a fotografií bude následovat.</p>
       <button id="load" type="button">Načíst ukázkový dokument</button>
       <textarea id="doc" rows="14" placeholder="Vložte podporovanou ukázku dokumentu KSZ Ostrava" aria-label="Text dokumentu"></textarea>
-      <button id="analyse" type="button">Ověřit a zobrazit ukázkovou analýzu</button>
+      <button id="analyse" type="button">Vytvořit mapu případu</button>
     </section>
     <p id="status" class="status" role="status" hidden></p>
-    <section id="out" hidden>
-      <h2>2. Extrahovaná fakta</h2><div id="facts"></div>
-      <h2>3. Právní interpretace</h2><div id="interpretation"></div>
-      <h2>4. Nejistota a meze dokumentu</h2><div id="uncertainty"></div>
-      <h2>5. Doporučené kroky</h2><div id="actions"></div>
+    <section id="memory-out" hidden>
+      <h2>2. Mapa případu</h2>
+      <p id="memory-summary" class="summary"></p>
+      <div id="branches" class="branch-grid"></div>
+    </section>
+    <section id="analysis-out" hidden>
+      <h2>3. Extrahovaná fakta</h2><div id="facts"></div>
+      <h2>4. Právní interpretace</h2><div id="interpretation"></div>
+      <h2>5. Nejistota a meze dokumentu</h2><div id="uncertainty"></div>
+      <h2>6. Doporučené kroky</h2><div id="actions"></div>
     </section>
   </main>
   <footer>Human-in-the-loop prototype. Výstupy vyžadují lidskou právní kontrolu. <a href="https://www.konopijelek.cz/">Cannabis is The Cure</a></footer>

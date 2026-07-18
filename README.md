@@ -46,6 +46,15 @@ Nyní funguje:
 - citace a míra jistoty u každého zobrazeného tvrzení;
 - automatické testy proti záměně postoupení věci za potvrzení pochybení;
 - provoz bez API klíčů a placených služeb.
+- lokální výběr více textových listin bez jejich odesílání na server;
+- orientační vytvoření mapy dokumentů, spisových značek, dat a větví;
+- konkrétní demonstrační scénář pro rodiny lidí ve výkonu trestu: rozsudky a protokoly měření THC.
+
+### Konkrétní aplikace dostupná už nyní
+
+Rodina může v prohlížeči vybrat textové přepisy rozsudků, protokolů OKTE a dalších listin. Prototyp je lokálně roztřídí do soudní, laboratorní, procesní nebo zdravotní větve a vytáhne rozpoznané spisové značky a data. Soubory neopouštějí zařízení a po obnovení stránky se zahodí.
+
+Tato první vrstva ještě neurčuje správný opravný prostředek ani neposuzuje správnost měření THC. Ukazuje však základ budoucího systému: z neuspořádaných listin vznikne mapa případu, na kterou lze bezpečně navázat ověřenou znalostní paměť, odbornou kontrolu a citovanou přípravu dalšího kroku.
 
 ## Co je zatím vize
 
@@ -60,6 +69,7 @@ Budoucí produkt má podporovat jednoduchý jazyk, ovládání klávesnicí a as
 ```text
 web/                  veřejná statická aplikace
   analysis.js         bezpečné rozpoznání a strukturovaný výstup
+  memory.js           lokální mapa více dokumentů a věcných větví
   app.js              vykreslení výsledků
   index.html          veřejná prezentace a ukázka
   styles.css          vzhled aplikace
