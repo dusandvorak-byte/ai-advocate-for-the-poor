@@ -9,6 +9,7 @@
 </head>
 <body>
   <header>
+    <a class="language" href="en.html" lang="en">English</a>
     <p>OPENAI BUILD WEEK · DEMONSTRAČNÍ PROTOTYP</p>
     <h1>AI Advocate for the Poor</h1>
     <p>Struktura, paměť a schopnost jednat pro lidi, kteří by jinak čelili systému sami.</p>
@@ -26,7 +27,7 @@
     </section>
 
     <aside class="prototype-notice">
-      <strong>Co právě vidíte:</strong> bezpečnou předem připravenou ukázku této metody na jediném dokumentu KSZ Ostrava. Nejde zatím o univerzální právní AI; jiné dokumenty prototyp odmítne.
+      <strong>Co právě vidíte:</strong> bezpečnou předem připravenou a anonymizovanou ukázku této metody na jediném dokumentu KSZ Ostrava. Nejde zatím o univerzální právní AI; jiné dokumenty prototyp odmítne.
     </aside>
 
     <section class="application">
@@ -42,6 +43,7 @@
       <input id="files" type="file" accept=".txt,.md,text/plain,text/markdown" multiple>
       <p class="hint">První bezpečná etapa zpracovává textové soubory. OCR dokumentů PDF a fotografií bude následovat.</p>
       <button id="load" type="button">Načíst ukázkový dokument</button>
+      <button id="load-case" type="button" class="secondary">Načíst fiktivní demonstrační případ</button>
       <textarea id="doc" rows="14" placeholder="Vložte podporovanou ukázku dokumentu KSZ Ostrava" aria-label="Text dokumentu"></textarea>
       <button id="analyse" type="button">Vytvořit mapu případu</button>
     </section>
@@ -49,7 +51,18 @@
     <section id="memory-out" hidden>
       <h2>2. Mapa případu</h2>
       <p id="memory-summary" class="summary"></p>
+      <h3>Věcné a procesní větve</h3>
       <div id="branches" class="branch-grid"></div>
+      <h3>Dokumenty</h3>
+      <div id="memory-documents" class="document-grid"></div>
+      <h3>Rozpoznané spisové značky</h3>
+      <div id="memory-references" class="tag-list"></div>
+      <h3>Rozpoznaná data</h3>
+      <div id="memory-dates" class="tag-list"></div>
+      <aside class="limitations">
+        <strong>Co tato mapa sama nedokazuje</strong>
+        <ul id="memory-limitations"></ul>
+      </aside>
     </section>
     <section id="analysis-out" hidden>
       <h2>3. Extrahovaná fakta</h2><div id="facts"></div>
@@ -58,7 +71,7 @@
       <h2>6. Doporučené kroky</h2><div id="actions"></div>
     </section>
   </main>
-  <footer>Human-in-the-loop prototype. Výstupy vyžadují lidskou právní kontrolu. <a href="https://www.konopijelek.cz/">Cannabis is The Cure</a></footer>
+  <footer>Autor a vedoucí projektu: Mgr. Dušan Dvořák · Human-in-the-loop prototype. Výstupy vyžadují lidskou právní kontrolu. <a href="https://www.konopijelek.cz/">Cannabis is The Cure</a></footer>
   <script type="module" src="app.js"></script>
 </body>
 </html>

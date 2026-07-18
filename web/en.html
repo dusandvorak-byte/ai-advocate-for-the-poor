@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="AI helps people with limited money, health, or support turn fragmented legal materials into an auditable case.">
+  <title>AI Advocate for the Poor — demonstration prototype</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <a class="language" href="index.html" lang="cs">Česky</a>
+    <p>OPENAI BUILD WEEK · DEMONSTRATION PROTOTYPE</p>
+    <h1>AI Advocate for the Poor</h1>
+    <p>Structure, memory, and the ability to act for people who would otherwise face the system alone.</p>
+  </header>
+  <main>
+    <section class="mission">
+      <p class="eyebrow">PROJECT MISSION</p>
+      <h2>From thousands of fragmented items to an auditable case</h2>
+      <p>A person with limited money or health may have a legitimate claim and enough evidence, yet still fail because they lack the resources, time, or professional capacity to organize their case.</p>
+      <p><strong>AI Advocate is designed to compensate for this disadvantage.</strong> It turns fragmented legal and life materials into a structure of people, institutions, proceedings, events, claims, and evidence. It can then gather the relevant sources within a selected branch and prepare a proposed next step for human review.</p>
+      <div class="flow" aria-label="Intended system workflow">
+        <span>fragmented materials</span><b>→</b><span>auditable structure</span><b>→</b><span>relevant branch</span><b>→</b><span>proposed action</span>
+      </div>
+      <p>This does not replace a lawyer. It helps a person reach the point where a lawyer, legal-aid organization, ombudsperson, or public authority can actually help.</p>
+    </section>
+
+    <aside class="prototype-notice">
+      <strong>What you are seeing:</strong> a safe, prepared, and anonymized demonstration of this method using one KSZ Ostrava document. This is not yet a universal legal AI; unsupported documents are rejected.
+    </aside>
+
+    <section class="application">
+      <p class="eyebrow">A CONCRETE USE CASE TODAY</p>
+      <h2>A family brings court decisions and THC measurement protocols</h2>
+      <p>The prototype creates a basic map of documents, case references, dates, and evidentiary or procedural branches. A verified memory can later connect a judgment to a laboratory protocol, identify inconsistencies, and prepare cited materials for further assistance.</p>
+      <p><strong>Privacy in this demo:</strong> selected files are processed only in your browser. They are not uploaded and disappear when the page is refreshed.</p>
+    </section>
+
+    <section>
+      <h2>1. Input documents</h2>
+      <label class="file-label" for="files">Select text documents (.txt or .md)</label>
+      <input id="files" type="file" accept=".txt,.md,text/plain,text/markdown" multiple>
+      <p class="hint">The first safe stage processes text files. OCR for PDFs and photographs is planned.</p>
+      <button id="load" type="button">Load the supported sample</button>
+      <button id="load-case" type="button" class="secondary">Load a fictional demo case</button>
+      <textarea id="doc" rows="14" placeholder="Paste the supported KSZ Ostrava sample" aria-label="Document text"></textarea>
+      <button id="analyse" type="button">Create case map</button>
+    </section>
+    <p id="status" class="status" role="status" hidden></p>
+    <section id="memory-out" hidden>
+      <h2>2. Case map</h2>
+      <p id="memory-summary" class="summary"></p>
+      <h3>Factual and procedural branches</h3>
+      <div id="branches" class="branch-grid"></div>
+      <h3>Documents</h3>
+      <div id="memory-documents" class="document-grid"></div>
+      <h3>Identified case references</h3>
+      <div id="memory-references" class="tag-list"></div>
+      <h3>Identified dates</h3>
+      <div id="memory-dates" class="tag-list"></div>
+      <aside class="limitations">
+        <strong>What this map does not prove</strong>
+        <ul id="memory-limitations"></ul>
+      </aside>
+    </section>
+    <section id="analysis-out" hidden>
+      <h2>3. Extracted facts</h2><div id="facts"></div>
+      <h2>4. Legal interpretation</h2><div id="interpretation"></div>
+      <h2>5. Uncertainty and document limits</h2><div id="uncertainty"></div>
+      <h2>6. Recommended next steps</h2><div id="actions"></div>
+    </section>
+  </main>
+  <footer>Creator and project lead: Mgr. Dušan Dvořák · Human-in-the-loop prototype. Outputs require human legal review. <a href="https://www.konopijelek.cz/">Cannabis is The Cure</a></footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

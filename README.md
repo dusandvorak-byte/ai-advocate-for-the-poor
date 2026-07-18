@@ -1,5 +1,7 @@
 # AI Advocate for the Poor
 
+**Autor a vedoucí projektu: Mgr. Dušan Dvořák**
+
 ## Poslání
 
 **AI Advocate for the Poor pomáhá chudým a zdravotně postiženým lidem proměnit nepřehledný životní a právní problém v ověřitelný případ: uspořádá podklady, zachová souvislosti, nalezne důležitou větev a připraví návrh dalšího kroku ke kontrole člověkem.**
@@ -35,12 +37,13 @@ Nejde o nahrazení advokáta ani o automatické rozhodování o právech. Cílem
 
 ## Současný stav: bezpečný demonstrační prototyp
 
-Veřejná aplikace zatím **není univerzální právní AI a neposkytuje právní radu**. Demonstruje uvedenou metodu na jediné předem připravené ukázce sdělení Krajského státního zastupitelství v Ostravě ze dne 8. července 2026.
+Veřejná aplikace zatím **není univerzální právní AI a neposkytuje právní radu**. Demonstruje uvedenou metodu na jediné předem připravené a anonymizované ukázce sdělení Krajského státního zastupitelství v Ostravě ze dne 8. července 2026. Jméno podatele a spisová značka byly nahrazeny demonstračními údaji.
 
 Nyní funguje:
 
 - načtení zachované ukázky KSZ Ostrava;
 - striktní rozpoznání tohoto podporovaného dokumentu;
+- kontrola úplné shody podporovaného dokumentu (s tolerancí pouze pro konce řádků a okolní mezery), takže nestačí shodný název, vybrané fráze ani připojení ukázky k jinému textu;
 - odmítnutí prázdných, pozměněných a nepodporovaných dokumentů;
 - oddělení extrahovaných faktů, právní interpretace, nejistoty a doporučených kroků;
 - citace a míra jistoty u každého zobrazeného tvrzení;
@@ -49,6 +52,8 @@ Nyní funguje:
 - lokální výběr více textových listin bez jejich odesílání na server;
 - orientační vytvoření mapy dokumentů, spisových značek, dat a větví;
 - konkrétní demonstrační scénář pro rodiny lidí ve výkonu trestu: rozsudky a protokoly měření THC.
+- jedním kliknutím načitatelný, výslovně fiktivní třílistinný případ pro okamžitou demonstraci mapy bez práce s osobními údaji.
+- české a anglické veřejné rozhraní pro mezinárodní demonstraci.
 
 ### Konkrétní aplikace dostupná už nyní
 
@@ -91,13 +96,15 @@ Aplikace nemá produkční závislosti a nevyžaduje API klíč. Testy používa
 
 ## Nasazení
 
-Workflow `.github/workflows/static.yml` se spouští při pushi do `main` nebo ručně. GitHub Pages publikuje výhradně složku `web/`, nikoli právní dokumenty, testy nebo celý repozitář.
+Workflow `.github/workflows/static.yml` se spouští při pushi do `main` nebo ručně. Nejprve spustí bezpečnostní regresní testy; nasazení pokračuje jen po jejich úspěchu. GitHub Pages publikuje výhradně složku `web/`, nikoli právní dokumenty, testy nebo celý repozitář.
 
 Živé demo: <https://dusandvorak-byte.github.io/ai-advocate-for-the-poor/>
 
-## Použití Codexu
+Soutěžní podklady: [česky](SUBMISSION.cs.md) · [English](SUBMISSION.md)
 
-Codex byl použit jako vývojový spolupracovník pro audit první verze, formulaci širšího modelu, návrh bezpečnostních hranic, strukturování výstupů, tvorbu testů, dokumentaci a kontrolu nasazení. Codex v současné webové ukázce neběží a právní závěry negeneruje za provozu. Každá další etapa musí projít lidskou technickou, právní a přístupnostní kontrolou.
+## Použití Codexu a GPT-5.6
+
+Codex byl použit jako vývojový spolupracovník pro audit první verze, formulaci širšího modelu, návrh bezpečnostních hranic, strukturování výstupů, tvorbu testů, dokumentaci a kontrolu nasazení. GPT-5.6 byl v průběhu vývoje využit k promýšlení produktového konceptu, bezpečnostních scénářů a srozumitelné prezentace projektu; jeho návrhy podléhají lidské kontrole. Codex ani GPT-5.6 v současné statické webové ukázce neběží a za provozu negenerují právní závěry. Každá další etapa musí projít lidskou technickou, právní a přístupnostní kontrolou.
 
 ## Licence
 
