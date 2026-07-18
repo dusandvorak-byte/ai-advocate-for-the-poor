@@ -1,0 +1,9 @@
+{
+  "name": "ai-advocate-for-the-poor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Deterministic demonstration prototype for auditable legal-document analysis.",
+  "homepage": "https://dusandvorak-byte.github.io/ai-advocate-for-the-poor/",
+  "type": "module",
+  "scripts": { "test": "node --test" }
+}

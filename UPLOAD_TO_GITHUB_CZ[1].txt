@@ -1,8 +1,0 @@
-1. Otevřete https://github.com/dusandvorak-byte/ai-advocate-for-the-poor
-2. Klikněte „Přidat soubor“ → „Nahrát soubory“.
-3. Rozbalte ZIP a nahrajte README.md, LICENSE a složky docs a samples.
-4. Popis změny: Build first public prototype for OpenAI Build Week
-5. Klikněte „Potvrdit změny“.
-6. Otevřete Nastavení → Stránky (Pages).
-7. Zvolte Nasadit z větve, větev main, složka /docs, Uložit.
-8. Demo bude na https://dusandvorak-byte.github.io/ai-advocate-for-the-poor/

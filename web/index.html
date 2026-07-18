@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="AI pomáhá chudým a zdravotně postiženým lidem proměnit nepřehledné podklady v ověřitelný případ.">
+  <title>AI Advocate for the Poor — demonstrační prototyp</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <p>OPENAI BUILD WEEK · DEMONSTRAČNÍ PROTOTYP</p>
+    <h1>AI Advocate for the Poor</h1>
+    <p>Struktura, paměť a schopnost jednat pro lidi, kteří by jinak čelili systému sami.</p>
+  </header>
+  <main>
+    <section class="mission">
+      <p class="eyebrow">POSLÁNÍ PROJEKTU</p>
+      <h2>Od tisíců neuspořádaných prvků k ověřitelnému případu</h2>
+      <p>Chudý nebo zdravotně postižený člověk může mít oprávněný nárok a dostatek důkazů, ale přesto selhat, protože nemá peníze, zdraví, čas nebo odbornou kapacitu svůj případ uspořádat.</p>
+      <p><strong>AI Advocate má tuto nevýhodu kompenzovat.</strong> Pomáhá proměnit nepřehledný životní a právní problém ve strukturu osob, institucí, řízení, událostí, tvrzení a důkazů. V požadované větvi potom dohledá relevantní podklady a připraví návrh dalšího kroku ke kontrole člověkem.</p>
+      <div class="flow" aria-label="Zamýšlený postup systému">
+        <span>roztříštěné podklady</span><b>→</b><span>ověřitelná struktura</span><b>→</b><span>relevantní větev</span><b>→</b><span>návrh jednání</span>
+      </div>
+      <p>Nejde o nahrazení advokáta. Jde o to umožnit člověku dostat se do stavu, kdy mu advokát, poradna, ombudsman nebo úřad mohou skutečně pomoci.</p>
+    </section>
+
+    <aside class="prototype-notice">
+      <strong>Co právě vidíte:</strong> bezpečnou předem připravenou ukázku této metody na jediném dokumentu KSZ Ostrava. Nejde zatím o univerzální právní AI; jiné dokumenty prototyp odmítne.
+    </aside>
+
+    <section>
+      <h2>1. Podporovaný dokument</h2>
+      <button id="load" type="button">Načíst ukázkový dokument</button>
+      <textarea id="doc" rows="14" placeholder="Vložte podporovanou ukázku dokumentu KSZ Ostrava" aria-label="Text dokumentu"></textarea>
+      <button id="analyse" type="button">Ověřit a zobrazit ukázkovou analýzu</button>
+    </section>
+    <p id="status" class="status" role="status" hidden></p>
+    <section id="out" hidden>
+      <h2>2. Extrahovaná fakta</h2><div id="facts"></div>
+      <h2>3. Právní interpretace</h2><div id="interpretation"></div>
+      <h2>4. Nejistota a meze dokumentu</h2><div id="uncertainty"></div>
+      <h2>5. Doporučené kroky</h2><div id="actions"></div>
+    </section>
+  </main>
+  <footer>Human-in-the-loop prototype. Výstupy vyžadují lidskou právní kontrolu. <a href="https://www.konopijelek.cz/">Cannabis is The Cure</a></footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
