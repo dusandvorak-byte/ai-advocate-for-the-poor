@@ -30,6 +30,7 @@ test('public case study names its consenting author but excludes direct contact 
 });
 
 test('case-study nodes separate source level from interpretation', () => {
+  assert.equal(CASE_MEMORY.caseStudy.name, 'CannaInsider.eu — 1994 · 2004 · 2008 · 2010 · 2026');
   assert.ok(CASE_MEMORY.caseStudy.timeline.length >= 10);
   for (const node of CASE_MEMORY.caseStudy.timeline) {
     for (const field of ['date', 'actor', 'reference', 'statement', 'relation', 'source', 'page', 'level']) assert.ok(node[field], `timeline node missing ${field}`);
@@ -57,6 +58,37 @@ test('three intervention actions and the Czech Television suit remain separate b
   assert.ok(branches.some((branch) => /Česká televize/i.test(branch.defendant)));
   for (const branch of branches) {
     for (const field of ['court', 'reference', 'relation', 'citation', 'source', 'verification']) assert.ok(branch[field], `active branch missing ${field}`);
+    assert.ok(branch.evidence.length >= 3, 'active branch must list its submitted or related materials');
     assert.doesNotMatch(branch.verification, /potvrzuje pochybení/i);
+  }
+});
+
+test('public evidence axes separate facts, interpretation, uncertainty and citations', () => {
+  const axes = CASE_MEMORY.caseStudy.publicEvidenceAxes;
+  assert.equal(axes.length, 3);
+  for (const axis of axes) {
+    for (const field of ['title', 'fact', 'citation', 'source', 'interpretation', 'uncertainty']) {
+      assert.ok(axis[field], `evidence axis missing ${field}`);
+    }
+  }
+  assert.match(axes[0].uncertainty, /automaticky/i);
+  assert.match(axes[1].uncertainty, /jen po kontrole celé procesní návaznosti/i);
+  assert.match(axes[2].uncertainty, /nedokazuje vadu konkrétního měření/i);
+});
+
+test('traffic-light red means urgency, not guilt or predicted success', () => {
+  const caseStudy = CASE_MEMORY.caseStudy;
+  assert.match(caseStudy.trafficLightRule, /nikoli vinu instituce/i);
+  assert.equal(caseStudy.trafficLightLegend.length, 4);
+  assert.match(caseStudy.trafficLightLegend[0].meaning, /15 let/i);
+  assert.match(caseStudy.publicEvidenceAxes[0].uncertainty, /pracovní hypotéza/i);
+});
+
+test('2026 referral tree preserves procedural meaning and source citations', () => {
+  const tree = CASE_MEMORY.caseStudy.currentReferralTree;
+  assert.match(tree.notice, /Postoupení není věcným vypořádáním/i);
+  assert.ok(tree.nodes.length >= 8);
+  for (const node of tree.nodes) {
+    for (const field of ['date', 'institution', 'reference', 'status', 'citation', 'source', 'audit']) assert.ok(node[field], `referral node missing ${field}`);
   }
 });
