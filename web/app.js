@@ -144,6 +144,27 @@ function renderRegistry() {
   }
   const caseStudy = CASE_MEMORY.caseStudy;
   $('case-study-intro').textContent = `${caseStudy.person} — ${caseStudy.role}. ${caseStudy.evidenceRule}`;
+  const map = $('case-study-map');
+  map.className = 'map-grid';
+  for (const metric of caseStudy.mapSummary.metrics) {
+    const card = document.createElement('article'); card.className = 'claim metric';
+    const value = document.createElement('strong'); value.textContent = metric.value;
+    const label = document.createElement('p'); label.textContent = language === 'en' ? metric.labelEn : metric.label;
+    const citation = document.createElement('blockquote'); citation.textContent = `„${metric.citation}“`;
+    const note = document.createElement('p'); note.className = 'evidence-note'; note.textContent = language === 'en' ? metric.noteEn : metric.note;
+    card.append(value, label, citation, note); map.append(card);
+  }
+  const active = $('case-study-active');
+  active.className = 'map-grid';
+  for (const branch of caseStudy.activeCourtBranches) {
+    const card = document.createElement('article'); card.className = 'claim';
+    const title = document.createElement('h3'); title.textContent = `${branch.type} · ${branch.defendant}`;
+    const reference = document.createElement('p'); reference.textContent = `${branch.court} · ${branch.reference}`;
+    const relation = document.createElement('p'); relation.textContent = `${language === 'en' ? 'Link' : 'Vazba'}: ${branch.relation}`;
+    const citation = document.createElement('blockquote'); citation.textContent = `„${branch.citation}“ — ${branch.source}`;
+    const status = document.createElement('p'); status.className = 'evidence-note'; status.textContent = branch.verification;
+    card.append(title, reference, relation, citation, status); active.append(card);
+  }
   for (const node of caseStudy.timeline) {
     const card = document.createElement('article'); card.className = 'claim';
     const title = document.createElement('h3'); title.textContent = `${node.date} · ${node.actor} · ${node.reference}`;

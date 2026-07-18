@@ -50,6 +50,8 @@ Projekt vytváří dlouhodobou, zdrojově ukotvenou paměť případu. První ve
 - rozpoznává dokumenty, spisové značky, data a věcné či procesní větve;
 - nabízí jedním kliknutím fiktivní demonstrační případ bez osobních údajů;
 - vedle anonymizované podporované ukázky zobrazuje veřejnou kazuistiku živé paměti zveřejněnou se souhlasem autora;
+- v této kazuistice zpřístupňuje mapu 70 zachycených rozhodnutí či procesních úkonů z let 2010–2024 (31 prvoinstančních, 10 Nejvyššího soudu a 29 Ústavního soudu), přičemž výslovně odmítá vydávat tento součet za 70 samostatných kauz;
+- samostatně ukazuje tři aktivní zásahové žaloby u Městského soudu v Praze a civilní žalobu proti České televizi, každou se zdrojem a stavem ověření;
 - odděluje fakta, tvrzení člověka, právní interpretaci, nejistotu a doporučené kroky;
 - u každého zobrazeného závěru uvádí přesnou citaci;
 - odmítá přenést připravený právní výklad na pozměněný, cizí nebo vícedokumentový vstup.

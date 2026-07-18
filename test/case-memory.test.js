@@ -42,3 +42,21 @@ test('case-study nodes separate source level from interpretation', () => {
   assert.match(zin38.doesNotProve, /konkrétní znalecké měření bylo vadné/i);
   assert.match(CASE_MEMORY.caseStudy.candidateContradictions[0].status, /nikoli hotový rozpor/i);
 });
+
+test('case-study map distinguishes recorded acts from unique proceedings', () => {
+  const metrics = CASE_MEMORY.caseStudy.mapSummary.metrics;
+  assert.deepEqual(metrics.map((metric) => metric.value), [31, 10, 29, 70]);
+  assert.equal(metrics[0].value + metrics[1].value + metrics[2].value, metrics[3].value);
+  assert.match(CASE_MEMORY.caseStudy.mapSummary.status, /Neznamenají 70 samostatných řízení/i);
+  for (const metric of metrics) assert.ok(metric.citation && metric.note, 'map metric must include a cited passage and evidence note');
+});
+
+test('three intervention actions and the Czech Television suit remain separate branches', () => {
+  const branches = CASE_MEMORY.caseStudy.activeCourtBranches;
+  assert.equal(branches.filter((branch) => branch.type === 'zásahová žaloba').length, 3);
+  assert.ok(branches.some((branch) => /Česká televize/i.test(branch.defendant)));
+  for (const branch of branches) {
+    for (const field of ['court', 'reference', 'relation', 'citation', 'source', 'verification']) assert.ok(branch[field], `active branch missing ${field}`);
+    assert.doesNotMatch(branch.verification, /potvrzuje pochybení/i);
+  }
+});
