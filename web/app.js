@@ -142,6 +142,24 @@ function renderRegistry() {
     const relation = document.createElement('p'); relation.className = 'confidence'; relation.textContent = `Vazba: ${decision.relation}`;
     card.append(title, principle, relation); $('registry-cases').append(card);
   }
+  const caseStudy = CASE_MEMORY.caseStudy;
+  $('case-study-intro').textContent = `${caseStudy.person} — ${caseStudy.role}. ${caseStudy.evidenceRule}`;
+  for (const node of caseStudy.timeline) {
+    const card = document.createElement('article'); card.className = 'claim';
+    const title = document.createElement('h3'); title.textContent = `${node.date} · ${node.actor} · ${node.reference}`;
+    const text = document.createElement('p'); text.textContent = node.statement;
+    const relation = document.createElement('p'); relation.textContent = `Vazba: ${node.relation}`;
+    const source = document.createElement('blockquote'); source.textContent = `${node.level} — Zdroj: ${node.source}, str. ${node.page}.`;
+    card.append(title, text, relation, source); $('case-study-timeline').append(card);
+  }
+  for (const conflict of caseStudy.candidateContradictions) {
+    const card = document.createElement('article'); card.className = 'claim';
+    const title = document.createElement('h3'); title.textContent = conflict.title;
+    const earlier = document.createElement('p'); earlier.textContent = `Dřívější výrok: ${conflict.earlier}`;
+    const later = document.createElement('p'); later.textContent = `Pozdější výrok: ${conflict.later}`;
+    const status = document.createElement('blockquote'); status.textContent = conflict.status;
+    card.append(title, earlier, later, status); $('case-study-conflicts').append(card);
+  }
 }
 
 renderRegistry();

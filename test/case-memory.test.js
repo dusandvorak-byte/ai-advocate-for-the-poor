@@ -23,6 +23,18 @@ test('jurisprudence has source URL and limited relation', () => {
   }
 });
 
-test('public case memory does not contain the data subject name', () => {
-  assert.doesNotMatch(JSON.stringify(CASE_MEMORY), /Dušan\s+Dvořák/i);
+test('public case study names its consenting author but excludes direct contact identifiers', () => {
+  const memory = JSON.stringify(CASE_MEMORY);
+  assert.match(memory, /Dušan\s+Dvořák/i);
+  assert.doesNotMatch(memory, /(?:datum narození|nar\.\s*\d|datová schránka|ID DS|@|\+420|\b\d{3}\s?\d{3}\s?\d{3}\b)/i);
+});
+
+test('case-study nodes separate source level from interpretation', () => {
+  assert.ok(CASE_MEMORY.caseStudy.timeline.length >= 10);
+  for (const node of CASE_MEMORY.caseStudy.timeline) {
+    for (const field of ['date', 'actor', 'reference', 'statement', 'relation', 'source', 'page', 'level']) assert.ok(node[field], `timeline node missing ${field}`);
+  }
+  const police = CASE_MEMORY.verifiedStatements.find((record) => record.id === 'police-first-method-54-2021');
+  assert.match(police.proves, /výrok/i);
+  assert.match(police.doesNotProve, /nedokládá.*rozpor/i);
 });

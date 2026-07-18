@@ -7,6 +7,8 @@ const requiredIds = [
   'memory-summary', 'branches', 'memory-documents', 'memory-references',
   'memory-dates', 'memory-limitations', 'analysis-out', 'facts',
   'interpretation', 'uncertainty', 'actions'
+  , 'registry', 'registry-statements', 'registry-pending', 'registry-cases',
+  'case-study', 'case-study-intro', 'case-study-timeline', 'case-study-conflicts'
 ];
 
 test('Czech and English pages expose the same complete interactive surface', async () => {
