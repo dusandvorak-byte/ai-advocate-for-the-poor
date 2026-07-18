@@ -54,6 +54,8 @@ Nyní funguje:
 - konkrétní demonstrační scénář pro rodiny lidí ve výkonu trestu: rozsudky a protokoly měření THC.
 - jedním kliknutím načitatelný, výslovně fiktivní třílistinný případ pro okamžitou demonstraci mapy bez práce s osobními údaji.
 - české a anglické veřejné rozhraní pro mezinárodní demonstraci.
+- veřejný anonymizovaný registr ověřených výroků, institucí, procesních vazeb a zdrojované judikatury;
+- přísné oddělení ověřené skutečnosti, neověřeného uzlu a obecného právního principu.
 
 ### Konkrétní aplikace dostupná už nyní
 
@@ -75,6 +77,7 @@ Budoucí produkt má podporovat jednoduchý jazyk, ovládání klávesnicí a as
 web/                  veřejná statická aplikace
   analysis.js         bezpečné rozpoznání a strukturovaný výstup
   memory.js           lokální mapa více dokumentů a věcných větví
+  case-memory.js      anonymizované výroky, vazby a zdrojovaná judikatura
   app.js              vykreslení výsledků
   index.html          veřejná prezentace a ukázka
   styles.css          vzhled aplikace
