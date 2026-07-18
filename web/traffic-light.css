@@ -1,0 +1,24 @@
+.traffic-light {
+  margin: 1rem 0 1.5rem;
+  padding: 1rem;
+  border: 1px solid #d5d9df;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.traffic-light ul { margin-bottom: 0; }
+
+.risk-badge {
+  display: inline-block;
+  padding: .15rem .55rem;
+  border-radius: 999px;
+  color: #fff;
+  font-size: .82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.risk-badge.critical { background: #a31621; }
+.risk-badge.review { background: #b45309; }
+.risk-badge.verified { background: #217a3c; }
+.risk-badge.pending { background: #667085; }

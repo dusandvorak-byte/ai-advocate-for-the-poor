@@ -6,6 +6,7 @@
   <meta name="description" content="AI helps people with limited money, health, or support turn fragmented legal materials into an auditable case.">
   <title>AI Advocate for the Poor — demonstration prototype</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="traffic-light.css">
 </head>
 <body>
   <header>
@@ -26,7 +27,7 @@
       <p>This does not replace a lawyer. It helps a person reach the point where a lawyer, legal-aid organization, ombudsperson, or public authority can actually help.</p>
     </section>
 
-    <section id="registry">
+    <section id="registry" hidden>
       <p class="eyebrow">AUDITABLE MEMORY</p>
       <h2>Statements, institutions, links, and case law</h2>
       <p>The public case-study author is named with consent. Contact details and irrelevant private persons are excluded.</p>
@@ -35,12 +36,16 @@
       <h3>Relevant case-law principles</h3><div id="registry-cases"></div>
     </section>
 
-    <section id="case-study">
+    <section id="case-study" hidden>
       <p class="eyebrow">ONE PERSON'S LIVING MEMORY</p>
-      <h2>Case study: from an archive to an auditable decision graph</h2>
+      <h2 id="case-study-name">CannaInsider.eu — 1994 · 2004 · 2008 · 2010 · 2026</h2>
+      <p><strong>From an archive to an auditable decision graph.</strong></p>
       <p id="case-study-intro"></p>
+      <div id="case-study-traffic-light" class="traffic-light"></div>
+      <h3>Three publicly auditable evidence axes</h3><div id="case-study-axes"></div>
       <h3>Scale of the documented map</h3><div id="case-study-map"></div>
       <h3>Active court branches in 2026</h3><div id="case-study-active"></div>
+      <h3>Submission and referral tree since 20 April 2026</h3><div id="case-study-referrals"></div>
       <h3>Timeline and links</h3><div id="case-study-timeline"></div>
       <h3>Candidate inconsistencies for verification</h3><div id="case-study-conflicts"></div>
     </section>
@@ -56,7 +61,17 @@
       <p><strong>Privacy in this demo:</strong> selected files are processed only in your browser. They are not uploaded and disappear when the page is refreshed.</p>
     </section>
 
-    <section>
+    <section id="everyday-impact">
+      <p class="eyebrow">EVERYDAY POTENTIAL</p>
+      <h2>A person brings a box of records — the system returns an understandable path</h2>
+      <p>A prisoner’s family, a disabled person, a senior, a debtor, or a parent dealing with an authority may fail not because evidence is absent, but because they cannot find it in time, connect it to the right proceeding, and explain it to a professional.</p>
+      <div class="flow" aria-label="Future accessible assistance path">
+        <span>documents or speech in the user’s language</span><b>→</b><span>safe anonymization</span><b>→</b><span>timeline and evidence traffic light</span><b>→</b><span>review by a lawyer or advice service</span>
+      </div>
+      <p><strong>Outcome:</strong> deadlines, institutions, unanswered arguments, and cited passages, with the proposed next step remaining under human review. Voice input, OCR, automatic anonymization, and universal analysis are product vision; the current public prototype safely demonstrates the principle on one supported sample.</p>
+    </section>
+
+    <section id="evidence-document">
       <h2>1. Input documents</h2>
       <label class="file-label" for="files">Select text documents (.txt or .md)</label>
       <input id="files" type="file" accept=".txt,.md,text/plain,text/markdown" multiple>

@@ -6,6 +6,7 @@
   <meta name="description" content="AI pomáhá chudým a zdravotně postiženým lidem proměnit nepřehledné podklady v ověřitelný případ.">
   <title>AI Advocate for the Poor — demonstrační prototyp</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="traffic-light.css">
 </head>
 <body>
   <header>
@@ -37,7 +38,17 @@
       <p><strong>Soukromí v této ukázce:</strong> vybrané soubory se zpracují pouze lokálně ve vašem prohlížeči. Nikam se neodesílají a po obnovení stránky zmizí.</p>
     </section>
 
-    <section id="registry">
+    <section id="everyday-impact">
+      <p class="eyebrow">POTENCIÁL V BĚŽNÉM ŽIVOTĚ</p>
+      <h2>Člověk přinese krabici listin — systém mu vrátí srozumitelnou cestu</h2>
+      <p>Rodina vězněného člověka, člověk se zdravotním postižením, senior, dlužník nebo rodič ve sporu s úřadem často neprohraje proto, že nemá žádný důkaz, ale protože jej nedokáže včas najít, spojit s řízením a vysvětlit odborníkovi.</p>
+      <div class="flow" aria-label="Budoucí dostupný postup pomoci">
+        <span>dokumenty nebo hlas ve vlastním jazyce</span><b>→</b><span>bezpečná anonymizace</span><b>→</b><span>časová osa a důkazní semafor</span><b>→</b><span>kontrola advokátem či poradnou</span>
+      </div>
+      <p><strong>Výsledek:</strong> seznam lhůt, institucí, nevypořádaných námitek a citovaných pasáží; návrh dalšího kroku zůstává pod lidskou kontrolou. Hlasový vstup, OCR, automatická anonymizace a univerzální analýza jsou produktová vize — současný veřejný prototyp bezpečně demonstruje princip na podporované ukázce.</p>
+    </section>
+
+    <section id="registry" hidden>
       <p class="eyebrow">OVĚŘITELNÁ PAMĚŤ</p>
       <h2>Výroky, instituce, vazby a judikatura</h2>
       <p>Ověřený výrok je oddělen od neověřeného uzlu a obecného judikatorního principu. Autor kazuistiky je uveden se svým souhlasem; kontaktní údaje a nerelevantní soukromé osoby zveřejněny nejsou.</p>
@@ -46,17 +57,21 @@
       <h3>Relevantní judikatorní principy</h3><div id="registry-cases"></div>
     </section>
 
-    <section id="case-study">
+    <section id="case-study" hidden>
       <p class="eyebrow">ŽIVÁ PAMĚŤ JEDNOHO ČLOVĚKA</p>
-      <h2>Kazuistika: z archivu k auditovatelnému pavouku rozhodnutí</h2>
+      <h2 id="case-study-name">CannaInsider.eu — 1994 · 2004 · 2008 · 2010 · 2026</h2>
+      <p><strong>Z archivu k auditovatelnému pavouku rozhodnutí.</strong></p>
       <p id="case-study-intro"></p>
+      <div id="case-study-traffic-light" class="traffic-light"></div>
+      <h3>Tři veřejně kontrolovatelné důkazní osy</h3><div id="case-study-axes"></div>
       <h3>Rozsah doložené mapy</h3><div id="case-study-map"></div>
       <h3>Aktivní soudní větve v roce 2026</h3><div id="case-study-active"></div>
+      <h3>Strom podání a postoupení od 20. dubna 2026</h3><div id="case-study-referrals"></div>
       <h3>Chronologie a vazby</h3><div id="case-study-timeline"></div>
       <h3>Kandidátní rozpory k ověření</h3><div id="case-study-conflicts"></div>
     </section>
 
-    <section>
+    <section id="evidence-document">
       <h2>1. Vstupní dokumenty</h2>
       <label class="file-label" for="files">Vybrat textové listiny (.txt nebo .md)</label>
       <input id="files" type="file" accept=".txt,.md,text/plain,text/markdown" multiple>

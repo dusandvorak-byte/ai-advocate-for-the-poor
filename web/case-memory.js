@@ -80,9 +80,44 @@ export const CASE_MEMORY = {
     { reference: 'obnovy trestních řízení', branch: 'Mimořádné opravné prostředky', relation: 'Možná budoucí větev; význam závisí na nových skutečnostech, důkazech a konkrétních spisech.', verification: 'hypotéza, nikoli právní závěr' }
   ],
   caseStudy: {
+    name: 'CannaInsider.eu — 1994 · 2004 · 2008 · 2010 · 2026',
     person: 'Mgr. Dušan Dvořák',
     role: 'autor, kurátor archivu a veřejná kazuistika živé paměti jednoho člověka',
     evidenceRule: 'Následující uzly popisují obsah podání. Nejsou samy důkazem pravdivosti všech tvrzení v podání; k ověření výroku je nutná citovaná původní listina.',
+    trafficLightRule: 'Semafor vyjadřuje naléhavost lidské kontroly a stav důkazů, nikoli vinu instituce, důvodnost žaloby ani předpověď výsledku řízení.',
+    trafficLightLegend: [
+      { level: 'critical', label: 'červená', meaning: '15 let opakovaných podání a reakcí bez doloženého souhrnného vypořádání společného jádra, tvrzené nevratné újmy a aktuální naléhavost roku 2026' },
+      { level: 'review', label: 'oranžová', meaning: 'závažná otázka nebo kandidátní rozpor čekající na úplný prvotní pramen či spis' },
+      { level: 'verified', label: 'zelená', meaning: 'výrok přímo doložen citovanou úřední listinou' },
+      { level: 'pending', label: 'šedá', meaning: 'tvrzení autora nebo pracovní vazba čekající na ověření' }
+    ],
+    publicEvidenceAxes: [
+      {
+        title: '1. Neoznámené technické předpisy',
+        fact: 'Veřejná rozhodnutí dokládají, že námitka oznamovací povinnosti byla uplatněna již v dovolání 8 Tdo 1231/2011 a ústavní stížnosti II. ÚS 664/12. Nejvyšší soud ji tehdy odmítl s odkazem na předmět zákona o návykových látkách. Pozdější usnesení III. ÚS 3354/16 výslovně připustilo, že požadavek na obsah látky může být technickou specifikací a že oznamovací povinnost může být významná i v trestním řízení.',
+        citation: 'O technický předpis […] v případě zákona o návykových látkách de iure jde. […] stanovení požadavků na určitý obsah látky nepochybně jako technickou specifikaci […] kvalifikovat lze.',
+        source: 'Ústavní soud, III. ÚS 3354/16, bod 34; srov. Nejvyšší soud, 8 Tdo 1231/2011 a Ústavní soud, II. ÚS 664/12',
+        sourceUrl: 'https://www.zakonyprolidi.cz/judikat/uscr/iii-us-3354-16-1',
+        interpretation: 'Jde o doloženou právní otázku, kterou je nutné zkoumat ustanovení po ustanovení a podle časově účinného znění a konkrétní notifikace v systému TRIS. Časová řada může odhalit selektivní oznamování změn; úmysl však nelze dovodit bez legislativního spisu a dalších přímých podkladů.',
+        uncertainty: 'Sama nenotifikace jedné technické normy automaticky neruší celý zákon ani sama neprokazuje nezákonnost konkrétního odsouzení. Označení „účelové“ je pracovní hypotéza, nikoli ověřený skutkový závěr.'
+      },
+      {
+        title: '2. Újmy na zdraví, majetku a cti a procesní audit podnětů',
+        fact: 'Archiv obsahuje tvrzení o újmách a dlouhou řadu trestních podnětů, stížností, postoupení, odložení a rozhodnutí o nepříslušnosti. Veřejná kazuistika proto nesčítá pouze podání: u každého podnětu požaduje datum, adresáta, předmět, výsledek, citaci výroku a navazující spisovou značku.',
+        citation: 'Procesní postoupení k vyhodnocení není potvrzením pochybení.',
+        source: 'důkazní pravidlo projektu; jednotlivé výsledky se dokládají původními úředními listinami',
+        interpretation: 'Taková tabulka může prokázat, zda bylo konkrétní tvrzení věcně prověřeno, pouze procesně předáno, odloženo, nebo zůstalo bez doloženého vyřízení.',
+        uncertainty: 'Výraz „nikdy nevyšetřeno“ lze použít jen po kontrole celé procesní návaznosti. Samotné postoupení, mlčení či nesouhlas podatele neprokazují trestný čin ani odpovědnost konkrétní osoby.'
+      },
+      {
+        title: '3. Měření THC a forenzní postupy',
+        fact: 'Policejní prezidium v roce 2025 uvedlo, že policie mezi 1. květnem 2004 a 11. listopadem 2021 nevydala vlastní metodiku k určování THC. Podání z roku 2026 cituje sdělení Kriminalistického ústavu KU-4139-5/ČJ-2026-2305KM tak, že jeho stanoviska vůči OKTE mají doporučující povahu, jednotlivá pracoviště si vytvářejí vlastní standardní operační postupy a uvádění nejistoty měření je ponecháno laboratořím.',
+        citation: 'Policie České republiky nevydala v časovém rozmezí od 1. května 2004 do 11. listopadu 2021 žádnou metodiku k určování obsahu THC v rostlinách konopí.',
+        source: 'Policejní prezidium, PPR-21028-11/ČJ-2025-990810, 6. 5. 2025; citované sdělení KÚ z 25. 6. 2026 čeká na zveřejnění anonymizované zdrojové pasáže',
+        interpretation: 'Silná kontrolní otázka zní, jaký konkrétní validovaný SOP, pravidlo vzorkování, způsob zohlednění nejistoty a rozlišení THC/THCA byl použit v každém posudku.',
+        uncertainty: 'Neexistence vlastní centrální policejní metodiky neznamená neexistenci jakéhokoli odborného postupu a sama o sobě nedokazuje vadu konkrétního měření.'
+      }
+    ],
     mapSummary: {
       source: 'Spisovky – konopí – Dušan Dvořák – 2009–2024, souhrnné tabulky na stranách 5–8',
       status: 'Počty jsou převzaty z autorem sestavené tabulky. Neznamenají 70 samostatných řízení; jde o 70 zachycených rozhodnutí nebo procesních úkonů, které se mohou vztahovat ke stejnému řízení.',
@@ -94,11 +129,25 @@ export const CASE_MEMORY = {
       ]
     },
     activeCourtBranches: [
-      { type: 'zásahová žaloba', defendant: 'Ministerstvo zdravotnictví ČR', court: 'Městský soud v Praze', reference: '8 Ad 9/2026', relation: 'větev MZ ČR a odborných či laboratorních podkladů', citation: 'čj. 8 Ad 9/2026-21', source: 'MS v Praze, dne 9. 7. 2026, čj. 8 Ad 9/2026-21', verification: 'Spisová značka je doložena soudní listinou; obsah a stav žaloby je nutné číst z celého spisu.' },
-      { type: 'zásahová žaloba', defendant: 'Ministerstvo spravedlnosti ČR', court: 'Městský soud v Praze', reference: '18 A 23/2026', relation: 'větev dohledu Ministerstva spravedlnosti a navazujících podání', citation: '18 A 23/2026', source: 'podání Městskému soudu v Praze a doplnění k MSP, červenec 2026', verification: 'Značka je doložena v předloženém podání; soudní stav čeká na ověření přímo ze soudní listiny.' },
-      { type: 'zásahová žaloba', defendant: 'NCOZ / Policie ČR', court: 'Městský soud v Praze', reference: '18 A 17/2026', relation: 'větev nečinnosti či zásahu NCOZ, rozhodnutí MV a dozorových podání', citation: '18 A 17/2026', source: 'podání Městskému soudu v Praze ve věci NCOZ, červenec 2026', verification: 'Značka je doložena v předloženém podání; přesný žalovaný a soudní stav čekají na kontrolu soudní listiny.' },
-      { type: 'civilní žaloba', defendant: 'Česká televize', court: 'Okresní soud', reference: '10 C 69/2026', relation: 'samostatná mediální větev propojená podněty Radě ČT a RRTV', citation: 'čj. 10 C 69/2026', source: 'OS dne 13. 7. 2026, čj. 10 C 69/2026 – soudní poplatek', verification: 'Existence civilní soudní větve je doložena výzvou k soudnímu poplatku; tvrzení žaloby nejsou tímto potvrzena.' }
+      { type: 'zásahová žaloba', defendant: 'Ministerstvo zdravotnictví ČR', court: 'Městský soud v Praze', reference: '8 Ad 9/2026', relation: 'větev MZ ČR a odborných či laboratorních podkladů', citation: 'čj. 8 Ad 9/2026-21', source: 'MS v Praze, dne 9. 7. 2026, čj. 8 Ad 9/2026-21', evidence: ['Městskému soudu v Praze dne 8. 7. 2026 – doplnění zásahové žaloby na MZ ČR', 'Městskému soudu dne 14. 7. 2026 – MZ – předžalobní výzva NSZ', 'MS v Praze dne 9. 7. 2026, čj. 8 Ad 9/2026-20 – soudní poplatek', 'MS v Praze dne 9. 7. 2026, čj. 8 Ad 9/2026-21'], verification: 'Spisová značka je doložena soudní listinou; obsah a stav žaloby je nutné číst z celého spisu.' },
+      { type: 'zásahová žaloba', defendant: 'Ministerstvo spravedlnosti ČR', court: 'Městský soud v Praze', reference: '18 A 23/2026', relation: 'větev dohledu Ministerstva spravedlnosti a navazujících podání', citation: '18 A 23/2026', source: 'podání Městskému soudu v Praze a doplnění k MSP, červenec 2026', evidence: ['Městskému soudu dne 14. 7. 2026 – MSP – předžalobní výzva NSZ', 'Městskému soudu dne 15. 7. 2026 – MSP – stížnost ministru vnitra', 'Městskému soudu dne 18. 7. 2026 – MSP – stížnost ministru spravedlnosti a naléhavost'], verification: 'Značka je doložena v předloženém podání; soudní stav čeká na ověření přímo ze soudní listiny.' },
+      { type: 'zásahová žaloba', defendant: 'NCOZ / Policie ČR', court: 'Městský soud v Praze', reference: '18 A 17/2026', relation: 'větev nečinnosti či zásahu NCOZ, rozhodnutí MV a dozorových podání', citation: '18 A 17/2026', source: 'podání Městskému soudu v Praze ve věci NCOZ, červenec 2026', evidence: ['Městskému soudu dne 14. 7. 2026 – NCOZ – předžalobní výzva NSZ', 'Městskému soudu dne 15. 7. 2026 – NCOZ – rozhodnutí Ministerstva vnitra a naléhavost', 'Městskému soudu dne 18. 7. 2026 – NCOZ – extrémní naléhavost'], verification: 'Značka je doložena v předloženém podání; přesný žalovaný a soudní stav čekají na kontrolu soudní listiny.' },
+      { type: 'civilní žaloba', defendant: 'Česká televize', court: 'Okresní soud', reference: '10 C 69/2026', relation: 'samostatná mediální větev propojená podněty Radě ČT, RRTV a ÚOOÚ', citation: 'čj. 10 C 69/2026', source: 'OS dne 13. 7. 2026, čj. 10 C 69/2026 – soudní poplatek', evidence: ['Žaloba ze dne 14. 7. 2026 adresovaná rovněž předsedovi Rady ČT se dvěma přílohami', 'Podnět RRTV a České televizi ze dne 14. 7. 2026', 'Podnět ÚOOÚ a České televizi ze dne 14. 7. 2026', 'Předžalobní výzva NSZ ze dne 14. 7. 2026', 'OS dne 13. 7. 2026, čj. 10 C 69/2026 – soudní poplatek'], verification: 'Existence civilní soudní větve je doložena výzvou k soudnímu poplatku; podněty RRTV a ÚOOÚ jsou související mimosoudní větve a tvrzení žaloby nejsou poplatkovou výzvou potvrzena.' }
     ],
+    currentReferralTree: {
+      title: 'Strom podání a postoupení od 20. dubna 2026',
+      notice: 'Stav každého uzlu popisuje pouze citovanou listinu. Postoupení není věcným vypořádáním ani potvrzením pochybení. Strom zatím není prohlášen za úplný.',
+      nodes: [
+        { date: '2026-04-20', institution: 'Nejvyšší státní zastupitelství', reference: 'následně 6 NZN 1737/2026', status: 'vstupní podání', citation: 'stížnost na nečinnost NCOZ a identifikace tvrzených újem', source: 'NSZ – stížnost ze dne 20. 4. 2026', audit: 'Obsah podání je doložen; způsob věcného vypořádání se ověřuje v navazujících listinách.' },
+        { date: '2026-05-06', institution: 'Nejvyšší státní zastupitelství', reference: '6 NZN 1737/2026-15', status: 'výzva k doplnění', citation: 'výzva k doplnění podání', source: 'NSZ dne 6. 5. 2026, čj. 6 NZN 1737/2026-15', audit: 'Procesní výzva sama neřeší důvodnost tvrzení.' },
+        { date: '2026-05-13', institution: 'Nejvyšší státní zastupitelství → Městské státní zastupitelství v Praze', reference: '6 NZN 1737/2026-32', status: 'postoupeno', citation: 'předáváme Městskému státnímu zastupitelství v Praze', source: 'NSZ dne 13. 5. 2026, čj. 6 NZN 1737/2026-32', audit: 'Dokládá procesní přesun, nikoli věcný závěr.' },
+        { date: '2026-06-11', institution: 'Městské státní zastupitelství v Praze', reference: '3 KZN 197/2026-12', status: 'částečně postoupeno', citation: 'vyrozumění o částečném postoupení', source: 'MSZ dne 11. 6. 2026, čj. 3 KZN 197/2026-12', audit: 'Pro úplný strom je nutné z výroku a rozdělovníku identifikovat všechny adresáty.' },
+        { date: '2026-06-15', institution: 'NCOZ', reference: 'NCOZ-4871-5/ČJ-2026-410066-E', status: 'nepříslušnost podle listiny', citation: 'NCOZ se označilo za nepříslušné k vyšetřování popsané větve', source: 'NCOZ dne 15. 6. 2026, čj. NCOZ-4871-5/ČJ-2026-410066-E', audit: 'Přesný rozsah závěru musí být čten z celé listiny; nejde automaticky o věcné vyšetření skutků.' },
+        { date: '2026-06-26', institution: 'Obvodní státní zastupitelství pro Prahu 4', reference: 'čeká na přesný přepis č. j.', status: 'vyhodnoceno jako nejde o trestný čin', citation: 'nejde o trestný čin', source: 'OSZ pro Prahu 4 dne 26. 6. 2026', audit: 'Je nutné přiřadit, které konkrétní skutky a důkazy tento závěr pokrývá.' },
+        { date: '2026-07-08', institution: 'Krajské státní zastupitelství v Ostravě → Okresní státní zastupitelství ve Frýdku-Místku', reference: 'nová značka OSZ čeká na doložení', status: 'postoupeno', citation: 'věc se předává OSZ Frýdek-Místek', source: 'KSZ v Ostravě dne 8. 7. 2026', audit: 'Bezprostřední úkol: zjistit novou spisovou značku a následné věcné vyřízení.' },
+        { date: '2026-07-16', institution: 'Vrchní státní zastupitelství v Olomouci', reference: '3 VZN 239/2026-27', status: 'dohled neproveden podle listiny', citation: 'vyrozumění k požadovanému dohledu', source: 'VSZ v Olomouci dne 16. 7. 2026, čj. 3 VZN 239/2026-27', audit: 'Samostatná moravská dohledová větev; důvody je nutné citovat z originálu.' }
+      ]
+    },
     timeline: [
       { date: '2010-12-03', actor: 'Prezident Václav Klaus a Kancelář prezidenta republiky', reference: 'vyjádření prezidenta ze dne 3. 12. 2010', statement: 'Podání z roku 2026 uvádí, že prezident přečetl přiložené materiály a deklaraci lidských práv.', relation: 'počátek tvrzené kontinuální vědomosti KPR', source: 'Prezidentu republiky 18. 7. 2026', page: 4, level: 'tvrzení doložené v podání; původní vyjádření čeká na vložení' },
       { date: '2011-05-31', actor: 'Předseda vlády Petr Nečas a Úřad vlády', reference: '07066/11-OSV', statement: 'Podání uvádí odpověď na léčebné využití konopí a právní souvislosti.', relation: 'větev vědomosti vlády a evropské notifikace', source: 'Prezidentu republiky 18. 7. 2026', page: 4, level: 'tvrzení doložené v podání; původní odpověď čeká na vložení' },
