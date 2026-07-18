@@ -35,9 +35,17 @@ Nejde o nahrazení advokáta ani o automatické rozhodování o právech. Cílem
 - z podkladů připraví návrh podání nebo dalšího kroku pro lidskou kontrolu;
 - usnadňuje bezpečné převzetí případu právníkem nebo neziskovou poradnou.
 
+## Kontinuita od roku 1994
+
+Projekt navazuje na třicetiletou linii praktických integračních projektů vedených Dušanem Dvořákem: od budování olomouckého P-centra v roce 1994 přes dobrovolnické internetové poradenství a otevřenou bezbariérovou školu pro dospělé Ateliér ALF až po vznik dlouhodobé odborné a dokumentární paměti programu Konopí je lék. AI Advocate převádí stejný princip do nové technologické generace: místo aby člověk předával odborníkovi neuspořádanou hromadu podkladů, předá mu auditovatelnou mapu případu.
+
+Oficiální seznam Ministerstva obrany uvádí Dušana Dvořáka mezi držiteli osvědčení účastníka odboje a odporu proti komunismu. Dobová zpráva z února 2021, opřená o vyjádření ministerstva, zaznamenává, že osvědčení obdržel během výkonu trestu ve věznici. Projekt tento údaj uvádí jako doložený životopisný kontext, nikoli jako argument o správnosti pozdějších právních tvrzení.
+
+Podrobnější česko-anglický zakladatelský příběh a rozlišení doložených údajů od produktové vize obsahují soutěžní podklady [SUBMISSION.cs.md](SUBMISSION.cs.md) a [SUBMISSION.md](SUBMISSION.md).
+
 ## Současný stav: bezpečný demonstrační prototyp
 
-Veřejná aplikace zatím **není univerzální právní AI a neposkytuje právní radu**. Demonstruje uvedenou metodu na jediné předem připravené a anonymizované ukázce sdělení Krajského státního zastupitelství v Ostravě ze dne 8. července 2026. Jméno podatele a spisová značka byly nahrazeny demonstračními údaji.
+Veřejná aplikace zatím **není univerzální právní AI a neposkytuje právní radu**. Připravenou právní analýzu demonstruje pouze na jediné anonymizované ukázce sdělení Krajského státního zastupitelství v Ostravě ze dne 8. července 2026. Vedle ní obsahuje veřejnou kazuistiku „živé paměti“ zveřejněnou se souhlasem autora; ta je zdrojovým registrem a není automatickou právní analýzou libovolného dokumentu.
 
 Nyní funguje:
 
@@ -54,7 +62,7 @@ Nyní funguje:
 - konkrétní demonstrační scénář pro rodiny lidí ve výkonu trestu: rozsudky a protokoly měření THC.
 - jedním kliknutím načitatelný, výslovně fiktivní třílistinný případ pro okamžitou demonstraci mapy bez práce s osobními údaji.
 - české a anglické veřejné rozhraní pro mezinárodní demonstraci.
-- veřejný anonymizovaný registr ověřených výroků, institucí, procesních vazeb a zdrojované judikatury;
+- veřejný souhlasem zveřejněný registr ověřených výroků, institucí, procesních vazeb a zdrojované judikatury;
 - přísné oddělení ověřené skutečnosti, neověřeného uzlu a obecného právního principu.
 
 ### Konkrétní aplikace dostupná už nyní
@@ -71,13 +79,15 @@ Repozitář dosud neobsahuje příjem stovek dokumentů, OCR, AI model, databáz
 
 Budoucí produkt má podporovat jednoduchý jazyk, ovládání klávesnicí a asistivními technologiemi, hlasový vstup, OCR fotografovaných listin, práci po malých krocích, bezpečné ukládání rozpracovaného případu a nízké nebo nulové náklady. Přístupnost není doplněk; je součástí účelu projektu.
 
+Zamýšlená vstupní brána nabízí dvě rovnocenné cesty: člověk buď vloží dokumenty k místnímu předzpracování a řízené anonymizaci, nebo problém po malých krocích namluví ve vlastním jazyce. Systém připraví kontrolovatelnou strukturu a uživatel rozhodne, co smí být sdíleno. Oprávněný advokát nebo pracovník poradny pak může anonymizovaný případ převzít, určit vhodnou právní cestu a navrhnout další krok. Hlasový vstup, překlad, řízení souhlasu a předání právníkovi jsou zatím vize, nikoli funkce dnešní veřejné ukázky.
+
 ## Struktura repozitáře
 
 ```text
 web/                  veřejná statická aplikace
   analysis.js         bezpečné rozpoznání a strukturovaný výstup
   memory.js           lokální mapa více dokumentů a věcných větví
-  case-memory.js      anonymizované výroky, vazby a zdrojovaná judikatura
+  case-memory.js      veřejná kazuistika, výroky, vazby a zdrojovaná judikatura
   app.js              vykreslení výsledků
   index.html          veřejná prezentace a ukázka
   styles.css          vzhled aplikace
@@ -108,6 +118,18 @@ Soutěžní podklady: [česky](SUBMISSION.cs.md) · [English](SUBMISSION.md)
 ## Použití Codexu a GPT-5.6
 
 Codex byl použit jako vývojový spolupracovník pro audit první verze, formulaci širšího modelu, návrh bezpečnostních hranic, strukturování výstupů, tvorbu testů, dokumentaci a kontrolu nasazení. GPT-5.6 byl v průběhu vývoje využit k promýšlení produktového konceptu, bezpečnostních scénářů a srozumitelné prezentace projektu; jeho návrhy podléhají lidské kontrole. Codex ani GPT-5.6 v současné statické webové ukázce neběží a za provozu negenerují právní závěry. Každá další etapa musí projít lidskou technickou, právní a přístupnostní kontrolou.
+
+Projekt existoval jako raný prototyp před zahájením OpenAI Build Week. Rozšíření vytvořená v soutěžním období jsou odlišena datovanou historií commitů: přísné ověření identity dokumentu, bezpečné odmítání vstupů, vícedokumentová mapa, dvojjazyčné rozhraní, zdrojový registr živé paměti, adversariální testy, vyčištění repozitáře a nasazení pouze webové aplikace.
+
+## Soutěžní soulad
+
+- doporučená kategorie: **Apps for Your Life**;
+- živé demo je zdarma a bez přihlášení;
+- anglické rozhraní a anglický soutěžní popis jsou součástí repozitáře;
+- finální video musí být veřejné na YouTube, se zvukem, v angličtině nebo s úplným anglickým překladem a kratší než tři minuty;
+- před odevzdáním je nutné vložit `/feedback` Codex Session ID hlavního vývojového vlákna;
+- dokumenty třetích osob, podpisy, adresy a jiné osobní údaje se do veřejné soutěžní ukázky nevkládají bez oprávnění;
+- projekt musí zůstat dostupný porotě bez omezení nejméně do skončení hodnocení.
 
 ## Licence
 

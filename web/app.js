@@ -156,9 +156,10 @@ function renderRegistry() {
     const card = document.createElement('article'); card.className = 'claim';
     const title = document.createElement('h3'); title.textContent = conflict.title;
     const earlier = document.createElement('p'); earlier.textContent = `Dřívější výrok: ${conflict.earlier}`;
+    const intermediate = document.createElement('p'); intermediate.textContent = conflict.intermediate ? `Mezilehlý výrok: ${conflict.intermediate}` : '';
     const later = document.createElement('p'); later.textContent = `Pozdější výrok: ${conflict.later}`;
     const status = document.createElement('blockquote'); status.textContent = conflict.status;
-    card.append(title, earlier, later, status); $('case-study-conflicts').append(card);
+    card.append(title, earlier); if (conflict.intermediate) card.append(intermediate); card.append(later, status); $('case-study-conflicts').append(card);
   }
 }
 

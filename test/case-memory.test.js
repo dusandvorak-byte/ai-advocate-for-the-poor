@@ -37,4 +37,8 @@ test('case-study nodes separate source level from interpretation', () => {
   const police = CASE_MEMORY.verifiedStatements.find((record) => record.id === 'police-first-method-54-2021');
   assert.match(police.proves, /výrok/i);
   assert.match(police.doesNotProve, /nedokládá.*rozpor/i);
+  const zin38 = CASE_MEMORY.verifiedStatements.find((record) => record.id === 'ns-zin-38-no-thc-case-law');
+  assert.equal(zin38.reference, 'Zin 38/2016');
+  assert.match(zin38.doesNotProve, /konkrétní znalecké měření bylo vadné/i);
+  assert.match(CASE_MEMORY.caseStudy.candidateContradictions[0].status, /nikoli hotový rozpor/i);
 });

@@ -3,6 +3,18 @@ export const CASE_MEMORY = {
   privacy: 'Veřejná kazuistika živé paměti Mgr. Dušana Dvořáka. Citlivé kontaktní údaje a nerelevantní soukromé osoby nejsou zveřejněny.',
   verifiedStatements: [
     {
+      id: 'ns-zin-38-no-thc-case-law',
+      statement: 'Předseda Nejvyššího soudu jako nadřízený orgán uvedl, že Nejvyšší soud dosud v judikatuře neřešil postup vážení rostlin konopí a měření obsahu THC a že k těmto otázkám nebylo přijato stanovisko trestního kolegia ani pléna.',
+      date: '2016-04-21', reference: 'Zin 38/2016',
+      institution: 'Nejvyšší soud',
+      relatedInstitution: 'předseda Nejvyššího soudu prof. JUDr. Pavel Šámal, Ph.D.',
+      branch: 'Judikatura a metodika měření THC / informační zákon',
+      citation: 'Nejvyšší soud dosud problematiku vážení rostlin konopí a způsobu měření THC v něm obsaženém v judikatuře neřešil.',
+      proves: 'Dokládá přesný stav, který předseda Nejvyššího soudu popsal k datu rozhodnutí, a částečný procesní úspěch stížnosti podle informačního zákona.',
+      doesNotProve: 'Nedokládá, že v praxi neexistoval žádný odborný postup, že konkrétní znalecké měření bylo vadné ani že starší odsouzení bylo nezákonné.',
+      source: 'Rozhodnutí předsedy Nejvyššího soudu Zin 38/2016 ze dne 21. 4. 2016, s. 4–6', verification: 'ověřeno zdrojovou listinou'
+    },
+    {
       id: 'police-method-1999-2004',
       statement: 'Policie uvedla, že v období od 1. ledna 1999 do 1. května 2004 nevydala metodiku k určování obsahu THC v rostlinách konopí.',
       date: '2025-05-06', reference: 'PPR-21028-11/ČJ-2025-990810',
@@ -86,7 +98,7 @@ export const CASE_MEMORY = {
       { date: '2026-07-18', actor: 'Prezident Petr Pavel, Milan Vašina, Eva Pavlová, Pavla Štechová a KPR', reference: 'KPR 4093/2026', statement: 'Stížnost žádá věcné vyjádření, informace a nové posouzení žádosti ve světle aktualizované chronologie.', relation: 'vrchol současné prezidentské větve', source: 'Prezidentu republiky 18. 7. 2026', page: 1, level: 'ověřeno textem podání; odpověď KPR zatím není součástí této kazuistiky' }
     ],
     candidateContradictions: [
-      { title: 'Existence jednotné policejní metodiky měření THC', earlier: 'Podání připisuje NSZ (1 NZO 84/2015-14), Nejvyššímu soudu (11 Tdo 181/2015) a ministrovi Milanu Chovancovi tvrzení o existujícím metodickém standardu.', later: 'Policejní prezidium v PPR-21028-11/ČJ-2025-990810 přímo uvedlo, že policie v letech 2004–2021 vlastní metodiku nevydala a rozkaz č. 54/2021 označilo za první metodiku vyjmenovaného komplexního rozsahu.', status: 'silný kandidát k prověření — pozdější výrok je ověřen; pro závěr o rozporu je nutno porovnat úplné originály dokumentů z roku 2015 a význam pojmu „metodický standard“' }
+      { title: 'Existence a právní význam postupu měření THC', earlier: 'Podání připisuje NSZ (1 NZO 84/2015-14), Nejvyššímu soudu (11 Tdo 181/2015) a ministrovi Milanu Chovancovi tvrzení o existujícím metodickém standardu.', intermediate: 'Rozhodnutí Zin 38/2016 přímo uvádí, že Nejvyšší soud do 21. 4. 2016 v judikatuře neřešil postup vážení rostlin a měření THC a kolegium ani plénum k němu nezaujaly stanovisko.', later: 'Policejní prezidium v PPR-21028-11/ČJ-2025-990810 přímo uvedlo, že policie v letech 2004–2021 vlastní metodiku nevydala a rozkaz č. 54/2021 označilo za první metodiku vyjmenovaného komplexního rozsahu.', status: 'silný kandidát k přesnému srovnání, nikoli hotový rozpor — je nutné odlišit judikaturu, stanovisko soudu, externí postup ENFSI, interní policejní metodiku a hodnocení konkrétního znaleckého posudku' }
     ]
   },
   jurisprudence: [
