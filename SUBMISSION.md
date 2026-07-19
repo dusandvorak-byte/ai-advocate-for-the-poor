@@ -98,11 +98,11 @@ This project existed as an early prototype before the Submission Period. The wor
 
 ## Safety is part of the product
 
-The prototype clearly states that it is neither legal advice nor a universal legal AI. It verifies the complete identity of the one supported document before showing its prepared interpretation. A procedural referral is never presented as confirmation of wrongdoing. Multi-document mode produces an orientation map only and can never receive the prepared legal interpretation.
+The prototype clearly states that it is neither legal advice nor a universal legal AI. It has two separately bounded prepared-input paths: the verified KSZ referral sample and one exact court PDF concerning an association-governance change. The PDF is checked locally by SHA-256; the private original is never uploaded or published, and only an anonymized derivative is public. A procedural referral is never presented as confirmation of wrongdoing. Unknown PDFs receive no prepared interpretation, and multi-document text mode produces an orientation map only.
 
 ## Current limitations
 
-The public version accepts text and supports one verified sample. It does not yet include OCR, a database, authentication, general legal analysis, or document drafting. These are planned capabilities, not claims about the current build.
+The public version accepts text for technical mapping and exactly one versioned PDF plus its anonymized derivative for a second prepared test. It does not yet include general PDF/DOCX analysis, OCR, a database, authentication, universal legal analysis, or automated filing. These are planned capabilities, not claims about the current build.
 
 ## Links
 
@@ -118,8 +118,8 @@ The public version accepts text and supports one verified sample. It does not ye
 1. **0–25 seconds — the invisible inequality:** “Institutions have structured files and professional memory. A disadvantaged person may have the same evidence in hundreds of documents — and still be unable to make it usable.”
 2. **25–55 seconds — instant structure:** Load the fictional case and create its map. Show documents becoming branches, references, dates, and relationships.
 3. **55–90 seconds — living memory:** Show the public case-study registry. Explain the distinction between an official statement, the author's allegation, a legal principle, and an unresolved contradiction. Open a source quotation.
-4. **90–120 seconds — safety as a feature:** Load the KSZ Ostrava sample. Show facts, interpretation, uncertainty, and next steps. Then alter the input and show the refusal. Say explicitly: “A referral is not proof of wrongdoing.”
-5. **120–140 seconds — Codex and GPT-5.6:** With narration, show the dated Build Week commits, tests, and README. Explain how Codex accelerated implementation and how GPT-5.6 supported product and safety decisions.
+4. **90–125 seconds — safety as a feature:** Load the KSZ Ostrava sample and state: “A referral is not proof of wrongdoing.” Show the draft before the test and the sent output after it. Then load the public anonymized PDF copy, compare memory before and after insertion, show the generated solution and relevance traffic light, and explain that the private original is matched locally by fingerprint while an unknown PDF is rejected.
+5. **125–140 seconds — Codex and GPT-5.6:** With narration, show the dated Build Week commits, tests, and README. Explain how Codex accelerated implementation and how GPT-5.6 supported product and safety decisions.
 6. **140–150 seconds — close:** “We are not replacing a lawyer. We are giving every person the memory, structure, and dignity needed to reach one.”
 
 The final video must be in English (or include a complete English translation), contain spoken audio, be publicly visible on YouTube, and remain under three minutes.

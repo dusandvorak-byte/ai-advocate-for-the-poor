@@ -51,7 +51,7 @@
     </section>
 
     <aside class="prototype-notice">
-      <strong>What you are seeing:</strong> a safe, prepared, and anonymized demonstration of this method using one KSZ Ostrava document. This is not yet a universal legal AI; unsupported documents are rejected.
+      <strong>What you are seeing:</strong> the first test updates Citizen XY’s prepared anonymized archive with one public-prosecution document. The second test accepts one exactly supported PDF from outside, verifies its digital fingerprint, and displays only an anonymized result. Other inputs receive only a safe technical map or are rejected.
     </aside>
 
     <section class="application">
@@ -72,14 +72,87 @@
     </section>
 
     <section id="evidence-document">
-      <h2>1. Input documents</h2>
-      <label class="file-label" for="files">Select text documents (.txt or .md)</label>
-      <input id="files" type="file" accept=".txt,.md,text/plain,text/markdown" multiple>
-      <p class="hint">You can first load the prepared anonymized European map. Your own text files are processed only locally; OCR for PDFs and photographs is planned.</p>
-      <button id="load" type="button">Load the supported sample</button>
-      <button id="load-case" type="button" class="secondary">Load the anonymized European case map</button>
-      <textarea id="doc" rows="14" placeholder="Paste the supported KSZ Ostrava sample" aria-label="Document text"></textarea>
-      <button id="analyse" type="button">Create case map</button>
+      <p class="eyebrow">CONTROLLED PRE-SUBMISSION TEST</p>
+      <h2>Citizen XY’s archive already exists. One new document is being added.</h2>
+      <div class="flow" aria-label="Internal test workflow">
+        <span>2004–2026 archive</span><b>→</b><span>new referral notice</span><b>→</b><span>deadline and relevance check</span><b>→</b><span>updated decision graph</span>
+      </div>
+      <p class="hint">This button runs the first internal test. A separate outside-PDF test and safe text mapping appear below.</p>
+      <button id="run-internal-test" type="button">Run the new-document test</button>
+      <button id="load-case" type="button" class="secondary">Show the baseline map without the new document</button>
+    </section>
+    <section id="integration-test" hidden>
+      <p class="eyebrow">INTERNAL TEST RESULT</p>
+      <h2 id="integration-title"></h2>
+      <p id="integration-scope" class="evidence-note"></p>
+      <div id="integration-metrics" class="metric-grid"></div>
+      <div id="integration-document"></div>
+      <div id="integration-decision"></div>
+      <h3>What the document proves</h3><ul id="integration-proves"></ul>
+      <h3>What the document does not prove</h3><ul id="integration-limits"></ul>
+      <h3 id="integration-propagation-title"></h3><p id="integration-propagation-rule" class="evidence-note"></p><div id="integration-propagation"></div>
+      <h3 id="integration-integrity-title"></h3><p id="integration-integrity-summary" class="evidence-note"></p><div id="integration-integrity-findings"></div><p id="integration-integrity-rule" class="case-map-notice"></p>
+      <h3>Relevance traffic light</h3><div id="integration-legend" class="traffic-light"></div>
+      <h3>Impact on the three unfiled documents dated 18 July 2026</h3><div id="integration-drafts"></div>
+      <h3>Second layer: ministers, the Supreme Public Prosecutor, and other authorities</h3><div id="integration-relevance"></div>
+      <h3>Questions for human verification</h3><ul id="integration-human-checks"></ul>
+    </section>
+    <section id="sent-output">
+      <p class="eyebrow">REAL-WORLD PROJECT OUTPUT</p>
+      <h2>Documents sent on 19 July 2026</h2>
+      <p>Created within AI Advocate for the Poor through collaboration between Mgr. Dušan Dvořák and Codex. At the author’s request, each document is published in its sent form, including his identifying details. The analytical layer identifies other people only by public role; the linked PDFs preserve the form in which the documents were actually sent.</p>
+      <div id="internal-before-after" class="comparison-grid">
+        <article class="claim comparison-card">
+          <h3><span class="risk-badge pending">BEFORE THE TEST</span><br>Drafts dated 18 July 2026</h3>
+          <p>The new referral notice had not yet been safely propagated through all three documents, and some wording treated a prepared draft as already filed or evidenced.</p>
+        </article>
+        <article class="claim comparison-card">
+          <h3><span class="risk-badge verified">AFTER THE TEST</span><br>Outputs sent on 19 July 2026</h3>
+          <p>The system created a new procedural node, assigned document-specific relevance, limited the meaning of the referral, and corrected document status. The three sent outputs appear below.</p>
+        </article>
+      </div>
+      <div class="sent-document-grid">
+        <a id="sent-president" class="sent-document-card" href="documents/president-submission-2026-07-19.pdf" target="_blank" rel="noopener">
+          <strong>Office of the President of the Republic</strong>
+          <span>Document and dispatch: 19 July 2026 · 10 pages</span>
+          <b>Open PDF</b>
+        </a>
+        <a id="sent-msp" class="sent-document-card" href="documents/municipal-court-msp-submission-2026-07-19.pdf" target="_blank" rel="noopener">
+          <strong>Prague Municipal Court — Ministry of Justice</strong>
+          <span>Document and dispatch: 19 July 2026 · 11 pages</span>
+          <b>Open PDF</b>
+        </a>
+        <a id="sent-ncoz" class="sent-document-card" href="documents/municipal-court-ncoz-submission-2026-07-19.pdf" target="_blank" rel="noopener">
+          <strong>Prague Municipal Court — NCOZ</strong>
+          <span>Document and dispatch: 19 July 2026 · 20 pages</span>
+          <b>Open PDF</b>
+        </a>
+      </div>
+    </section>
+    <section id="external-test">
+      <p class="eyebrow">SECOND TEST — PUBLIC INPUT</p>
+      <h2>A safe outside-input test — the PDF stays on your computer</h2>
+      <label class="file-label" for="files">Select the supported PDF or text documents (.pdf, .txt, .md)</label>
+      <input id="files" type="file" accept=".pdf,application/pdf,.txt,.md,text/plain,text/markdown" multiple>
+      <p class="hint">Files are processed only in the browser and are never uploaded. The exactly supported court PDF is recognized by its digital fingerprint and produces an anonymized supervisory-board change analysis. An unknown PDF is safely rejected. Other text receives only a technical metadata map without inheriting prepared legal conclusions.</p>
+      <button id="load" type="button" class="secondary">Load the anonymized control document</button>
+      <button id="load-organisation-sample" type="button" class="secondary">Load the public anonymized PDF copy</button>
+      <a id="organisation-source" class="source-download" href="documents/organisation-change-anonymized-2026-07-13.pdf" target="_blank" rel="noopener">Open the anonymized evidentiary extract PDF</a>
+      <textarea id="doc" rows="10" placeholder="Paste text for a safe local test" aria-label="Document text"></textarea>
+      <button id="analyse" type="button">Analyze locally</button>
+    </section>
+    <section id="organisation-result" hidden>
+      <p class="eyebrow">OUTSIDE-PDF TEST RESULT</p>
+      <h2 id="organisation-title"></h2>
+      <p id="organisation-scope" class="evidence-note"></p>
+      <div id="organisation-source-card"></div>
+      <h3>Memory before and after the document was added</h3><div id="organisation-comparison"></div>
+      <h3>System-generated solution</h3><ol id="organisation-solution"></ol>
+      <h3>What the anonymized document proves</h3><div id="organisation-facts"></div>
+      <h3>Separate archive-owner statement</h3><div id="organisation-author-statement"></div>
+      <h3>What the document does not prove</h3><ul id="organisation-limits"></ul>
+      <h3>Relevance traffic light</h3><div id="organisation-relevance"></div>
+      <h3>What a human must verify</h3><ul id="organisation-human-checks"></ul>
     </section>
     <p id="status" class="status" role="status" hidden></p>
     <section id="institutional-map" hidden>

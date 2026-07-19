@@ -92,3 +92,14 @@ test('2026 referral tree preserves procedural meaning and source citations', () 
     for (const field of ['date', 'institution', 'reference', 'status', 'citation', 'source', 'audit']) assert.ok(node[field], `referral node missing ${field}`);
   }
 });
+
+test('the presidential branch preserves the before/after test evidence', () => {
+  const timeline = CASE_MEMORY.caseStudy.timeline;
+  const before = timeline.find((node) => node.phase === 'before');
+  const after = timeline.find((node) => node.phase === 'after');
+  assert.equal(before?.date, '2026-07-18');
+  assert.match(before?.level ?? '', /nejde o důkaz odeslání/i);
+  assert.equal(after?.date, '2026-07-19');
+  assert.match(after?.statement ?? '', /postoupení nepotvrzuje pochybení/i);
+  assert.match(after?.level ?? '', /doručení adresátovi tím nejsou doloženy/i);
+});

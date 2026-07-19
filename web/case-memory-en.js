@@ -61,6 +61,24 @@ export function localizeCaseMemory(memory, language) {
     node.relation = 'documented chronological link in the institutional knowledge and proceedings map';
     node.level = node.level.includes('přímé') ? 'direct official statement verified against the original document' : 'reported in a submission; the primary document remains required for full verification';
   });
+  const beforeTest = study.timeline.find((node) => node.phase === 'before');
+  if (beforeTest) Object.assign(beforeTest, {
+    actor: 'draft for the President of the Republic and the Office of the President',
+    statement: 'Before the internal test, a presidential complaint and two court supplements existed as drafts. The new Ostrava referral notice had not yet been safely propagated through all three documents, and “prepared” was not consistently distinguished from “filed” or “evidenced”.',
+    relation: 'baseline state of the presidential and two court branches before the new document was integrated',
+    change: 'The baseline snapshot is retained as evidence of what the system subsequently corrected.',
+    source: 'draft to the President of the Republic dated 18 July 2026',
+    level: 'verified against the draft text; not evidence of dispatch or delivery'
+  });
+  const afterTest = study.timeline.find((node) => node.phase === 'after');
+  if (afterTest) Object.assign(afterTest, {
+    actor: 'submission sent to the President of the Republic and the Office of the President',
+    statement: 'After the test, the submission expressly recorded the Ostrava referral notice as a new open procedural node, stated that referral confirms neither wrongdoing nor the adoption of a measure, and kept the two court supplements at “prepared” until their dispatch could be evidenced separately.',
+    relation: 'updated apex of the presidential branch and a real-world project output',
+    change: 'The system placed the new document, limited its evidential meaning, corrected the chronology, and generated usable wording; the document was then sent and published in its exact sent form.',
+    source: 'President of the Republic — urgency — 19 July 2026',
+    level: 'verified against the exact published PDF; this does not prove receipt by the addressee or an Office response'
+  });
   study.candidateContradictions[0] = {
     title: 'Existence and legal significance of the THC measurement procedure',
     earlier: 'The submission attributes statements about an existing methodological standard to the Supreme Public Prosecutor’s Office, the Supreme Court, and the Minister of the Interior in 2015.',
