@@ -43,11 +43,11 @@ export function buildCaseMemory(documents, language = 'cs') {
     limitations: lang === 'en' ? [
       'Automatic classification is indicative and must be confirmed by a person.',
       'This stage does not verify the scientific validity of laboratory measurements or the legality of decisions.',
-      'PDF files and photographs currently require text conversion; OCR is planned for a later stage.'
+      'General PDF files and photographs currently require text conversion; one exact supported PDF follows a separate fingerprint-bound path. OCR is planned for a later stage.'
     ] : [
       'Automatické zařazení je orientační a musí je potvrdit člověk.',
       'Tato etapa neověřuje odbornou správnost laboratorního měření ani zákonnost rozhodnutí.',
-      'PDF a fotografie zatím vyžadují převod do textu; OCR je plánovaná další vrstva.'
+      'Obecná PDF a fotografie zatím vyžadují převod do textu; jedna přesně podporovaná PDF listina používá samostatnou cestu vázanou na digitální otisk. OCR je plánovaná další vrstva.'
     ]
   };
 }

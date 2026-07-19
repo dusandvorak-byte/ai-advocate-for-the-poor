@@ -28,7 +28,7 @@
     </section>
 
     <aside class="prototype-notice">
-      <strong>Co právě vidíte:</strong> bezpečnou předem připravenou a anonymizovanou ukázku této metody na jediném dokumentu KSZ Ostrava. Nejde zatím o univerzální právní AI; jiné dokumenty prototyp odmítne.
+      <strong>Co právě vidíte:</strong> první test aktualizuje připravený anonymizovaný archiv občana XY jednou listinou státního zastupitelství. Druhý test přijme zvenčí přesně podporované PDF o změně orgánu spolku, ověří jeho digitální otisk a zobrazí pouze anonymizovaný výsledek. U ostatních vstupů zůstává prototyp u bezpečné technické mapy nebo je odmítne.
     </aside>
 
     <section class="application">
@@ -72,14 +72,87 @@
     </section>
 
     <section id="evidence-document">
-      <h2>1. Vstupní dokumenty</h2>
-      <label class="file-label" for="files">Vybrat textové listiny (.txt nebo .md)</label>
-      <input id="files" type="file" accept=".txt,.md,text/plain,text/markdown" multiple>
-      <p class="hint">Nejprve můžete načíst hotovou anonymizovanou evropskou mapu. Vlastní textové soubory se zpracují pouze lokálně; OCR dokumentů PDF a fotografií bude následovat.</p>
-      <button id="load" type="button">Načíst ukázkový dokument</button>
-      <button id="load-case" type="button" class="secondary">Načíst anonymizovanou evropskou mapu případu</button>
-      <textarea id="doc" rows="14" placeholder="Vložte podporovanou ukázku dokumentu KSZ Ostrava" aria-label="Text dokumentu"></textarea>
-      <button id="analyse" type="button">Vytvořit mapu případu</button>
+      <p class="eyebrow">ŘÍZENÝ TEST PŘED PODÁNÍM PŘIHLÁŠKY</p>
+      <h2>Archiv občana XY už existuje. Přidává se jedna nová listina.</h2>
+      <div class="flow" aria-label="Průběh interního testu">
+        <span>archiv 2004–2026</span><b>→</b><span>sdělení KSZ Ostrava</span><b>→</b><span>kontrola lhůt a významu</span><b>→</b><span>aktualizovaný pavouk</span>
+      </div>
+      <p class="hint">Toto tlačítko spouští první interní test. Samostatný vnější test podporovaného PDF a bezpečné mapování textu jsou níže.</p>
+      <button id="run-internal-test" type="button">Spustit test nové listiny</button>
+      <button id="load-case" type="button" class="secondary">Zobrazit výchozí mapu bez nové listiny</button>
+    </section>
+    <section id="integration-test" hidden>
+      <p class="eyebrow">VÝSLEDEK INTERNÍHO TESTU</p>
+      <h2 id="integration-title"></h2>
+      <p id="integration-scope" class="evidence-note"></p>
+      <div id="integration-metrics" class="metric-grid"></div>
+      <div id="integration-document"></div>
+      <div id="integration-decision"></div>
+      <h3>Co listina dokládá</h3><ul id="integration-proves"></ul>
+      <h3>Co listina nedokládá</h3><ul id="integration-limits"></ul>
+      <h3 id="integration-propagation-title"></h3><p id="integration-propagation-rule" class="evidence-note"></p><div id="integration-propagation"></div>
+      <h3 id="integration-integrity-title"></h3><p id="integration-integrity-summary" class="evidence-note"></p><div id="integration-integrity-findings"></div><p id="integration-integrity-rule" class="case-map-notice"></p>
+      <h3>Semafor relevance</h3><div id="integration-legend" class="traffic-light"></div>
+      <h3>Dopad na tři dosud nepodané dokumenty z 18. července 2026</h3><div id="integration-drafts"></div>
+      <h3>Druhá vrstva: ministři, nejvyšší státní zástupkyně a další orgány</h3><div id="integration-relevance"></div>
+      <h3>Otázky k ověření člověkem</h3><ul id="integration-human-checks"></ul>
+    </section>
+    <section id="sent-output">
+      <p class="eyebrow">SKUTEČNÝ PRAKTICKÝ VÝSTUP</p>
+      <h2>Dokumenty odeslané 19. července 2026</h2>
+      <p>Vznikly v projektu AI Advocate for the Poor ve spolupráci Mgr. Dušana Dvořáka a Codexu. Na žádost autora jsou zveřejněny v odeslané podobě včetně jeho identifikačních údajů. Analytická vrstva uvádí u dalších osob jen veřejné funkce; přiložená PDF zachovávají podobu skutečně odeslaných dokumentů.</p>
+      <div id="internal-before-after" class="comparison-grid">
+        <article class="claim comparison-card">
+          <h3><span class="risk-badge pending">PŘED TESTEM</span><br>Návrhy z 18. července 2026</h3>
+          <p>Nové sdělení KSZ Ostrava ještě nebylo bezpečně promítnuto do všech tří dokumentů a některé věty zaměňovaly připravené podání za již podané nebo doložené.</p>
+        </article>
+        <article class="claim comparison-card">
+          <h3><span class="risk-badge verified">PO TESTU</span><br>Odeslané výstupy z 19. července 2026</h3>
+          <p>Systém vytvořil nový procesní uzel, určil rozdílnou relevanci pro každé řízení, omezil význam postoupení a opravil stav dokumentů. Níže jsou tři výsledky v odeslané podobě.</p>
+        </article>
+      </div>
+      <div class="sent-document-grid">
+        <a id="sent-president" class="sent-document-card" href="documents/president-submission-2026-07-19.pdf" target="_blank" rel="noopener">
+          <strong>Kancelář prezidenta republiky</strong>
+          <span>Dokument i odeslání: 19. 7. 2026 · 10 stran</span>
+          <b>Otevřít PDF</b>
+        </a>
+        <a id="sent-msp" class="sent-document-card" href="documents/municipal-court-msp-submission-2026-07-19.pdf" target="_blank" rel="noopener">
+          <strong>Městský soud v Praze — Ministerstvo spravedlnosti</strong>
+          <span>Dokument i odeslání: 19. 7. 2026 · 11 stran</span>
+          <b>Otevřít PDF</b>
+        </a>
+        <a id="sent-ncoz" class="sent-document-card" href="documents/municipal-court-ncoz-submission-2026-07-19.pdf" target="_blank" rel="noopener">
+          <strong>Městský soud v Praze — NCOZ</strong>
+          <span>Dokument i odeslání: 19. 7. 2026 · 20 stran</span>
+          <b>Otevřít PDF</b>
+        </a>
+      </div>
+    </section>
+    <section id="external-test">
+      <p class="eyebrow">DRUHÝ TEST — VEŘEJNÝ VSTUP</p>
+      <h2>Bezpečná zkouška zvenčí — PDF zůstává ve vašem počítači</h2>
+      <label class="file-label" for="files">Vybrat podporované PDF nebo textové listiny (.pdf, .txt, .md)</label>
+      <input id="files" type="file" accept=".pdf,application/pdf,.txt,.md,text/plain,text/markdown" multiple>
+      <p class="hint">Soubory se zpracují pouze lokálně v prohlížeči a nikam se neodesílají. Přesně podporované soudní PDF se rozpozná podle digitálního otisku a zobrazí anonymizovanou analýzu změny dozorčí rady. Neznámé PDF je bezpečně odmítnuto. U jiného textu vznikne jen technická mapa metadat bez převzetí připravených právních závěrů.</p>
+      <button id="load" type="button" class="secondary">Načíst anonymizovanou kontrolní listinu</button>
+      <button id="load-organisation-sample" type="button" class="secondary">Načíst veřejnou anonymizovanou kopii PDF</button>
+      <a id="organisation-source" class="source-download" href="documents/organisation-change-anonymized-2026-07-13.pdf" target="_blank" rel="noopener">Otevřít anonymizovaný důkazní výtah PDF</a>
+      <textarea id="doc" rows="10" placeholder="Vložte text pro bezpečnou lokální zkoušku" aria-label="Text dokumentu"></textarea>
+      <button id="analyse" type="button">Analyzovat lokálně</button>
+    </section>
+    <section id="organisation-result" hidden>
+      <p class="eyebrow">VÝSLEDEK VNĚJŠÍHO PDF TESTU</p>
+      <h2 id="organisation-title"></h2>
+      <p id="organisation-scope" class="evidence-note"></p>
+      <div id="organisation-source-card"></div>
+      <h3>Paměť před vložením a po vložení listiny</h3><div id="organisation-comparison"></div>
+      <h3>Řešení vytvořené systémem</h3><ol id="organisation-solution"></ol>
+      <h3>Co anonymizovaná listina dokládá</h3><div id="organisation-facts"></div>
+      <h3>Samostatný archivní údaj autora</h3><div id="organisation-author-statement"></div>
+      <h3>Co listina sama nedokládá</h3><ul id="organisation-limits"></ul>
+      <h3>Semafor relevance</h3><div id="organisation-relevance"></div>
+      <h3>Co musí ověřit člověk</h3><ul id="organisation-human-checks"></ul>
     </section>
     <p id="status" class="status" role="status" hidden></p>
     <section id="institutional-map" hidden>

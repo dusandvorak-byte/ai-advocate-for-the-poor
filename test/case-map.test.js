@@ -12,7 +12,8 @@ test('institutional map covers the complete intended public structure', () => {
     'supreme-court', 'constitutional-court', 'supreme-prosecutor',
     'district-prosecutors', 'health-ministry', 'justice-ministry',
     'interior-ministry', 'police', 'forensics', 'cjeu', 'commission',
-    'ecthr', 'government-agent', 'compensation', 'cultivation-2026'
+    'ecthr', 'government-agent', 'compensation', 'cultivation-2026',
+    'ksz-ostrava-referral', 'osz-frydek-review', 'alliance-governance-2026'
   ]) assert.ok(nodeIds.has(required), `Missing ${required}`);
 
   for (const relation of INSTITUTIONAL_CASE_MAP.relations) {
@@ -21,10 +22,28 @@ test('institutional map covers the complete intended public structure', () => {
   }
 });
 
+test('the live spider contains the new Ostrava to Frýdek-Místek branch without a merits claim', () => {
+  const map = localizeInstitutionalCaseMap('cs');
+  const referral = map.relations.find(({ from, to }) => from === 'ksz-ostrava-referral' && to === 'osz-frydek-review');
+  assert.match(referral.label, /postoupeno k vyhodnocení/i);
+  const target = map.groups.flatMap(({ nodes }) => nodes).find(({ id }) => id === 'osz-frydek-review');
+  assert.match(target.detail, /výsledek zatím nejsou doloženy/i);
+  assert.ok(map.timeline.some(({ year, label }) => /8\.\/16\. 7\. 2026/.test(year) && /postoupilo/i.test(label)));
+});
+
 test('referral remains procedural and never confirms wrongdoing', () => {
   const map = localizeInstitutionalCaseMap('cs');
   const referral = map.relations.find(({ from, to }) => from === 'regional-prosecutors' && to === 'district-prosecutors');
   assert.match(referral.label, /není potvrzením pochybení/i);
+});
+
+test('the live spider records the governance change without inventing signing authority or finality', () => {
+  const map = localizeInstitutionalCaseMap('cs');
+  const relation = map.relations.find(({ from, to }) => from === 'alliance' && to === 'alliance-governance-2026');
+  assert.match(relation.label, /nejde o automatické obecné podpisové oprávnění/i);
+  const node = map.groups.flatMap(({ nodes }) => nodes).find(({ id }) => id === 'alliance-governance-2026');
+  assert.match(node.detail, /den účinného zápisu čeká na ověření právní moci/i);
+  assert.ok(map.timeline.some(({ year, label }) => /21\. 3\. \/ 13\. 7\. 2026/.test(year) && /čeká na ověření/i.test(label)));
 });
 
 test('headline counts are present but unverified ones are visibly creator-stated', () => {

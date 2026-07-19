@@ -3,10 +3,14 @@ import { buildCaseMemory } from './memory.js';
 import { CASE_MEMORY } from './case-memory.js';
 import { localizeCaseMemory } from './case-memory-en.js';
 import { localizeInstitutionalCaseMap } from './case-map.js';
+import { localizeInternalArchiveTest } from './archive-update.js';
+import { identifyOrganisationUpdateDigest, localizeOrganisationUpdate } from './organisation-update.js';
 
 const $ = (id) => document.getElementById(id);
 const language = document.documentElement.lang === 'en' ? 'en' : 'cs';
 const PUBLIC_MEMORY = localizeCaseMemory(CASE_MEMORY, language);
+const INTERNAL_TEST = localizeInternalArchiveTest(language);
+const ORGANISATION_TEST = localizeOrganisationUpdate(language);
 let preparedDocuments = [];
 let preparedInstitutionalMap = false;
 
@@ -16,14 +20,14 @@ const UI = {
     noBranch: 'Zatím nebyla rozpoznána žádná podporovaná větev.', noReference: 'Nebyla rozpoznána žádná spisová značka.', noDate: 'Nebylo rozpoznáno žádné datum.',
     documentReferences: 'spisových značek', documentDates: 'dat', noMetadata: 'Bez rozpoznaných spisových značek a dat', pasted: 'Vložený dokument',
     empty: 'Nejprve vložte text nebo vyberte textové soubory.', demoLoaded: 'Načtena anonymizovaná institucionální mapa případu 2004–2026. Klikněte na „Vytvořit mapu případu“.', mapCreated: 'Mapa případu byla vytvořena.',
-    indexed: 'indexováno v projektových podkladech', creatorStated: 'tvrzení autora — připojit anonymizovaný pramen', relations: 'Vazby mezi institucemi', timeline: 'Časová osa', evidenceStatus: 'Stav zdroje', link: 'Vazba', status: 'Stav', source: 'Zdroj', page: 'str.', audit: 'Audit', earlier: 'Dřívější výrok', intermediate: 'Mezilehlý výrok', later: 'Pozdější výrok', red: 'červená', amber: 'oranžová', urgent: 'bezodkladná lidská kontrola kvůli tvrzené naléhavosti a možným nevratným dopadům; výsledek řízení se nepředjímá', review: 'probíhající související větev vyžadující kontrolu úplného spisu'
+    indexed: 'indexováno v projektových podkladech', creatorStated: 'tvrzení autora — připojit anonymizovaný pramen', relations: 'Vazby mezi institucemi', timeline: 'Časová osa', evidenceStatus: 'Stav zdroje', link: 'Vazba', status: 'Stav', source: 'Zdroj', page: 'str.', audit: 'Audit', earlier: 'Dřívější výrok', intermediate: 'Mezilehlý výrok', later: 'Pozdější výrok', red: 'červená', amber: 'oranžová', before: 'PŘED TESTEM', after: 'PO TESTU', systemChange: 'Změna vytvořená systémem', urgent: 'bezodkladná lidská kontrola kvůli tvrzené naléhavosti a možným nevratným dopadům; výsledek řízení se nepředjímá', review: 'probíhající související větev vyžadující kontrolu úplného spisu', unknownPdf: 'Toto PDF není přesně podporovaná listina. Prototyp je neodeslal ani na něj nepřenesl připravenou analýzu.', onePdfOnly: 'PDF test přijímá právě jeden podporovaný soubor bez dalších příloh.', organisationLoaded: 'Veřejná anonymizovaná kopie PDF byla načtena lokálně. Klikněte na „Analyzovat lokálně“.', privateOriginal: 'soukromý originál rozpoznán přesným digitálním otiskem; veřejně se zobrazí pouze anonymizovaný výstup', publicDerivative: 'veřejná anonymizovaná kopie rozpoznána přesným digitálním otiskem'
   },
   en: {
     confidence: 'Confidence', documents: 'documents', branches: 'identified branches', references: 'case references', dates: 'dates',
     noBranch: 'No supported branch has been identified yet.', noReference: 'No case reference was identified.', noDate: 'No date was identified.',
     documentReferences: 'case references', documentDates: 'dates', noMetadata: 'No identified case references or dates', pasted: 'Pasted document',
     empty: 'Paste text or select text files first.', demoLoaded: 'The anonymized 2004–2026 institutional case map is loaded. Click “Create case map”.', mapCreated: 'The case map was created.',
-    indexed: 'indexed in project materials', creatorStated: 'creator-stated — attach anonymized source', relations: 'Institutional relationships', timeline: 'Timeline', evidenceStatus: 'Source status', link: 'Link', status: 'Status', source: 'Source', page: 'p.', audit: 'Audit', earlier: 'Earlier statement', intermediate: 'Intermediate statement', later: 'Later statement', red: 'red', amber: 'amber', urgent: 'immediate human review because of alleged urgency and potentially irreversible effects; the outcome is not prejudged', review: 'an active related branch requiring review of the complete file'
+    indexed: 'indexed in project materials', creatorStated: 'creator-stated — attach anonymized source', relations: 'Institutional relationships', timeline: 'Timeline', evidenceStatus: 'Source status', link: 'Link', status: 'Status', source: 'Source', page: 'p.', audit: 'Audit', earlier: 'Earlier statement', intermediate: 'Intermediate statement', later: 'Later statement', red: 'red', amber: 'amber', before: 'BEFORE THE TEST', after: 'AFTER THE TEST', systemChange: 'System-generated change', urgent: 'immediate human review because of alleged urgency and potentially irreversible effects; the outcome is not prejudged', review: 'an active related branch requiring review of the complete file', unknownPdf: 'This PDF is not the exactly supported document. The prototype uploaded nothing and did not transfer the prepared analysis to it.', onePdfOnly: 'The PDF test accepts exactly one supported file without additional attachments.', organisationLoaded: 'The public anonymized PDF copy was loaded locally. Click “Analyze locally”.', privateOriginal: 'private original recognized by its exact digital fingerprint; only the anonymized output is displayed publicly', publicDerivative: 'public anonymized copy recognized by its exact digital fingerprint'
   }
 }[language];
 
@@ -55,6 +59,207 @@ function showStatus(message, kind = 'warning') {
   $('status').hidden = false;
   $('status').className = `status ${kind}`;
   $('status').textContent = message;
+}
+
+function renderList(targetId, items) {
+  const target = $(targetId);
+  target.replaceChildren();
+  for (const value of items) {
+    const entry = document.createElement('li');
+    entry.textContent = value;
+    target.append(entry);
+  }
+}
+
+function renderInternalArchiveTest(test) {
+  $('integration-title').textContent = `${test.persona} · ${test.title}`;
+  $('integration-scope').textContent = `${test.scope} ${language === 'en' ? 'Test version' : 'Verze testu'}: ${test.version}.`;
+
+  const metrics = $('integration-metrics');
+  metrics.replaceChildren();
+  for (const metric of test.archiveMetrics) {
+    const card = document.createElement('article'); card.className = 'metric-card';
+    const value = document.createElement('strong'); value.textContent = metric.value;
+    const label = document.createElement('span'); label.textContent = metric.label;
+    card.append(value, label); metrics.append(card);
+  }
+
+  const incoming = test.incomingDocument;
+  const sourceCard = document.createElement('article'); sourceCard.className = 'claim integration-source';
+  const sourceTitle = document.createElement('h3'); sourceTitle.textContent = language === 'en' ? 'New document recognized' : 'Rozpoznaná nová listina';
+  const sourceMeta = document.createElement('p'); sourceMeta.textContent = `${incoming.issuer} · ${incoming.issued} · ${incoming.reference} · ${incoming.type}`;
+  const receipt = document.createElement('p'); receipt.textContent = `${language === 'en' ? 'Recorded receipt date' : 'Evidované datum doručení'}: ${incoming.received}`;
+  const quote = document.createElement('blockquote'); quote.textContent = `„${incoming.quote}“`;
+  if (language === 'en') quote.append(document.createElement('br'), document.createTextNode(`English translation: “${incoming.quoteTranslation}”`));
+  sourceCard.append(sourceTitle, sourceMeta, receipt, quote);
+  $('integration-document').replaceChildren(sourceCard);
+
+  const decision = test.decision;
+  const decisionCard = document.createElement('article'); decisionCard.className = 'claim integration-decision';
+  const decisionTitle = document.createElement('h3');
+  const badge = document.createElement('span'); badge.className = `risk-badge ${decision.level}`; badge.textContent = decision.label;
+  decisionTitle.append(badge);
+  const result = document.createElement('p'); result.className = 'claim-text'; result.textContent = decision.result;
+  const deadline = document.createElement('p'); deadline.textContent = `${language === 'en' ? 'Legal deadline' : 'Zákonná lhůta'}: ${decision.deadline}.`;
+  const checkpoint = document.createElement('p'); checkpoint.textContent = `${language === 'en' ? 'Monitoring checkpoint' : 'Kontrolní bod'}: ${decision.checkpoint}`;
+  const why = document.createElement('p'); why.textContent = decision.why;
+  const guard = document.createElement('p'); guard.className = 'evidence-note'; guard.textContent = `${language === 'en' ? 'Error prevented' : 'Zachycená chyba'}: ${decision.errorGuard}`;
+  decisionCard.append(decisionTitle, result, deadline, checkpoint, why, guard);
+  $('integration-decision').replaceChildren(decisionCard);
+
+  renderList('integration-proves', test.proves);
+  renderList('integration-limits', test.doesNotProve);
+  renderList('integration-human-checks', test.humanChecks);
+
+  $('integration-propagation-title').textContent = test.propagationCheck.title;
+  $('integration-propagation-rule').textContent = test.propagationCheck.rule;
+  const propagation = $('integration-propagation');
+  propagation.replaceChildren(); propagation.className = 'relevance-grid';
+  for (const item of test.propagationCheck.checks) {
+    const card = document.createElement('article'); card.className = 'claim';
+    const title = document.createElement('h4');
+    const marker = document.createElement('span'); marker.className = `risk-badge ${item.level}`; marker.textContent = item.question;
+    title.append(marker);
+    const result = document.createElement('p'); result.textContent = item.result;
+    card.append(title, result); propagation.append(card);
+  }
+
+  const integrity = test.draftIntegrityWarning;
+  $('integration-integrity-title').textContent = integrity.title;
+  $('integration-integrity-summary').textContent = integrity.summary;
+  const integrityFindings = $('integration-integrity-findings');
+  integrityFindings.replaceChildren(); integrityFindings.className = 'draft-grid';
+  for (const item of integrity.findings) {
+    const card = document.createElement('article'); card.className = 'claim draft-impact';
+    const title = document.createElement('h4'); title.textContent = item.document;
+    const detected = document.createElement('p'); detected.textContent = `${language === 'en' ? 'Detected' : 'Zjištěno'}: ${item.detected}`;
+    const correction = document.createElement('p'); correction.className = 'evidence-note'; correction.textContent = `${language === 'en' ? 'Correction' : 'Oprava'}: ${item.correction}`;
+    card.append(title, detected, correction); integrityFindings.append(card);
+  }
+  $('integration-integrity-rule').textContent = integrity.rule;
+
+  const legend = $('integration-legend');
+  legend.replaceChildren();
+  const legendList = document.createElement('ul');
+  for (const item of test.relevanceLegend) {
+    const entry = document.createElement('li');
+    const marker = document.createElement('span'); marker.className = `risk-badge ${item.level}`; marker.textContent = item.label;
+    entry.append(marker, document.createTextNode(` — ${item.meaning}`)); legendList.append(entry);
+  }
+  legend.append(legendList);
+
+  const drafts = $('integration-drafts');
+  drafts.replaceChildren(); drafts.className = 'draft-grid';
+  for (const item of test.internalDrafts) {
+    const card = document.createElement('article'); card.className = 'claim draft-impact';
+    const title = document.createElement('h4');
+    const marker = document.createElement('span'); marker.className = `risk-badge ${item.level}`; marker.textContent = item.decision;
+    title.append(marker, document.createElement('br'), document.createTextNode(item.document));
+    const why = document.createElement('p'); why.textContent = `${language === 'en' ? 'Why' : 'Proč'}: ${item.why}`;
+    const locations = document.createElement('p'); locations.className = 'evidence-note'; locations.textContent = `${language === 'en' ? 'Insert in' : 'Vložit do'}: ${item.locations}.`;
+    const proposedTitle = document.createElement('strong'); proposedTitle.textContent = language === 'en' ? 'Proposed wording:' : 'Navržené znění:';
+    const proposed = document.createElement('blockquote'); proposed.textContent = item.proposedText;
+    card.append(title, why, locations, proposedTitle, proposed); drafts.append(card);
+  }
+
+  const relevance = $('integration-relevance');
+  relevance.replaceChildren(); relevance.className = 'relevance-grid';
+  for (const item of test.relevance) {
+    const card = document.createElement('article'); card.className = `claim relevance-${item.level}`;
+    const title = document.createElement('h4');
+    const marker = document.createElement('span');
+    marker.className = `risk-badge ${item.level === 'direct' ? 'critical' : item.level === 'none' ? 'verified' : 'review'}`;
+    marker.textContent = item.label;
+    title.append(marker, document.createElement('br'), document.createTextNode(item.targets));
+    const reason = document.createElement('p'); reason.textContent = item.reason;
+    const action = document.createElement('p'); action.className = 'evidence-note'; action.textContent = `${language === 'en' ? 'Action' : 'Postup'}: ${item.action}`;
+    card.append(title, reason, action); relevance.append(card);
+  }
+  $('integration-test').hidden = false;
+}
+
+function renderOrganisationUpdate(test, inputKind) {
+  $('organisation-title').textContent = test.title;
+  $('organisation-scope').textContent = `${inputKind === 'private-original' ? UI.privateOriginal : UI.publicDerivative}. ${test.source.privacy}`;
+
+  const sourceCard = document.createElement('article');
+  sourceCard.className = 'claim organisation-source';
+  const sourceTitle = document.createElement('h3');
+  sourceTitle.textContent = `${test.source.institution} · ${test.source.documentDate}`;
+  const sourceStatus = document.createElement('p');
+  sourceStatus.textContent = language === 'en'
+    ? 'Source-bounded court-order extract; the original PDF is neither uploaded nor published.'
+    : 'Zdrojově omezený výtah soudního usnesení; původní PDF se neodesílá ani nezveřejňuje.';
+  const sourceLink = document.createElement('a');
+  sourceLink.href = test.source.publicFile;
+  sourceLink.target = '_blank';
+  sourceLink.rel = 'noopener';
+  sourceLink.textContent = language === 'en' ? 'Open the anonymized public extract' : 'Otevřít anonymizovaný veřejný výtah';
+  sourceCard.append(sourceTitle, sourceStatus, sourceLink);
+  $('organisation-source-card').replaceChildren(sourceCard);
+
+  const comparison = $('organisation-comparison');
+  comparison.replaceChildren();
+  comparison.className = 'comparison-grid';
+  for (const item of [test.comparison.before, test.comparison.after]) {
+    const card = document.createElement('article');
+    card.className = 'claim comparison-card';
+    const title = document.createElement('h3');
+    const marker = document.createElement('span');
+    marker.className = `risk-badge ${item === test.comparison.before ? 'pending' : 'verified'}`;
+    marker.textContent = item.label;
+    title.append(marker, document.createElement('br'), document.createTextNode(item.title));
+    const state = document.createElement('p');
+    state.textContent = item.state;
+    card.append(title, state);
+    comparison.append(card);
+  }
+  renderList('organisation-solution', test.comparison.solution);
+
+  renderStatements('organisation-facts', test.facts);
+
+  const archiveCard = document.createElement('article');
+  archiveCard.className = 'claim organisation-author';
+  const archiveTitle = document.createElement('h4');
+  archiveTitle.textContent = test.archiveOwnerStatement.label;
+  const archiveValue = document.createElement('p');
+  archiveValue.className = 'claim-text';
+  archiveValue.textContent = test.archiveOwnerStatement.value;
+  const archiveConfidence = document.createElement('p');
+  archiveConfidence.className = 'confidence';
+  archiveConfidence.textContent = `${UI.confidence}: ${test.archiveOwnerStatement.confidence}`;
+  archiveCard.append(archiveTitle, archiveValue, archiveConfidence);
+  $('organisation-author-statement').replaceChildren(archiveCard);
+
+  renderList('organisation-limits', test.doesNotProve);
+  renderList('organisation-human-checks', test.humanChecks);
+
+  const relevance = $('organisation-relevance');
+  relevance.replaceChildren();
+  relevance.className = 'relevance-grid';
+  for (const item of test.relevance) {
+    const card = document.createElement('article');
+    card.className = `claim relevance-${item.level}`;
+    const title = document.createElement('h4');
+    const marker = document.createElement('span');
+    marker.className = `risk-badge ${item.level === 'direct' ? 'critical' : item.level === 'none' ? 'verified' : 'review'}`;
+    marker.textContent = item.label;
+    title.append(marker, document.createElement('br'), document.createTextNode(item.targets));
+    const reason = document.createElement('p');
+    reason.textContent = item.reason;
+    const action = document.createElement('p');
+    action.className = 'evidence-note';
+    action.textContent = `${language === 'en' ? 'Action' : 'Postup'}: ${item.action}`;
+    card.append(title, reason, action);
+    relevance.append(card);
+  }
+
+  $('organisation-result').hidden = false;
+}
+
+async function sha256Hex(bytes) {
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  return [...new Uint8Array(digest)].map((value) => value.toString(16).padStart(2, '0')).join('');
 }
 
 function renderMemory(memory) {
@@ -276,6 +481,7 @@ function renderRegistry() {
     const card = document.createElement('article'); card.className = 'claim';
     const title = document.createElement('h3'); title.textContent = `${node.date} · ${node.institution}`;
     const status = document.createElement('p'); status.textContent = `${node.status} · ${node.reference}`;
+    if (node.received) status.textContent += ` · ${language === 'en' ? 'received' : 'doručeno'} ${node.received}`;
     const citation = document.createElement('blockquote'); citation.textContent = `„${node.originalCitation ?? node.citation}“ — ${node.source}`;
     if (language === 'en' && node.citationTranslation) citation.append(document.createElement('br'), document.createTextNode(`English translation: “${node.citationTranslation}”`));
     const audit = document.createElement('p'); audit.className = 'evidence-note'; audit.textContent = `${UI.audit}: ${node.audit}`;
@@ -283,11 +489,22 @@ function renderRegistry() {
   }
   for (const node of caseStudy.timeline) {
     const card = document.createElement('article'); card.className = 'claim';
-    const title = document.createElement('h3'); title.textContent = `${node.date} · ${node.actor} · ${node.reference}`;
+    const title = document.createElement('h3');
+    if (node.phase) {
+      const marker = document.createElement('span');
+      marker.className = `risk-badge ${node.phase === 'before' ? 'pending' : 'verified'}`;
+      marker.textContent = UI[node.phase];
+      title.append(marker, document.createElement('br'));
+    }
+    title.append(document.createTextNode(`${node.date} · ${node.actor} · ${node.reference}`));
     const text = document.createElement('p'); text.textContent = node.statement;
     const relation = document.createElement('p'); relation.textContent = `${UI.link}: ${node.relation}`;
+    const change = document.createElement('p'); change.className = 'evidence-note';
+    if (node.change) change.textContent = `${UI.systemChange}: ${node.change}`;
     const source = document.createElement('blockquote'); source.textContent = `${node.level} — ${UI.source}: ${node.source}, ${UI.page} ${node.page}.`;
-    card.append(title, text, relation, source); $('case-study-timeline').append(card);
+    card.append(title, text, relation);
+    if (node.change) card.append(change);
+    card.append(source); $('case-study-timeline').append(card);
   }
   for (const conflict of caseStudy.candidateContradictions) {
     const card = document.createElement('article'); card.className = 'claim';
@@ -310,9 +527,13 @@ function revealEvidenceNetwork() {
 }
 async function selectedDocuments() {
   const files = [...$('files').files];
-  if (files.length) return Promise.all(files.map(async (file) => ({ name: file.name, text: await file.text() })));
+  if (files.length) return Promise.all(files.map(async (file) => {
+    const isPdf = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
+    if (isPdf) return { name: file.name, kind: 'pdf', bytes: await file.arrayBuffer() };
+    return { name: file.name, kind: 'text', text: await file.text() };
+  }));
   if (preparedDocuments.length) return preparedDocuments;
-  return $('doc').value.trim() ? [{ name: UI.pasted, text: $('doc').value }] : [];
+  return $('doc').value.trim() ? [{ name: UI.pasted, kind: 'text', text: $('doc').value }] : [];
 }
 
 $('load').addEventListener('click', () => {
@@ -321,7 +542,27 @@ $('load').addEventListener('click', () => {
   $('institutional-map').hidden = true;
   $('files').value = '';
   $('doc').value = SAMPLE_DOCUMENT;
+  $('integration-test').hidden = true;
+  $('organisation-result').hidden = true;
   $('status').hidden = true;
+});
+
+$('load-organisation-sample').addEventListener('click', () => {
+  void (async () => {
+    const response = await fetch(ORGANISATION_TEST.source.publicFile);
+    if (!response.ok) return reject({ reason: language === 'en' ? 'The anonymized sample could not be loaded.' : 'Anonymizovanou ukázku se nepodařilo načíst.' });
+    preparedDocuments = [{
+      name: 'organisation-change-anonymized-2026-07-13.pdf',
+      kind: 'pdf',
+      bytes: await response.arrayBuffer()
+    }];
+    preparedInstitutionalMap = false;
+    $('files').value = '';
+    $('doc').value = '';
+    $('integration-test').hidden = true;
+    $('organisation-result').hidden = true;
+    showStatus(UI.organisationLoaded, 'info');
+  })();
 });
 
 $('load-case').addEventListener('click', () => {
@@ -329,19 +570,40 @@ $('load-case').addEventListener('click', () => {
   preparedInstitutionalMap = true;
   $('files').value = '';
   $('doc').value = '';
+  $('integration-test').hidden = true;
+  $('organisation-result').hidden = true;
   showStatus(UI.demoLoaded, 'info');
+});
+
+$('run-internal-test').addEventListener('click', () => {
+  preparedDocuments = [];
+  preparedInstitutionalMap = false;
+  $('files').value = '';
+  $('doc').value = '';
+  $('organisation-result').hidden = true;
+  revealEvidenceNetwork();
+  renderInstitutionalMap(localizeInstitutionalCaseMap(language));
+  renderInternalArchiveTest(INTERNAL_TEST);
+  showStatus(language === 'en'
+    ? 'Internal test completed: no statutory response deadline was identified; a voluntary monitoring checkpoint was created and the decision graph was updated.'
+    : 'Interní test dokončen: nebyla zjištěna zákonná lhůta k reakci; vznikl dobrovolný kontrolní bod a pavouk byl aktualizován.', 'info');
+  window.scrollTo({ top: $('status').offsetTop, behavior: 'smooth' });
 });
 
 $('files').addEventListener('change', () => {
   preparedDocuments = [];
   preparedInstitutionalMap = false;
   $('institutional-map').hidden = true;
+  $('integration-test').hidden = true;
+  $('organisation-result').hidden = true;
 });
 
 $('doc').addEventListener('input', () => {
   preparedDocuments = [];
   preparedInstitutionalMap = false;
   $('institutional-map').hidden = true;
+  $('integration-test').hidden = true;
+  $('organisation-result').hidden = true;
 });
 
 $('analyse').addEventListener('click', () => {
@@ -355,6 +617,22 @@ $('analyse').addEventListener('click', () => {
     }
     const documents = await selectedDocuments();
     if (!documents.length) return reject({ reason: UI.empty });
+    const pdfDocuments = documents.filter((item) => item.kind === 'pdf');
+    if (pdfDocuments.length) {
+      if (documents.length !== 1) return reject({ reason: UI.onePdfOnly });
+      const digest = await sha256Hex(pdfDocuments[0].bytes);
+      const inputKind = identifyOrganisationUpdateDigest(digest);
+      if (!inputKind) return reject({ reason: UI.unknownPdf });
+      $('institutional-map').hidden = true;
+      $('memory-out').hidden = true;
+      $('analysis-out').hidden = true;
+      renderOrganisationUpdate(ORGANISATION_TEST, inputKind);
+      showStatus(language === 'en'
+        ? 'Supported PDF recognized locally. Personal data remain in the private original; only the anonymized, source-bounded result is displayed.'
+        : 'Podporované PDF bylo rozpoznáno lokálně. Osobní údaje zůstávají v soukromém originálu; zobrazuje se jen anonymizovaný, zdrojově omezený výsledek.', 'info');
+      window.scrollTo({ top: $('organisation-result').offsetTop, behavior: 'smooth' });
+      return;
+    }
     revealEvidenceNetwork();
     renderMemory(buildCaseMemory(documents, language));
     const result = analyzeDocumentSet(documents, language);

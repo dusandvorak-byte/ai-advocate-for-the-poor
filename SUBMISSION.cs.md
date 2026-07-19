@@ -96,11 +96,11 @@ Projekt existoval jako raný prototyp před soutěžním obdobím. Novou práci 
 
 ## Bezpečnost jako součást produktu
 
-Prototyp výslovně uvádí, že nejde o právní radu ani univerzální právní AI. Úplná identita jediného podporovaného dokumentu se ověřuje před zobrazením připraveného výkladu. Procesní postoupení není prezentováno jako potvrzení pochybení. Vícedokumentový režim vytváří pouze orientační mapu a nikdy nedostane připravenou právní interpretaci.
+Prototyp výslovně uvádí, že nejde o právní radu ani univerzální právní AI. Má dvě odděleně ohraničené připravené vstupní cesty: ověřenou ukázku postoupení KSZ a jednu přesnou soudní listinu PDF o změně v orgánu spolku. PDF se ověřuje lokálně pomocí SHA-256; soukromý originál se neodesílá ani nezveřejňuje a veřejný je pouze anonymizovaný odvozený výtah. Procesní postoupení není prezentováno jako potvrzení pochybení. Neznámé PDF nedostane připravený výklad a vícedokumentový textový režim vytváří pouze orientační mapu.
 
 ## Současné omezení
 
-Veřejná verze pracuje pouze s textem a jedním ověřeným vzorkem. Neobsahuje OCR, databázi, autentizaci, obecnou právní analýzu ani generování podání. Tyto funkce jsou plánované, nikoli předstírané.
+Veřejná verze přijímá text pro technické mapování a přesně jednu verzovanou listinu PDF spolu s její anonymizovanou odvozenou kopií pro druhý připravený test. Neobsahuje obecnou analýzu PDF/DOCX, OCR, databázi, autentizaci, univerzální právní analýzu ani automatické podávání. Tyto funkce jsou plánované, nikoli předstírané.
 
 ## Odkazy
 
@@ -116,8 +116,8 @@ Veřejná verze pracuje pouze s textem a jedním ověřeným vzorkem. Neobsahuje
 1. **0–25 s — neviditelná nerovnost:** Instituce mají strukturované spisy a profesionální paměť. Znevýhodněný člověk může mít stejné důkazy ve stovkách listin, a přesto je nedokáže využít.
 2. **25–55 s — okamžitá struktura:** Načtěte fiktivní případ a vytvořte mapu dokumentů, větví, značek, dat a vztahů.
 3. **55–90 s — živá paměť:** Ukažte veřejnou kazuistiku a rozdíl mezi úředním výrokem, tvrzením autora, právním principem a neuzavřeným rozporem. Otevřete zdrojovou citaci.
-4. **90–120 s — bezpečnost jako funkce:** Načtěte ukázku KSZ Ostrava, ukažte čtyři oddělené skupiny a poté vstup změňte. Aplikace jej musí odmítnout. Výslovně zazní: „Postoupení není důkaz pochybení.“
-5. **120–140 s — Codex a GPT-5.6:** Se zvukovým komentářem ukažte datované soutěžní commity, testy a README a vysvětlete jejich roli při vývoji.
+4. **90–125 s — bezpečnost jako funkce:** Načtěte ukázku KSZ Ostrava a výslovně řekněte: „Postoupení není důkaz pochybení.“ Ukažte návrh před testem a odeslaný výstup po testu. Poté načtěte veřejnou anonymizovanou kopii PDF, porovnejte paměť před a po vložení, ukažte vytvořené řešení a semafor relevance a vysvětlete, že soukromý originál se porovnává jen lokálně otiskem a neznámé PDF je odmítnuto.
+5. **125–140 s — Codex a GPT-5.6:** Se zvukovým komentářem ukažte datované soutěžní commity, testy a README a vysvětlete jejich roli při vývoji.
 6. **140–150 s — závěr:** „Nenahrazujeme advokáta. Dáváme každému člověku paměť, strukturu a důstojnost potřebnou k tomu, aby se k němu dostal.“
 
 Finální video musí být veřejné na YouTube, se zvukem, v angličtině nebo s úplným anglickým překladem a kratší než tři minuty.

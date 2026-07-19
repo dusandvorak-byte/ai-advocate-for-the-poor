@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "publishedAt": "2026-07-19",
+  "attribution": "Practical output of AI Advocate for the Poor, created by Mgr. Dušan Dvořák with Codex assistance.",
+  "documents": [
+    {
+      "id": "president",
+      "path": "president-submission-2026-07-19.pdf",
+      "documentDate": "2026-07-19",
+      "sentDate": "2026-07-19",
+      "pages": 10,
+      "sha256": "d64721554a39719edbca0df8feaaff9196b9928741f578aa3f290f323f6d6876"
+    },
+    {
+      "id": "municipal-court-msp",
+      "path": "municipal-court-msp-submission-2026-07-19.pdf",
+      "documentDate": "2026-07-19",
+      "sentDate": "2026-07-19",
+      "pages": 11,
+      "sha256": "28230f873cec8847b8cfbb58027fe6f3d11cd4baeb82c6b41857f38fd3471304"
+    },
+    {
+      "id": "municipal-court-ncoz",
+      "path": "municipal-court-ncoz-submission-2026-07-19.pdf",
+      "documentDate": "2026-07-19",
+      "sentDate": "2026-07-19",
+      "pages": 20,
+      "sha256": "2f5615b14e2dc6eb62717c1f2ebda89d418bd84d5ab0356c81355ca973dfd708"
+    }
+  ],
+  "privacyPreservingDerivatives": [
+    {
+      "id": "organisation-change-anonymized",
+      "path": "organisation-change-anonymized-2026-07-13.pdf",
+      "sourceDocumentDate": "2026-07-13",
+      "pages": 2,
+      "sha256": "448a95420aa26f3498939e2789b00d581e26bd56486350f5e5f534111247f838",
+      "isOfficialCopy": false,
+      "privateOriginalPublished": false
+    }
+  ]
+}

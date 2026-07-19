@@ -17,7 +17,8 @@ export const INSTITUTIONAL_CASE_MAP = {
         { id: 'lead', label: text('Mgr. Dušan Dvořák', 'Mgr. Dušan Dvořák'), detail: text('autor AI Advocate for the Poor a vedoucí programu Konopí je lék', 'creator of AI Advocate for the Poor and lead of the Cannabis is The Cure research program') },
         { id: 'program', label: text('Program Konopí je lék', 'Cannabis is The Cure program'), detail: text('právní, přírodovědný, zdravotní a ekonomický výzkum; počátek institucionální chronologie v roce 2004', 'legal, scientific, health, and economic research; institutional chronology begins in 2004') },
         { id: 'alliance', label: text('Cannabis is The Cure, z. s.', 'Cannabis is The Cure, z. s.'), detail: text('veřejný nositel projektu a propojení odborné a občanské pomoci', 'public project entity connecting research and civil assistance') },
-        { id: 'clinic', label: text('Educational Cannabis Clinic, z. s.', 'Educational Cannabis Clinic, z. s.'), detail: text('odborné a vzdělávací zázemí programu', 'professional and educational base of the program') }
+        { id: 'clinic', label: text('Educational Cannabis Clinic, z. s.', 'Educational Cannabis Clinic, z. s.'), detail: text('odborné a vzdělávací zázemí programu', 'professional and educational base of the program') },
+        { id: 'alliance-governance-2026', label: text('Změna v dozorčí radě — 2026', 'Supervisory-board change — 2026'), detail: text('konference uvedena k 21. březnu; usnesení datováno 13. července; přesný den účinného zápisu čeká na ověření právní moci', 'conference stated as 21 March; order dated 13 July; the effective recording date awaits verification of finality') }
       ]
     },
     {
@@ -45,7 +46,9 @@ export const INSTITUTIONAL_CASE_MAP = {
         { id: 'supreme-prosecutor', label: text('Nejvyšší státní zastupitelství', 'Supreme Public Prosecutor’s Office'), detail: text('dlouhodobá dohledová a přezkumná větev; evidence podnětů, stížností a spisů NZN', 'long-running supervision and review branch; index of submissions, complaints, and NZN files') },
         { id: 'high-prosecutors', label: text('Vrchní státní zastupitelství Praha a Olomouc', 'High Public Prosecutors’ Offices in Prague and Olomouc'), detail: text('dohledové a přezkumné větve', 'supervision and review branches') },
         { id: 'regional-prosecutors', label: text('Krajská státní zastupitelství', 'Regional Public Prosecutors’ Offices'), detail: text('Brno, Ostrava a další anonymizované přezkumné větve', 'Brno, Ostrava, and other anonymized review branches') },
-        { id: 'district-prosecutors', label: text('Okresní státní zastupitelství', 'District Public Prosecutors’ Offices'), detail: text('Prostějov a Frýdek-Místek; vyhodnocení podání a případných opatření', 'Prostějov and Frýdek-Místek; evaluation of submissions and possible measures') }
+        { id: 'district-prosecutors', label: text('Okresní státní zastupitelství', 'District Public Prosecutors’ Offices'), detail: text('Prostějov a další anonymizované větve', 'Prostějov and other anonymized branches') },
+        { id: 'ksz-ostrava-referral', label: text('KSZ Ostrava — nové postoupení', 'Ostrava Regional Public Prosecutor — new referral'), detail: text('sdělení z 8. července 2026, evidované jako doručené 16. července; postoupení není potvrzením pochybení', 'communication of 8 July 2026, recorded as received on 16 July; referral is not confirmation of wrongdoing') },
+        { id: 'osz-frydek-review', label: text('OSZ Frýdek-Místek — otevřený uzel', 'Frýdek-Místek District Public Prosecutor — open node'), detail: text('vyhodnocení postupu OKTE; nová spisová značka a výsledek zatím nejsou doloženy', 'assessment of OKTE conduct; the new reference and outcome are not yet documented') }
       ]
     },
     {
@@ -83,11 +86,14 @@ export const INSTITUTIONAL_CASE_MAP = {
     { from: 'lead', to: 'program', label: text('vede výzkumný program', 'leads the research program') },
     { from: 'program', to: 'alliance', label: text('institucionální a občanská základna', 'institutional and civil base') },
     { from: 'program', to: 'clinic', label: text('odborná a vzdělávací základna', 'professional and educational base') },
+    { from: 'alliance', to: 'alliance-governance-2026', label: text('časově omezená změna zastupující osoby v dozorčí radě; nejde o automatické obecné podpisové oprávnění', 'time-bounded change of the representative in a supervisory-board function; not automatic general signing authority') },
     { from: 'program', to: 'health-ministry', label: text('žádosti o povolení od roku 2004', 'authorization applications since 2004') },
     { from: 'program', to: 'forensics', label: text('spor o vzorkování a měření THC', 'dispute over sampling and THC measurement') },
     { from: 'forensics', to: 'police', label: text('odborné podklady pro zásahy a trestní řízení', 'forensic basis for interventions and criminal proceedings') },
     { from: 'police', to: 'district-prosecutors', label: text('dozor a přezkum postupu', 'supervision and review of police conduct') },
     { from: 'regional-prosecutors', to: 'district-prosecutors', label: text('procesní postoupení k vyhodnocení; není potvrzením pochybení', 'procedural referral for evaluation; not confirmation of wrongdoing') },
+    { from: 'forensics', to: 'ksz-ostrava-referral', label: text('podnět k prověření postupu OKTE', 'submission seeking review of OKTE conduct') },
+    { from: 'ksz-ostrava-referral', to: 'osz-frydek-review', label: text('postoupeno k vyhodnocení a přijetí odpovídajícího opatření', 'referred for assessment and adoption of an appropriate measure') },
     { from: 'supreme-prosecutor', to: 'high-prosecutors', label: text('dohledová soustava', 'supervision hierarchy') },
     { from: 'high-prosecutors', to: 'regional-prosecutors', label: text('dohled a přezkum', 'supervision and review') },
     { from: 'district-prosecutors', to: 'district-court', label: text('trestní a obnovovací větve', 'criminal and reopening branches') },
@@ -126,6 +132,8 @@ export const INSTITUTIONAL_CASE_MAP = {
     { year: '2012 a 2016', label: text('Neúspěšné pokusy o omezení svéprávnosti — tvrzení autora k doložení anonymizovanými prameny.', 'Unsuccessful attempts to restrict legal capacity — creator-stated, pending anonymized sources.') },
     { year: '2019', label: text('Vazba a následný výkon souhrnného trestu 80 měsíců — tvrzení autora k doložení anonymizovanými prameny.', 'Remand and subsequent aggregate 80-month sentence — creator-stated, pending anonymized sources.') },
     { year: '2025', label: text('Novela trestního zákoníku a změny metodických předpisů otevírají nové přezkumné otázky.', 'Criminal-code amendment and methodology changes open new review questions.') },
+    { year: '21. 3. / 13. 7. 2026', label: text('Tvrzená volba na Konferenci členů a navazující soudní usnesení o změně v dozorčí radě; den nabytí právní moci a účinného zápisu čeká na ověření.', 'Creator-stated Members Conference election followed by a court order recording a supervisory-board change; the finality and effective recording date await verification.') },
+    { year: '8./16. 7. 2026', label: text('KSZ Ostrava postoupilo část podání k postupu OKTE na OSZ Frýdek-Místek; sdělení bylo podle testovací paměti doručeno 16. července. Nová značka a výsledek chybějí.', 'The Ostrava Regional Public Prosecutor referred part of the OKTE submission to the Frýdek-Místek District Public Prosecutor; the test memory records receipt on 16 July. The new reference and outcome are missing.') },
     { year: '2026', label: text('Obnovy řízení, zásahové žaloby, prezidentská větev, odškodnění a naléhavost pěstebního roku.', 'Reopening motions, intervention actions, presidential branch, compensation, and cultivation-season urgency.') }
   ]
 };
