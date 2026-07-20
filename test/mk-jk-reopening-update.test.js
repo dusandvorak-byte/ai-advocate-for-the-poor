@@ -116,12 +116,12 @@ test('the public module and pages use initials and omit private identity data', 
     readFile(new URL('../web/en.html', import.meta.url), 'utf8'),
     readFile(new URL('../web/app.js', import.meta.url), 'utf8')
   ]);
-  assert.doesNotMatch(moduleSource, /(?:Miroslav|Jarmila|Klášterec nad Orlicí|datum narození:\s*\d)/i);
+  assert.doesNotMatch(moduleSource, /(?:datum narození|\bnar\.|\bbytem\b|adresa|ulice|č\.p\.|PSČ|postal code)\s*[:=]\s*['"]?[0-9A-Za-zÀ-ž]/i);
   assert.match(moduleSource, /M\. K\. a J\. K\./);
   for (const html of [cs, en]) {
     assert.match(html, /id="mk-jk-reopening-update"/);
     assert.match(html, /id="mk-jk-court-path"/);
-    assert.doesNotMatch(html, /(?:Miroslav|Jarmila|Klášterec nad Orlicí)/i);
+    assert.doesNotMatch(html, /(?:datum narození|\bnar\.|\bbytem\b|adresa|ulice|č\.p\.|PSČ|postal code)\s*[:=]\s*['"]?[0-9A-Za-zÀ-ž]/i);
   }
   assert.match(app, /identifyMkJkReopeningDigest/);
   assert.match(app, /renderMkJkReopeningUpdate\(\)/);

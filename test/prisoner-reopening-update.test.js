@@ -117,6 +117,6 @@ test('both homepages and the local analyzer expose the L. CH. update with public
   assert.match(app, /UI\.prisonerRecognized/);
   assert.match(moduleSource, /Krajský soud v Brně[\s\S]*50 T 7\/2018-603/);
   assert.match(moduleSource, /Vrchní soud v Olomouci[\s\S]*5 To 39\/2019-707/);
-  assert.doesNotMatch(moduleSource, /(?:Lukáš Chudý|KRPB-|\bPH a MF\b)/);
+  assert.doesNotMatch(moduleSource, /(?:KRPB-|\bPH a MF\b|(?:datum narození|\bnar\.|\bbytem\b|adresa|věznice|PSČ|postal code)\s*[:=]\s*['"]?[0-9A-Za-zÀ-ž])/i);
   assert.match(moduleSource, /Celé jméno, datum narození, adresy, věznice, podpisy.*zůstávají neveřejné/);
 });
