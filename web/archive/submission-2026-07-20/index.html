@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="AI pomáhá chudým a zdravotně postiženým lidem proměnit nepřehledné podklady v ověřitelný případ.">
+  <title>AI Advocate for the Poor — demonstrační prototyp</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="traffic-light.css">
+</head>
+<body>
+  <header>
+    <a class="language" href="en.html" lang="en">English</a>
+    <p>OPENAI BUILD WEEK · DEMONSTRAČNÍ PROTOTYP</p>
+    <h1>AI Advocate for the Poor</h1>
+    <p>Struktura, paměť a schopnost jednat pro lidi, kteří by jinak čelili systému sami.</p>
+  </header>
+  <main>
+    <section class="mission">
+      <p class="eyebrow">POSLÁNÍ PROJEKTU</p>
+      <h2>Od tisíců neuspořádaných prvků k ověřitelnému případu</h2>
+      <p>Chudý nebo zdravotně postižený člověk může mít oprávněný nárok a dostatek důkazů, ale přesto selhat, protože nemá peníze, zdraví, čas nebo odbornou kapacitu svůj případ uspořádat.</p>
+      <p><strong>AI Advocate má tuto nevýhodu kompenzovat.</strong> Pomáhá proměnit nepřehledný životní a právní problém ve strukturu osob, institucí, řízení, událostí, tvrzení a důkazů. V požadované větvi potom dohledá relevantní podklady a připraví návrh dalšího kroku ke kontrole člověkem.</p>
+      <div class="flow" aria-label="Zamýšlený postup systému">
+        <span>roztříštěné podklady</span><b>→</b><span>ověřitelná struktura</span><b>→</b><span>relevantní větev</span><b>→</b><span>návrh jednání</span>
+      </div>
+      <p>Nejde o nahrazení advokáta. Jde o to umožnit člověku dostat se do stavu, kdy mu advokát, poradna, ombudsman nebo úřad mohou skutečně pomoci.</p>
+    </section>
+
+    <aside class="prototype-notice">
+      <strong>Co právě vidíte:</strong> první test aktualizuje připravený anonymizovaný archiv občana XY jednou listinou státního zastupitelství. Druhý test přijme zvenčí přesně podporované PDF o změně orgánu spolku, ověří jeho digitální otisk a zobrazí pouze anonymizovaný výsledek. U ostatních vstupů zůstává prototyp u bezpečné technické mapy nebo je odmítne.
+    </aside>
+
+    <section class="application">
+      <p class="eyebrow">KONKRÉTNÍ APLIKACE DNES</p>
+      <h2>Evropský případ 2004–2026 jako síť institucí, řízení a nápravných cest</h2>
+      <p>Prototyp zobrazuje anonymizovanou vazbu výzkumného programu na prezidenta republiky, české soudy a státní zastupitelství, ministerstva, policii a forenzní orgány, SDEU, Evropskou komisi a ESLP. Odděluje indexované údaje od tvrzení autora, která ještě vyžadují připojení anonymizovaného prvotního pramene.</p>
+      <p><strong>Soukromí v této ukázce:</strong> vybrané soubory se zpracují pouze lokálně ve vašem prohlížeči. Nikam se neodesílají a po obnovení stránky zmizí.</p>
+    </section>
+
+    <section id="everyday-impact">
+      <p class="eyebrow">POTENCIÁL V BĚŽNÉM ŽIVOTĚ</p>
+      <h2>Člověk přinese krabici listin — systém mu vrátí srozumitelnou cestu</h2>
+      <p>Rodina vězněného člověka, člověk se zdravotním postižením, senior, dlužník nebo rodič ve sporu s úřadem často neprohraje proto, že nemá žádný důkaz, ale protože jej nedokáže včas najít, spojit s řízením a vysvětlit odborníkovi.</p>
+      <div class="flow" aria-label="Budoucí dostupný postup pomoci">
+        <span>dokumenty nebo hlas ve vlastním jazyce</span><b>→</b><span>bezpečná anonymizace</span><b>→</b><span>časová osa a důkazní semafor</span><b>→</b><span>kontrola advokátem či poradnou</span>
+      </div>
+      <p><strong>Výsledek:</strong> seznam lhůt, institucí, nevypořádaných námitek a citovaných pasáží; návrh dalšího kroku zůstává pod lidskou kontrolou. Hlasový vstup, OCR, automatická anonymizace a univerzální analýza jsou produktová vize — současný veřejný prototyp bezpečně demonstruje princip na podporované ukázce.</p>
+    </section>
+
+    <section id="registry" hidden>
+      <p class="eyebrow">OVĚŘITELNÁ PAMĚŤ</p>
+      <h2>Výroky, instituce, vazby a judikatura</h2>
+      <p>Ověřený výrok je oddělen od neověřeného uzlu a obecného judikatorního principu. Autor kazuistiky je uveden se svým souhlasem; kontaktní údaje a nerelevantní soukromé osoby zveřejněny nejsou.</p>
+      <h3>Ověřené výroky ze zdrojové listiny</h3><div id="registry-statements"></div>
+      <h3>Známé vazby čekající na zdroj</h3><ul id="registry-pending"></ul>
+      <h3>Relevantní judikatorní principy</h3><div id="registry-cases"></div>
+    </section>
+
+    <section id="case-study" hidden>
+      <p class="eyebrow">ŽIVÁ PAMĚŤ JEDNOHO ČLOVĚKA</p>
+      <h2 id="case-study-name">CannaInsider.eu — 1994 · 2004 · 2008 · 2010 · 2026</h2>
+      <p><strong>Z archivu k auditovatelnému pavouku rozhodnutí.</strong></p>
+      <p id="case-study-intro"></p>
+      <div id="case-study-traffic-light" class="traffic-light"></div>
+      <h3>Tři veřejně kontrolovatelné důkazní osy</h3><div id="case-study-axes"></div>
+      <h3>Rozsah doložené mapy</h3><div id="case-study-map"></div>
+      <h3>Aktivní soudní větve v roce 2026</h3><div id="case-study-active"></div>
+      <h3>Strom podání a postoupení od 20. dubna 2026</h3><div id="case-study-referrals"></div>
+      <h3>Chronologie a vazby</h3><div id="case-study-timeline"></div>
+      <h3>Kandidátní rozpory k ověření</h3><div id="case-study-conflicts"></div>
+    </section>
+
+    <section id="evidence-document">
+      <p class="eyebrow">ŘÍZENÝ TEST PŘED PODÁNÍM PŘIHLÁŠKY</p>
+      <h2>Archiv občana XY už existuje. Přidává se jedna nová listina.</h2>
+      <div class="flow" aria-label="Průběh interního testu">
+        <span>archiv 2004–2026</span><b>→</b><span>sdělení KSZ Ostrava</span><b>→</b><span>kontrola lhůt a významu</span><b>→</b><span>aktualizovaný pavouk</span>
+      </div>
+      <p class="hint">Toto tlačítko spouští první interní test. Samostatný vnější test podporovaného PDF a bezpečné mapování textu jsou níže.</p>
+      <button id="run-internal-test" type="button">Spustit test nové listiny</button>
+      <button id="load-case" type="button" class="secondary">Zobrazit výchozí mapu bez nové listiny</button>
+    </section>
+    <section id="integration-test" hidden>
+      <p class="eyebrow">VÝSLEDEK INTERNÍHO TESTU</p>
+      <h2 id="integration-title"></h2>
+      <p id="integration-scope" class="evidence-note"></p>
+      <div id="integration-metrics" class="metric-grid"></div>
+      <div id="integration-document"></div>
+      <div id="integration-decision"></div>
+      <h3>Co listina dokládá</h3><ul id="integration-proves"></ul>
+      <h3>Co listina nedokládá</h3><ul id="integration-limits"></ul>
+      <h3 id="integration-propagation-title"></h3><p id="integration-propagation-rule" class="evidence-note"></p><div id="integration-propagation"></div>
+      <h3 id="integration-integrity-title"></h3><p id="integration-integrity-summary" class="evidence-note"></p><div id="integration-integrity-findings"></div><p id="integration-integrity-rule" class="case-map-notice"></p>
+      <h3>Semafor relevance</h3><div id="integration-legend" class="traffic-light"></div>
+      <h3>Dopad na tři dosud nepodané dokumenty z 18. července 2026</h3><div id="integration-drafts"></div>
+      <h3>Druhá vrstva: ministři, nejvyšší státní zástupkyně a další orgány</h3><div id="integration-relevance"></div>
+      <h3>Otázky k ověření člověkem</h3><ul id="integration-human-checks"></ul>
+    </section>
+    <section id="sent-output">
+      <p class="eyebrow">SKUTEČNÝ PRAKTICKÝ VÝSTUP</p>
+      <h2>Dokumenty odeslané 19. července 2026</h2>
+      <p>Vznikly v projektu AI Advocate for the Poor ve spolupráci Mgr. Dušana Dvořáka a Codexu. Na žádost autora jsou zveřejněny v odeslané podobě včetně jeho identifikačních údajů. Analytická vrstva uvádí u dalších osob jen veřejné funkce; přiložená PDF zachovávají podobu skutečně odeslaných dokumentů.</p>
+      <div id="internal-before-after" class="comparison-grid">
+        <article class="claim comparison-card">
+          <h3><span class="risk-badge pending">PŘED TESTEM</span><br>Návrhy z 18. července 2026</h3>
+          <p>Nové sdělení KSZ Ostrava ještě nebylo bezpečně promítnuto do všech tří dokumentů a některé věty zaměňovaly připravené podání za již podané nebo doložené.</p>
+        </article>
+        <article class="claim comparison-card">
+          <h3><span class="risk-badge verified">PO TESTU</span><br>Odeslané výstupy z 19. července 2026</h3>
+          <p>Systém vytvořil nový procesní uzel, určil rozdílnou relevanci pro každé řízení, omezil význam postoupení a opravil stav dokumentů. Níže jsou tři výsledky v odeslané podobě.</p>
+        </article>
+      </div>
+      <div class="sent-document-grid">
+        <a id="sent-president" class="sent-document-card" href="documents/president-submission-2026-07-19.pdf" target="_blank" rel="noopener">
+          <strong>Kancelář prezidenta republiky</strong>
+          <span>Dokument i odeslání: 19. 7. 2026 · 10 stran</span>
+          <b>Otevřít PDF</b>
+        </a>
+        <a id="sent-msp" class="sent-document-card" href="documents/municipal-court-msp-submission-2026-07-19.pdf" target="_blank" rel="noopener">
+          <strong>Městský soud v Praze — Ministerstvo spravedlnosti</strong>
+          <span>Dokument i odeslání: 19. 7. 2026 · 11 stran</span>
+          <b>Otevřít PDF</b>
+        </a>
+        <a id="sent-ncoz" class="sent-document-card" href="documents/municipal-court-ncoz-submission-2026-07-19.pdf" target="_blank" rel="noopener">
+          <strong>Městský soud v Praze — NCOZ</strong>
+          <span>Dokument i odeslání: 19. 7. 2026 · 20 stran</span>
+          <b>Otevřít PDF</b>
+        </a>
+      </div>
+    </section>
+    <section id="external-test">
+      <p class="eyebrow">DRUHÝ TEST — VEŘEJNÝ VSTUP</p>
+      <h2>Bezpečná zkouška zvenčí — PDF zůstává ve vašem počítači</h2>
+      <label class="file-label" for="files">Vybrat podporované PDF nebo textové listiny (.pdf, .txt, .md)</label>
+      <input id="files" type="file" accept=".pdf,application/pdf,.txt,.md,text/plain,text/markdown" multiple>
+      <p class="hint">Soubory se zpracují pouze lokálně v prohlížeči a nikam se neodesílají. Přesně podporované soudní PDF se rozpozná podle digitálního otisku a zobrazí anonymizovanou analýzu změny dozorčí rady. Neznámé PDF je bezpečně odmítnuto. U jiného textu vznikne jen technická mapa metadat bez převzetí připravených právních závěrů.</p>
+      <button id="load" type="button" class="secondary">Načíst anonymizovanou kontrolní listinu</button>
+      <button id="load-organisation-sample" type="button" class="secondary">Načíst veřejnou anonymizovanou kopii PDF</button>
+      <a id="organisation-source" class="source-download" href="documents/organisation-change-anonymized-2026-07-13.pdf" target="_blank" rel="noopener">Otevřít anonymizovaný důkazní výtah PDF</a>
+      <textarea id="doc" rows="10" placeholder="Vložte text pro bezpečnou lokální zkoušku" aria-label="Text dokumentu"></textarea>
+      <button id="analyse" type="button">Analyzovat lokálně</button>
+    </section>
+    <section id="organisation-result" hidden>
+      <p class="eyebrow">VÝSLEDEK VNĚJŠÍHO PDF TESTU</p>
+      <h2 id="organisation-title"></h2>
+      <p id="organisation-scope" class="evidence-note"></p>
+      <div id="organisation-source-card"></div>
+      <h3>Paměť před vložením a po vložení listiny</h3><div id="organisation-comparison"></div>
+      <h3>Řešení vytvořené systémem</h3><ol id="organisation-solution"></ol>
+      <h3>Co anonymizovaná listina dokládá</h3><div id="organisation-facts"></div>
+      <h3>Samostatný archivní údaj autora</h3><div id="organisation-author-statement"></div>
+      <h3>Co listina sama nedokládá</h3><ul id="organisation-limits"></ul>
+      <h3>Semafor relevance</h3><div id="organisation-relevance"></div>
+      <h3>Co musí ověřit člověk</h3><ul id="organisation-human-checks"></ul>
+    </section>
+    <p id="status" class="status" role="status" hidden></p>
+    <section id="institutional-map" hidden>
+      <h2 id="case-map-title"></h2>
+      <p id="case-map-notice" class="case-map-notice"></p>
+      <div id="case-metrics" class="metric-grid"></div>
+      <div id="case-groups"></div>
+      <section class="relationship-panel">
+        <h3 id="case-relations-title"></h3>
+        <ol id="case-relations"></ol>
+      </section>
+      <section class="timeline-panel">
+        <h3 id="case-timeline-title"></h3>
+        <ol id="case-timeline"></ol>
+      </section>
+    </section>
+    <section id="memory-out" hidden>
+      <h2>2. Mapa případu</h2>
+      <p id="memory-summary" class="summary"></p>
+      <h3>Věcné a procesní větve</h3>
+      <div id="branches" class="branch-grid"></div>
+      <h3>Dokumenty</h3>
+      <div id="memory-documents" class="document-grid"></div>
+      <h3>Rozpoznané spisové značky</h3>
+      <div id="memory-references" class="tag-list"></div>
+      <h3>Rozpoznaná data</h3>
+      <div id="memory-dates" class="tag-list"></div>
+      <aside class="limitations">
+        <strong>Co tato mapa sama nedokazuje</strong>
+        <ul id="memory-limitations"></ul>
+      </aside>
+    </section>
+    <section id="analysis-out" hidden>
+      <h2>3. Extrahovaná fakta</h2><div id="facts"></div>
+      <h2>4. Právní interpretace</h2><div id="interpretation"></div>
+      <h2>5. Nejistota a meze dokumentu</h2><div id="uncertainty"></div>
+      <h2>6. Doporučené kroky</h2><div id="actions"></div>
+    </section>
+  </main>
+  <footer>Mgr. Dušan Dvořák — zakladatel a zástupce aliance <a href="https://www.konopijelek.cz/">Cannabis is The Cure</a> · Human-in-the-loop prototyp. Výstupy vyžadují lidskou právní kontrolu.</footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

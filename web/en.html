@@ -3,19 +3,147 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="AI helps people with limited money, health, or support turn fragmented legal materials into an auditable case.">
+  <meta name="description" content="Evidence and case-law memory for people in Czechia who face or have faced a cannabis-related legal conflict.">
   <title>AI Advocate for the Poor — demonstration prototype</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="traffic-light.css">
 </head>
 <body>
   <header>
-    <a class="language" href="index.html" lang="cs">Česky</a>
-    <p>OPENAI BUILD WEEK · DEMONSTRATION PROTOTYPE</p>
+    <nav class="header-actions" aria-label="Language and archive">
+      <a class="language" href="index.html" lang="cs">Česky</a>
+      <a href="archive/submission-2026-07-20/en.html">Website at submission · 20 July 2026</a>
+    </nav>
+    <p>OPENAI BUILD WEEK · LIVE POST-SUBMISSION DEVELOPMENT</p>
     <h1>AI Advocate for the Poor</h1>
-    <p>Structure, memory, and the ability to act for people who would otherwise face the system alone.</p>
+    <p>Every new document immediately shows what it changes in the case memory, where it belongs, and what remains unanswered.</p>
   </header>
   <main>
+    <section id="post-submission" class="live-update" aria-labelledby="latest-update-title">
+      <div class="update-meta">
+        <span class="live-label"><span class="live-dot" aria-hidden="true"></span> NEW SINCE THE SUBMISSION</span>
+        <span>Submitted 20 July 2026 · application v2.5 · latest evidence state v2.5</span>
+      </div>
+      <h2 id="latest-update-title">20 July 2026 — L. CH.’s 2022 motion to reopen has 9/9 relevance to new evidence about THC methodology.</h2>
+      <p id="latest-update-summary" class="update-lede">The first anonymized test of another person’s document shows what changes when an older motion is compared with today’s evidence memory. The 9/9 score is not a prediction of success.</p>
+      <aside id="current-audience" class="current-audience" aria-labelledby="current-audience-title">
+        <p class="eyebrow">WHO THE WEBSITE IS FOR NOW</p>
+        <h3 id="current-audience-title">Anyone in Czechia who faces or has faced a cannabis-related legal conflict</h3>
+        <p>The website helps prepare human-reviewed working material for a <strong>motion to reopen proceedings, an intervention action, compensation for damage or non-pecuniary harm, or another follow-up step</strong>.</p>
+        <p>It brings together the broadest continuously reviewed evidence and case-law memory the project can responsibly maintain. It documents and connects <strong>evidence, facts, exact statements, official reference numbers, case references, and case law</strong>.</p>
+        <p class="audience-boundary"><strong>It does not guarantee success, create a legal entitlement, or replace a lawyer.</strong> It shows sources, links, gaps, and working options for human review.</p>
+      </aside>
+      <div class="judge-test-cta">
+        <div><strong>Try your own document</strong><span>Text-layer PDF, TXT, or pasted text · processed only in your browser · always returns orientation outputs and a proposed next step</span>
+          <p class="judge-match-key"><span><i class="match-dot match-dot-black" aria-hidden="true"></i><b>0/9 — no public- or shared-memory match</b></span><span><i class="match-dot match-dot-green" aria-hidden="true"></i><b>1/9 — weakest green overlap</b></span><span><i class="match-dot match-dot-green" aria-hidden="true"></i><b>cannabis legal conflict — reopening · intervention action · compensation</b></span></p>
+        </div>
+        <a id="open-external-test" class="action-link" href="#external-test">Compare with the shared memory</a>
+      </div>
+
+      <div class="dashboard-panel" aria-labelledby="input-data-title">
+        <div class="dashboard-heading"><p class="eyebrow">CASE INPUT DATA</p><h3 id="input-data-title">What the memory already holds in one window</h3></div>
+        <div id="case-input-metrics" class="metric-grid dashboard-metrics" aria-label="Scale of input data and proceedings"></div>
+      </div>
+
+      <div class="priority-deadline-grid">
+        <div id="latest-priority" aria-label="Latest update priority"></div>
+        <div id="latest-deadline" aria-label="Latest update deadline"></div>
+      </div>
+
+      <div class="dashboard-panel version-panel" aria-labelledby="version-map-title">
+        <div class="dashboard-heading"><p class="eyebrow">VERSIONS AND EVIDENCE CONTINUITY</p><h3 id="version-map-title">V0 is the original data, V1 is the immutable competition snapshot, and V2 is the living memory</h3></div>
+        <nav id="version-history" class="version-grid" aria-label="Project version history"></nav>
+        <p id="version-0" class="version-zero-note"><strong>V0 is not an older website.</strong> It is the data and evidence layer dating from 20 April 2026, created before knowledge of the competition and before the present system design.</p>
+      </div>
+
+      <div class="dashboard-panel traffic-panel" aria-labelledby="traffic-title">
+        <div class="dashboard-heading"><p class="eyebrow">NINE-LEVEL TRAFFIC LIGHT</p><h3 id="traffic-title">Colour records relevance, relationships, and the need to respond</h3></div>
+        <p class="traffic-explainer">In this case the darkest red means extremely important relationships and a need for response. A deadline appears only when a document or verified rule sets one; colour alone never creates it. For another user, every level applies to the relationships and relevance of that person’s own case.</p>
+        <div id="traffic-scale" class="traffic-scale" aria-label="Nine relevance levels"></div>
+      </div>
+
+      <div class="dashboard-panel snapshot-panel" aria-labelledby="snapshot-title">
+        <div class="dashboard-heading"><p class="eyebrow">DAILY V2 HISTORY</p><h3 id="snapshot-title">What was added after submission</h3></div>
+        <div id="daily-version-history" class="daily-version-history"></div>
+        <p id="daily-version-rule" class="evidence-note"></p>
+      </div>
+
+      <section id="prisoner-reopening-update" class="prisoner-update" aria-labelledby="prisoner-update-heading">
+        <div class="update-meta"><span>V2.5 · REVIEWED 20 JULY 2026</span><span>1 private source PDF · only the anonymized result is public</span></div>
+        <h3 id="prisoner-update-heading">L. CH.’s 2022 motion to reopen: 9/9 relevance to new evidence about THC methodology</h3>
+        <p id="prisoner-update-summary"></p>
+        <div id="prisoner-update-overall"></div>
+        <article id="prisoner-public-context" class="prisoner-public-context"></article>
+        <div class="prisoner-evidence-grid">
+          <section id="prisoner-source-facts" class="prisoner-layer prisoner-source-layer"></section>
+          <aside id="prisoner-author-baseline" class="prisoner-layer prisoner-baseline-layer"></aside>
+        </div>
+        <section id="prisoner-comparison" class="prisoner-comparison"></section>
+        <section id="prisoner-rewrite" class="prisoner-rewrite"></section>
+        <p id="prisoner-evidence-boundary" class="evidence-boundary"></p>
+      </section>
+
+      <section id="alliance-update" class="alliance-update" aria-labelledby="alliance-update-heading">
+        <div class="update-meta"><span>V2.3 · REVIEWED 20 JULY 2026</span><span>7 unique source PDFs remain unpublished</span></div>
+        <h3 id="alliance-update-heading">The 2025 Annual Report and four documented concluded enforcement branches of the alliance</h3>
+        <p id="alliance-update-summary"></p>
+        <div id="deduplication-update"></div>
+        <div id="annual-report-update"></div>
+        <div id="register-context-update"></div>
+        <div id="enforcement-update" class="enforcement-update-grid" aria-label="Four concluded enforcement branches"></div>
+        <div id="district-court-update"></div>
+        <aside id="alliance-author-assessment" class="creator-assessment"></aside>
+        <p id="alliance-evidence-boundary" class="evidence-boundary"></p>
+      </section>
+
+      <details id="alliance-update-v22" class="prior-update">
+        <summary>V2.2 · The 2025 Annual Report, the first three stopped enforcement branches, and the Prostějov District Court judgment</summary>
+        <div class="prior-update-content">
+          <p><strong>State before v2.3 was added:</strong> five unique non-public PDFs established the register context, three stopped enforcement proceedings, and one precisely bounded judicial finding. The Annual Report was recorded as approved on 14 July 2026 and awaiting graphic design work.</p>
+          <p>At that stage the Liberec branch showed approximately CZK 200,000 as the creator’s indicative figure because the stopping order itself stated only principal of CZK 83,020.64 plus accessories. V2.3 narrowed that uncertainty with a new document stating CZK 192,752.91 on 8 July 2025, not on the stopping date.</p>
+        </div>
+      </details>
+
+      <details id="police-update" class="prior-update">
+        <summary>V2.1 · After more than fifteen years of seeking a substantive answer, the police document dated 20 July 2026 again provided none</summary>
+        <div class="prior-update-content">
+
+      <div class="evidence-level-grid">
+        <article class="evidence-level official-source">
+          <p class="evidence-level-label">1 · DIRECT DOCUMENT STATEMENT</p>
+          <p>The police state that the submission addressed to the Supreme Public Prosecutor’s Office was:</p>
+          <blockquote lang="cs">„bez přijetí dalšího opatření uloženo“</blockquote>
+          <p class="translation">English translation: “placed on file without further action.”</p>
+        </article>
+        <article class="evidence-level creator-record">
+          <p class="evidence-level-label">2 · CREATOR-CONFIRMED CHRONOLOGY</p>
+          <p>Mgr. Dušan Dvořák confirms that, after filing the pre-action demand with the Supreme Public Prosecutor’s Office on 14 July 2026, he also sent it to the Police as evidence supporting the preventive filing of 12 July, to the Prostějov District Court and District Public Prosecutor’s Office, the Office of the President, the Ministry of Justice, and the related intervention actions.</p>
+        </article>
+        <article class="evidence-level system-synthesis">
+          <p class="evidence-level-label">3 · SYSTEM SYNTHESIS</p>
+          <p>The document adds a procedural node but gives no reasons for taking no further action, does not decide the merits of the submission, and closes none of the affected branches.</p>
+        </article>
+      </div>
+
+      <details class="red-link-details">
+        <summary>Nine red links — where the document’s meaning is immediately propagated</summary>
+        <ol id="latest-link-list" class="red-link-list"></ol>
+      </details>
+
+      <div class="update-actions">
+        <button id="show-latest-update" type="button">Open the complete document analysis</button>
+        <a class="action-link" href="documents/police-notice-public-derivative-2026-07-20.pdf" target="_blank" rel="noopener">Reviewed public PDF derivative</a>
+        <a class="action-link" href="archive/submission-2026-07-20/en.html">Website archive at submission</a>
+      </div>
+      <p class="evidence-boundary"><strong>Evidence boundary:</strong> the exact police quotation, creator-confirmed chronology, and system synthesis are deliberately separated. Red records urgency and the number of affected links; it does not itself prove unlawfulness or predict an outcome.</p>
+      <p class="translation-policy"><strong>English evidence policy:</strong> the English page translates the analysis and material quotations while retaining the Czech wording as the auditable source. Dušan Dvořák’s name and the names of organisations he represents remain public; addresses, signatures, and unnecessary third-party data are withheld.</p>
+        </div>
+      </details>
+    </section>
+
+    <details id="prototype-laboratory" class="prototype-laboratory">
+      <summary>Open the laboratory, original demonstration tests, and detailed case map</summary>
+      <div class="prototype-laboratory-content">
     <section class="mission">
       <p class="eyebrow">PROJECT MISSION</p>
       <h2>From thousands of fragmented items to an auditable case</h2>
@@ -51,7 +179,7 @@
     </section>
 
     <aside class="prototype-notice">
-      <strong>What you are seeing:</strong> the first test updates Citizen XY’s prepared anonymized archive with one public-prosecution document. The second test accepts one exactly supported PDF from outside, verifies its digital fingerprint, and displays only an anonymized result. Other inputs receive only a safe technical map or are rejected.
+      <strong>How to read the live website:</strong> the main page records development after the competition submission. The exact public demo as submitted on 20 July 2026 remains separately accessible in a dated archive. The current static build gives exactly supported documents their reviewed output; every other readable PDF, TXT, or pasted text receives general local orientation at 0/9 or 1/9. For a cannabis-related legal conflict it also separates the person’s own facts, shared evidence candidates, and a working outline for reopening, an intervention action, compensation for damage or harm, or another step. It does not copy another case’s outcome or guarantee success, but it permits source-linked evidence to be screened for cross-case use.
     </aside>
 
     <section class="application">
@@ -68,7 +196,7 @@
       <div class="flow" aria-label="Future accessible assistance path">
         <span>documents or speech in the user’s language</span><b>→</b><span>safe anonymization</span><b>→</b><span>timeline and evidence traffic light</span><b>→</b><span>review by a lawyer or advice service</span>
       </div>
-      <p><strong>Outcome:</strong> deadlines, institutions, unanswered arguments, and cited passages, with the proposed next step remaining under human review. Voice input, OCR, automatic anonymization, and universal analysis are product vision; the current public prototype safely demonstrates the principle on one supported sample.</p>
+      <p><strong>Outcome:</strong> a reviewed output for an exactly supported document; for every other readable document, detected dates, references, institutions, amounts, possible deadline expressions, overlap with the public memory, and a proposed next step. Voice input, OCR, automatic anonymization, and universal legal analysis remain product vision.</p>
     </section>
 
     <section id="evidence-document">
@@ -130,29 +258,59 @@
       </div>
     </section>
     <section id="external-test">
-      <p class="eyebrow">SECOND TEST — PUBLIC INPUT</p>
-      <h2>A safe outside-input test — the PDF stays on your computer</h2>
-      <label class="file-label" for="files">Select the supported PDF or text documents (.pdf, .txt, .md)</label>
+      <p class="eyebrow">SECOND TEST AND POST-SUBMISSION TEST — OUTSIDE INPUT</p>
+      <h2>A safe test of any document — the file stays on your computer</h2>
+      <p class="post-submission-notice"><strong>Post-submission test build v2.5 · 20 July 2026:</strong> support for the exact police notice, the anonymized L. CH. motion, and general local orientation for every readable document were added after the competition entry had been duly submitted. The original competition build remains available in the dated archive. This test is expressly labelled as post-submission development.</p>
+      <label class="file-label" for="files">Select your own PDF or text documents (.pdf, .txt, .md)</label>
       <input id="files" type="file" accept=".pdf,application/pdf,.txt,.md,text/plain,text/markdown" multiple>
-      <p class="hint">Files are processed only in the browser and are never uploaded. The exactly supported court PDF is recognized by its digital fingerprint and produces an anonymized supervisory-board change analysis. An unknown PDF is safely rejected. Other text receives only a technical metadata map without inheriting prepared legal conclusions.</p>
+      <label class="file-label" for="requested-remedy">Which working output do you want to prepare?</label>
+      <select id="requested-remedy" class="remedy-select">
+        <option value="auto">Detect the objective from the document — recommended</option>
+        <option value="reopening">Motion to reopen proceedings</option>
+        <option value="intervention-action">Intervention action</option>
+        <option value="compensation">Compensation for damage or non-pecuniary harm</option>
+        <option value="other">Other or not-yet-determined route</option>
+      </select>
+      <p class="hint">Files are processed only in the browser and are never uploaded. An exactly supported PDF receives its verified, source-bounded output. Every other readable document receives general orientation: detected dates, case references, institutions, amounts, possible deadline expressions, comparison with the public and shared cannabis memory, and a proposed next step. Weak overlap is green 1/9; zero overlap is a black 0/9 dot. For a person in a cannabis-related legal conflict, the system carries that person’s quoted facts and evidence candidates into separate working material for the selected or textually indicated route; it does not copy personal procedural status or another case’s finished conclusion and does not promise success. An image-only scan reports that OCR is required.</p>
       <button id="load" type="button" class="secondary">Load the anonymized control document</button>
       <button id="load-organisation-sample" type="button" class="secondary">Load the public anonymized PDF copy</button>
       <a id="organisation-source" class="source-download" href="documents/organisation-change-anonymized-2026-07-13.pdf" target="_blank" rel="noopener">Open the anonymized evidentiary extract PDF</a>
+      <button id="load-police-sample" type="button" class="secondary">Load the police test - 9 red links</button>
+      <a id="police-source" class="source-download" href="documents/police-notice-public-derivative-2026-07-20.pdf" target="_blank" rel="noopener">Open the reviewed public derivative of the police notice</a>
       <textarea id="doc" rows="10" placeholder="Paste text for a safe local test" aria-label="Document text"></textarea>
       <button id="analyse" type="button">Analyze locally</button>
     </section>
+    <section id="generic-result" class="generic-result" hidden>
+      <p class="eyebrow">GENERAL LOCAL ORIENTATION — OUTSIDE INPUT</p>
+      <h2>What the document contains and whether it overlaps with public or shared cannabis evidence memory</h2>
+      <p id="generic-result-summary" class="summary"></p>
+      <div id="generic-documents" class="generic-document-grid"></div>
+      <p id="generic-result-boundary" class="evidence-boundary"></p>
+    </section>
+    <section id="priority-queue-section" hidden>
+      <p class="eyebrow">PRIORITY QUEUE OF RECOGNIZED DOCUMENTS</p>
+      <h2>Peak level and red-link count determine the order</h2>
+      <p id="priority-queue-summary" class="evidence-note"></p>
+      <div id="priority-queue" class="priority-grid"></div>
+    </section>
     <section id="organisation-result" hidden>
-      <p class="eyebrow">OUTSIDE-PDF TEST RESULT</p>
+      <p class="eyebrow">EXACTLY SUPPORTED PDF RESULT</p>
       <h2 id="organisation-title"></h2>
       <p id="organisation-scope" class="evidence-note"></p>
+      <p id="organisation-priority" class="priority-badges"></p>
+      <div id="organisation-systemic-finding"></div>
       <div id="organisation-source-card"></div>
       <h3>Memory before and after the document was added</h3><div id="organisation-comparison"></div>
       <h3>System-generated solution</h3><ol id="organisation-solution"></ol>
-      <h3>What the anonymized document proves</h3><div id="organisation-facts"></div>
-      <h3>Separate archive-owner statement</h3><div id="organisation-author-statement"></div>
-      <h3>What the document does not prove</h3><ul id="organisation-limits"></ul>
+      <h3>What the recognized document proves</h3><div id="organisation-facts"></div>
+      <section id="organisation-creator-record" class="creator-record-panel" hidden>
+        <h3>Creator-confirmed chronology outside the document’s verbatim content</h3>
+        <div id="organisation-creator-chronology"></div>
+      </section>
+      <h3>Separate statement or metadata outside the document</h3><div id="organisation-author-statement"></div>
+      <h3>What the document does not prove</h3><div id="organisation-limits"></div>
       <h3>Relevance traffic light</h3><div id="organisation-relevance"></div>
-      <h3>What a human must verify</h3><ul id="organisation-human-checks"></ul>
+      <h3>What a human must verify</h3><div id="organisation-human-checks"></div>
     </section>
     <p id="status" class="status" role="status" hidden></p>
     <section id="institutional-map" hidden>
@@ -191,6 +349,8 @@
       <h2>5. Uncertainty and document limits</h2><div id="uncertainty"></div>
       <h2>6. Recommended next steps</h2><div id="actions"></div>
     </section>
+      </div>
+    </details>
   </main>
   <footer>Mgr. Dušan Dvořák — founder and representative of the <a href="https://www.konopijelek.cz/">Cannabis is The Cure</a> alliance · Human-in-the-loop prototype. Outputs require human legal review.</footer>
   <script type="module" src="app.js"></script>

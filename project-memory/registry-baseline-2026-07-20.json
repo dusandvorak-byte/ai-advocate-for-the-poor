@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "recordType": "registry-and-alliance-baseline",
+  "asOf": "2026-07-20",
+  "recordedAfterSubmission": true,
+  "submissionArchiveModified": false,
+  "purpose": {
+    "cs": "Pevný organizační základ projektu ke dni podání soutěžní přihlášky. Budoucí stav se porovnává s tímto záznamem; nemění se jím zpětně archiv V1.",
+    "en": "The project's fixed organisational baseline at the competition submission date. Future state is compared with this record; the V1 archive is not retroactively changed."
+  },
+  "evidencePolicy": {
+    "currentIdentity": "Úřední název, IČO, sídlo a datová schránka jsou vedeny odděleně od historického a aliančního popisu.",
+    "allianceHistory": "Role, společné zřizovatelství a popisné historické názvy jsou záznamem potvrzeným autorem a veřejnou prezentací aliance; nejsou bez dalšího vydávány za úplnou právní historii obchodní firmy.",
+    "nameChanges": "Přesná rejstříková posloupnost je uvedena jen tam, kde ji zachycuje zkontrolovaný výpis nebo veřejná rejstříková historie."
+  },
+  "testHistoryAtQuestionTime": {
+    "distinctAutomatedChecks": 85,
+    "submissionChecks": 54,
+    "postSubmissionChecksAdded": 31,
+    "minimumDocumentedIndividualExecutions": 267,
+    "exactCumulativeExecutionCount": null,
+    "calculation": "54 + 62 + 66 + 85",
+    "note": "Jde o nejnižší doložený počet průchodů. Úplný součet všech meziběhů se od začátku nevedl, proto se nesmí vydávat za přesné číslo."
+  },
+  "currentTestSuite": {
+    "build": "v2.5",
+    "distinctAutomatedChecks": 131,
+    "submissionChecks": 54,
+    "postSubmissionChecksAdded": 77,
+    "latestCompleteRun": {
+      "passed": 131,
+      "failed": 0
+    },
+    "exactCumulativeExecutionCount": null,
+    "note": "Aktuální počet znamená počet různých kontrol v sadě. Přesný celoživotní součet všech jejich spuštění nebyl od počátku veden a nesmí se domýšlet."
+  },
+  "sources": [
+    {
+      "id": "data-box-wztbjmm",
+      "kind": "official-public-data-box-holder-list",
+      "url": "https://www.mojedatovaschranka.cz/sds/detail.do?dbid=wztbjmm"
+    },
+    {
+      "id": "data-box-4ex7c9p",
+      "kind": "official-public-data-box-holder-list",
+      "url": "https://www.mojedatovaschranka.cz/sds/detail.do?dbid=4ex7c9p"
+    },
+    {
+      "id": "data-box-dxeepmd",
+      "kind": "official-public-data-box-holder-list",
+      "url": "https://www.mojedatovaschranka.cz/sds/detail.do?dbid=dxeepmd"
+    },
+    {
+      "id": "data-box-6ufexs6",
+      "kind": "official-public-data-box-holder-list",
+      "url": "https://www.mojedatovaschranka.cz/sds/detail.do?dbid=6ufexs6"
+    },
+    {
+      "id": "data-box-pmgb579",
+      "kind": "official-public-data-box-holder-list",
+      "url": "https://www.mojedatovaschranka.cz/sds/detail.do?dbid=pmgb579"
+    },
+    {
+      "id": "attached-register-extract-2026-07-20",
+      "kind": "reviewed-public-register-extract",
+      "sha256": "78d02fa15c2a50a861bdcde2819a2ce645455b54af062a7a199c0de9e9ba902a",
+      "validAt": "2026-07-19T03:59:00+02:00"
+    },
+    {
+      "id": "register-history-26670232",
+      "kind": "public-register-history-mirror",
+      "url": "https://www.podnikatel.cz/rejstrik/cannabis-is-the-cure-z-s-26670232/"
+    },
+    {
+      "id": "register-history-22680101",
+      "kind": "public-register-history-mirror",
+      "url": "https://www.podnikatel.cz/rejstrik/edukativni-konopna-klinika-z-s-22680101/"
+    },
+    {
+      "id": "register-history-22727281",
+      "kind": "public-register-history-mirror",
+      "url": "https://www.podnikatel.cz/rejstrik/educational-cannabis-clinic-z-s-22727281/"
+    },
+    {
+      "id": "alliance-public-history",
+      "kind": "creator-controlled-public-alliance-record",
+      "url": "https://www.konopijelek.cz/o-nas/"
+    }
+  ],
+  "organisations": [
+    {
+      "id": "investors-society",
+      "officialRegisteredName": "European Society of Investors in Natural and Social Sciences Research, z.s.",
+      "displayName": "European Society of Investors in Natural and Social Sciences Research, z. s.",
+      "registrationYear": 2000,
+      "ico": "70631298",
+      "icoDisplay": "706 31 298",
+      "registeredSeat": "Slezská 756/14, Vinohrady, 120 00 Praha 2",
+      "dataBox": "wztbjmm",
+      "allianceRole": "Společenství filantropů a mecenášů výzkumu Konopí je lék / Cannabis is The Cure",
+      "roleEvidenceLevel": "creator-confirmed-alliance-record",
+      "identitySourceIds": ["data-box-wztbjmm"],
+      "normalizationNote": "IČO má osm číslic. Zápis 706 31 2983 z jedné zprávy byl překlep; správný stav je 706 31 298."
+    },
+    {
+      "id": "cannabis-is-the-cure",
+      "officialRegisteredName": "Cannabis is The Cure, z.s.",
+      "displayName": "Cannabis is The Cure, z. s.",
+      "registrationYear": 2004,
+      "ico": "26670232",
+      "icoDisplay": "266 70 232",
+      "registeredSeat": "Přichystalova 180/14, Hodolany, 779 00 Olomouc",
+      "creatorBaselineSeatWording": "Přichystalova 180/14, 779 00 Olomouc – Nový svět",
+      "seatWordingBoundary": "Ulice, číslo a město se shodují; úřední seznam datových schránek uvádí část obce Hodolany, autorský základ používá označení Nový svět.",
+      "dataBox": "4ex7c9p",
+      "allianceRole": "Koordinátor výzkumu Konopí je lék / Cannabis is The Cure",
+      "roleEvidenceLevel": "creator-confirmed-alliance-record",
+      "registeredNameHistory": [
+        {
+          "name": "AK Diag Human Cannabis",
+          "from": "2014-02-26",
+          "until": "2014-08-13",
+          "evidenceLevel": "public-register-history"
+        },
+        {
+          "name": "Diag Human Cannabis",
+          "from": "2014-01-01",
+          "until": "2014-02-26",
+          "evidenceLevel": "public-register-history"
+        }
+      ],
+      "identitySourceIds": ["data-box-4ex7c9p", "register-history-26670232"]
+    },
+    {
+      "id": "edukativni-konopna-klinika",
+      "officialRegisteredName": "Edukativní konopná klinika, z.s.",
+      "displayName": "Edukativní konopná klinika, z. s.",
+      "registrationYear": 2008,
+      "ico": "22680101",
+      "icoDisplay": "226 80 101",
+      "registeredSeat": "Ospělov 6, 798 55 Ludmírov",
+      "dataBox": "dxeepmd",
+      "allianceRole": "Spoluzřizovatel Edukativní konopné kliniky",
+      "roleEvidenceLevel": "creator-confirmed-alliance-record",
+      "registeredNameHistory": [
+        {
+          "name": "Ateliér ALF, z.s.",
+          "from": "2016-10-22",
+          "until": "2025-02-22",
+          "evidenceLevel": "public-register-history"
+        },
+        {
+          "name": "Ateliér ALF, o.s.",
+          "from": "2014-01-01",
+          "until": "2016-10-22",
+          "evidenceLevel": "public-register-history"
+        }
+      ],
+      "allianceHistoricalDesignation": "otevřená bezbariérová společnost Ateliér ALF, z. s.; dříve též Ateliér ALF, o. s.",
+      "identitySourceIds": ["data-box-dxeepmd", "attached-register-extract-2026-07-20", "register-history-22680101"]
+    },
+    {
+      "id": "educational-cannabis-clinic",
+      "officialRegisteredName": "Educational Cannabis Clinic, z.s.",
+      "displayName": "Educational Cannabis Clinic, z. s.",
+      "registrationYear": 2008,
+      "ico": "22727281",
+      "icoDisplay": "227 27 281",
+      "registeredSeat": "Ospělov 6, 798 55 Ludmírov",
+      "dataBox": "6ufexs6",
+      "allianceRole": "Spoluzřizovatel Edukativní konopné kliniky",
+      "roleEvidenceLevel": "creator-confirmed-alliance-record",
+      "registeredNameHistory": [
+        {
+          "name": "European Educational Cannabis Clinic, z.s.",
+          "from": "2025-01-24",
+          "until": "2026-06-16",
+          "evidenceLevel": "public-register-history"
+        },
+        {
+          "name": "Konopí je lék, z.s.",
+          "from": "2016-07-30",
+          "until": "2025-01-24",
+          "evidenceLevel": "public-register-history"
+        },
+        {
+          "name": "Bohemp",
+          "from": "2014-01-01",
+          "until": "2016-07-30",
+          "evidenceLevel": "public-register-history"
+        }
+      ],
+      "allianceHistoricalDesignation": "odborná společnost Konopí je lék, z. s.; dříve též Konopí je lék, o. s.",
+      "nameChangeBoundary": "Educational Cannabis Clinic, z.s. je současný název. European Educational Cannabis Clinic, z.s. je předchozí rejstříkový název, nikoli současná identita k 20. 7. 2026.",
+      "identitySourceIds": ["data-box-6ufexs6", "register-history-22727281"]
+    },
+    {
+      "id": "ganja-for-all-animals",
+      "officialRegisteredName": "Ganja For All Animals, z.s.",
+      "displayName": "Ganja For All Animals, z. s.",
+      "registrationYear": 2008,
+      "ico": "22724303",
+      "icoDisplay": "227 24 303",
+      "registeredSeat": "Ospělov 6, 798 55 Ludmírov",
+      "dataBox": "pmgb579",
+      "allianceRole": "Spoluzřizovatel Edukativní konopné kliniky",
+      "roleEvidenceLevel": "creator-confirmed-alliance-record",
+      "allianceHistoricalDesignation": "společnost pro sociální ekologii Art & Body Language Factory, z. s.; dříve též společnost sociální ekologie Art Language Factory, o. s.",
+      "historyBoundary": "Jde o alianční historické označení potvrzené autorem a veřejnou prezentací aliance; úplná rejstříková posloupnost názvů se vede odděleně, dokud není připojen celý historický výpis.",
+      "identitySourceIds": ["data-box-pmgb579", "alliance-public-history"]
+    }
+  ],
+  "jointClinic": {
+    "coFounderOrganisationIds": [
+      "edukativni-konopna-klinika",
+      "educational-cannabis-clinic",
+      "ganja-for-all-animals"
+    ],
+    "locations": ["Praha", "Olomouc", "Ospělov"],
+    "sharedSeatSinceYear": 2016,
+    "registeredAddress": "Ospělov 6, 798 55 Ludmírov",
+    "alliancePublicPlaceName": "Konopná apatyka královny koloběžky první, 798 55 Evropa u Ospělova č. 6",
+    "evidenceLevel": "creator-confirmed-alliance-record",
+    "sourceIds": ["alliance-public-history", "attached-register-extract-2026-07-20"]
+  }
+}

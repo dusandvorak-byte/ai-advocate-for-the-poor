@@ -3,19 +3,145 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="AI pomáhá chudým a zdravotně postiženým lidem proměnit nepřehledné podklady v ověřitelný případ.">
+  <meta name="description" content="Důkazní a judikatorní paměť pro lidi v ČR, kteří čelí nebo čelili právní kolizi ve věci konopí.">
   <title>AI Advocate for the Poor — demonstrační prototyp</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="traffic-light.css">
 </head>
 <body>
   <header>
-    <a class="language" href="en.html" lang="en">English</a>
-    <p>OPENAI BUILD WEEK · DEMONSTRAČNÍ PROTOTYP</p>
+    <nav class="header-actions" aria-label="Jazyk a archiv">
+      <a class="language" href="en.html" lang="en">English</a>
+      <a href="archive/submission-2026-07-20/index.html">Web při podání 20. 7. 2026</a>
+    </nav>
+    <p>OPENAI BUILD WEEK · ŽIVÝ VÝVOJ PO ODESLÁNÍ</p>
     <h1>AI Advocate for the Poor</h1>
-    <p>Struktura, paměť a schopnost jednat pro lidi, kteří by jinak čelili systému sami.</p>
+    <p>Každá nová listina okamžitě ukazuje, co mění v paměti případu, kam patří a co zůstává bez odpovědi.</p>
   </header>
   <main>
+    <section id="post-submission" class="live-update" aria-labelledby="latest-update-title">
+      <div class="update-meta">
+        <span class="live-label"><span class="live-dot" aria-hidden="true"></span> NOVĚ PO ODESLÁNÍ PŘIHLÁŠKY</span>
+        <span>Podáno 20. 7. 2026 · aplikace v2.5 · poslední důkazní stav v2.5</span>
+      </div>
+      <h2 id="latest-update-title">20. 7. 2026 — Návrh na obnovu L. CH. z roku 2022 má 9/9 relevanci k novým důkazům o metodice THC.</h2>
+      <p id="latest-update-summary" class="update-lede">První anonymizovaný test dokumentu jiné osoby ukazuje, co se změní při porovnání staršího návrhu s dnešní důkazní pamětí. Hodnota 9/9 není předpověď úspěchu.</p>
+      <aside id="current-audience" class="current-audience" aria-labelledby="current-audience-title">
+        <p class="eyebrow">PRO KOHO JE WEB PRÁVĚ TEĎ</p>
+        <h3 id="current-audience-title">Pro každého v České republice, kdo čelí nebo čelil právní kolizi ve věci konopí</h3>
+        <p>Web pomáhá připravit lidsky kontrolovaný podklad k <strong>návrhu na obnovu řízení, zásahové žalobě, náhradě škody či nemajetkové újmy nebo jinému navazujícímu kroku</strong>.</p>
+        <p>Soustřeďuje na jednom místě co nejrozsáhlejší průběžně ověřovanou paměť důkazů a judikatury. Dokládá a propojuje <strong>důkazy, fakta, přesné výroky, čísla jednací, spisové značky a judikaturu</strong>.</p>
+        <p class="audience-boundary"><strong>Nezaručuje úspěch, nezakládá právní nárok a nenahrazuje právníka.</strong> Ukazuje zdroje, vazby, mezery a pracovní možnosti dalšího postupu ke kontrole člověkem.</p>
+      </aside>
+      <div class="judge-test-cta">
+        <div><strong>Vyzkoušejte vlastní dokument</strong><span>PDF s textovou vrstvou, TXT nebo vložený text · pouze ve vašem prohlížeči · vždy dostanete orientační výstupy a navržený další krok</span>
+          <p class="judge-match-key"><span><i class="match-dot match-dot-black" aria-hidden="true"></i><b>0/9 — žádná shoda s veřejnou ani sdílenou pamětí</b></span><span><i class="match-dot match-dot-green" aria-hidden="true"></i><b>1/9 — nejslabší zelený průnik</b></span><span><i class="match-dot match-dot-green" aria-hidden="true"></i><b>konopná právní kolize — obnova · zásahová žaloba · náhrada újmy</b></span></p>
+        </div>
+        <a id="open-external-test" class="action-link" href="#external-test">Porovnat se sdílenou pamětí</a>
+      </div>
+
+      <div class="dashboard-panel" aria-labelledby="input-data-title">
+        <div class="dashboard-heading"><p class="eyebrow">VSTUPNÍ DATA PŘÍPADU</p><h3 id="input-data-title">Co už paměť drží v jednom okně</h3></div>
+        <div id="case-input-metrics" class="metric-grid dashboard-metrics" aria-label="Rozsah vstupních dat a řízení"></div>
+      </div>
+
+      <div class="priority-deadline-grid">
+        <div id="latest-priority" aria-label="Priorita nejnovější aktualizace"></div>
+        <div id="latest-deadline" aria-label="Lhůta nejnovější aktualizace"></div>
+      </div>
+
+      <div class="dashboard-panel version-panel" aria-labelledby="version-map-title">
+        <div class="dashboard-heading"><p class="eyebrow">VERZE A DŮKAZNÍ KONTINUITA</p><h3 id="version-map-title">V0 jsou původní data, V1 je neměnný soutěžní snímek, V2 je živá paměť</h3></div>
+        <nav id="version-history" class="version-grid" aria-label="Historie verzí projektu"></nav>
+        <p id="version-0" class="version-zero-note"><strong>V0 není starý web.</strong> Je to datová a důkazní vrstva od 20. 4. 2026, vzniklá před znalostí soutěže a před návrhem dnešní podoby systému.</p>
+      </div>
+
+      <div class="dashboard-panel traffic-panel" aria-labelledby="traffic-title">
+        <div class="dashboard-heading"><p class="eyebrow">DEVÍTISTUPŇOVÝ SEMAFOR</p><h3 id="traffic-title">Barva znamená relevanci, vztahy a potřebu reagovat</h3></div>
+        <p class="traffic-explainer">U této kauzy znamená nejvyšší červená extrémně důležité vztahy a potřebu reakce. Lhůta se zobrazí jen tehdy, když ji určí listina nebo ověřené pravidlo; samotná barva ji nevytváří. U jiného uživatele se stupně vztahují k jeho vlastní kauze.</p>
+        <div id="traffic-scale" class="traffic-scale" aria-label="Devět stupňů relevance"></div>
+      </div>
+
+      <div class="dashboard-panel snapshot-panel" aria-labelledby="snapshot-title">
+        <div class="dashboard-heading"><p class="eyebrow">DENNÍ HISTORIE V2</p><h3 id="snapshot-title">Co přibylo po podání přihlášky</h3></div>
+        <div id="daily-version-history" class="daily-version-history"></div>
+        <p id="daily-version-rule" class="evidence-note"></p>
+      </div>
+
+      <section id="prisoner-reopening-update" class="prisoner-update" aria-labelledby="prisoner-update-heading">
+        <div class="update-meta"><span>V2.5 · ZKONTROLOVÁNO 20. 7. 2026</span><span>1 soukromý zdrojový PDF · veřejně pouze anonymizovaný výstup</span></div>
+        <h3 id="prisoner-update-heading">Návrh na obnovu L. CH. z roku 2022: 9/9 relevance k novým důkazům o metodice THC</h3>
+        <p id="prisoner-update-summary"></p>
+        <div id="prisoner-update-overall"></div>
+        <article id="prisoner-public-context" class="prisoner-public-context"></article>
+        <div class="prisoner-evidence-grid">
+          <section id="prisoner-source-facts" class="prisoner-layer prisoner-source-layer"></section>
+          <aside id="prisoner-author-baseline" class="prisoner-layer prisoner-baseline-layer"></aside>
+        </div>
+        <section id="prisoner-comparison" class="prisoner-comparison"></section>
+        <section id="prisoner-rewrite" class="prisoner-rewrite"></section>
+        <p id="prisoner-evidence-boundary" class="evidence-boundary"></p>
+      </section>
+
+      <section id="alliance-update" class="alliance-update" aria-labelledby="alliance-update-heading">
+        <div class="update-meta"><span>V2.3 · ZKONTROLOVÁNO 20. 7. 2026</span><span>7 jedinečných zdrojových PDF zůstává neveřejných</span></div>
+        <h3 id="alliance-update-heading">Výroční zpráva 2025 a čtyři doložené ukončené exekuční větve aliance</h3>
+        <p id="alliance-update-summary"></p>
+        <div id="deduplication-update"></div>
+        <div id="annual-report-update"></div>
+        <div id="register-context-update"></div>
+        <div id="enforcement-update" class="enforcement-update-grid" aria-label="Čtyři ukončené exekuční větve"></div>
+        <div id="district-court-update"></div>
+        <aside id="alliance-author-assessment" class="creator-assessment"></aside>
+        <p id="alliance-evidence-boundary" class="evidence-boundary"></p>
+      </section>
+
+      <details id="alliance-update-v22" class="prior-update">
+        <summary>V2.2 · Výroční zpráva 2025, první tři zastavené exekuční větve a rozsudek OS Prostějov</summary>
+        <div class="prior-update-content">
+          <p><strong>Stav před doplněním v2.3:</strong> pět jedinečných neveřejných PDF doložilo rejstříkový kontext, tři zastavené exekuce a jeden přesně omezený soudní závěr. Výroční zpráva byla vedena jako schválená 14. 7. 2026 a čekající na grafické úpravy.</p>
+          <p>Liberecká větev tehdy uváděla přibližně 200 000 Kč jako orientační údaj autora, protože samotné usnesení o zastavení obsahovalo jen jistinu 83 020,64 Kč s příslušenstvím. V2.3 tuto nejistotu zpřesnila novou listinou na 192 752,91 Kč k 8. 7. 2025, nikoli ke dni zastavení.</p>
+        </div>
+      </details>
+
+      <details id="police-update" class="prior-update">
+        <summary>V2.1 · Po více než patnácti letech vymáhání odpovědi policejní listina ze dne 20. 7. 2026 věcnou odpověď opět nepřinesla</summary>
+        <div class="prior-update-content">
+
+      <div class="evidence-level-grid">
+        <article class="evidence-level official-source">
+          <p class="evidence-level-label">1 · PŘÍMÝ VÝROK LISTINY</p>
+          <p>Policie uvádí, že podání adresované NSZ bylo:</p>
+          <blockquote>„bez přijetí dalšího opatření uloženo“</blockquote>
+        </article>
+        <article class="evidence-level creator-record">
+          <p class="evidence-level-label">2 · AUTOREM POTVRZENÁ CHRONOLOGIE</p>
+          <p>Mgr. Dušan Dvořák potvrzuje, že předžalobní výzvu dne 14. 7. 2026 po podání NSZ rozeslal také Policii ČR jako důkaz důvodnosti preventivního podání z 12. 7., Okresnímu soudu a Okresnímu státnímu zastupitelství v Prostějově, KPR, Ministerstvu spravedlnosti a do souvisejících zásahových žalob.</p>
+        </article>
+        <article class="evidence-level system-synthesis">
+          <p class="evidence-level-label">3 · ZÁVĚR SYSTÉMU</p>
+          <p>Listina přidává nový procesní uzel, ale neodůvodňuje nečinnost, nerozhoduje o důvodnosti podání a neuzavírá žádnou z dotčených větví.</p>
+        </article>
+      </div>
+
+      <details class="red-link-details">
+        <summary>Devět červených vazeb — kam se význam listiny okamžitě promítá</summary>
+        <ol id="latest-link-list" class="red-link-list"></ol>
+      </details>
+
+      <div class="update-actions">
+        <button id="show-latest-update" type="button">Otevřít úplnou analýzu listiny</button>
+        <a class="action-link" href="documents/police-notice-public-derivative-2026-07-20.pdf" target="_blank" rel="noopener">Veřejná odvozená kopie PDF</a>
+        <a class="action-link" href="archive/submission-2026-07-20/index.html">Archiv webu při podání</a>
+      </div>
+      <p class="evidence-boundary"><strong>Důkazní hranice:</strong> přesná citace policie, autorem potvrzená chronologie a systémový závěr jsou záměrně oddělené. Červená znamená naléhavost lidské kontroly a počet dotčených vazeb; sama neprokazuje nezákonnost ani výsledek řízení.</p>
+        </div>
+      </details>
+    </section>
+
+    <details id="prototype-laboratory" class="prototype-laboratory">
+      <summary>Otevřít laboratoř, původní demonstrační testy a podrobnou mapu případu</summary>
+      <div class="prototype-laboratory-content">
     <section class="mission">
       <p class="eyebrow">POSLÁNÍ PROJEKTU</p>
       <h2>Od tisíců neuspořádaných prvků k ověřitelnému případu</h2>
@@ -28,7 +154,7 @@
     </section>
 
     <aside class="prototype-notice">
-      <strong>Co právě vidíte:</strong> první test aktualizuje připravený anonymizovaný archiv občana XY jednou listinou státního zastupitelství. Druhý test přijme zvenčí přesně podporované PDF o změně orgánu spolku, ověří jeho digitální otisk a zobrazí pouze anonymizovaný výsledek. U ostatních vstupů zůstává prototyp u bezpečné technické mapy nebo je odmítne.
+      <strong>Jak číst živý web:</strong> hlavní stránka ukazuje vývoj projektu po soutěžním podání. Přesný stav veřejné ukázky v okamžiku podání 20. července 2026 zůstává samostatně otevřitelný v datovaném archivu. Současná statická verze dává přesně podporovaným dokumentům zkontrolovaný výstup; každý jiný čitelný PDF, TXT nebo vložený text dostane obecnou místní orientaci 0/9 nebo 1/9. U právní kolize ve věci konopí navíc oddělí vlastní fakta člověka, sdílené důkazní kandidáty a pracovní osnovu pro obnovu řízení, zásahovou žalobu, náhradu škody či újmy nebo jiný krok. Nepřenáší výsledek jiné kauzy a nezaručuje úspěch, ale dovoluje prověřit zdrojované důkazy pro mezikauzální použití.
     </aside>
 
     <section class="application">
@@ -45,7 +171,7 @@
       <div class="flow" aria-label="Budoucí dostupný postup pomoci">
         <span>dokumenty nebo hlas ve vlastním jazyce</span><b>→</b><span>bezpečná anonymizace</span><b>→</b><span>časová osa a důkazní semafor</span><b>→</b><span>kontrola advokátem či poradnou</span>
       </div>
-      <p><strong>Výsledek:</strong> seznam lhůt, institucí, nevypořádaných námitek a citovaných pasáží; návrh dalšího kroku zůstává pod lidskou kontrolou. Hlasový vstup, OCR, automatická anonymizace a univerzální analýza jsou produktová vize — současný veřejný prototyp bezpečně demonstruje princip na podporované ukázce.</p>
+      <p><strong>Výsledek:</strong> u přesně podporované listiny zkontrolovaný výstup; u každého jiného čitelného dokumentu rozpoznaná data, spisové značky, instituce, částky, možné lhůtové výrazy, průnik s veřejnou pamětí a navržený další krok. Hlasový vstup, OCR, automatická anonymizace a univerzální právní analýza jsou stále produktová vize.</p>
     </section>
 
     <section id="registry" hidden>
@@ -130,29 +256,59 @@
       </div>
     </section>
     <section id="external-test">
-      <p class="eyebrow">DRUHÝ TEST — VEŘEJNÝ VSTUP</p>
-      <h2>Bezpečná zkouška zvenčí — PDF zůstává ve vašem počítači</h2>
-      <label class="file-label" for="files">Vybrat podporované PDF nebo textové listiny (.pdf, .txt, .md)</label>
+      <p class="eyebrow">DRUHÝ TEST A NÁSLEDNÝ TEST — VNĚJŠÍ VSTUP</p>
+      <h2>Bezpečná zkouška libovolného dokumentu — soubor zůstává ve vašem počítači</h2>
+      <p class="post-submission-notice"><strong>Následná testovací verze v2.5 · 20. července 2026:</strong> po řádném odeslání soutěžní přihlášky přibyla podpora přesného policejního sdělení, anonymizovaného návrhu L. CH. a obecná místní orientace pro každý čitelný dokument. Původní soutěžní verze zůstává doložena v datovaném archivu. Tento test je výslovně označen jako vývoj po odeslání.</p>
+      <label class="file-label" for="files">Vybrat vlastní PDF nebo textové listiny (.pdf, .txt, .md)</label>
       <input id="files" type="file" accept=".pdf,application/pdf,.txt,.md,text/plain,text/markdown" multiple>
-      <p class="hint">Soubory se zpracují pouze lokálně v prohlížeči a nikam se neodesílají. Přesně podporované soudní PDF se rozpozná podle digitálního otisku a zobrazí anonymizovanou analýzu změny dozorčí rady. Neznámé PDF je bezpečně odmítnuto. U jiného textu vznikne jen technická mapa metadat bez převzetí připravených právních závěrů.</p>
+      <label class="file-label" for="requested-remedy">Jaký pracovní výstup chcete připravit?</label>
+      <select id="requested-remedy" class="remedy-select">
+        <option value="auto">Rozpoznat cíl z dokumentu — doporučeno</option>
+        <option value="reopening">Návrh na obnovu řízení</option>
+        <option value="intervention-action">Zásahová žaloba</option>
+        <option value="compensation">Náhrada škody nebo nemajetkové újmy</option>
+        <option value="other">Jiný nebo dosud neurčený postup</option>
+      </select>
+      <p class="hint">Soubory se zpracují pouze lokálně v prohlížeči a nikam se neodesílají. Přesně podporované PDF dostane ověřený zdrojově omezený výstup. Každý jiný čitelný dokument dostane obecnou orientaci: rozpoznaná data, spisové značky, instituce, částky, možné lhůtové výrazy, porovnání s veřejnou a sdílenou konopnou pamětí a navržený další krok. Slabý průnik je 1/9 zelený; nulový průnik je černý bod 0/9. U člověka s právním střetem ve věci konopí systém převezme jeho citovaná fakta a důkazní kandidáty do odděleného pracovního podkladu pro zvolenou či textem naznačenou cestu; nepřevezme osobní procesní stav ani hotový závěr jiné kauzy a neslibuje úspěch. Obrazový sken bez textové vrstvy přizná potřebu OCR.</p>
       <button id="load" type="button" class="secondary">Načíst anonymizovanou kontrolní listinu</button>
       <button id="load-organisation-sample" type="button" class="secondary">Načíst veřejnou anonymizovanou kopii PDF</button>
       <a id="organisation-source" class="source-download" href="documents/organisation-change-anonymized-2026-07-13.pdf" target="_blank" rel="noopener">Otevřít anonymizovaný důkazní výtah PDF</a>
+      <button id="load-police-sample" type="button" class="secondary">Načíst policejní test - 9 červených vazeb</button>
+      <a id="police-source" class="source-download" href="documents/police-notice-public-derivative-2026-07-20.pdf" target="_blank" rel="noopener">Otevřít veřejnou odvozenou kopii policejního sdělení</a>
       <textarea id="doc" rows="10" placeholder="Vložte text pro bezpečnou lokální zkoušku" aria-label="Text dokumentu"></textarea>
       <button id="analyse" type="button">Analyzovat lokálně</button>
     </section>
+    <section id="generic-result" class="generic-result" hidden>
+      <p class="eyebrow">OBECNÁ MÍSTNÍ ORIENTACE — VNĚJŠÍ VSTUP</p>
+      <h2>Co dokument obsahuje a zda se protíná s veřejnou nebo sdílenou konopnou důkazní pamětí</h2>
+      <p id="generic-result-summary" class="summary"></p>
+      <div id="generic-documents" class="generic-document-grid"></div>
+      <p id="generic-result-boundary" class="evidence-boundary"></p>
+    </section>
+    <section id="priority-queue-section" hidden>
+      <p class="eyebrow">PRIORITNÍ POŘADNÍK ROZPOZNANÝCH LISTIN</p>
+      <h2>Nejvyšší stupeň a počet červených vazeb rozhodují o pořadí</h2>
+      <p id="priority-queue-summary" class="evidence-note"></p>
+      <div id="priority-queue" class="priority-grid"></div>
+    </section>
     <section id="organisation-result" hidden>
-      <p class="eyebrow">VÝSLEDEK VNĚJŠÍHO PDF TESTU</p>
+      <p class="eyebrow">VÝSLEDEK PŘESNĚ PODPOROVANÉHO PDF</p>
       <h2 id="organisation-title"></h2>
       <p id="organisation-scope" class="evidence-note"></p>
+      <p id="organisation-priority" class="priority-badges"></p>
+      <div id="organisation-systemic-finding"></div>
       <div id="organisation-source-card"></div>
       <h3>Paměť před vložením a po vložení listiny</h3><div id="organisation-comparison"></div>
       <h3>Řešení vytvořené systémem</h3><ol id="organisation-solution"></ol>
-      <h3>Co anonymizovaná listina dokládá</h3><div id="organisation-facts"></div>
-      <h3>Samostatný archivní údaj autora</h3><div id="organisation-author-statement"></div>
-      <h3>Co listina sama nedokládá</h3><ul id="organisation-limits"></ul>
+      <h3>Co rozpoznaná listina dokládá</h3><div id="organisation-facts"></div>
+      <section id="organisation-creator-record" class="creator-record-panel" hidden>
+        <h3>Autorem potvrzená chronologie mimo doslovný obsah listiny</h3>
+        <div id="organisation-creator-chronology"></div>
+      </section>
+      <h3>Samostatné tvrzení nebo metadata mimo obsah listiny</h3><div id="organisation-author-statement"></div>
+      <h3>Co listina sama nedokládá</h3><div id="organisation-limits"></div>
       <h3>Semafor relevance</h3><div id="organisation-relevance"></div>
-      <h3>Co musí ověřit člověk</h3><ul id="organisation-human-checks"></ul>
+      <h3>Co musí ověřit člověk</h3><div id="organisation-human-checks"></div>
     </section>
     <p id="status" class="status" role="status" hidden></p>
     <section id="institutional-map" hidden>
@@ -191,6 +347,8 @@
       <h2>5. Nejistota a meze dokumentu</h2><div id="uncertainty"></div>
       <h2>6. Doporučené kroky</h2><div id="actions"></div>
     </section>
+      </div>
+    </details>
   </main>
   <footer>Mgr. Dušan Dvořák — zakladatel a zástupce aliance <a href="https://www.konopijelek.cz/">Cannabis is The Cure</a> · Human-in-the-loop prototyp. Výstupy vyžadují lidskou právní kontrolu.</footer>
   <script type="module" src="app.js"></script>

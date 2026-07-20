@@ -4,7 +4,17 @@ import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 
 const requiredIds = [
-  'files', 'load', 'load-case', 'doc', 'analyse', 'status', 'memory-out',
+  'post-submission', 'latest-update-title', 'latest-update-summary', 'current-audience', 'show-latest-update',
+  'version-history', 'version-0', 'case-input-metrics', 'latest-priority',
+  'latest-deadline', 'traffic-scale', 'daily-version-history', 'daily-version-rule',
+  'prisoner-reopening-update', 'prisoner-update-heading', 'prisoner-update-summary',
+  'prisoner-update-overall', 'prisoner-public-context', 'prisoner-source-facts',
+  'prisoner-author-baseline', 'prisoner-comparison', 'prisoner-rewrite', 'prisoner-evidence-boundary',
+  'alliance-update', 'alliance-update-heading', 'alliance-update-summary',
+  'deduplication-update', 'annual-report-update', 'register-context-update', 'enforcement-update',
+  'district-court-update', 'alliance-author-assessment', 'alliance-evidence-boundary',
+  'alliance-update-v22', 'police-update', 'latest-link-list', 'prototype-laboratory', 'open-external-test',
+  'files', 'requested-remedy', 'load', 'load-case', 'doc', 'analyse', 'status', 'memory-out',
   'memory-summary', 'branches', 'memory-documents', 'memory-references',
   'memory-dates', 'memory-limitations', 'analysis-out', 'facts',
   'interpretation', 'uncertainty', 'actions', 'institutional-map',
@@ -21,9 +31,14 @@ const requiredIds = [
   'integration-integrity-findings', 'integration-integrity-rule', 'integration-legend', 'integration-drafts',
   'integration-relevance', 'integration-human-checks', 'sent-output', 'sent-president',
   'sent-msp', 'sent-ncoz', 'internal-before-after', 'external-test', 'load-organisation-sample', 'organisation-source',
+  'load-police-sample', 'police-source',
+  'generic-result', 'generic-result-summary', 'generic-documents', 'generic-result-boundary',
+  'priority-queue-section', 'priority-queue-summary', 'priority-queue',
   'organisation-result', 'organisation-title', 'organisation-scope', 'organisation-source-card',
+  'organisation-priority', 'organisation-systemic-finding',
   'organisation-comparison', 'organisation-solution',
-  'organisation-facts', 'organisation-author-statement', 'organisation-limits',
+  'organisation-facts', 'organisation-creator-record', 'organisation-creator-chronology',
+  'organisation-author-statement', 'organisation-limits',
   'organisation-relevance', 'organisation-human-checks'
 ];
 
@@ -52,9 +67,89 @@ test('Czech and English pages expose the same complete interactive surface', asy
 
 test('source document precedes the initially collapsed evidence network', async () => {
   const html = await readFile(new URL('../web/index.html', import.meta.url), 'utf8');
+  assert.match(html, /<details id="prototype-laboratory" class="prototype-laboratory">/);
+  assert.doesNotMatch(html, /<details id="prototype-laboratory"[^>]*\sopen/);
   assert.match(html, /id="registry" hidden/);
   assert.match(html, /id="case-study" hidden/);
   assert.match(html, /id="evidence-document"/);
+});
+
+test('the homepage leads with the post-submission evidence update in both languages', async () => {
+  const [cs, en] = await Promise.all([
+    readFile(new URL('../web/index.html', import.meta.url), 'utf8'),
+    readFile(new URL('../web/en.html', import.meta.url), 'utf8')
+  ]);
+
+  for (const html of [cs, en]) {
+    assert.ok(html.indexOf('id="post-submission"') < html.indexOf('class="mission"'));
+    assert.ok(html.indexOf('id="current-audience"') < html.indexOf('class="judge-test-cta"'));
+    assert.match(html, /id="version-history"/);
+    assert.match(html, /id="case-input-metrics"/);
+    assert.match(html, /id="traffic-scale"/);
+    assert.match(html, /id="latest-priority"/);
+    assert.match(html, /id="latest-deadline"/);
+    assert.match(html, /archive\/submission-2026-07-20/);
+    assert.match(html, /police-notice-public-derivative-2026-07-20\.pdf/);
+    assert.match(html, /id="alliance-update"/);
+    assert.match(html, /id="prisoner-reopening-update"/);
+    assert.ok(html.indexOf('id="prisoner-reopening-update"') < html.indexOf('id="alliance-update"'));
+    assert.match(html, /7 (?:jedinečných zdrojových PDF zůstává neveřejných|unique source PDFs remain unpublished)/);
+  }
+  assert.match(cs, /V0 jsou původní data.*V1.*V2/i);
+  assert.match(cs, /DEVÍTISTUPŇOVÝ SEMAFOR/);
+  assert.match(en, /V0 is the original data.*V1.*V2/i);
+  assert.match(en, /NINE-LEVEL TRAFFIC LIGHT/);
+  assert.match(cs, /AUTOREM POTVRZENÁ CHRONOLOGIE/);
+  assert.match(cs, /více než patnácti letech.*věcnou odpověď/i);
+  assert.match(cs, /Pro každého v České republice, kdo čelí nebo čelil právní kolizi ve věci konopí/i);
+  assert.match(cs, /obnovu řízení, zásahové žalobě, náhradě škody či nemajetkové újmy/i);
+  assert.match(cs, /Nezaručuje úspěch, nezakládá právní nárok a nenahrazuje právníka/i);
+  assert.match(cs, /důkazy, fakta, přesné výroky, čísla jednací, spisové značky a judikaturu/i);
+  assert.match(en, /CREATOR-CONFIRMED CHRONOLOGY/);
+  assert.match(en, /English translation: “placed on file without further action/);
+  assert.match(en, /Anyone in Czechia who faces or has faced a cannabis-related legal conflict/i);
+  assert.match(en, /motion to reopen proceedings, an intervention action, compensation for damage or non-pecuniary harm/i);
+  assert.match(en, /does not guarantee success, create a legal entitlement, or replace a lawyer/i);
+  assert.match(cs, /Návrh na obnovu L\. CH\..*9\/9 relevance/i);
+  assert.match(en, /L\. CH\.’s 2022 motion to reopen.*9\/9 relevance/i);
+});
+
+test('both homepages expose black 0/9, weakest green 1/9, local processing, and the OCR boundary', async () => {
+  const [cs, en, app] = await Promise.all([
+    readFile(new URL('../web/index.html', import.meta.url), 'utf8'),
+    readFile(new URL('../web/en.html', import.meta.url), 'utf8'),
+    readFile(new URL('../web/app.js', import.meta.url), 'utf8')
+  ]);
+
+  assert.match(cs, /černý bod 0\/9/i);
+  assert.match(cs, /1\/9 zelený/i);
+  assert.match(cs, /pouze lokálně v prohlížeči/i);
+  assert.match(cs, /sken bez textové vrstvy.*OCR/i);
+  assert.match(cs, /právním střetem ve věci konopí.*citovaná fakta.*důkazní kandidáty.*zvolenou či textem naznačenou cestu/i);
+  assert.match(cs, /id="requested-remedy"[\s\S]*value="reopening"[\s\S]*value="intervention-action"[\s\S]*value="compensation"[\s\S]*value="other"/i);
+  assert.match(en, /black 0\/9 dot/i);
+  assert.match(en, /green 1\/9/i);
+  assert.match(en, /only in the browser/i);
+  assert.match(en, /image-only scan.*OCR/i);
+  assert.match(en, /cannabis-related legal conflict.*quoted facts.*evidence candidates.*selected or textually indicated route/i);
+  assert.match(en, /id="requested-remedy"[\s\S]*value="reopening"[\s\S]*value="intervention-action"[\s\S]*value="compensation"[\s\S]*value="other"/i);
+  assert.match(app, /renderGenericFallback\(documents\)/);
+  assert.match(app, /renderSharedCannabisEvidence/);
+  assert.match(app, /const requestedRemedy = \$\('requested-remedy'\)\.value/);
+  assert.match(app, /analyzeGenericDocuments\(routed, language\)/);
+  assert.match(app, /recognized\.every\(\(\{ inputKind \}\) => inputKind\)/);
+  assert.doesNotMatch(app, /generic-document-card[\s\S]{0,500}innerHTML/);
+});
+
+test('the exact submission website remains available as a dated immutable archive', async () => {
+  const manifest = JSON.parse(await readFile(new URL('../web/archive/submission-2026-07-20/archive-manifest.json', import.meta.url), 'utf8'));
+  assert.equal(manifest.sourceCommit, '2238ae2736a6e13c2c93ecf06288a9f06604903f');
+  assert.equal(manifest.submissionDate, '2026-07-20');
+
+  for (const [path, digest] of Object.entries(manifest.coreSha256)) {
+    const bytes = await readFile(new URL(`../web/archive/submission-2026-07-20/${path}`, import.meta.url));
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), digest, `Archive digest mismatch: ${path}`);
+  }
 });
 
 test('Pages deployment runs tests and publishes only the reviewed web directory', async () => {
@@ -93,6 +188,13 @@ test('published real-world outputs are exact files with recorded provenance', as
     assert.equal(createHash('sha256').update(bytes).digest('hex'), item.sha256);
     assert.equal(item.sentDate, '2026-07-19');
     assert.equal(item.documentDate, '2026-07-19');
+  }
+
+  assert.equal(manifest.privacyPreservingDerivatives.length, 2);
+  for (const item of manifest.privacyPreservingDerivatives) {
+    const bytes = await readFile(new URL(`../web/documents/${item.path}`, import.meta.url));
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), item.sha256);
+    assert.equal(item.privateOriginalPublished, false);
   }
 });
 

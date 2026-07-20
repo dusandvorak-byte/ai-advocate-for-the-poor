@@ -1,0 +1,94 @@
+const clone = (value) => JSON.parse(JSON.stringify(value));
+
+const VERIFIED = [
+  { statement: 'The President of the Supreme Court, acting as the superior authority, stated that the Supreme Court had not yet addressed in its case law the weighing of cannabis plants or the measurement of THC content, and that neither the Criminal Division nor the Plenary had adopted a position on those questions.', branch: 'Case law and THC measurement methodology / freedom-of-information proceedings', citationTranslation: 'The Supreme Court has not yet addressed in its case law the weighing of cannabis plants and the method of measuring the THC contained in them.', proves: 'This proves the precise state of affairs described by the President of the Supreme Court on the date of the decision, as well as a partial procedural success under the Freedom of Information Act.', doesNotProve: 'It does not prove that no professional procedure existed in practice, that a particular expert measurement was defective, or that an earlier conviction was unlawful.' },
+  { statement: 'The Police stated that between 1 January 1999 and 1 May 2004 it issued no methodology for determining THC content in cannabis plants.', branch: 'Laboratory and THC evidence / development of methodology', citationTranslation: 'The Police of the Czech Republic did not issue, between 1 January 1999 and 1 May 2004, any methodology for determining THC content in cannabis plants.', proves: 'This proves the content of the Police Presidium’s official response concerning its own police methodology for the stated period.', doesNotProve: 'By itself, it does not prove that an individual expert measurement was incorrect or that a judgment was unlawful.' },
+  { statement: 'The Police stated that it likewise issued no internal methodology for determining THC content between 1 May 2004 and 11 November 2021; forensic workplaces were to follow the methodology of the European network of forensic institutes.', branch: 'Laboratory and THC evidence / development of methodology', citationTranslation: 'The Police of the Czech Republic did not issue, between 1 May 2004 and 11 November 2021, any methodology for determining THC content in cannabis plants.', proves: 'This proves the precise official statement about the existence of the Police’s own methodology.', doesNotProve: 'It does not exclude the use of other professional procedures and does not itself determine their legal sufficiency in a particular case.' },
+  { statement: 'The Police Presidium described Order No. 54/2021 of the Director of the Institute of Criminalistics as the first police methodology covering representative sampling, cannabinoid profiling, quantitative THC determination, and interpretation of results.', branch: 'Laboratory and THC evidence / development of methodology', citationTranslation: 'Order No. 54/2021 of the Director of the Institute of Criminalistics [...] is the first methodology governing representative sampling of plant material, cannabinoid profiling, quantitative determination of THC content [...] and interpretation of cannabis analysis results.', proves: 'This proves a dated official statement that can be compared with earlier statements about a methodological standard.', doesNotProve: 'Without the originals of the earlier decisions, it does not yet establish an actual contradiction or its effect on a particular conviction.' },
+  { statement: 'The part of the submission concerning the conduct of OKTE Frýdek-Místek was referred to the District Public Prosecutor’s Office in Frýdek-Místek.', branch: 'Institutional procedure / laboratory and THC evidence', citationTranslation: 'the part of your submission directed against the conduct of the police authority — OKTE Frýdek-Místek — was referred to the District Public Prosecutor’s Office in Frýdek-Místek', proves: 'This proves the procedural referral of part of the submission.', doesNotProve: 'It does not prove unlawful conduct by OKTE or the outcome of the District Public Prosecutor’s assessment.' },
+  { statement: 'The stated purpose of the referral was assessment and the adoption of an appropriate measure.', branch: 'Institutional procedure', citationTranslation: 'for assessment and adoption of an appropriate measure', proves: 'This proves the declared purpose of the referral.', doesNotProve: 'It does not prove that any specific measure has already been adopted.' }
+];
+
+const AXES = [
+  { title: '1. Unnotified technical regulations', fact: 'Public decisions show that the notification-duty objection had already been raised in Supreme Court appeal 8 Tdo 1231/2011 and constitutional complaint II. ÚS 664/12. The Supreme Court rejected it at that time by reference to the subject matter of the Addictive Substances Act. The later order III. ÚS 3354/16 expressly accepted that a substance-content requirement may constitute a technical specification and that the notification duty may also be relevant in criminal proceedings.', citationTranslation: 'In the case of the Addictive Substances Act, it is de iure a technical regulation. [...] A requirement concerning a specified substance content can undoubtedly be classified as a technical specification.', interpretation: 'This is a documented legal question that must be examined provision by provision, using the version in force at the relevant time and the specific TRIS notification. A timeline may reveal selective notification of amendments; intent cannot be inferred without the legislative file and other direct evidence.', uncertainty: 'Failure to notify one technical rule does not automatically invalidate an entire Act or prove that a particular conviction was unlawful. “Purposeful” is a working hypothesis, not a verified factual conclusion.' },
+  { title: '2. Alleged harm to health, property and reputation — procedural audit', fact: 'The archive contains allegations of harm and a long sequence of criminal reports, complaints, referrals, discontinuances and findings of lack of jurisdiction. The case study therefore does not merely count submissions: for each one it requires a date, recipient, subject, result, quotation from the operative text, and the following case reference.', citationTranslation: 'A procedural referral for assessment is not confirmation of wrongdoing.', interpretation: 'Such a table can show whether a specific allegation was examined on its merits, merely referred, discontinued, or remains without a documented disposition.', uncertainty: 'The expression “never investigated” may be used only after the complete procedural chain has been checked. Referral, silence, or the submitter’s disagreement do not themselves prove a criminal offence or the liability of a particular person.' },
+  { title: '3. THC measurement and forensic procedures', fact: 'In 2025 the Police Presidium stated that the Police had not issued its own THC-determination methodology between 1 May 2004 and 11 November 2021. A 2026 submission quotes communication KU-4139-5/ČJ-2026-2305KM as saying that the Institute of Criminalistics gives advisory opinions to OKTE workplaces, that individual workplaces create their own standard operating procedures, and that reporting measurement uncertainty is left to the laboratories.', citationTranslation: 'The Police of the Czech Republic did not issue, between 1 May 2004 and 11 November 2021, any methodology for determining THC content in cannabis plants.', interpretation: 'The central audit question is which validated SOP, sampling rule, treatment of measurement uncertainty, and THC/THCA distinction was used in each expert opinion.', uncertainty: 'The absence of a central police methodology does not mean that no professional procedure existed, and does not itself prove a defect in a particular measurement.' }
+];
+
+export function localizeCaseMemory(memory, language) {
+  if (language !== 'en') return memory;
+  const result = clone(memory);
+  result.privacy = 'Public living-memory case study of Mgr. Dušan Dvořák. Sensitive contact details and irrelevant private persons are not published.';
+  result.verifiedStatements.forEach((record, index) => Object.assign(record, VERIFIED[index], { originalCitation: record.citation }));
+  result.pendingNodes.forEach((node) => { node.relation = 'A related or potential procedural branch awaiting its primary source.'; node.verification = 'unverified — the primary source is not in the repository'; });
+  const study = result.caseStudy;
+  study.role = 'author, archive curator, and public living-memory case study of one person';
+  study.evidenceRule = 'The following nodes describe the contents of submissions. They do not themselves prove that every allegation is true; verification requires the cited primary document.';
+  study.trafficLightRule = 'The traffic light expresses urgency of human review and evidential status, not institutional guilt, the merits of an action, or a prediction of its outcome.';
+  study.trafficLightLegend = [
+    { level: 'critical', label: 'red', meaning: '15 years of repeated submissions and responses without a documented consolidated disposition of the common core, alleged irreversible harm, and current urgency in 2026' },
+    { level: 'review', label: 'amber', meaning: 'a serious question or candidate inconsistency awaiting the complete primary source or file' },
+    { level: 'verified', label: 'green', meaning: 'a statement directly supported by the cited official document' },
+    { level: 'pending', label: 'grey', meaning: 'an author-stated claim or working link awaiting verification' }
+  ];
+  study.publicEvidenceAxes.forEach((axis, index) => Object.assign(axis, AXES[index], { originalCitation: axis.citation }));
+  study.currentReferralTree.notice = 'Each node describes only the cited document. Referral is neither a merits determination nor confirmation of wrongdoing. The tree is not yet claimed to be complete.';
+  const branchNames = [
+    ['intervention action', 'Ministry of Health of the Czech Republic', 'Prague Municipal Court', 'Ministry of Health and professional or laboratory evidence branch'],
+    ['intervention action', 'Ministry of Justice of the Czech Republic', 'Prague Municipal Court', 'Ministry of Justice supervision and follow-up submissions branch'],
+    ['intervention action', 'NCOZ / Police of the Czech Republic', 'Prague Municipal Court', 'NCOZ inactivity or interference, Ministry of the Interior decision, and supervisory submissions branch'],
+    ['civil action', 'Czech Television', 'District Court', 'a separate media branch linked to submissions to the Czech Television Council, RRTV and the Data Protection Authority']
+  ];
+  study.activeCourtBranches.forEach((branch, index) => {
+    branch.isIntervention = index < 3;
+    [branch.type, branch.defendant, branch.court, branch.relation] = branchNames[index];
+    branch.verification = index === 0 ? 'The case reference is supported by a court document; the content and procedural status of the action must be read from the complete file.' : index < 3 ? 'The reference appears in a submitted pleading; its judicial status awaits verification against a court document.' : 'The civil court branch is evidenced by a court-fee notice; related out-of-court submissions do not confirm the allegations made in the action.';
+  });
+  ['Total first-instance court decisions: 31', 'The Supreme Court decided 10 times in total', 'Total Constitutional Court decisions: 29', '31 + 10 + 29 = 70'].forEach((text, index) => { study.mapSummary.metrics[index].citationTranslation = text; });
+  const referrals = [
+    ['Supreme Public Prosecutor’s Office', 'initial submission', 'complaint about alleged NCOZ inactivity and identification of alleged harm', 'The submission is documented; the merits disposition is audited through the subsequent documents.'],
+    ['Supreme Public Prosecutor’s Office', 'request to supplement', 'request to supplement the submission', 'A procedural request does not itself determine the merits of the allegations.'],
+    ['Supreme Public Prosecutor’s Office → Prague Municipal Public Prosecutor’s Office', 'referred', 'we refer the matter to the Prague Municipal Public Prosecutor’s Office', 'This proves a procedural transfer, not a substantive conclusion.'],
+    ['Prague Municipal Public Prosecutor’s Office', 'partially referred', 'notice of partial referral', 'The operative text and distribution list must be used to identify every recipient.'],
+    ['NCOZ', 'lack of jurisdiction according to the document', 'NCOZ described itself as lacking jurisdiction to investigate the stated branch', 'The exact scope must be read from the full document; this is not automatically a merits investigation.'],
+    ['District Public Prosecutor’s Office for Prague 4', 'assessed as not constituting a criminal offence', 'does not constitute a criminal offence', 'The specific alleged acts and evidence covered by this conclusion must be identified.'],
+    ['Regional Public Prosecutor’s Office in Ostrava → District Public Prosecutor’s Office in Frýdek-Místek', 'referred', 'the matter is referred to the District Public Prosecutor’s Office in Frýdek-Místek', 'Immediate task: identify the new case reference and the subsequent substantive disposition.'],
+    ['High Public Prosecutor’s Office in Olomouc', 'supervision not conducted according to the document', 'notice concerning the requested supervision', 'A separate Moravian supervisory branch; the reasons must be quoted from the original.']
+  ];
+  study.currentReferralTree.nodes.forEach((node, index) => { [node.institution, node.status, node.citationTranslation, node.audit] = referrals[index]; node.originalCitation = node.citation; });
+  study.timeline.forEach((node) => {
+    node.statement = `The cited submission records this event in the CannaInsider chronology; the asserted content must be checked against the identified primary document.`;
+    node.relation = 'documented chronological link in the institutional knowledge and proceedings map';
+    node.level = node.level.includes('přímé') ? 'direct official statement verified against the original document' : 'reported in a submission; the primary document remains required for full verification';
+  });
+  const beforeTest = study.timeline.find((node) => node.phase === 'before');
+  if (beforeTest) Object.assign(beforeTest, {
+    actor: 'draft for the President of the Republic and the Office of the President',
+    statement: 'Before the internal test, a presidential complaint and two court supplements existed as drafts. The new Ostrava referral notice had not yet been safely propagated through all three documents, and “prepared” was not consistently distinguished from “filed” or “evidenced”.',
+    relation: 'baseline state of the presidential and two court branches before the new document was integrated',
+    change: 'The baseline snapshot is retained as evidence of what the system subsequently corrected.',
+    source: 'draft to the President of the Republic dated 18 July 2026',
+    level: 'verified against the draft text; not evidence of dispatch or delivery'
+  });
+  const afterTest = study.timeline.find((node) => node.phase === 'after');
+  if (afterTest) Object.assign(afterTest, {
+    actor: 'submission sent to the President of the Republic and the Office of the President',
+    statement: 'After the test, the submission expressly recorded the Ostrava referral notice as a new open procedural node, stated that referral confirms neither wrongdoing nor the adoption of a measure, and kept the two court supplements at “prepared” until their dispatch could be evidenced separately.',
+    relation: 'updated apex of the presidential branch and a real-world project output',
+    change: 'The system placed the new document, limited its evidential meaning, corrected the chronology, and generated usable wording; the document was then sent and published in its exact sent form.',
+    source: 'President of the Republic — urgency — 19 July 2026',
+    level: 'verified against the exact published PDF; this does not prove receipt by the addressee or an Office response'
+  });
+  study.candidateContradictions[0] = {
+    title: 'Existence and legal significance of the THC measurement procedure',
+    earlier: 'The submission attributes statements about an existing methodological standard to the Supreme Public Prosecutor’s Office, the Supreme Court, and the Minister of the Interior in 2015.',
+    intermediate: 'Decision Zin 38/2016 directly states that, by 21 April 2016, the Supreme Court had not addressed plant weighing and THC measurement in its case law and that neither the Criminal Division nor the Plenary had adopted a position.',
+    later: 'In PPR-21028-11/ČJ-2025-990810, the Police Presidium directly stated that the Police had issued no internal methodology in 2004–2021 and described Order No. 54/2021 as the first methodology with the specified comprehensive scope.',
+    status: 'A strong candidate for exact comparison, not a completed contradiction: case law, a court position, an external ENFSI procedure, an internal police methodology, and the assessment of an individual expert opinion must be distinguished.'
+  };
+  result.jurisprudence.forEach((decision) => {
+    decision.principle = 'General judicial review principle relevant to expert evidence or extraordinary remedies; its application depends on the complete record of the individual case.';
+    decision.relation = 'Contextual case-law link only; it does not by itself establish a defect or determine the outcome of the CannaInsider case.';
+  });
+  return result;
+}

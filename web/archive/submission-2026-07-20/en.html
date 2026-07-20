@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="AI helps people with limited money, health, or support turn fragmented legal materials into an auditable case.">
+  <title>AI Advocate for the Poor — demonstration prototype</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="traffic-light.css">
+</head>
+<body>
+  <header>
+    <a class="language" href="index.html" lang="cs">Česky</a>
+    <p>OPENAI BUILD WEEK · DEMONSTRATION PROTOTYPE</p>
+    <h1>AI Advocate for the Poor</h1>
+    <p>Structure, memory, and the ability to act for people who would otherwise face the system alone.</p>
+  </header>
+  <main>
+    <section class="mission">
+      <p class="eyebrow">PROJECT MISSION</p>
+      <h2>From thousands of fragmented items to an auditable case</h2>
+      <p>A person with limited money or health may have a legitimate claim and enough evidence, yet still fail because they lack the resources, time, or professional capacity to organize their case.</p>
+      <p><strong>AI Advocate is designed to compensate for this disadvantage.</strong> It turns fragmented legal and life materials into a structure of people, institutions, proceedings, events, claims, and evidence. It can then gather the relevant sources within a selected branch and prepare a proposed next step for human review.</p>
+      <div class="flow" aria-label="Intended system workflow">
+        <span>fragmented materials</span><b>→</b><span>auditable structure</span><b>→</b><span>relevant branch</span><b>→</b><span>proposed action</span>
+      </div>
+      <p>This does not replace a lawyer. It helps a person reach the point where a lawyer, legal-aid organization, ombudsperson, or public authority can actually help.</p>
+    </section>
+
+    <section id="registry" hidden>
+      <p class="eyebrow">AUDITABLE MEMORY</p>
+      <h2>Statements, institutions, links, and case law</h2>
+      <p>The public case-study author is named with consent. Contact details and irrelevant private persons are excluded.</p>
+      <h3>Verified statements from source documents</h3><div id="registry-statements"></div>
+      <h3>Known links awaiting a source</h3><ul id="registry-pending"></ul>
+      <h3>Relevant case-law principles</h3><div id="registry-cases"></div>
+    </section>
+
+    <section id="case-study" hidden>
+      <p class="eyebrow">ONE PERSON'S LIVING MEMORY</p>
+      <h2 id="case-study-name">CannaInsider.eu — 1994 · 2004 · 2008 · 2010 · 2026</h2>
+      <p><strong>From an archive to an auditable decision graph.</strong></p>
+      <p id="case-study-intro"></p>
+      <div id="case-study-traffic-light" class="traffic-light"></div>
+      <h3>Three publicly auditable evidence axes</h3><div id="case-study-axes"></div>
+      <h3>Scale of the documented map</h3><div id="case-study-map"></div>
+      <h3>Active court branches in 2026</h3><div id="case-study-active"></div>
+      <h3>Submission and referral tree since 20 April 2026</h3><div id="case-study-referrals"></div>
+      <h3>Timeline and links</h3><div id="case-study-timeline"></div>
+      <h3>Candidate inconsistencies for verification</h3><div id="case-study-conflicts"></div>
+    </section>
+
+    <aside class="prototype-notice">
+      <strong>What you are seeing:</strong> the first test updates Citizen XY’s prepared anonymized archive with one public-prosecution document. The second test accepts one exactly supported PDF from outside, verifies its digital fingerprint, and displays only an anonymized result. Other inputs receive only a safe technical map or are rejected.
+    </aside>
+
+    <section class="application">
+      <p class="eyebrow">A CONCRETE USE CASE TODAY</p>
+      <h2>A 2004–2026 European case as a network of institutions, proceedings, and remedies</h2>
+      <p>The prototype displays an anonymized connection from the research program to the President, Czech courts and public prosecutors, ministries, police and forensic bodies, the CJEU, European Commission, and ECtHR. It distinguishes indexed material from creator-stated claims that still require an anonymized primary source.</p>
+      <p><strong>Privacy in this demo:</strong> selected files are processed only in your browser. They are not uploaded and disappear when the page is refreshed.</p>
+    </section>
+
+    <section id="everyday-impact">
+      <p class="eyebrow">EVERYDAY POTENTIAL</p>
+      <h2>A person brings a box of records — the system returns an understandable path</h2>
+      <p>A prisoner’s family, a disabled person, a senior, a debtor, or a parent dealing with an authority may fail not because evidence is absent, but because they cannot find it in time, connect it to the right proceeding, and explain it to a professional.</p>
+      <div class="flow" aria-label="Future accessible assistance path">
+        <span>documents or speech in the user’s language</span><b>→</b><span>safe anonymization</span><b>→</b><span>timeline and evidence traffic light</span><b>→</b><span>review by a lawyer or advice service</span>
+      </div>
+      <p><strong>Outcome:</strong> deadlines, institutions, unanswered arguments, and cited passages, with the proposed next step remaining under human review. Voice input, OCR, automatic anonymization, and universal analysis are product vision; the current public prototype safely demonstrates the principle on one supported sample.</p>
+    </section>
+
+    <section id="evidence-document">
+      <p class="eyebrow">CONTROLLED PRE-SUBMISSION TEST</p>
+      <h2>Citizen XY’s archive already exists. One new document is being added.</h2>
+      <div class="flow" aria-label="Internal test workflow">
+        <span>2004–2026 archive</span><b>→</b><span>new referral notice</span><b>→</b><span>deadline and relevance check</span><b>→</b><span>updated decision graph</span>
+      </div>
+      <p class="hint">This button runs the first internal test. A separate outside-PDF test and safe text mapping appear below.</p>
+      <button id="run-internal-test" type="button">Run the new-document test</button>
+      <button id="load-case" type="button" class="secondary">Show the baseline map without the new document</button>
+    </section>
+    <section id="integration-test" hidden>
+      <p class="eyebrow">INTERNAL TEST RESULT</p>
+      <h2 id="integration-title"></h2>
+      <p id="integration-scope" class="evidence-note"></p>
+      <div id="integration-metrics" class="metric-grid"></div>
+      <div id="integration-document"></div>
+      <div id="integration-decision"></div>
+      <h3>What the document proves</h3><ul id="integration-proves"></ul>
+      <h3>What the document does not prove</h3><ul id="integration-limits"></ul>
+      <h3 id="integration-propagation-title"></h3><p id="integration-propagation-rule" class="evidence-note"></p><div id="integration-propagation"></div>
+      <h3 id="integration-integrity-title"></h3><p id="integration-integrity-summary" class="evidence-note"></p><div id="integration-integrity-findings"></div><p id="integration-integrity-rule" class="case-map-notice"></p>
+      <h3>Relevance traffic light</h3><div id="integration-legend" class="traffic-light"></div>
+      <h3>Impact on the three unfiled documents dated 18 July 2026</h3><div id="integration-drafts"></div>
+      <h3>Second layer: ministers, the Supreme Public Prosecutor, and other authorities</h3><div id="integration-relevance"></div>
+      <h3>Questions for human verification</h3><ul id="integration-human-checks"></ul>
+    </section>
+    <section id="sent-output">
+      <p class="eyebrow">REAL-WORLD PROJECT OUTPUT</p>
+      <h2>Documents sent on 19 July 2026</h2>
+      <p>Created within AI Advocate for the Poor through collaboration between Mgr. Dušan Dvořák and Codex. At the author’s request, each document is published in its sent form, including his identifying details. The analytical layer identifies other people only by public role; the linked PDFs preserve the form in which the documents were actually sent.</p>
+      <div id="internal-before-after" class="comparison-grid">
+        <article class="claim comparison-card">
+          <h3><span class="risk-badge pending">BEFORE THE TEST</span><br>Drafts dated 18 July 2026</h3>
+          <p>The new referral notice had not yet been safely propagated through all three documents, and some wording treated a prepared draft as already filed or evidenced.</p>
+        </article>
+        <article class="claim comparison-card">
+          <h3><span class="risk-badge verified">AFTER THE TEST</span><br>Outputs sent on 19 July 2026</h3>
+          <p>The system created a new procedural node, assigned document-specific relevance, limited the meaning of the referral, and corrected document status. The three sent outputs appear below.</p>
+        </article>
+      </div>
+      <div class="sent-document-grid">
+        <a id="sent-president" class="sent-document-card" href="documents/president-submission-2026-07-19.pdf" target="_blank" rel="noopener">
+          <strong>Office of the President of the Republic</strong>
+          <span>Document and dispatch: 19 July 2026 · 10 pages</span>
+          <b>Open PDF</b>
+        </a>
+        <a id="sent-msp" class="sent-document-card" href="documents/municipal-court-msp-submission-2026-07-19.pdf" target="_blank" rel="noopener">
+          <strong>Prague Municipal Court — Ministry of Justice</strong>
+          <span>Document and dispatch: 19 July 2026 · 11 pages</span>
+          <b>Open PDF</b>
+        </a>
+        <a id="sent-ncoz" class="sent-document-card" href="documents/municipal-court-ncoz-submission-2026-07-19.pdf" target="_blank" rel="noopener">
+          <strong>Prague Municipal Court — NCOZ</strong>
+          <span>Document and dispatch: 19 July 2026 · 20 pages</span>
+          <b>Open PDF</b>
+        </a>
+      </div>
+    </section>
+    <section id="external-test">
+      <p class="eyebrow">SECOND TEST — PUBLIC INPUT</p>
+      <h2>A safe outside-input test — the PDF stays on your computer</h2>
+      <label class="file-label" for="files">Select the supported PDF or text documents (.pdf, .txt, .md)</label>
+      <input id="files" type="file" accept=".pdf,application/pdf,.txt,.md,text/plain,text/markdown" multiple>
+      <p class="hint">Files are processed only in the browser and are never uploaded. The exactly supported court PDF is recognized by its digital fingerprint and produces an anonymized supervisory-board change analysis. An unknown PDF is safely rejected. Other text receives only a technical metadata map without inheriting prepared legal conclusions.</p>
+      <button id="load" type="button" class="secondary">Load the anonymized control document</button>
+      <button id="load-organisation-sample" type="button" class="secondary">Load the public anonymized PDF copy</button>
+      <a id="organisation-source" class="source-download" href="documents/organisation-change-anonymized-2026-07-13.pdf" target="_blank" rel="noopener">Open the anonymized evidentiary extract PDF</a>
+      <textarea id="doc" rows="10" placeholder="Paste text for a safe local test" aria-label="Document text"></textarea>
+      <button id="analyse" type="button">Analyze locally</button>
+    </section>
+    <section id="organisation-result" hidden>
+      <p class="eyebrow">OUTSIDE-PDF TEST RESULT</p>
+      <h2 id="organisation-title"></h2>
+      <p id="organisation-scope" class="evidence-note"></p>
+      <div id="organisation-source-card"></div>
+      <h3>Memory before and after the document was added</h3><div id="organisation-comparison"></div>
+      <h3>System-generated solution</h3><ol id="organisation-solution"></ol>
+      <h3>What the anonymized document proves</h3><div id="organisation-facts"></div>
+      <h3>Separate archive-owner statement</h3><div id="organisation-author-statement"></div>
+      <h3>What the document does not prove</h3><ul id="organisation-limits"></ul>
+      <h3>Relevance traffic light</h3><div id="organisation-relevance"></div>
+      <h3>What a human must verify</h3><ul id="organisation-human-checks"></ul>
+    </section>
+    <p id="status" class="status" role="status" hidden></p>
+    <section id="institutional-map" hidden>
+      <h2 id="case-map-title"></h2>
+      <p id="case-map-notice" class="case-map-notice"></p>
+      <div id="case-metrics" class="metric-grid"></div>
+      <div id="case-groups"></div>
+      <section class="relationship-panel">
+        <h3 id="case-relations-title"></h3>
+        <ol id="case-relations"></ol>
+      </section>
+      <section class="timeline-panel">
+        <h3 id="case-timeline-title"></h3>
+        <ol id="case-timeline"></ol>
+      </section>
+    </section>
+    <section id="memory-out" hidden>
+      <h2>2. Case map</h2>
+      <p id="memory-summary" class="summary"></p>
+      <h3>Factual and procedural branches</h3>
+      <div id="branches" class="branch-grid"></div>
+      <h3>Documents</h3>
+      <div id="memory-documents" class="document-grid"></div>
+      <h3>Identified case references</h3>
+      <div id="memory-references" class="tag-list"></div>
+      <h3>Identified dates</h3>
+      <div id="memory-dates" class="tag-list"></div>
+      <aside class="limitations">
+        <strong>What this map does not prove</strong>
+        <ul id="memory-limitations"></ul>
+      </aside>
+    </section>
+    <section id="analysis-out" hidden>
+      <h2>3. Extracted facts</h2><div id="facts"></div>
+      <h2>4. Legal interpretation</h2><div id="interpretation"></div>
+      <h2>5. Uncertainty and document limits</h2><div id="uncertainty"></div>
+      <h2>6. Recommended next steps</h2><div id="actions"></div>
+    </section>
+  </main>
+  <footer>Mgr. Dušan Dvořák — founder and representative of the <a href="https://www.konopijelek.cz/">Cannabis is The Cure</a> alliance · Human-in-the-loop prototype. Outputs require human legal review.</footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
