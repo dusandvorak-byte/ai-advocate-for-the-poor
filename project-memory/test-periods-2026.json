@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "recordType": "dated-competition-test-memory",
+  "asOf": "2026-07-20",
+  "timezone": "Europe/Prague",
+  "countingPolicy": {
+    "primaryMetric": "distinct automated checks in the suite at the end or current state of a period",
+    "submissionBaselineChecks": 54,
+    "currentDistinctChecks": 144,
+    "postSubmissionChecksAdded": 90,
+    "minimumDocumentedSuccessfulIndividualExecutions": 686,
+    "minimumCalculation": "54 + 62 + 66 + 85 + 131 + 144 + 144",
+    "exactLifetimeExecutionCount": null,
+    "boundary": "The exact lifetime total was not recorded from the beginning. The project must not present the documented lower bound as an exact total."
+  },
+  "periods": [
+    {
+      "id": "through-submission",
+      "labelCs": "Do podání přihlášky",
+      "start": null,
+      "end": "2026-07-20",
+      "submissionInstantKnown": false,
+      "status": "closed",
+      "distinctChecksAtEnd": 54,
+      "checksAddedDuringPeriod": 54,
+      "artifact": "web/archive/submission-2026-07-20/",
+      "noteCs": "Neměnný soutěžní základ V1. Přesný čas podání není v projektové paměti doložen, proto se nevymýšlí."
+    },
+    {
+      "id": "submission-to-deadline",
+      "labelCs": "Od podání do uzávěrky soutěže",
+      "start": "after the recorded submission on 2026-07-20",
+      "end": "2026-07-22T02:00:00+02:00",
+      "officialDeadline": "2026-07-21T17:00:00-07:00",
+      "status": "in-progress",
+      "distinctChecksCurrent": 144,
+      "checksAddedDuringPeriodCurrent": 90,
+      "noteCs": "Uzávěrka 21. 7. 2026 v 17:00 PDT odpovídá 22. 7. 2026 v 02:00 CEST. Stav se po úplném běhu aktualizuje."
+    },
+    {
+      "id": "deadline-to-first-observed-judging",
+      "labelCs": "Od uzávěrky do prvního doloženého přístupu poroty",
+      "start": "2026-07-22T02:00:00+02:00",
+      "firstObservedJudgeAccess": null,
+      "status": "not-started-as-of-record-date",
+      "distinctChecksCurrent": 0,
+      "checksAddedDuringPeriodCurrent": 0,
+      "noteCs": "První skutečný přístup poroty zatím není pozorován. Oficiální stránky se liší v uvedeném začátku hodnocení, proto paměť nepředstírá neznámé datum předložení porotě."
+    }
+  ],
+  "officialScheduleSources": [
+    {
+      "url": "https://openai.devpost.com/rules",
+      "records": "submission deadline 21 July 2026 at 5:00 PM PT; judging stated as 22 July 2026 at 10:00 AM PT through 5 August 2026 at 5:00 PM PT"
+    },
+    {
+      "url": "https://openai.devpost.com/details/dates",
+      "records": "submission deadline 21 July 2026 at 5:00 PM PDT; judging stated as 22 July 2026 at 9:00 AM PDT through 9 August 2026 at 5:00 PM PDT"
+    },
+    {
+      "url": "https://openai.devpost.com/details/faqs",
+      "records": "submission cannot be changed after the deadline; judges may use the live demo and may not test it"
+    }
+  ],
+  "scheduleDiscrepancy": {
+    "judgingStartDifferenceHours": 1,
+    "judgingEndDatesDiffer": true,
+    "projectRule": "Use the competition deadline as the period boundary and record actual observed judge access separately; do not infer it from either published judging window."
+  }
+}

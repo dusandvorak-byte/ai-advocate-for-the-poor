@@ -7,8 +7,12 @@ const requiredIds = [
   'post-submission', 'latest-update-title', 'latest-update-summary', 'current-audience', 'show-latest-update',
   'version-history', 'version-0', 'case-input-metrics', 'latest-priority',
   'latest-deadline', 'traffic-scale', 'daily-version-history', 'daily-version-rule',
+  'test-period-history', 'test-period-rule',
+  'mk-jk-reopening-update', 'mk-jk-update-heading', 'mk-jk-update-summary', 'mk-jk-source-inventory',
+  'mk-jk-update-overall', 'mk-jk-court-path', 'mk-jk-official-findings', 'mk-jk-submitted-claims',
+  'mk-jk-alliance-context', 'mk-jk-comparison', 'mk-jk-next-evidence', 'mk-jk-evidence-boundary',
   'prisoner-reopening-update', 'prisoner-update-heading', 'prisoner-update-summary',
-  'prisoner-update-overall', 'prisoner-public-context', 'prisoner-source-facts',
+  'prisoner-update-overall', 'prisoner-public-context', 'prisoner-court-path', 'prisoner-source-facts',
   'prisoner-author-baseline', 'prisoner-comparison', 'prisoner-rewrite', 'prisoner-evidence-boundary',
   'alliance-update', 'alliance-update-heading', 'alliance-update-summary',
   'deduplication-update', 'annual-report-update', 'register-context-update', 'enforcement-update',
@@ -92,6 +96,8 @@ test('the homepage leads with the post-submission evidence update in both langua
     assert.match(html, /police-notice-public-derivative-2026-07-20\.pdf/);
     assert.match(html, /id="alliance-update"/);
     assert.match(html, /id="prisoner-reopening-update"/);
+    assert.match(html, /id="mk-jk-reopening-update"/);
+    assert.ok(html.indexOf('id="mk-jk-reopening-update"') < html.indexOf('id="prisoner-reopening-update"'));
     assert.ok(html.indexOf('id="prisoner-reopening-update"') < html.indexOf('id="alliance-update"'));
     assert.match(html, /7 (?:jedinečných zdrojových PDF zůstává neveřejných|unique source PDFs remain unpublished)/);
   }
@@ -112,6 +118,10 @@ test('the homepage leads with the post-submission evidence update in both langua
   assert.match(en, /does not guarantee success, create a legal entitlement, or replace a lawyer/i);
   assert.match(cs, /Návrh na obnovu L\. CH\..*9\/9 relevance/i);
   assert.match(en, /L\. CH\.’s 2022 motion to reopen.*9\/9 relevance/i);
+  assert.match(cs, /Případ M\. K\. a J\. K\..*9\/9 priorita/i);
+  assert.match(en, /M\. K\. and J\. K\. case.*9\/9 priority/i);
+  assert.match(cs, /DATOVANÁ PAMĚŤ TESTŮ/);
+  assert.match(en, /DATED TEST MEMORY/);
 });
 
 test('both homepages expose black 0/9, weakest green 1/9, local processing, and the OCR boundary', async () => {

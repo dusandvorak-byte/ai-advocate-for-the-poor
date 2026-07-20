@@ -16,11 +16,13 @@ test('the test-count answer preserves distinct checks and does not invent a cumu
   assert.equal(history.exactCumulativeExecutionCount, null);
   assert.equal(history.submissionChecks + history.postSubmissionChecksAdded, history.distinctAutomatedChecks);
   const current = baseline.currentTestSuite;
-  assert.equal(current.build, 'v2.5');
-  assert.equal(current.distinctAutomatedChecks, 131);
+  assert.equal(current.build, 'v2.6');
+  assert.equal(current.distinctAutomatedChecks, 144);
   assert.equal(current.submissionChecks, 54);
-  assert.equal(current.postSubmissionChecksAdded, 77);
-  assert.deepEqual(current.latestCompleteRun, { passed: 131, failed: 0 });
+  assert.equal(current.postSubmissionChecksAdded, 90);
+  assert.deepEqual(current.latestCompleteRun, { passed: 144, failed: 0 });
+  assert.equal(current.minimumDocumentedSuccessfulIndividualExecutions, 686);
+  assert.equal(current.minimumCalculation, '54 + 62 + 66 + 85 + 131 + 144 + 144');
   assert.equal(current.exactCumulativeExecutionCount, null);
   assert.equal(current.submissionChecks + current.postSubmissionChecksAdded, current.distinctAutomatedChecks);
 });

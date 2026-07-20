@@ -100,13 +100,13 @@ export const VERSION_2_DASHBOARD = Object.freeze({
       source: 'web/documents/manifest.json'
     },
     {
-      value: '8',
-      label: text('nově zkontrolovaných neveřejných PDF', 'newly reviewed non-public PDFs'),
+      value: '24',
+      label: text('nově zkontrolovaných neveřejných souborů', 'newly reviewed non-public files'),
       note: text(
-        'Rejstříkový výpis, pět exekučních listin, jeden rozsudek a anonymizovaně vyhodnocený návrh na obnovu L. CH.; znovu zaslané policejní PDF se podruhé nezapočítalo.',
-        'One register extract, five enforcement records, one judgment, and the privately reviewed L. CH. reopening motion; the resubmitted police PDF was not counted twice.'
+        'Osm dříve zkontrolovaných jedinečných PDF a šestnáct jedinečných souborů nové anonymizované revize M. K. a J. K.; duplicity se nezapočítávají.',
+        'Eight previously reviewed unique PDFs plus sixteen unique files in the new anonymized M. K. and J. K. review; duplicates are not counted.'
       ),
-      source: 'alliance-update.js · verified SHA-256 digests'
+      source: 'alliance-update.js · prisoner-reopening-update.js · mk-jk-reopening-update.js · verified SHA-256 digests'
     },
     {
       value: '—',
@@ -152,16 +152,16 @@ export const VERSION_2_DASHBOARD = Object.freeze({
   },
   latestDocument: {
     date: '2026-07-20',
-    version: 'v2.5',
+    version: 'v2.6',
     priority: 'red-3',
     headline: text(
-      'Návrh na obnovu L. CH. z roku 2022 má 9/9 relevanci k novým důkazům o metodice THC — nikoli 9/9 šanci na úspěch.',
-      'L. CH.’s 2022 motion to reopen has 9/9 relevance to new evidence about THC methodology—not a 9/9 likelihood of success.'
+      'Případ M. K. a J. K. má 9/9 prioritu důkazního prověření, ale jen 4/9 současnou připravenost nového návrhu; žádné procento úspěchu se neurčuje.',
+      'The M. K. and J. K. case has 9/9 evidential-review priority but only 4/9 current filing readiness; no success percentage is assigned.'
     ),
     metrics: [
-      { value: '1', label: text('nová anonymizovaně zkontrolovaná listina', 'new anonymously reviewed document') },
-      { value: '6', label: text('rozlišených vazeb relevance', 'separate relevance links') },
-      { value: '3', label: text('červené vazby k přepracování', 'red reworking links') },
+      { value: '16', label: text('jedinečných zkontrolovaných souborů', 'unique reviewed files') },
+      { value: '7', label: text('rozlišených vazeb relevance', 'separate relevance links') },
+      { value: '3', label: text('červené důkazní priority', 'red evidential priorities') },
       { value: '0', label: text('nově zveřejněných zdrojových PDF', 'newly published source PDFs') }
     ],
     trafficDistribution: [
@@ -170,6 +170,7 @@ export const VERSION_2_DASHBOARD = Object.freeze({
       { band: 'red-1', count: 1 },
       { band: 'amber-3', count: 1 },
       { band: 'amber-2', count: 1 },
+      { band: 'green-3', count: 1 },
       { band: 'green-2', count: 1 }
     ],
     stateDeadline: {
@@ -177,12 +178,25 @@ export const VERSION_2_DASHBOARD = Object.freeze({
       label: text('Aktuální lhůta k reakci', 'Current response deadline'),
       value: text('Ze zkontrolovaného návrhu ani testovacího zadání nyní neplyne', 'None currently follows from the reviewed motion or test instructions'),
       rule: text(
-        'Semafor vyjadřuje relevanci k přepracování. Nevytváří lhůtu, neznamená pravděpodobnost úspěchu a podmíněné propuštění samo nezakládá důvod obnovy.',
-        'The traffic light records relevance for reworking. It creates no deadline, does not express likelihood of success, and conditional release does not itself establish a ground for reopening.'
+        'Semafor 9/9 znamená prioritu opatřit a prověřit důkazy. Nevytváří lhůtu, není pravděpodobností úspěchu a nesmí se zaměnit se současnou připraveností návrhu 4/9.',
+        'The 9/9 traffic light means priority to obtain and review evidence. It creates no deadline, is not a likelihood of success, and must not be confused with current filing readiness of 4/9.'
       )
     }
   },
   dailySnapshots: [
+    {
+      date: '2026-07-20',
+      version: 'v2.6',
+      href: '#mk-jk-reopening-update',
+      title: text(
+        'Anonymizované vícezdrojové posouzení M. K. a J. K.',
+        'Anonymized multi-source assessment of M. K. and J. K.'
+      ),
+      change: text(
+        'Sedmnáct přijatých souborů představovalo šestnáct jedinečných zdrojů. Výstup odděluje soudní zjištění, tvrzení z podání, lékařské vyjádření, alianční kontext a systémovou syntézu; soukromé zdroje nezveřejňuje.',
+        'Seventeen received files represented sixteen unique sources. The output separates judicial findings, allegations in submissions, the medical statement, alliance context, and system synthesis; private source files are not published.'
+      )
+    },
     {
       date: '2026-07-20',
       version: 'v2.5',
@@ -192,8 +206,8 @@ export const VERSION_2_DASHBOARD = Object.freeze({
         'Anonymized comparison of L. CH.’s 2022 motion to reopen'
       ),
       change: text(
-        'Soukromý desetistránkový návrh byl porovnán s pamětí k 20. 7. 2026. Nejvyšší průnik 9/9 má metodika odběru a měření THC; osobní údaje, identifikátory věci ani PDF se nezveřejňují.',
-        'A private ten-page motion was compared with the memory as of 20 July 2026. Sampling and THC measurement have the highest 9/9 overlap; personal data, case identifiers, and the PDF remain unpublished.'
+        'Soukromý desetistránkový návrh byl porovnán s pamětí k 20. 7. 2026. Nejvyšší průnik 9/9 má metodika odběru a měření THC; jméno a zdrojové PDF zůstávají neveřejné, soudy, data a čísla jednací se uvádějí.',
+        'A private ten-page motion was compared with the memory as of 20 July 2026. Sampling and THC measurement have the highest 9/9 overlap; the name and source PDF remain private while courts, dates, and reference numbers are displayed.'
       )
     },
     {
@@ -239,6 +253,39 @@ export const VERSION_2_DASHBOARD = Object.freeze({
   snapshotRule: text(
     'Nový datovaný snímek vznikne při doplnění zkontrolované listiny; prázdné denní kopie se nevytvářejí.',
     'A new dated snapshot is created when a reviewed document is added; empty daily copies are not generated.'
+  ),
+  testPeriods: [
+    {
+      id: 'through-submission',
+      label: text('Do podání přihlášky', 'Through submission'),
+      window: text('Vývoj do okamžiku podání dne 20. 7. 2026', 'Development through the submission on 20 July 2026'),
+      status: text('UZAVŘENÝ SOUTĚŽNÍ ZÁKLAD', 'CLOSED SUBMISSION BASELINE'),
+      distinctChecks: 54,
+      addedChecks: 54,
+      note: text('Archiv V1 zachovává stav, který byl předložen soutěži.', 'The V1 archive preserves the state submitted to the competition.')
+    },
+    {
+      id: 'submission-to-deadline',
+      label: text('Od podání do uzávěrky', 'Submission to deadline'),
+      window: text('Po podání 20. 7. 2026 až 22. 7. 2026 v 02:00 CEST', 'After submission on 20 July 2026 through 22 July 2026 at 02:00 CEST'),
+      status: text('PROBÍHÁ', 'IN PROGRESS'),
+      distinctChecks: 144,
+      addedChecks: 90,
+      note: text('Aktuální sada zahrnuje původních 54 kontrol i nové regresní kontroly; přesný stav se aktualizuje po každém úplném běhu.', 'The current suite includes the original 54 checks and new regression checks; the exact state is updated after each complete run.')
+    },
+    {
+      id: 'deadline-to-judging',
+      label: text('Od uzávěrky do prvního doloženého hodnocení', 'Deadline to first evidenced judging'),
+      window: text('Začne 22. 7. 2026 v 02:00 CEST; první skutečný přístup poroty zatím není znám', 'Starts 22 July 2026 at 02:00 CEST; the first actual judge access is not yet known'),
+      status: text('DOSUD NEZAČALO', 'NOT STARTED'),
+      distinctChecks: 0,
+      addedChecks: 0,
+      note: text('Oficiální stránky se liší o jednu hodinu v začátku hodnocení; paměť proto nebude předstírat nepozorované datum předložení porotě.', 'Official pages differ by one hour on the judging start; the memory therefore will not invent an unobserved date of presentation to judges.')
+    }
+  ],
+  testCountingRule: text(
+    'Číslo znamená počet různých automatických kontrol v daném stavu sady, nikoli celoživotní součet všech opakovaných spuštění. Nejméně 686 jednotlivých úspěšných průchodů je doloženo úplnými historickými běhy; přesný celoživotní součet se od začátku nevedl a nebude se domýšlet.',
+    'The number is the count of distinct automated checks in that suite state, not the lifetime total of repeated executions. At least 686 individual successful check executions are documented by complete historical runs; the exact lifetime total was not tracked from the beginning and will not be invented.'
   )
 });
 
@@ -293,7 +340,15 @@ export function localizeVersion2(language = 'cs') {
         title: localize(item.title, lang),
         change: localize(item.change, lang)
       })),
-      snapshotRule: localize(VERSION_2_DASHBOARD.snapshotRule, lang)
+      snapshotRule: localize(VERSION_2_DASHBOARD.snapshotRule, lang),
+      testPeriods: VERSION_2_DASHBOARD.testPeriods.map((item) => ({
+        ...item,
+        label: localize(item.label, lang),
+        window: localize(item.window, lang),
+        status: localize(item.status, lang),
+        note: localize(item.note, lang)
+      })),
+      testCountingRule: localize(VERSION_2_DASHBOARD.testCountingRule, lang)
     }
   };
 }

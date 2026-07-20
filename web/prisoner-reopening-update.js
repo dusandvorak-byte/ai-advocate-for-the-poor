@@ -226,6 +226,27 @@ export const PRISONER_REOPENING_UPDATE = Object.freeze({
       'The link establishes the film’s public context. It does not prove facts accepted only from the author’s test instructions or the merits of reopening.'
     )
   },
+  courtPathAddedIn: 'v2.6',
+  courtPath: [
+    {
+      court: text('Krajský soud v Brně', 'Brno Regional Court'),
+      date: '2019-02-28',
+      reference: '50 T 7/2018-603',
+      sourceStatus: text(
+        'rozsudek citovaný v soukromém návrhu z roku 2022',
+        'judgment cited in the private 2022 motion'
+      )
+    },
+    {
+      court: text('Vrchní soud v Olomouci', 'Olomouc High Court'),
+      date: '2019-11-06',
+      reference: '5 To 39/2019-707',
+      sourceStatus: text(
+        'odvolací rozhodnutí citované v soukromém návrhu z roku 2022',
+        'appellate decision cited in the private 2022 motion'
+      )
+    }
+  ],
   authorBaseline: {
     label: text('AUTOREM POTVRZENÝ ZÁKLAD ŘÍZENÉHO TESTU', 'AUTHOR-CONFIRMED CONTROLLED-TEST BASELINE'),
     confidence: text(
@@ -236,7 +257,7 @@ export const PRISONER_REOPENING_UPDATE = Object.freeze({
       text('L. CH. byl podle autora odsouzen za 9 rostlin konopí k trestu odnětí svobody na 8 let.', 'According to the author, L. CH. was sentenced to 8 years’ imprisonment for 9 cannabis plants.'),
       text('Po odpykání 6 let byl podle autora dne 14. 7. 2026 podmíněně propuštěn.', 'According to the author, after serving 6 years he was conditionally released on 14 July 2026.'),
       text('Autor uvádí, že návrh zpracoval ve vězení v roce 2022.', 'The author states that he prepared the motion in prison in 2022.'),
-      text('Čísla jednací, data a rozhodnutí v soukromém návrhu jsou pro tento test přijata jako autorem potvrzený podklad, ale kvůli anonymizaci se na webu nevypisují.', 'Case references, dates, and decisions in the private motion are accepted for this test as author-confirmed material but are not displayed on the website in order to preserve anonymization.')
+      text('Soudy, data a čísla jednací citovaná v soukromém návrhu se veřejně vypisují podle pokynu autora; jejich věcný obsah zůstává omezen na to, co dokládá zkontrolovaný návrh.', 'Courts, dates, and reference numbers cited in the private motion are displayed publicly at the creator’s direction; their substantive content remains limited to what the reviewed motion establishes.')
     ]
   },
   overall: {
@@ -260,8 +281,8 @@ export const PRISONER_REOPENING_UPDATE = Object.freeze({
     text('Po podmíněném propuštění nově formulovat aktuální právní zájem a požadovaný výsledek; konečné podání musí zkontrolovat obhájce nad úplným spisem.', 'Following conditional release, reformulate the current legal interest and relief sought; defence counsel must review any final filing against the complete record.')
   ],
   publicationBoundary: text(
-    'Na veřejném webu je pouze označení L. CH., anonymizované citace bez spisových značek a výsledek porovnání. Jméno, datum narození, adresy, věznice, podpisy, přesné identifikátory věci a zdrojové PDF zůstávají neveřejné.',
-    'The public website contains only the label L. CH., anonymized quotations without case references, and the comparison result. The name, date of birth, addresses, prison, signatures, exact case identifiers, and source PDF remain private.'
+    'Na veřejném webu zůstává označení L. CH., anonymizované citace, výsledek porovnání a výslovně požadovaná procesní cesta se soudy, daty a čísly jednacími. Celé jméno, datum narození, adresy, věznice, podpisy a zdrojové PDF zůstávají neveřejné.',
+    'The public website retains the label L. CH., anonymized quotations, the comparison result, and the expressly requested procedural path with courts, dates, and reference numbers. The full name, date of birth, addresses, prison, signatures, and source PDF remain private.'
   )
 });
 

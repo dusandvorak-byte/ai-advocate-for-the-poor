@@ -35,6 +35,10 @@ test('the public identity is L. CH. and links to the official 2025 Smoke page', 
   assert.match(update.publicContext.label, /^L\. CH\. z dokumentu České televize Smoke \(2025\)$/);
   assert.equal(update.publicContext.url, 'https://www.ceskatelevize.cz/porady/16298026696-smoke/');
   assert.match(update.publicContext.boundary, /neprokazuje.*testovacího zadání.*obnovy/i);
+  assert.deepEqual(update.courtPath.map(({ court, date, reference }) => ({ court, date, reference })), [
+    { court: 'Krajský soud v Brně', date: '2019-02-28', reference: '50 T 7/2018-603' },
+    { court: 'Vrchní soud v Olomouci', date: '2019-11-06', reference: '5 To 39/2019-707' }
+  ]);
 });
 
 test('source statements, author-confirmed facts, and system synthesis remain separate layers', () => {
@@ -96,7 +100,7 @@ test('the proposed rewrite covers methodology, novelty, personal scope, EU law, 
   assert.match(plan, /podmíněném propuštění.*právní zájem/i);
 });
 
-test('both homepages and the local analyzer expose the same anonymized V2.5 update', async () => {
+test('both homepages and the local analyzer expose the L. CH. update with public court references but private identity', async () => {
   const [cs, en, app, moduleSource] = await Promise.all([
     readFile(new URL('../web/index.html', import.meta.url), 'utf8'),
     readFile(new URL('../web/en.html', import.meta.url), 'utf8'),
@@ -111,6 +115,8 @@ test('both homepages and the local analyzer expose the same anonymized V2.5 upda
   assert.match(app, /identifyPrisonerReopeningDigest/);
   assert.match(app, /renderPrisonerReopeningUpdate\(\)/);
   assert.match(app, /UI\.prisonerRecognized/);
-  assert.doesNotMatch(moduleSource, /(?:Ke sp\.zn\.|50 T 7\/2018|KRPB-|\bPH a MF\b)/);
-  assert.match(moduleSource, /Jméno, datum narození, adresy, věznice, podpisy.*zůstávají neveřejné/);
+  assert.match(moduleSource, /Krajský soud v Brně[\s\S]*50 T 7\/2018-603/);
+  assert.match(moduleSource, /Vrchní soud v Olomouci[\s\S]*5 To 39\/2019-707/);
+  assert.doesNotMatch(moduleSource, /(?:Lukáš Chudý|KRPB-|\bPH a MF\b)/);
+  assert.match(moduleSource, /Celé jméno, datum narození, adresy, věznice, podpisy.*zůstávají neveřejné/);
 });

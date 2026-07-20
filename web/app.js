@@ -8,6 +8,7 @@ import { identifyOrganisationUpdateDigest, localizeOrganisationUpdate } from './
 import { identifyPoliceUpdateDigest, localizePoliceUpdate } from './police-update.js';
 import { identifyAllianceUpdateDigest, localizeAllianceUpdate } from './alliance-update.js';
 import { identifyPrisonerReopeningDigest, localizePrisonerReopeningUpdate } from './prisoner-reopening-update.js';
+import { identifyMkJkReopeningDigest, localizeMkJkReopeningUpdate } from './mk-jk-reopening-update.js';
 import { localizeVersion2, trafficScore } from './version-2.js';
 import { analyzeGenericDocuments } from './generic-intake.js';
 import { extractPdfText } from './pdf-reader.js';
@@ -20,6 +21,7 @@ const ORGANISATION_TEST = localizeOrganisationUpdate(language);
 const POLICE_TEST = localizePoliceUpdate(language);
 const ALLIANCE_TEST = localizeAllianceUpdate(language);
 const PRISONER_TEST = localizePrisonerReopeningUpdate(language);
+const MK_JK_TEST = localizeMkJkReopeningUpdate(language);
 const VERSION_2 = localizeVersion2(language);
 const TRAFFIC_LEVEL_BY_ID = new Map(VERSION_2.trafficLevels.map((level) => [level.id, level]));
 let preparedDocuments = [];
@@ -31,14 +33,14 @@ const UI = {
     noBranch: 'Zatím nebyla rozpoznána žádná podporovaná větev.', noReference: 'Nebyla rozpoznána žádná spisová značka.', noDate: 'Nebylo rozpoznáno žádné datum.',
     documentReferences: 'spisových značek', documentDates: 'dat', noMetadata: 'Bez rozpoznaných spisových značek a dat', pasted: 'Vložený dokument',
     empty: 'Nejprve vložte text nebo vyberte textové soubory.', demoLoaded: 'Načtena anonymizovaná institucionální mapa případu 2004–2026. Klikněte na „Vytvořit mapu případu“.', mapCreated: 'Mapa případu byla vytvořena.',
-    indexed: 'indexováno v projektových podkladech', creatorStated: 'tvrzení autora — připojit anonymizovaný pramen', relations: 'Vazby mezi institucemi', timeline: 'Časová osa', evidenceStatus: 'Stav zdroje', link: 'Vazba', status: 'Stav', source: 'Zdroj', page: 'str.', audit: 'Audit', earlier: 'Dřívější výrok', intermediate: 'Mezilehlý výrok', later: 'Pozdější výrok', red: 'červená', amber: 'oranžová', before: 'PŘED TESTEM', after: 'PO TESTU', systemChange: 'Změna vytvořená systémem', urgent: 'bezodkladná lidská kontrola kvůli tvrzené naléhavosti a možným nevratným dopadům; výsledek řízení se nepředjímá', review: 'probíhající související větev vyžadující kontrolu úplného spisu', unknownPdf: 'Nejméně jedno PDF není přesně podporovaná listina. Prototyp nic neodeslal a na žádný soubor nepřenesl připravenou analýzu.', onePdfOnly: 'V režimu PDF vyberte pouze jeden nebo více přesně podporovaných PDF bez textových příloh.', organisationLoaded: 'Veřejná anonymizovaná kopie PDF byla načtena lokálně. Klikněte na „Analyzovat lokálně“.', policeLoaded: 'Veřejná odvozená kopie policejního sdělení byla načtena lokálně. Jméno Dušana Dvořáka zůstává zachováno; adresa a podpisová data jsou odstraněna. Klikněte na „Analyzovat lokálně“.', privateOriginal: 'soukromý originál rozpoznán přesným digitálním otiskem; veřejně se zobrazí pouze zkontrolovaný výstup', publicDerivative: 'veřejná odvozená kopie rozpoznána přesným digitálním otiskem', policeRecognized: 'Následný test dokončen: přesné policejní PDF bylo rozpoznáno lokálně. Jméno Dušana Dvořáka zůstává veřejné; adresa a podpisová data se nezveřejňují. Zobrazuje se zdrojově omezený výstup před/po, devět červených vazeb a návrh pro lidskou kontrolu.', allianceRecognized: 'Přesná zkontrolovaná listina byla rozpoznána lokálně. Soubor se nikam neodeslal; stránka zvýraznila odpovídající zdrojově omezený záznam v živé paměti.', prisonerRecognized: 'Přesný soukromý návrh L. CH. byl rozpoznán pouze digitálním otiskem. Soubor se nikam neodeslal; stránka ukazuje anonymizované porovnání s pamětí k 20. 7. 2026. Hodnocení 9/9 znamená relevanci, nikoli šanci na úspěch.', redLinks: 'červených vazeb', amberLinks: 'oranžových vazeb', greenLinks: 'zelených vazeb', openResult: 'Zobrazit úplný výsledek', priorityRule: 'Pořadí určuje nejvyšší dosažený stupeň semaforu, potom počet červených a oranžových vazeb, jejich souhrnná váha a datum listiny. Semafor vyjadřuje relevanci a potřebu lidské reakce; sám neprokazuje pochybení ani výsledek řízení.', deadline: 'Lhůta', peakPriority: 'Nejvyšší priorita', substantiveAnswers: 'věcných odpovědí v listině'
+    indexed: 'indexováno v projektových podkladech', creatorStated: 'tvrzení autora — připojit anonymizovaný pramen', relations: 'Vazby mezi institucemi', timeline: 'Časová osa', evidenceStatus: 'Stav zdroje', link: 'Vazba', status: 'Stav', source: 'Zdroj', page: 'str.', audit: 'Audit', earlier: 'Dřívější výrok', intermediate: 'Mezilehlý výrok', later: 'Pozdější výrok', red: 'červená', amber: 'oranžová', before: 'PŘED TESTEM', after: 'PO TESTU', systemChange: 'Změna vytvořená systémem', urgent: 'bezodkladná lidská kontrola kvůli tvrzené naléhavosti a možným nevratným dopadům; výsledek řízení se nepředjímá', review: 'probíhající související větev vyžadující kontrolu úplného spisu', unknownPdf: 'Nejméně jedno PDF není přesně podporovaná listina. Prototyp nic neodeslal a na žádný soubor nepřenesl připravenou analýzu.', onePdfOnly: 'V režimu PDF vyberte pouze jeden nebo více přesně podporovaných PDF bez textových příloh.', organisationLoaded: 'Veřejná anonymizovaná kopie PDF byla načtena lokálně. Klikněte na „Analyzovat lokálně“.', policeLoaded: 'Veřejná odvozená kopie policejního sdělení byla načtena lokálně. Jméno Dušana Dvořáka zůstává zachováno; adresa a podpisová data jsou odstraněna. Klikněte na „Analyzovat lokálně“.', privateOriginal: 'soukromý originál rozpoznán přesným digitálním otiskem; veřejně se zobrazí pouze zkontrolovaný výstup', publicDerivative: 'veřejná odvozená kopie rozpoznána přesným digitálním otiskem', policeRecognized: 'Následný test dokončen: přesné policejní PDF bylo rozpoznáno lokálně. Jméno Dušana Dvořáka zůstává veřejné; adresa a podpisová data se nezveřejňují. Zobrazuje se zdrojově omezený výstup před/po, devět červených vazeb a návrh pro lidskou kontrolu.', allianceRecognized: 'Přesná zkontrolovaná listina byla rozpoznána lokálně. Soubor se nikam neodeslal; stránka zvýraznila odpovídající zdrojově omezený záznam v živé paměti.', prisonerRecognized: 'Přesný soukromý návrh L. CH. byl rozpoznán pouze digitálním otiskem. Soubor se nikam neodeslal; stránka ukazuje anonymizované porovnání s pamětí k 20. 7. 2026. Hodnocení 9/9 znamená relevanci, nikoli šanci na úspěch.', mkJkRecognized: 'Přesná zkontrolovaná listina M. K. a J. K. byla rozpoznána pouze digitálním otiskem. Nic se neodeslalo; stránka ukazuje anonymizované posouzení, přesnou procesní cestu a důkazní mezery. Priorita 9/9 není pravděpodobnost úspěchu.', redLinks: 'červených vazeb', amberLinks: 'oranžových vazeb', greenLinks: 'zelených vazeb', openResult: 'Zobrazit úplný výsledek', priorityRule: 'Pořadí určuje nejvyšší dosažený stupeň semaforu, potom počet červených a oranžových vazeb, jejich souhrnná váha a datum listiny. Semafor vyjadřuje relevanci a potřebu lidské reakce; sám neprokazuje pochybení ani výsledek řízení.', deadline: 'Lhůta', peakPriority: 'Nejvyšší priorita', substantiveAnswers: 'věcných odpovědí v listině'
   },
   en: {
     confidence: 'Confidence', documents: 'documents', branches: 'identified branches', references: 'case references', dates: 'dates',
     noBranch: 'No supported branch has been identified yet.', noReference: 'No case reference was identified.', noDate: 'No date was identified.',
     documentReferences: 'case references', documentDates: 'dates', noMetadata: 'No identified case references or dates', pasted: 'Pasted document',
     empty: 'Paste text or select text files first.', demoLoaded: 'The anonymized 2004–2026 institutional case map is loaded. Click “Create case map”.', mapCreated: 'The case map was created.',
-    indexed: 'indexed in project materials', creatorStated: 'creator-stated — attach anonymized source', relations: 'Institutional relationships', timeline: 'Timeline', evidenceStatus: 'Source status', link: 'Link', status: 'Status', source: 'Source', page: 'p.', audit: 'Audit', earlier: 'Earlier statement', intermediate: 'Intermediate statement', later: 'Later statement', red: 'red', amber: 'amber', before: 'BEFORE THE TEST', after: 'AFTER THE TEST', systemChange: 'System-generated change', urgent: 'immediate human review because of alleged urgency and potentially irreversible effects; the outcome is not prejudged', review: 'an active related branch requiring review of the complete file', unknownPdf: 'At least one PDF is not an exactly supported document. The prototype uploaded nothing and transferred no prepared analysis to any file.', onePdfOnly: 'In PDF mode, select only one or more exactly supported PDFs without text attachments.', organisationLoaded: 'The public anonymized PDF copy was loaded locally. Click “Analyze locally”.', policeLoaded: 'The reviewed public derivative of the police notice was loaded locally. Dušan Dvořák’s name remains visible; the address and signature data have been removed. Click “Analyze locally”.', privateOriginal: 'private original recognized by its exact digital fingerprint; only the reviewed output is displayed publicly', publicDerivative: 'reviewed public derivative recognized by its exact digital fingerprint', policeRecognized: 'Post-submission test completed: the exact police PDF was recognized locally. Dušan Dvořák’s name remains public; the address and signature data are not published. The page displays a source-bounded before/after result, nine red links, and a proposal for human review.', allianceRecognized: 'The exact reviewed document was recognized locally. The file was not uploaded; the page highlighted the corresponding source-bounded record in the living memory.', prisonerRecognized: 'The exact private L. CH. motion was recognized only by its digital fingerprint. The file was not uploaded; the page shows the anonymized comparison with the memory as of 20 July 2026. The 9/9 score means relevance, not likelihood of success.', redLinks: 'red links', amberLinks: 'amber links', greenLinks: 'green links', openResult: 'Show full result', priorityRule: 'Ordering uses the highest traffic-light level first, followed by red and amber link counts, their combined weight, and document date. The traffic light records relevance and the need for human response; it does not itself prove wrongdoing or predict an outcome.', deadline: 'Deadline', peakPriority: 'Highest priority', substantiveAnswers: 'substantive answers in the document'
+    indexed: 'indexed in project materials', creatorStated: 'creator-stated — attach anonymized source', relations: 'Institutional relationships', timeline: 'Timeline', evidenceStatus: 'Source status', link: 'Link', status: 'Status', source: 'Source', page: 'p.', audit: 'Audit', earlier: 'Earlier statement', intermediate: 'Intermediate statement', later: 'Later statement', red: 'red', amber: 'amber', before: 'BEFORE THE TEST', after: 'AFTER THE TEST', systemChange: 'System-generated change', urgent: 'immediate human review because of alleged urgency and potentially irreversible effects; the outcome is not prejudged', review: 'an active related branch requiring review of the complete file', unknownPdf: 'At least one PDF is not an exactly supported document. The prototype uploaded nothing and transferred no prepared analysis to any file.', onePdfOnly: 'In PDF mode, select only one or more exactly supported PDFs without text attachments.', organisationLoaded: 'The public anonymized PDF copy was loaded locally. Click “Analyze locally”.', policeLoaded: 'The reviewed public derivative of the police notice was loaded locally. Dušan Dvořák’s name remains visible; the address and signature data have been removed. Click “Analyze locally”.', privateOriginal: 'private original recognized by its exact digital fingerprint; only the reviewed output is displayed publicly', publicDerivative: 'reviewed public derivative recognized by its exact digital fingerprint', policeRecognized: 'Post-submission test completed: the exact police PDF was recognized locally. Dušan Dvořák’s name remains public; the address and signature data are not published. The page displays a source-bounded before/after result, nine red links, and a proposal for human review.', allianceRecognized: 'The exact reviewed document was recognized locally. The file was not uploaded; the page highlighted the corresponding source-bounded record in the living memory.', prisonerRecognized: 'The exact private L. CH. motion was recognized only by its digital fingerprint. The file was not uploaded; the page shows the anonymized comparison with the memory as of 20 July 2026. The 9/9 score means relevance, not likelihood of success.', mkJkRecognized: 'An exact reviewed M. K. and J. K. document was recognized only by its digital fingerprint. Nothing was uploaded; the page shows the anonymized assessment, exact procedural path, and evidence gaps. The 9/9 priority is not a likelihood of success.', redLinks: 'red links', amberLinks: 'amber links', greenLinks: 'green links', openResult: 'Show full result', priorityRule: 'Ordering uses the highest traffic-light level first, followed by red and amber link counts, their combined weight, and document date. The traffic light records relevance and the need for human response; it does not itself prove wrongdoing or predict an outcome.', deadline: 'Deadline', peakPriority: 'Highest priority', substantiveAnswers: 'substantive answers in the document'
   }
 }[language];
 
@@ -162,6 +164,22 @@ function renderVersion2Dashboard() {
   }
   $('daily-version-rule').textContent = VERSION_2.dashboard.snapshotRule;
 
+  const testPeriods = $('test-period-history');
+  testPeriods.replaceChildren();
+  for (const period of VERSION_2.dashboard.testPeriods) {
+    const card = document.createElement('article');
+    card.className = 'daily-snapshot';
+    const state = document.createElement('strong');
+    state.textContent = `${period.status} · ${period.distinctChecks} ${language === 'en' ? 'distinct checks' : 'různých kontrol'}`;
+    const label = document.createElement('span');
+    label.textContent = period.label;
+    const detail = document.createElement('small');
+    detail.textContent = `${period.window}. ${period.note} ${language === 'en' ? 'Checks added in this period' : 'Nové kontroly v tomto období'}: ${period.addedChecks}.`;
+    card.append(state, label, detail);
+    testPeriods.append(card);
+  }
+  $('test-period-rule').textContent = VERSION_2.dashboard.testCountingRule;
+
   const linkList = $('latest-link-list');
   linkList.replaceChildren();
   for (const item of POLICE_TEST.relevance.filter(({ level }) => level === 'direct')) {
@@ -227,9 +245,6 @@ function renderAllianceUpdate() {
     source: 'Přesné znění zdroje', confidence: 'Stav zdroje', boundary: 'Hranice zveřejnění a důkazu'
   };
 
-  const updateDate = language === 'en' ? '20 July 2026' : '20. 7. 2026';
-  $('latest-update-title').textContent = `${updateDate} — ${ALLIANCE_TEST.headline}`;
-  $('latest-update-summary').textContent = ALLIANCE_TEST.summary;
   $('alliance-update-heading').textContent = ALLIANCE_TEST.title;
   $('alliance-update-summary').textContent = ALLIANCE_TEST.summary;
 
@@ -369,19 +384,16 @@ function renderPrisonerReopeningUpdate() {
     publicContext: 'PUBLIC FILM CONTEXT', source: '1 · STATEMENTS IN THE 2022 MOTION',
     baseline: '2 · AUTHOR-CONFIRMED TEST BASELINE', synthesis: '3 · SYSTEM COMPARISON WITH THE MEMORY AS OF 20 JULY 2026',
     sourceWording: 'Exact anonymized source wording (Czech)', sourceLimit: 'Source limit',
-    currentEvidence: 'Current memory evidence and case-law links', caseLaw: 'Case law',
+    currentEvidence: 'Current memory evidence and case-law links', caseLaw: 'Case law', courtPath: 'COURTS, DATES, AND REFERENCE NUMBERS CITED IN THE 2022 MOTION',
     memory: 'Evidence memory', axis: 'Public evidence axis', boundary: 'Limit', rewrite: 'What a new motion would do differently'
   } : {
     publicContext: 'VEŘEJNÝ FILMOVÝ KONTEXT', source: '1 · VÝROKY NÁVRHU Z ROKU 2022',
     baseline: '2 · AUTOREM POTVRZENÝ ZÁKLAD TESTU', synthesis: '3 · POROVNÁNÍ SYSTÉMU S PAMĚTÍ K 20. 7. 2026',
     sourceWording: 'Přesné anonymizované znění zdroje', sourceLimit: 'Mez zdroje',
-    currentEvidence: 'Dnešní důkazní paměť a judikatorní vazby', caseLaw: 'Judikatura',
+    currentEvidence: 'Dnešní důkazní paměť a judikatorní vazby', caseLaw: 'Judikatura', courtPath: 'SOUDY, DATA A ČÍSLA JEDNACÍ CITOVANÁ V NÁVRHU Z ROKU 2022',
     memory: 'Důkazní paměť', axis: 'Veřejná důkazní osa', boundary: 'Mez', rewrite: 'Co by nový návrh udělal jinak'
   };
 
-  const updateDate = language === 'en' ? '20 July 2026' : '20. 7. 2026';
-  $('latest-update-title').textContent = `${updateDate} — ${PRISONER_TEST.title}`;
-  $('latest-update-summary').textContent = PRISONER_TEST.summary;
   $('prisoner-update-heading').textContent = PRISONER_TEST.title;
   $('prisoner-update-summary').textContent = PRISONER_TEST.summary;
 
@@ -411,6 +423,24 @@ function renderPrisonerReopeningUpdate() {
   contextBoundary.className = 'evidence-boundary compact-boundary';
   contextBoundary.textContent = PRISONER_TEST.publicContext.boundary;
   context.append(contextLabel, contextTitle, contextLink, contextBoundary);
+
+  const courtPathTarget = $('prisoner-court-path');
+  courtPathTarget.replaceChildren();
+  const courtPathHeading = document.createElement('h4');
+  courtPathHeading.textContent = labels.courtPath;
+  courtPathTarget.append(courtPathHeading);
+  for (const item of PRISONER_TEST.courtPath) {
+    const card = document.createElement('article');
+    card.className = 'prisoner-source-card';
+    const court = document.createElement('strong');
+    court.textContent = item.court;
+    const identity = document.createElement('p');
+    identity.textContent = `${formatProjectDate(item.date)} · ${language === 'en' ? 'Ref.' : 'č. j.'} ${item.reference}`;
+    const status = document.createElement('small');
+    status.textContent = item.sourceStatus;
+    card.append(court, identity, status);
+    courtPathTarget.append(card);
+  }
 
   const sourceTarget = $('prisoner-source-facts');
   sourceTarget.replaceChildren();
@@ -531,6 +561,181 @@ function renderPrisonerReopeningUpdate() {
   }
   rewriteTarget.append(rewriteHeading, rewriteList);
   $('prisoner-evidence-boundary').textContent = PRISONER_TEST.publicationBoundary;
+}
+
+function formatProjectDate(value) {
+  const [year, month, day] = value.split('-').map(Number);
+  return new Intl.DateTimeFormat(language === 'en' ? 'en-GB' : 'cs-CZ', {
+    day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC'
+  }).format(new Date(Date.UTC(year, month - 1, day)));
+}
+
+function renderMkJkReopeningUpdate() {
+  const labels = language === 'en' ? {
+    inventory: 'REVIEWED SOURCE SET', courtPath: 'EXACT PROCEDURAL PATH', official: '1 · WHAT THE COURTS ACTUALLY FOUND',
+    submissions: '2 · ALLEGATIONS AND MATERIALS SUBMITTED', synthesis: '3 · SYSTEM ASSESSMENT AS OF 20 JULY 2026',
+    next: 'What must be obtained before a new motion is drafted', legal: 'Verified legal sources', source: 'Source',
+    finding: 'Finding', limit: 'Evidence limit', step: 'Next verification step', priority: 'Evidence-review priority', readiness: 'Current filing readiness',
+    alliance: 'CREATOR-CONFIRMED ALLIANCE CONTEXT'
+  } : {
+    inventory: 'ZKONTROLOVANÝ SOUBOR ZDROJŮ', courtPath: 'PŘESNÁ PROCESNÍ CESTA', official: '1 · CO SKUTEČNĚ ZJISTILY SOUDY',
+    submissions: '2 · TVRZENÍ A PODKLADY V PODÁNÍCH', synthesis: '3 · POSOUZENÍ SYSTÉMU K 20. 7. 2026',
+    next: 'Co je nutné opatřit před sepsáním nového návrhu', legal: 'Ověřené právní zdroje', source: 'Zdroj',
+    finding: 'Zjištění', limit: 'Důkazní mez', step: 'Další kontrolní krok', priority: 'Priorita důkazního prověření', readiness: 'Současná připravenost návrhu',
+    alliance: 'AUTOREM POTVRZENÝ ALIANČNÍ KONTEXT'
+  };
+
+  const updateDate = language === 'en' ? '20 July 2026' : '20. 7. 2026';
+  $('latest-update-title').textContent = `${updateDate} — ${MK_JK_TEST.title}`;
+  $('latest-update-summary').textContent = MK_JK_TEST.summary;
+  $('mk-jk-update-heading').textContent = MK_JK_TEST.title;
+  $('mk-jk-update-summary').textContent = MK_JK_TEST.summary;
+
+  const inventory = $('mk-jk-source-inventory');
+  inventory.replaceChildren();
+  const inventoryLabel = document.createElement('strong');
+  inventoryLabel.textContent = labels.inventory;
+  const inventoryText = document.createElement('p');
+  inventoryText.textContent = language === 'en'
+    ? `${MK_JK_TEST.sourceInventory.receivedFiles} files received · ${MK_JK_TEST.sourceInventory.uniqueFiles} unique after SHA-256 deduplication · ${MK_JK_TEST.sourceInventory.publicSourceFilesAdded} private source files published. ${MK_JK_TEST.sourceInventory.status}`
+    : `${MK_JK_TEST.sourceInventory.receivedFiles} přijatých souborů · ${MK_JK_TEST.sourceInventory.uniqueFiles} jedinečných po deduplikaci SHA-256 · ${MK_JK_TEST.sourceInventory.publicSourceFilesAdded} zveřejněných soukromých zdrojových souborů. ${MK_JK_TEST.sourceInventory.status}`;
+  inventory.append(inventoryLabel, inventoryText);
+
+  const overall = $('mk-jk-update-overall');
+  overall.replaceChildren();
+  overall.className = `prisoner-overall traffic-border-${MK_JK_TEST.overall.priority.trafficBand}`;
+  const priorityBadge = createAllianceTrafficBadge(MK_JK_TEST.overall.priority.trafficBand);
+  priorityBadge.textContent = `${labels.priority}: ${MK_JK_TEST.overall.priority.score}/9 · ${priorityBadge.textContent}`;
+  const readinessBadge = createAllianceTrafficBadge(MK_JK_TEST.overall.readiness.trafficBand);
+  readinessBadge.textContent = `${labels.readiness}: ${MK_JK_TEST.overall.readiness.score}/9 · ${readinessBadge.textContent}`;
+  const conclusion = document.createElement('strong');
+  conclusion.textContent = MK_JK_TEST.overall.conclusion;
+  overall.append(priorityBadge, document.createTextNode(' '), readinessBadge, conclusion);
+
+  const courtPath = $('mk-jk-court-path');
+  courtPath.replaceChildren();
+  const courtHeading = document.createElement('h4');
+  courtHeading.textContent = labels.courtPath;
+  courtPath.append(courtHeading);
+  for (const item of MK_JK_TEST.courtPath) {
+    const card = document.createElement('article');
+    card.className = 'prisoner-source-card';
+    const court = document.createElement('strong');
+    court.textContent = item.court;
+    const ref = document.createElement('p');
+    ref.textContent = `${formatProjectDate(item.date)} · ${language === 'en' ? 'Ref.' : 'č. j.'} ${item.reference}`;
+    const result = document.createElement('small');
+    result.textContent = item.result;
+    card.append(court, ref, result);
+    if (item.sourceUrl) {
+      const link = document.createElement('a');
+      link.href = item.sourceUrl;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = `${labels.source}: ${item.reference}`;
+      card.append(link);
+    }
+    courtPath.append(card);
+  }
+
+  const official = $('mk-jk-official-findings');
+  official.replaceChildren();
+  const officialHeading = document.createElement('h4');
+  officialHeading.textContent = labels.official;
+  official.append(officialHeading);
+  for (const item of MK_JK_TEST.officialFindings) {
+    const card = document.createElement('article');
+    card.className = 'prisoner-source-card';
+    const source = document.createElement('strong');
+    source.textContent = `${labels.source}: ${item.source}`;
+    const finding = document.createElement('p');
+    finding.textContent = item.finding;
+    const limit = document.createElement('small');
+    limit.textContent = `${labels.limit}: ${item.boundary}`;
+    card.append(source, finding, limit);
+    official.append(card);
+  }
+
+  const submissions = $('mk-jk-submitted-claims');
+  submissions.replaceChildren();
+  const submissionsHeading = document.createElement('h4');
+  submissionsHeading.textContent = labels.submissions;
+  const submissionsList = document.createElement('ul');
+  for (const statement of MK_JK_TEST.submittedClaims) {
+    const item = document.createElement('li');
+    item.textContent = statement;
+    submissionsList.append(item);
+  }
+  submissions.append(submissionsHeading, submissionsList);
+
+  const alliance = $('mk-jk-alliance-context');
+  alliance.replaceChildren();
+  const allianceHeading = document.createElement('strong');
+  allianceHeading.textContent = labels.alliance;
+  const allianceStatement = document.createElement('p');
+  allianceStatement.textContent = `${MK_JK_TEST.allianceContext.statement} ${MK_JK_TEST.allianceContext.euAuthorship}`;
+  const allianceBoundary = document.createElement('small');
+  allianceBoundary.textContent = MK_JK_TEST.allianceContext.boundary;
+  alliance.append(allianceHeading, allianceStatement, allianceBoundary);
+
+  const comparison = $('mk-jk-comparison');
+  comparison.replaceChildren();
+  const comparisonHeading = document.createElement('h4');
+  comparisonHeading.textContent = labels.synthesis;
+  comparison.append(comparisonHeading);
+  for (const item of MK_JK_TEST.relevance) {
+    const card = document.createElement('article');
+    card.className = `prisoner-comparison-card traffic-border-${item.trafficBand}`;
+    const badge = createAllianceTrafficBadge(item.trafficBand);
+    badge.textContent = `${item.score}/9 · ${badge.textContent}`;
+    const title = document.createElement('h5');
+    title.textContent = item.title;
+    const status = document.createElement('strong');
+    status.textContent = item.status;
+    const meaning = document.createElement('p');
+    meaning.textContent = item.meaning;
+    const step = document.createElement('p');
+    step.textContent = `${labels.step}: ${item.next}`;
+    const boundary = document.createElement('small');
+    boundary.textContent = `${labels.limit}: ${item.boundary}`;
+    card.append(badge, title, status, meaning, step, boundary);
+    if (item.sourceUrl) {
+      const link = document.createElement('a');
+      link.href = item.sourceUrl;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = labels.source;
+      card.append(link);
+    }
+    comparison.append(card);
+  }
+
+  const next = $('mk-jk-next-evidence');
+  next.replaceChildren();
+  const nextHeading = document.createElement('h4');
+  nextHeading.textContent = labels.next;
+  const nextList = document.createElement('ol');
+  for (const step of MK_JK_TEST.nextEvidence) {
+    const item = document.createElement('li');
+    item.textContent = step;
+    nextList.append(item);
+  }
+  const legalHeading = document.createElement('h5');
+  legalHeading.textContent = labels.legal;
+  const legalList = document.createElement('ul');
+  for (const source of MK_JK_TEST.legalSources) {
+    const item = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = source.url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = `${source.reference} — ${source.title}`;
+    item.append(link);
+    legalList.append(item);
+  }
+  next.append(nextHeading, nextList, legalHeading, legalList);
+
+  $('mk-jk-evidence-boundary').textContent = `${MK_JK_TEST.identityBoundary} ${MK_JK_TEST.publicationBoundary}`;
 }
 
 function highlightAllianceEvidence(ids) {
@@ -1603,6 +1808,7 @@ $('registry').before(evidenceDocument);
 renderVersion2Dashboard();
 renderAllianceUpdate();
 renderPrisonerReopeningUpdate();
+renderMkJkReopeningUpdate();
 renderRegistry();
 
 function revealEvidenceNetwork() {
@@ -1776,13 +1982,15 @@ $('analyse').addEventListener('click', () => {
           const policeInputKind = identifyPoliceUpdateDigest(digest);
           const allianceEvidenceId = identifyAllianceUpdateDigest(digest);
           const prisonerInputKind = identifyPrisonerReopeningDigest(digest);
-          const inputKind = organisationInputKind ?? policeInputKind ?? (allianceEvidenceId ? `alliance-${allianceEvidenceId}` : null) ?? (prisonerInputKind ? `prisoner-${prisonerInputKind}` : null);
+          const mkJkEvidenceId = identifyMkJkReopeningDigest(digest);
+          const inputKind = organisationInputKind ?? policeInputKind ?? (allianceEvidenceId ? `alliance-${allianceEvidenceId}` : null) ?? (prisonerInputKind ? `prisoner-${prisonerInputKind}` : null) ?? (mkJkEvidenceId ? `mk-jk-${mkJkEvidenceId}` : null);
           return {
             name: pdfDocument.name,
             inputKind,
             allianceEvidenceId,
             prisonerInputKind,
-            test: prisonerInputKind ? PRISONER_TEST : policeInputKind ? POLICE_TEST : organisationInputKind ? ORGANISATION_TEST : null
+            mkJkEvidenceId,
+            test: mkJkEvidenceId ? MK_JK_TEST : prisonerInputKind ? PRISONER_TEST : policeInputKind ? POLICE_TEST : organisationInputKind ? ORGANISATION_TEST : null
           };
         }));
         if (recognized.every(({ inputKind }) => inputKind)) {
@@ -1791,6 +1999,15 @@ $('analyse').addEventListener('click', () => {
           $('analysis-out').hidden = true;
           const allianceEntries = recognized.filter(({ allianceEvidenceId }) => allianceEvidenceId);
           const prisonerEntries = recognized.filter(({ prisonerInputKind }) => prisonerInputKind);
+          const mkJkEntries = recognized.filter(({ mkJkEvidenceId }) => mkJkEvidenceId);
+          if (mkJkEntries.length === recognized.length) {
+            renderMkJkReopeningUpdate();
+            const target = $('mk-jk-reopening-update');
+            target.classList.add('recognized-evidence');
+            showStatus(UI.mkJkRecognized, 'info');
+            window.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
+            return;
+          }
           if (prisonerEntries.length === recognized.length) {
             renderPrisonerReopeningUpdate();
             const target = $('prisoner-reopening-update');
@@ -1806,7 +2023,7 @@ $('analyse').addEventListener('click', () => {
             window.scrollTo({ top: (target ?? $('alliance-update')).offsetTop, behavior: 'smooth' });
             return;
           }
-          if (!allianceEntries.length && !prisonerEntries.length) {
+          if (!allianceEntries.length && !prisonerEntries.length && !mkJkEntries.length) {
             const sorted = renderPriorityQueue(recognized);
             renderExactPdfUpdate(sorted[0].test, sorted[0].inputKind);
             const containsPolice = recognized.some(({ test }) => test === POLICE_TEST);

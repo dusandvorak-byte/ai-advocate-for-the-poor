@@ -38,7 +38,7 @@ test('the first-window counts are exact where known and visibly open where not y
   const result = localizeVersion2('cs').dashboard;
   const known = new Map(result.counts.map((item) => [item.label, item.value]));
   assert.equal(known.get('veřejných důkazních PDF'), '5');
-  assert.equal(known.get('nově zkontrolovaných neveřejných PDF'), '8');
+  assert.equal(known.get('nově zkontrolovaných neveřejných souborů'), '24');
   assert.equal(known.get('všech listin v paměti'), '—');
   assert.equal(known.get('evidovaných rozhodnutí a úkonů'), '70');
   assert.equal(known.get('aktivní soudní větve'), '4');
@@ -51,32 +51,48 @@ test('the first-window counts are exact where known and visibly open where not y
 
 test('the latest reviewed evidence set is highly relevant without inventing a new deadline', () => {
   const latest = VERSION_2_DASHBOARD.latestDocument;
-  assert.equal(latest.version, 'v2.5');
+  assert.equal(latest.version, 'v2.6');
   assert.equal(latest.priority, 'red-3');
-  assert.deepEqual(latest.metrics.map(({ value }) => value), ['1', '6', '3', '0']);
+  assert.deepEqual(latest.metrics.map(({ value }) => value), ['16', '7', '3', '0']);
   assert.deepEqual(latest.trafficDistribution, [
     { band: 'red-3', count: 1 },
     { band: 'red-2', count: 1 },
     { band: 'red-1', count: 1 },
     { band: 'amber-3', count: 1 },
     { band: 'amber-2', count: 1 },
+    { band: 'green-3', count: 1 },
     { band: 'green-2', count: 1 }
   ]);
   assert.equal(latest.stateDeadline.status, 'none-currently-stated');
-  assert.match(latest.stateDeadline.rule.cs, /nevytváří lhůtu.*pravděpodobnost úspěchu/i);
+  assert.match(latest.stateDeadline.rule.cs, /nevytváří lhůtu.*není pravděpodobností úspěchu.*4\/9/i);
 });
 
 test('daily V2 history grows only when a reviewed document is added', () => {
-  assert.equal(VERSION_2_DASHBOARD.dailySnapshots.length, 4);
-  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[0].version, 'v2.5');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots.length, 5);
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[0].version, 'v2.6');
   assert.equal(VERSION_2_DASHBOARD.dailySnapshots[0].date, '2026-07-20');
-  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[0].href, '#prisoner-reopening-update');
-  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[1].version, 'v2.3');
-  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[2].version, 'v2.2');
-  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[2].href, '#alliance-update-v22');
-  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[3].version, 'v2.1');
-  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[3].href, '#police-update');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[0].href, '#mk-jk-reopening-update');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[1].version, 'v2.5');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[1].href, '#prisoner-reopening-update');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[2].version, 'v2.3');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[3].version, 'v2.2');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[3].href, '#alliance-update-v22');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[4].version, 'v2.1');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[4].href, '#police-update');
   assert.match(VERSION_2_DASHBOARD.snapshotRule.cs, /zkontrolované listiny.*prázdné denní kopie se nevytvářejí/i);
+});
+
+test('test memory separates the submission baseline, pre-deadline development, and later judging period', () => {
+  const periods = localizeVersion2('cs').dashboard.testPeriods;
+  assert.deepEqual(periods.map(({ id }) => id), ['through-submission', 'submission-to-deadline', 'deadline-to-judging']);
+  assert.equal(periods[0].distinctChecks, 54);
+  assert.equal(periods[1].distinctChecks, 144);
+  assert.equal(periods[1].addedChecks, 90);
+  assert.match(periods[1].window, /22\. 7\. 2026.*02:00 CEST/i);
+  assert.equal(periods[2].distinctChecks, 0);
+  assert.match(periods[2].status, /DOSUD NEZAČALO/);
+  assert.match(VERSION_2_DASHBOARD.testCountingRule.cs, /počet různých automatických kontrol.*nikoli celoživotní součet/i);
+  assert.match(VERSION_2_DASHBOARD.testCountingRule.cs, /nejméně 686/i);
 });
 
 test('both public pages render the same V2 model and all nine visual levels', async () => {
