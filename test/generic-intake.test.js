@@ -23,6 +23,21 @@ test('an unrelated readable document receives black 0/9 and still yields useful 
   assert.ok(result.proposedSteps.some((step) => /žádná lhůta vypočtena/i.test(step)));
 });
 
+test('an unrelated insurer notice stays private at 0/9 while preserving its explicit deadline and sanction', () => {
+  const source = 'Pojišťovna oznamuje: pojistné 2 400 Kč je splatné do 31. 7. 2026. Při prodlení je sjednána smluvní pokuta 500 Kč.';
+  const result = analyzeGenericDocument({ name: 'pojisteni-auta.txt', text: source }, 'cs');
+
+  assert.equal(result.relation.id, 'black-0');
+  assert.equal(result.relation.score, 0);
+  assert.equal(result.memorySignals.length, 0);
+  assert.ok(result.deadlineSignals.some(({ value }) => /do 31\. 7\. 2026/i.test(value)));
+  assert.ok(result.amounts.some(({ value }) => /2 400 Kč/i.test(value)));
+  assert.ok(result.amounts.some(({ value }) => /500 Kč/i.test(value)));
+  assert.ok(result.proposedSteps.some((step) => /samostatnou novou věc/i.test(step)));
+  assert.ok(result.proposedSteps.some((step) => /žádná lhůta vypočtena/i.test(step)));
+  assert.equal('calculatedDeadline' in result, false);
+});
+
 test('a distinctive public-memory overlap receives only the weakest green 1/9', () => {
   const result = analyzeGenericDocument({
     name: 'poznamka.txt',

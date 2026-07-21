@@ -8,6 +8,15 @@ const requiredIds = [
   'version-history', 'version-0', 'case-input-metrics', 'latest-priority',
   'latest-deadline', 'traffic-scale', 'daily-version-history', 'daily-version-rule',
   'test-period-history', 'test-period-rule',
+  'case-portfolio', 'case-portfolio-title', 'case-portfolio-introduction', 'case-test-history',
+  'case-research-label', 'case-specific-motto', 'case-specific-context', 'case-author-position', 'case-author-baseline', 'case-system-question',
+  'case-answer-rule', 'case-portfolio-rows', 'shared-methodology-title',
+  'shared-methodology-explanation', 'shared-methodology-short-argument', 'shared-methodology-timeline',
+  'shared-methodology-audit-title', 'shared-methodology-audit-trail',
+  'case-portfolio-science-sources', 'case-portfolio-legal-sources', 'case-portfolio-boundary',
+  'gf-jk-procedural-update', 'gf-jk-update-heading', 'gf-jk-update-summary', 'gf-jk-main-sentence',
+  'case-branch-rows', 'gf-jk-priority-rows', 'gf-jk-official-facts', 'gf-jk-party-claims',
+  'gf-jk-legal-sources', 'gf-jk-evidence-boundary',
   'mk-jk-reopening-update', 'mk-jk-update-heading', 'mk-jk-update-summary', 'mk-jk-source-inventory',
   'mk-jk-update-overall', 'mk-jk-court-path', 'mk-jk-official-findings', 'mk-jk-submitted-claims',
   'mk-jk-alliance-context', 'mk-jk-comparison', 'mk-jk-next-evidence', 'mk-jk-evidence-boundary',
@@ -101,25 +110,26 @@ test('the homepage leads with the post-submission evidence update in both langua
     assert.ok(html.indexOf('id="prisoner-reopening-update"') < html.indexOf('id="alliance-update"'));
     assert.match(html, /7 (?:jedinečných zdrojových PDF zůstává neveřejných|unique source PDFs remain unpublished)/);
   }
-  assert.match(cs, /V0 jsou původní data.*V1.*V2/i);
+  assert.match(cs, /V0 jsou data.*V1.*V2.*V3/i);
   assert.match(cs, /DEVÍTISTUPŇOVÝ SEMAFOR/);
-  assert.match(en, /V0 is the original data.*V1.*V2/i);
+  assert.match(en, /V0 is the data.*V1.*V2.*V3/i);
   assert.match(en, /NINE-LEVEL TRAFFIC LIGHT/);
   assert.match(cs, /AUTOREM POTVRZENÁ CHRONOLOGIE/);
   assert.match(cs, /více než patnácti letech.*věcnou odpověď/i);
-  assert.match(cs, /Pro každého v České republice, kdo čelí nebo čelil právní kolizi ve věci konopí/i);
-  assert.match(cs, /obnovu řízení, zásahové žalobě, náhradě škody či nemajetkové újmy/i);
-  assert.match(cs, /Nezaručuje úspěch, nezakládá právní nárok a nenahrazuje právníka/i);
-  assert.match(cs, /důkazy, fakta, přesné výroky, čísla jednací, spisové značky a judikaturu/i);
+  assert.match(cs, /Pro každého, kdo potřebuje porozumět vlastním dokumentům a neztratit svůj příběh/i);
+  assert.match(cs, /praktický nástroj demokracie a solidarity/i);
+  assert.match(cs, /Nezaručuje úspěch, nezakládá právní nárok a nenahrazuje odborníka/i);
+  assert.match(cs, /Rozsáhlé konopné spisy jsou pouze náročnou řízenou testovací sadou/i);
   assert.match(en, /CREATOR-CONFIRMED CHRONOLOGY/);
   assert.match(en, /English translation: “placed on file without further action/);
-  assert.match(en, /Anyone in Czechia who faces or has faced a cannabis-related legal conflict/i);
-  assert.match(en, /motion to reopen proceedings, an intervention action, compensation for damage or non-pecuniary harm/i);
-  assert.match(en, /does not guarantee success, create a legal entitlement, or replace a lawyer/i);
+  assert.match(en, /Anyone who needs to understand their own documents without losing their story/i);
+  assert.match(en, /practical infrastructure for democracy and solidarity/i);
+  assert.match(en, /does not guarantee success, create a legal entitlement, or replace a professional/i);
+  assert.match(en, /cannabis records are only a demanding controlled test set/i);
   assert.match(cs, /Návrh na obnovu L\. CH\..*9\/9 relevance/i);
   assert.match(en, /L\. CH\.’s 2022 motion to reopen.*9\/9 relevance/i);
-  assert.match(cs, /Případ M\. K\. a J\. K\..*9\/9 priorita/i);
-  assert.match(en, /M\. K\. and J\. K\. case.*9\/9 priority/i);
+  assert.match(cs, /Případ M\. K\. a J\. K\..*společný nový důkaz 9\/9.*EXTRÉM, HOŘÍ/i);
+  assert.match(en, /M\. K\. and J\. K\. case.*shared new evidence 9\/9.*EXTREME, ON FIRE/i);
   assert.match(cs, /DATOVANÁ PAMĚŤ TESTŮ/);
   assert.match(en, /DATED TEST MEMORY/);
 });

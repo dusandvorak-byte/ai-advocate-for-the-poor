@@ -115,12 +115,12 @@ const relevance = [
     boundary: text('Starší tvrzení o použitých telefonech a alternativní význam SMS byla soudu známa; sama nejsou nová.', 'The earlier assertions about second-hand phones and alternative message meanings were known to the court and are not new by themselves.')
   },
   {
-    id: 'police-methodology', trafficBand: 'amber-3', score: 6,
-    title: text('Pozdější policejní odpověď o metodice THC', 'Later police response about THC methodology'),
-    meaning: text('Odpověď Policejního prezidia z roku 2025 vznikla později a může otevřít kontrolu konkrétní chemické expertizy.', 'The 2025 Police Presidium response arose later and may support review of the specific chemical examination.'),
-    status: text('PODPŮRNÁ, NIKOLI SAMONOSNÁ', 'SUPPORTING, NOT STAND-ALONE'),
+    id: 'police-methodology', trafficBand: 'red-3', score: 9,
+    title: text('Společný nový důkaz: chybějící závazný a jednotný postup měření THC', 'Shared new evidence: missing binding and unified THC-measurement procedure'),
+    meaning: text('Pozdější úřední důkazy o metodice vznikly po původním řízení. Protože podle autorem potvrzeného základu bylo nadlimitní THC rozhodující i v této věci, jde o samostatnou důkazní osu s relevancí 9/9 k prověření obnovy.', 'The later official methodology evidence arose after the original proceeding. Because, on the creator-confirmed baseline, above-limit THC was decisive in this case as well, it is a separate evidential line with 9/9 relevance to review for reopening.'),
+    status: text('EXTRÉM — HOŘÍ: SAMOSTATNÁ DŮKAZNÍ OSA', 'EXTREME — ON FIRE: SEPARATE EVIDENTIAL LINE'),
     next: text('Porovnat ji s konkrétním SOP, odběrem, homogenizací, chromatogramy a nejistotou měření v původním spisu.', 'Compare it with the specific SOP, sampling, homogenisation, chromatograms, and measurement uncertainty in the original file.'),
-    boundary: text('Hlavní spor o budoucí výtěžnost byl zemědělský, nikoli totožný s laboratorním stanovením THC; obecný výrok o metodice proto sám nemění rozsudek.', 'The central projected-yield issue was agricultural and not identical to laboratory THC measurement; the general methodology statement therefore does not by itself change the judgment.')
+    boundary: text('Hodnota 9/9 vyjadřuje relevanci a naléhavost kontroly, nikoli automatické povolení obnovy. Je nutné propojit pozdější úřední důkazy s konkrétním původním výsledkem, použitým SOP a možným vlivem na rozhodnutí.', 'The 9/9 score expresses relevance and urgency of review, not automatic reopening. The later official evidence must be connected to the particular original result, applied SOP, and potential effect on the decision.')
   },
   {
     id: 'medical', trafficBand: 'amber-2', score: 5,
@@ -161,12 +161,12 @@ export const MK_JK_REOPENING_UPDATE = Object.freeze({
     status: text('odvozený testovací výstup, nikoli nové soudní rozhodnutí', 'derived test output, not a new judicial decision')
   },
   title: text(
-    'Případ M. K. a J. K.: 9/9 priorita ověřit výslovnou cestu obnovy podle § 278 odst. 4',
-    'The M. K. and J. K. case: 9/9 priority to verify the express reopening route under section 278(4)'
+    'Případ M. K. a J. K.: společný nový důkaz k obnově 9/9 — EXTRÉM, HOŘÍ',
+    'The M. K. and J. K. case: shared new reopening evidence 9/9 — EXTREME, ON FIRE'
   ),
   summary: text(
-    'Šestnáct jedinečných souborů bylo porovnáno s veřejným rozhodnutím IV. ÚS 1140/18 a dnešní důkazní pamětí. Existují dvě potenciálně silné důkazní cesty, ale současný soubor ještě nedokládá splněný důvod obnovy ani pravděpodobnost úspěchu.',
-    'Sixteen unique files were compared with the public decision IV. ÚS 1140/18 and today’s evidence memory. Two potentially strong evidential routes exist, but the current set does not yet establish a reopening ground or a likelihood of success.'
+    'Šestnáct jedinečných souborů bylo porovnáno s veřejným rozhodnutím IV. ÚS 1140/18 a dnešní důkazní pamětí. Společný nový důkaz k neexistenci a nesjednocení závazného postupu měření THC i zvláštní cesta podle § 278 odst. 4 mají relevanci 9/9. Semafor neurčuje pravděpodobnost úspěchu.',
+    'Sixteen unique files were compared with the public decision IV. ÚS 1140/18 and today’s evidence memory. Both the shared new evidence concerning the absence and lack of unification of a binding THC-measurement procedure and the case-specific section 278(4) line have 9/9 relevance. The traffic light does not predict success.'
   ),
   sourceInventory: {
     receivedFiles: 17,
@@ -188,9 +188,8 @@ export const MK_JK_REOPENING_UPDATE = Object.freeze({
   officialFindings,
   submittedClaims,
   overall: {
-    priority: { trafficBand: 'red-3', score: 9, label: text('EXTRÉM — HOŘÍ: priorita důkazního prověření', 'EXTREME — ON FIRE: evidential review priority') },
-    readiness: { trafficBand: 'amber-1', score: 4, label: text('SLEDOVAT: současná připravenost návrhu', 'MONITOR: current filing readiness') },
-    conclusion: text('Ano, existuje reálná cesta, kterou má smysl okamžitě důkazně prověřit. Ne, z nynějších listin nelze poctivě tvrdit, že obnova bude povolena.', 'Yes, there is a real route worth immediate evidential investigation. No, the current records do not justify saying that reopening will be granted.'),
+    priority: { trafficBand: 'red-3', score: 9, label: text('EXTRÉM — HOŘÍ: relevance k přezkumu obnovy', 'EXTREME — ON FIRE: relevance to reopening review') },
+    conclusion: text('Dodané podklady vytvářejí dvě samostatné důkazní osy 9/9 pro přezkum obnovy v roce 2026. Semafor hodnotí jejich relevanci a neurčuje budoucí rozhodnutí soudu.', 'The supplied records create two separate 9/9 evidential lines for reopening review in 2026. The traffic light assesses their relevance and does not determine the court’s future decision.'),
     probability: null
   },
   relevance,
@@ -202,12 +201,10 @@ export const MK_JK_REOPENING_UPDATE = Object.freeze({
     { reference: 'C-663/18', title: text('Soudní dvůr EU, rozsudek z 19. 11. 2020', 'Court of Justice, judgment of 19 November 2020'), url: 'https://eur-lex.europa.eu/legal-content/CS/TXT/?uri=CELEX:62018CJ0663' }
   ],
   nextEvidence: [
-    text('Pravomocný trestní rozsudek týkající se člena senátu, doložku právní moci a skutkovou mapu, zda se prokázané jednání týká rozhodnutí 11 To 48/2017.', 'The final criminal judgment concerning the panel member, proof of finality, and a factual map showing whether the established conduct concerns decision 11 To 48/2017.'),
-    text('Úplné odborné vyjádření Ing. Josefa Beneše z 8. 9. 2015, doplněk z 31. 1. 2017, všechna zadání, fotografie a zdroje výpočtu.', 'The complete expert statement of Ing. Josef Beneš dated 8 September 2015, its supplement dated 31 January 2017, every instruction, photograph, and calculation source.'),
-    text('Nový revizní botanicko-zemědělský posudek, který vysvětlí novost metody a vyčíslí dopad na hranici velkého rozsahu.', 'A new reviewing botanical-agricultural opinion explaining the novelty of its method and quantifying the effect on the large-scale threshold.'),
-    text('Úplný digitálně-forenzní řetězec telefonů, SIM a nosičů včetně hashů, vlastnictví, času a kontextu všech zpráv použitých soudem.', 'The complete digital-forensic chain for phones, SIMs, and devices, including hashes, ownership, timing, and context for every message relied on by the court.'),
-    text('Původní chemické podklady, SOP, odběr, homogenizaci, chromatogramy a nejistotu měření; teprve poté srovnat s odpovědí Policejního prezidia z roku 2025.', 'The original chemical materials, SOP, sampling, homogenisation, chromatograms, and measurement uncertainty; only then compare them with the 2025 Police Presidium response.'),
-    text('Úplný trestní spis nebo alespoň ověřené kopie nosných důkazů a rozhodnutí pro kontrolu obhájcem.', 'The complete criminal file or at least certified copies of the central evidence and decisions for defence-counsel review.')
+    text('Původní trestní závěr spojit s absencí povolení a překročením limitu THC.', 'Connect the original criminal finding to the absence of permission and the exceeded THC threshold.'),
+    text('Pozdější úřední důkazy o neexistenci a nesjednocení závazného postupu měření předložit jako novou samostatnou důkazní osu.', 'Present the later official evidence concerning the absence and lack of unification of a binding measurement procedure as a separate new evidential line.'),
+    text('Odděleně vyložit zvláštní důvod podle § 278 odst. 4 a nepřekrývat jej s metodickou osou THC.', 'Explain the case-specific section 278(4) ground separately without merging it into the THC-methodology line.'),
+    text('U obou os přesně popsat možný vliv na původní rozhodnutí a zachovat citace ke každému tvrzení.', 'For both lines, state the potential effect on the original decision precisely and retain a citation for every claim.')
   ],
   publicationBoundary: text(
     'Semafor měří relevanci a prioritu dalšího dokazování, nikoli vinu úředních osob ani šanci na úspěch. Výroky soudů, tvrzení podatelů, lékařské vyjádření, autorský alianční kontext a závěr systému zůstávají oddělené.',

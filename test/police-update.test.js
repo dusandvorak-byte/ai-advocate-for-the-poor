@@ -148,8 +148,8 @@ test('the post-submission implementation publishes only the reviewed police deri
   ]);
   const publicText = [app, module, cs, en].join('\n');
   assert.match(app, /identifyPoliceUpdateDigest/);
-  assert.match(cs, /Následná testovací verze v2\.6 · 20\. července 2026/);
-  assert.match(en, /Post-submission test build v2\.6 · 20 July 2026/);
+  assert.match(cs, /Následná testovací verze v3\.2 · 21\. července 2026/);
+  assert.match(en, /Post-submission test build v3\.2 · 21 July 2026/);
   assert.doesNotMatch(publicText, /Krajské ředitelství policie OK dne 20\.7\.2026/i);
   assert.match(module, /publicFile: 'documents\/police-notice-public-derivative-2026-07-20\.pdf'/);
   assert.match(cs, /id="police-source"[^>]+police-notice-public-derivative-2026-07-20\.pdf/);

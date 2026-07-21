@@ -9,6 +9,11 @@ import { identifyPoliceUpdateDigest, localizePoliceUpdate } from './police-updat
 import { identifyAllianceUpdateDigest, localizeAllianceUpdate } from './alliance-update.js';
 import { identifyPrisonerReopeningDigest, localizePrisonerReopeningUpdate } from './prisoner-reopening-update.js';
 import { identifyMkJkReopeningDigest, localizeMkJkReopeningUpdate } from './mk-jk-reopening-update.js';
+import { identifyCaseBundleDigest, localizeGfJkProceduralUpdate } from './gf-jk-procedural-update.js';
+import { identifyPragueThcDigest, localizePragueThcUpdate } from './prague-thc-remand-update.js';
+import { identifyDdLiveV3Digest, localizeDdLiveV3Update } from './dd-live-v3-update.js';
+import { localizeCasePortfolio } from './case-portfolio.js';
+import { localizeCzechPilotV3 } from './czech-pilot-v3.js';
 import { localizeVersion2, trafficScore } from './version-2.js';
 import { analyzeGenericDocuments } from './generic-intake.js';
 import { extractPdfText } from './pdf-reader.js';
@@ -22,6 +27,10 @@ const POLICE_TEST = localizePoliceUpdate(language);
 const ALLIANCE_TEST = localizeAllianceUpdate(language);
 const PRISONER_TEST = localizePrisonerReopeningUpdate(language);
 const MK_JK_TEST = localizeMkJkReopeningUpdate(language);
+const GF_JK_TEST = localizeGfJkProceduralUpdate(language);
+const CASE_PORTFOLIO = localizeCasePortfolio(language);
+const CZECH_PILOT = localizeCzechPilotV3(language);
+const DD_LIVE_V3 = localizeDdLiveV3Update(language);
 const VERSION_2 = localizeVersion2(language);
 const TRAFFIC_LEVEL_BY_ID = new Map(VERSION_2.trafficLevels.map((level) => [level.id, level]));
 let preparedDocuments = [];
@@ -33,14 +42,14 @@ const UI = {
     noBranch: 'Zatím nebyla rozpoznána žádná podporovaná větev.', noReference: 'Nebyla rozpoznána žádná spisová značka.', noDate: 'Nebylo rozpoznáno žádné datum.',
     documentReferences: 'spisových značek', documentDates: 'dat', noMetadata: 'Bez rozpoznaných spisových značek a dat', pasted: 'Vložený dokument',
     empty: 'Nejprve vložte text nebo vyberte textové soubory.', demoLoaded: 'Načtena anonymizovaná institucionální mapa případu 2004–2026. Klikněte na „Vytvořit mapu případu“.', mapCreated: 'Mapa případu byla vytvořena.',
-    indexed: 'indexováno v projektových podkladech', creatorStated: 'tvrzení autora — připojit anonymizovaný pramen', relations: 'Vazby mezi institucemi', timeline: 'Časová osa', evidenceStatus: 'Stav zdroje', link: 'Vazba', status: 'Stav', source: 'Zdroj', page: 'str.', audit: 'Audit', earlier: 'Dřívější výrok', intermediate: 'Mezilehlý výrok', later: 'Pozdější výrok', red: 'červená', amber: 'oranžová', before: 'PŘED TESTEM', after: 'PO TESTU', systemChange: 'Změna vytvořená systémem', urgent: 'bezodkladná lidská kontrola kvůli tvrzené naléhavosti a možným nevratným dopadům; výsledek řízení se nepředjímá', review: 'probíhající související větev vyžadující kontrolu úplného spisu', unknownPdf: 'Nejméně jedno PDF není přesně podporovaná listina. Prototyp nic neodeslal a na žádný soubor nepřenesl připravenou analýzu.', onePdfOnly: 'V režimu PDF vyberte pouze jeden nebo více přesně podporovaných PDF bez textových příloh.', organisationLoaded: 'Veřejná anonymizovaná kopie PDF byla načtena lokálně. Klikněte na „Analyzovat lokálně“.', policeLoaded: 'Veřejná odvozená kopie policejního sdělení byla načtena lokálně. Jméno Dušana Dvořáka zůstává zachováno; adresa a podpisová data jsou odstraněna. Klikněte na „Analyzovat lokálně“.', privateOriginal: 'soukromý originál rozpoznán přesným digitálním otiskem; veřejně se zobrazí pouze zkontrolovaný výstup', publicDerivative: 'veřejná odvozená kopie rozpoznána přesným digitálním otiskem', policeRecognized: 'Následný test dokončen: přesné policejní PDF bylo rozpoznáno lokálně. Jméno Dušana Dvořáka zůstává veřejné; adresa a podpisová data se nezveřejňují. Zobrazuje se zdrojově omezený výstup před/po, devět červených vazeb a návrh pro lidskou kontrolu.', allianceRecognized: 'Přesná zkontrolovaná listina byla rozpoznána lokálně. Soubor se nikam neodeslal; stránka zvýraznila odpovídající zdrojově omezený záznam v živé paměti.', prisonerRecognized: 'Přesný soukromý návrh L. CH. byl rozpoznán pouze digitálním otiskem. Soubor se nikam neodeslal; stránka ukazuje anonymizované porovnání s pamětí k 20. 7. 2026. Hodnocení 9/9 znamená relevanci, nikoli šanci na úspěch.', mkJkRecognized: 'Přesná zkontrolovaná listina M. K. a J. K. byla rozpoznána pouze digitálním otiskem. Nic se neodeslalo; stránka ukazuje anonymizované posouzení, přesnou procesní cestu a důkazní mezery. Priorita 9/9 není pravděpodobnost úspěchu.', redLinks: 'červených vazeb', amberLinks: 'oranžových vazeb', greenLinks: 'zelených vazeb', openResult: 'Zobrazit úplný výsledek', priorityRule: 'Pořadí určuje nejvyšší dosažený stupeň semaforu, potom počet červených a oranžových vazeb, jejich souhrnná váha a datum listiny. Semafor vyjadřuje relevanci a potřebu lidské reakce; sám neprokazuje pochybení ani výsledek řízení.', deadline: 'Lhůta', peakPriority: 'Nejvyšší priorita', substantiveAnswers: 'věcných odpovědí v listině'
+    indexed: 'indexováno v projektových podkladech', creatorStated: 'tvrzení autora — připojit anonymizovaný pramen', relations: 'Vazby mezi institucemi', timeline: 'Časová osa', evidenceStatus: 'Stav zdroje', link: 'Vazba', status: 'Stav', source: 'Zdroj', page: 'str.', audit: 'Audit', earlier: 'Dřívější výrok', intermediate: 'Mezilehlý výrok', later: 'Pozdější výrok', red: 'červená', amber: 'oranžová', before: 'PŘED TESTEM', after: 'PO TESTU', systemChange: 'Změna vytvořená systémem', urgent: 'bezodkladná lidská kontrola kvůli tvrzené naléhavosti a možným nevratným dopadům; výsledek řízení se nepředjímá', review: 'probíhající související větev vyžadující kontrolu úplného spisu', unknownPdf: 'Nejméně jedno PDF není přesně podporovaná listina. Prototyp nic neodeslal a na žádný soubor nepřenesl připravenou analýzu.', onePdfOnly: 'V režimu PDF vyberte pouze jeden nebo více přesně podporovaných PDF bez textových příloh.', organisationLoaded: 'Veřejná anonymizovaná kopie PDF byla načtena lokálně. Klikněte na „Analyzovat lokálně“.', policeLoaded: 'Veřejná odvozená kopie policejního sdělení byla načtena lokálně. Jméno Dušana Dvořáka zůstává zachováno; adresa a podpisová data jsou odstraněna. Klikněte na „Analyzovat lokálně“.', privateOriginal: 'soukromý originál rozpoznán přesným digitálním otiskem; veřejně se zobrazí pouze zkontrolovaný výstup', publicDerivative: 'veřejná odvozená kopie rozpoznána přesným digitálním otiskem', policeRecognized: 'Následný test dokončen: přesné policejní PDF bylo rozpoznáno lokálně. Jméno Dušana Dvořáka zůstává veřejné; adresa a podpisová data se nezveřejňují. Zobrazuje se zdrojově omezený výstup před/po, devět červených vazeb a návrh pro lidskou kontrolu.', allianceRecognized: 'Přesná zkontrolovaná listina byla rozpoznána lokálně. Soubor se nikam neodeslal; stránka zvýraznila odpovídající zdrojově omezený záznam v živé paměti.', prisonerRecognized: 'Přesný soukromý návrh L. CH. byl rozpoznán pouze digitálním otiskem. Soubor se nikam neodeslal; stránka ukazuje anonymizované porovnání s pamětí k 20. 7. 2026. Hodnocení 9/9 znamená relevanci, nikoli šanci na úspěch.', mkJkRecognized: 'Přesná zkontrolovaná listina M. K. a J. K. byla rozpoznána pouze digitálním otiskem. Nic se neodeslalo; stránka ukazuje anonymizované posouzení a odděluje procesní stav od společné relevance 9/9.', gfJkRecognized: 'Přesná zkontrolovaná listina ze smíšeného balíku byla rozpoznána pouze digitálním otiskem. Nic se neodeslalo; systém ji zařadil do oddělené osobní nebo institucionální větve a nepřenesl závěr jiné osoby. Společný nový důkaz má relevanci 9/9.', pragueThcRecognized: 'Nový přímý soudní důkaz byl rozpoznán lokálně. Vrchní soud zrušil odsuzující rozsudek a výslovně popsal problém rozlišení legálního a zakázaného konopí. Soubor se neodeslal ani nezveřejnil; zobrazuje se pouze zdrojově omezený výstup 9/9.', ddLiveRecognized: 'Přesná dnešní listina autora byla rozpoznána lokálně a zařazena do živé mapy. Soubor se nikam neodeslal; zobrazuje se, zda jde o duplicitu, nový úřední uzel nebo nově doložený prvotní zdroj.', redLinks: 'červených vazeb', amberLinks: 'oranžových vazeb', greenLinks: 'zelených vazeb', openResult: 'Zobrazit úplný výsledek', priorityRule: 'Pořadí určuje nejvyšší dosažený stupeň semaforu, potom počet červených a oranžových vazeb, jejich souhrnná váha a datum listiny. Semafor vyjadřuje relevanci a potřebu lidské reakce; sám neprokazuje pochybení ani výsledek řízení.', deadline: 'Lhůta', peakPriority: 'Nejvyšší priorita', substantiveAnswers: 'věcných odpovědí v listině'
   },
   en: {
     confidence: 'Confidence', documents: 'documents', branches: 'identified branches', references: 'case references', dates: 'dates',
     noBranch: 'No supported branch has been identified yet.', noReference: 'No case reference was identified.', noDate: 'No date was identified.',
     documentReferences: 'case references', documentDates: 'dates', noMetadata: 'No identified case references or dates', pasted: 'Pasted document',
     empty: 'Paste text or select text files first.', demoLoaded: 'The anonymized 2004–2026 institutional case map is loaded. Click “Create case map”.', mapCreated: 'The case map was created.',
-    indexed: 'indexed in project materials', creatorStated: 'creator-stated — attach anonymized source', relations: 'Institutional relationships', timeline: 'Timeline', evidenceStatus: 'Source status', link: 'Link', status: 'Status', source: 'Source', page: 'p.', audit: 'Audit', earlier: 'Earlier statement', intermediate: 'Intermediate statement', later: 'Later statement', red: 'red', amber: 'amber', before: 'BEFORE THE TEST', after: 'AFTER THE TEST', systemChange: 'System-generated change', urgent: 'immediate human review because of alleged urgency and potentially irreversible effects; the outcome is not prejudged', review: 'an active related branch requiring review of the complete file', unknownPdf: 'At least one PDF is not an exactly supported document. The prototype uploaded nothing and transferred no prepared analysis to any file.', onePdfOnly: 'In PDF mode, select only one or more exactly supported PDFs without text attachments.', organisationLoaded: 'The public anonymized PDF copy was loaded locally. Click “Analyze locally”.', policeLoaded: 'The reviewed public derivative of the police notice was loaded locally. Dušan Dvořák’s name remains visible; the address and signature data have been removed. Click “Analyze locally”.', privateOriginal: 'private original recognized by its exact digital fingerprint; only the reviewed output is displayed publicly', publicDerivative: 'reviewed public derivative recognized by its exact digital fingerprint', policeRecognized: 'Post-submission test completed: the exact police PDF was recognized locally. Dušan Dvořák’s name remains public; the address and signature data are not published. The page displays a source-bounded before/after result, nine red links, and a proposal for human review.', allianceRecognized: 'The exact reviewed document was recognized locally. The file was not uploaded; the page highlighted the corresponding source-bounded record in the living memory.', prisonerRecognized: 'The exact private L. CH. motion was recognized only by its digital fingerprint. The file was not uploaded; the page shows the anonymized comparison with the memory as of 20 July 2026. The 9/9 score means relevance, not likelihood of success.', mkJkRecognized: 'An exact reviewed M. K. and J. K. document was recognized only by its digital fingerprint. Nothing was uploaded; the page shows the anonymized assessment, exact procedural path, and evidence gaps. The 9/9 priority is not a likelihood of success.', redLinks: 'red links', amberLinks: 'amber links', greenLinks: 'green links', openResult: 'Show full result', priorityRule: 'Ordering uses the highest traffic-light level first, followed by red and amber link counts, their combined weight, and document date. The traffic light records relevance and the need for human response; it does not itself prove wrongdoing or predict an outcome.', deadline: 'Deadline', peakPriority: 'Highest priority', substantiveAnswers: 'substantive answers in the document'
+    indexed: 'indexed in project materials', creatorStated: 'creator-stated — attach anonymized source', relations: 'Institutional relationships', timeline: 'Timeline', evidenceStatus: 'Source status', link: 'Link', status: 'Status', source: 'Source', page: 'p.', audit: 'Audit', earlier: 'Earlier statement', intermediate: 'Intermediate statement', later: 'Later statement', red: 'red', amber: 'amber', before: 'BEFORE THE TEST', after: 'AFTER THE TEST', systemChange: 'System-generated change', urgent: 'immediate human review because of alleged urgency and potentially irreversible effects; the outcome is not prejudged', review: 'an active related branch requiring review of the complete file', unknownPdf: 'At least one PDF is not an exactly supported document. The prototype uploaded nothing and transferred no prepared analysis to any file.', onePdfOnly: 'In PDF mode, select only one or more exactly supported PDFs without text attachments.', organisationLoaded: 'The public anonymized PDF copy was loaded locally. Click “Analyze locally”.', policeLoaded: 'The reviewed public derivative of the police notice was loaded locally. Dušan Dvořák’s name remains visible; the address and signature data have been removed. Click “Analyze locally”.', privateOriginal: 'private original recognized by its exact digital fingerprint; only the reviewed output is displayed publicly', publicDerivative: 'reviewed public derivative recognized by its exact digital fingerprint', policeRecognized: 'Post-submission test completed: the exact police PDF was recognized locally. Dušan Dvořák’s name remains public; the address and signature data are not published. The page displays a source-bounded before/after result, nine red links, and a proposal for human review.', allianceRecognized: 'The exact reviewed document was recognized locally. The file was not uploaded; the page highlighted the corresponding source-bounded record in the living memory.', prisonerRecognized: 'The exact private L. CH. motion was recognized only by its digital fingerprint. The file was not uploaded; the page shows the anonymized comparison with the memory as of 20 July 2026. The 9/9 score means relevance, not likelihood of success.', mkJkRecognized: 'An exact reviewed M. K. and J. K. document was recognized only by its digital fingerprint. Nothing was uploaded; the page shows the anonymized assessment and separates procedural status from the shared 9/9 relevance.', gfJkRecognized: 'An exact reviewed record from the mixed set was recognized only by its digital fingerprint. Nothing was uploaded; the system placed it in a separate personal or institutional branch and transferred no other person’s conclusion. The shared new evidence has 9/9 relevance.', pragueThcRecognized: 'The new direct judicial evidence was recognized locally. The High Court quashed the conviction judgment and expressly described the problem of distinguishing lawful from prohibited cannabis. The file was neither uploaded nor published; only the source-bounded 9/9 result is displayed.', ddLiveRecognized: 'The exact creator record supplied today was recognized locally and placed in the live map. The file was not uploaded; the interface shows whether it is a duplicate, a new official node, or a newly evidenced primary source.', redLinks: 'red links', amberLinks: 'amber links', greenLinks: 'green links', openResult: 'Show full result', priorityRule: 'Ordering uses the highest traffic-light level first, followed by red and amber link counts, their combined weight, and document date. The traffic light records relevance and the need for human response; it does not itself prove wrongdoing or predict an outcome.', deadline: 'Deadline', peakPriority: 'Highest priority', substantiveAnswers: 'substantive answers in the document'
   }
 }[language];
 
@@ -574,20 +583,17 @@ function renderMkJkReopeningUpdate() {
   const labels = language === 'en' ? {
     inventory: 'REVIEWED SOURCE SET', courtPath: 'EXACT PROCEDURAL PATH', official: '1 · WHAT THE COURTS ACTUALLY FOUND',
     submissions: '2 · ALLEGATIONS AND MATERIALS SUBMITTED', synthesis: '3 · SYSTEM ASSESSMENT AS OF 20 JULY 2026',
-    next: 'What must be obtained before a new motion is drafted', legal: 'Verified legal sources', source: 'Source',
-    finding: 'Finding', limit: 'Evidence limit', step: 'Next verification step', priority: 'Evidence-review priority', readiness: 'Current filing readiness',
+    next: 'How the supplied evidence supports the 2026 reopening review', legal: 'Verified legal sources', source: 'Source',
+    finding: 'Finding', limit: 'Evidence limit', step: 'How this supports review', priority: 'Relevance to reopening review',
     alliance: 'CREATOR-CONFIRMED ALLIANCE CONTEXT'
   } : {
     inventory: 'ZKONTROLOVANÝ SOUBOR ZDROJŮ', courtPath: 'PŘESNÁ PROCESNÍ CESTA', official: '1 · CO SKUTEČNĚ ZJISTILY SOUDY',
     submissions: '2 · TVRZENÍ A PODKLADY V PODÁNÍCH', synthesis: '3 · POSOUZENÍ SYSTÉMU K 20. 7. 2026',
-    next: 'Co je nutné opatřit před sepsáním nového návrhu', legal: 'Ověřené právní zdroje', source: 'Zdroj',
-    finding: 'Zjištění', limit: 'Důkazní mez', step: 'Další kontrolní krok', priority: 'Priorita důkazního prověření', readiness: 'Současná připravenost návrhu',
+    next: 'Jak dodané důkazy podporují přezkum obnovy v roce 2026', legal: 'Ověřené právní zdroje', source: 'Zdroj',
+    finding: 'Zjištění', limit: 'Důkazní mez', step: 'Vazba na přezkum', priority: 'Relevance k přezkumu obnovy',
     alliance: 'AUTOREM POTVRZENÝ ALIANČNÍ KONTEXT'
   };
 
-  const updateDate = language === 'en' ? '20 July 2026' : '20. 7. 2026';
-  $('latest-update-title').textContent = `${updateDate} — ${MK_JK_TEST.title}`;
-  $('latest-update-summary').textContent = MK_JK_TEST.summary;
   $('mk-jk-update-heading').textContent = MK_JK_TEST.title;
   $('mk-jk-update-summary').textContent = MK_JK_TEST.summary;
 
@@ -606,11 +612,9 @@ function renderMkJkReopeningUpdate() {
   overall.className = `prisoner-overall traffic-border-${MK_JK_TEST.overall.priority.trafficBand}`;
   const priorityBadge = createAllianceTrafficBadge(MK_JK_TEST.overall.priority.trafficBand);
   priorityBadge.textContent = `${labels.priority}: ${MK_JK_TEST.overall.priority.score}/9 · ${priorityBadge.textContent}`;
-  const readinessBadge = createAllianceTrafficBadge(MK_JK_TEST.overall.readiness.trafficBand);
-  readinessBadge.textContent = `${labels.readiness}: ${MK_JK_TEST.overall.readiness.score}/9 · ${readinessBadge.textContent}`;
   const conclusion = document.createElement('strong');
   conclusion.textContent = MK_JK_TEST.overall.conclusion;
-  overall.append(priorityBadge, document.createTextNode(' '), readinessBadge, conclusion);
+  overall.append(priorityBadge, conclusion);
 
   const courtPath = $('mk-jk-court-path');
   courtPath.replaceChildren();
@@ -736,6 +740,529 @@ function renderMkJkReopeningUpdate() {
   next.append(nextHeading, nextList, legalHeading, legalList);
 
   $('mk-jk-evidence-boundary').textContent = `${MK_JK_TEST.identityBoundary} ${MK_JK_TEST.publicationBoundary}`;
+}
+
+function renderGfJkProceduralUpdate() {
+  const labels = language === 'en' ? {
+    files: 'substantive records in branch',
+    next: 'Next human step',
+    limit: 'What this does not establish',
+    source: 'Source',
+    confidence: 'Source status',
+    route: 'Procedural route'
+  } : {
+    files: 'věcných záznamů ve větvi',
+    next: 'Další lidský krok',
+    limit: 'Co tím ještě není prokázáno',
+    source: 'Zdroj',
+    confidence: 'Stav zdroje',
+    route: 'Procesní cesta'
+  };
+
+  $('gf-jk-update-heading').textContent = GF_JK_TEST.title;
+  $('gf-jk-update-summary').textContent = GF_JK_TEST.summary;
+
+  const main = $('gf-jk-main-sentence');
+  main.replaceChildren();
+  const routeBadge = document.createElement('span');
+  routeBadge.className = 'route-status traffic-red-3';
+  routeBadge.textContent = GF_JK_TEST.route.label;
+  const sentence = document.createElement('strong');
+  sentence.textContent = GF_JK_TEST.mainSentence;
+  const reason = document.createElement('small');
+  reason.textContent = `${labels.route}: ${GF_JK_TEST.route.reason}`;
+  main.append(routeBadge, sentence, reason);
+
+  const branches = $('case-branch-rows');
+  branches.replaceChildren();
+  for (const item of GF_JK_TEST.branches) {
+    const card = document.createElement('article');
+    card.className = `case-branch-row traffic-border-${item.trafficBand}`;
+    const badge = createAllianceTrafficBadge(item.trafficBand);
+    badge.textContent = `${item.score}/9`;
+    const content = document.createElement('div');
+    const title = document.createElement('strong');
+    title.textContent = item.label;
+    const headline = document.createElement('p');
+    headline.textContent = item.headline;
+    content.append(title, headline);
+    const count = document.createElement('small');
+    count.textContent = `${item.fileCount} ${labels.files}`;
+    card.append(badge, content, count);
+    branches.append(card);
+  }
+
+  const priorities = $('gf-jk-priority-rows');
+  priorities.replaceChildren();
+  const gfJkPriorities = [...GF_JK_TEST.relevance].sort((a, b) => {
+    if (a.id === 'methodology') return -1;
+    if (b.id === 'methodology') return 1;
+    return b.score - a.score;
+  });
+  gfJkPriorities.forEach((item, index) => {
+    const drawer = document.createElement('details');
+    drawer.className = `case-priority-row traffic-border-${item.trafficBand}`;
+    if (index === 0) drawer.open = true;
+    const summary = document.createElement('summary');
+    const badge = createAllianceTrafficBadge(item.trafficBand);
+    badge.textContent = `${item.score}/9`;
+    const title = document.createElement('strong');
+    title.textContent = item.title;
+    const headline = document.createElement('span');
+    headline.textContent = item.headline;
+    summary.append(badge, title, headline);
+    const body = document.createElement('div');
+    body.className = 'case-priority-content';
+    const action = document.createElement('p');
+    action.innerHTML = `<strong>${labels.next}:</strong> `;
+    action.append(document.createTextNode(item.action));
+    const boundary = document.createElement('p');
+    boundary.className = 'evidence-boundary compact-boundary';
+    boundary.innerHTML = `<strong>${labels.limit}:</strong> `;
+    boundary.append(document.createTextNode(item.boundary));
+    body.append(action, boundary);
+    drawer.append(summary, body);
+    priorities.append(drawer);
+  });
+
+  const renderEvidenceLayer = (targetId, entries) => {
+    const target = $(targetId);
+    target.replaceChildren();
+    for (const item of entries) {
+      const card = document.createElement('article');
+      card.className = 'case-evidence-item';
+      const source = document.createElement('strong');
+      source.textContent = `${labels.source}: ${item.source}`;
+      const claim = document.createElement('p');
+      claim.textContent = item.claim;
+      const citation = document.createElement('blockquote');
+      citation.lang = 'cs';
+      citation.textContent = `„${item.citation}“`;
+      const confidence = document.createElement('small');
+      confidence.textContent = `${labels.confidence}: ${item.confidence}`;
+      card.append(source, claim, citation, confidence);
+      target.append(card);
+    }
+  };
+  renderEvidenceLayer('gf-jk-official-facts', GF_JK_TEST.facts);
+  renderEvidenceLayer('gf-jk-party-claims', GF_JK_TEST.submittedClaims);
+
+  const legal = $('gf-jk-legal-sources');
+  legal.replaceChildren();
+  for (const item of GF_JK_TEST.legalSources) {
+    const row = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = item.url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = `${item.reference} — ${item.title}`;
+    row.append(link);
+    legal.append(row);
+  }
+  $('gf-jk-evidence-boundary').textContent = `${GF_JK_TEST.privacy} ${GF_JK_TEST.publicationBoundary}`;
+}
+
+function renderCasePortfolio() {
+  const labels = language === 'en' ? {
+    sources: 'Available for analysis', status: 'Current procedural reading', candidate: 'Main candidate for review',
+    article39: 'Article 39 line', eu: 'EU-law and preliminary-reference line',
+    open: 'Open the full case assessment', sourceStatus: 'Source status', limitation: 'Limit', source: 'Source'
+  } : {
+    sources: 'K analýze bylo k dispozici', status: 'Současné procesní čtení', candidate: 'Hlavní kandidát k prověření',
+    article39: 'Osa čl. 39 Listiny', eu: 'Osa práva EU a předběžných otázek',
+    open: 'Otevřít úplné posouzení kauzy', sourceStatus: 'Stav zdroje', limitation: 'Omezení', source: 'Zdroj'
+  };
+
+  $('case-portfolio-title').textContent = CASE_PORTFOLIO.title;
+  $('case-portfolio-introduction').textContent = CASE_PORTFOLIO.introduction;
+  $('case-research-label').textContent = CASE_PORTFOLIO.researchQuestion.label;
+  $('case-specific-motto').textContent = CASE_PORTFOLIO.researchQuestion.motto;
+  $('case-specific-context').textContent = CASE_PORTFOLIO.researchQuestion.mottoContext;
+  $('case-author-position').textContent = CASE_PORTFOLIO.researchQuestion.authorPosition;
+  $('case-author-baseline').textContent = CASE_PORTFOLIO.researchQuestion.controlledTestBaseline;
+  $('case-system-question').textContent = CASE_PORTFOLIO.researchQuestion.systemQuestion;
+  $('case-answer-rule').textContent = CASE_PORTFOLIO.researchQuestion.answerRule;
+  $('case-portfolio-boundary').textContent = CASE_PORTFOLIO.boundary;
+
+  const history = $('case-test-history');
+  history.replaceChildren();
+  for (const item of CASE_PORTFOLIO.testHistory) {
+    const card = document.createElement('article');
+    const period = document.createElement('strong');
+    period.textContent = item.period;
+    const statement = document.createElement('span');
+    statement.textContent = item.statement;
+    card.append(period, statement);
+    history.append(card);
+  }
+
+  const rows = $('case-portfolio-rows');
+  rows.replaceChildren();
+  for (const item of CASE_PORTFOLIO.cases) {
+    const drawer = document.createElement('details');
+    drawer.className = `portfolio-case traffic-border-${item.trafficBand}`;
+    const summary = document.createElement('summary');
+    const badge = createAllianceTrafficBadge(item.trafficBand);
+    badge.textContent = `${item.score}/9`;
+    const identity = document.createElement('div');
+    const name = document.createElement('strong');
+    name.textContent = item.label;
+    const visibility = document.createElement('small');
+    visibility.textContent = item.visibility;
+    identity.append(name, visibility);
+    const headline = document.createElement('span');
+    headline.textContent = item.headline;
+    summary.append(badge, identity, headline);
+
+    const content = document.createElement('div');
+    content.className = 'portfolio-case-content';
+    const facts = document.createElement('dl');
+    const values = [
+      [labels.sources, item.sourceCount],
+      [labels.status, item.status],
+      [labels.candidate, item.mainCandidate],
+      [labels.article39, item.article39],
+      [labels.eu, item.eu]
+    ];
+    for (const [termText, descriptionText] of values) {
+      const term = document.createElement('dt');
+      term.textContent = termText;
+      const description = document.createElement('dd');
+      description.textContent = descriptionText;
+      facts.append(term, description);
+    }
+    const link = document.createElement('a');
+    link.className = 'action-link';
+    link.href = item.link;
+    link.textContent = labels.open;
+    link.addEventListener('click', () => {
+      const target = document.querySelector(item.link);
+      if (target instanceof HTMLDetailsElement) target.open = true;
+    });
+    content.append(facts, link);
+    drawer.append(summary, content);
+    rows.append(drawer);
+  }
+
+  $('shared-methodology-title').textContent = CASE_PORTFOLIO.sharedMethodology.title;
+  $('shared-methodology-explanation').textContent = CASE_PORTFOLIO.sharedMethodology.explanation;
+  $('shared-methodology-short-argument').textContent = CASE_PORTFOLIO.sharedMethodology.shortArgument;
+  $('shared-methodology-audit-title').textContent = CASE_PORTFOLIO.sharedMethodology.auditTrailTitle;
+  const auditTrail = $('shared-methodology-audit-trail');
+  auditTrail.replaceChildren();
+  for (const value of CASE_PORTFOLIO.sharedMethodology.auditTrail) {
+    const item = document.createElement('li');
+    item.textContent = value;
+    auditTrail.append(item);
+  }
+  const timeline = $('shared-methodology-timeline');
+  timeline.replaceChildren();
+  for (const item of CASE_PORTFOLIO.sharedMethodology.timeline) {
+    const card = document.createElement('article');
+    const heading = document.createElement('h5');
+    heading.textContent = `${item.date} · ${item.source}`;
+    const status = document.createElement('small');
+    status.textContent = `${labels.sourceStatus}: ${item.sourceStatus}`;
+    const statement = document.createElement('p');
+    statement.textContent = item.statement;
+    card.append(heading, status, statement);
+    if (item.citation) {
+      const citation = document.createElement('blockquote');
+      citation.lang = 'cs';
+      citation.textContent = `„${item.citation}“`;
+      card.append(citation);
+    }
+    const limitation = document.createElement('p');
+    limitation.className = 'evidence-boundary compact-boundary';
+    limitation.textContent = `${labels.limitation}: ${item.limitation}`;
+    card.append(limitation);
+    timeline.append(card);
+  }
+
+  const science = $('case-portfolio-science-sources');
+  science.replaceChildren();
+  for (const item of CASE_PORTFOLIO.sharedMethodology.scientificSources) {
+    const row = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = item.url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = item.title;
+    const explanation = document.createElement('span');
+    explanation.textContent = ` — ${item.relevance}`;
+    const limitation = document.createElement('small');
+    limitation.textContent = ` ${labels.limitation}: ${item.limitation}`;
+    row.append(link, explanation, limitation);
+    science.append(row);
+  }
+
+  const legal = $('case-portfolio-legal-sources');
+  legal.replaceChildren();
+  for (const item of CASE_PORTFOLIO.legalSources) {
+    const row = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = item.url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = item.reference;
+    const boundary = document.createElement('small');
+    boundary.textContent = item.boundary;
+    row.append(link, document.createTextNode(' — '), boundary);
+    legal.append(row);
+  }
+}
+
+function renderCzechPilotV3() {
+  const labels = language === 'en' ? {
+    court: 'Criminal court and file', available: 'Available for analysis', current: 'Current reading',
+    impact: 'What the new record changed', next: 'Next human step', open: 'Open the full evidence assessment',
+    context: 'Public context: Czech Television documentary Smoke',
+    evidencePriority: 'Evidence priority', sourceStatus: 'Source status'
+  } : {
+    court: 'Trestní soud a spis', available: 'K analýze bylo k dispozici', current: 'Současné čtení',
+    impact: 'Co nový dokument změnil', next: 'Další lidský krok', open: 'Otevřít úplné důkazní posouzení',
+    context: 'Veřejný kontext: dokument České televize Smoke',
+    evidencePriority: 'Důkazní priorita', sourceStatus: 'Stav zdroje'
+  };
+
+  $('v3-title').textContent = CZECH_PILOT.title;
+  $('v3-introduction').textContent = CZECH_PILOT.introduction;
+  $('v3-score-rule').textContent = CZECH_PILOT.scoreRule;
+
+  const breakthrough = CZECH_PILOT.judicialBreakthrough;
+  $('v3-breakthrough-label').textContent = breakthrough.label;
+  $('v3-breakthrough-score').textContent = `${breakthrough.priority}/9`;
+  $('v3-breakthrough-headline').textContent = breakthrough.headline;
+  $('v3-breakthrough-source').textContent = breakthrough.source;
+  $('v3-breakthrough-impact').textContent = breakthrough.impact;
+  $('v3-breakthrough-boundary').textContent = breakthrough.boundary;
+
+  const slogans = $('v3-slogans');
+  slogans.replaceChildren();
+  CZECH_PILOT.slogans.forEach((value, index) => {
+    const statement = document.createElement(index < 2 ? 'strong' : 'span');
+    statement.textContent = value;
+    slogans.append(statement);
+  });
+
+  const cases = $('v3-case-assessments');
+  cases.replaceChildren();
+  for (const item of CZECH_PILOT.caseAssessments) {
+    const card = document.createElement('article');
+    card.className = `v3-case-card traffic-border-${item.priorityBand}`;
+
+    const heading = document.createElement('div');
+    heading.className = 'v3-case-heading';
+    const identity = document.createElement('h4');
+    identity.textContent = item.label;
+    const priority = document.createElement('span');
+    priority.className = `risk-badge traffic-${item.priorityBand}`;
+    priority.textContent = `${item.priority}/9 · ${labels.evidencePriority}`;
+    heading.append(identity, priority);
+
+    const court = document.createElement('p');
+    court.className = 'v3-court-line';
+    const courtLabel = document.createElement('small');
+    courtLabel.textContent = labels.court;
+    const courtValue = document.createElement('strong');
+    courtValue.textContent = `${item.court} · ${item.courtReference}`;
+    court.append(courtLabel, courtValue);
+
+    const relevance = document.createElement('p');
+    relevance.className = 'v3-relevance-line';
+    relevance.textContent = item.relevanceLine;
+
+    const details = document.createElement('details');
+    details.className = 'v3-case-details';
+    const summary = document.createElement('summary');
+    summary.textContent = labels.impact;
+    const content = document.createElement('dl');
+    const values = [
+      [labels.available, item.sourceInventory],
+      [labels.current, item.conclusion],
+      [labels.impact, item.documentImpact],
+      [labels.next, item.next]
+    ];
+    for (const [termValue, descriptionValue] of values) {
+      const term = document.createElement('dt');
+      term.textContent = termValue;
+      const description = document.createElement('dd');
+      description.textContent = descriptionValue;
+      content.append(term, description);
+    }
+    const links = document.createElement('div');
+    links.className = 'v3-card-links';
+    const link = document.createElement('a');
+    link.className = 'action-link';
+    link.href = item.link;
+    link.textContent = labels.open;
+    link.addEventListener('click', () => {
+      const target = document.querySelector(item.link);
+      if (target instanceof HTMLDetailsElement) target.open = true;
+    });
+    links.append(link);
+    if (item.publicContextUrl) {
+      const context = document.createElement('a');
+      context.href = item.publicContextUrl;
+      context.target = '_blank';
+      context.rel = 'noopener noreferrer';
+      context.textContent = labels.context;
+      links.append(context);
+    }
+    details.append(summary, content, links);
+    card.append(heading, court, relevance, details);
+    cases.append(card);
+  }
+
+  $('dd-live-headline').textContent = CZECH_PILOT.authorBranches.headline;
+  $('dd-live-boundary').textContent = CZECH_PILOT.authorBranches.boundary;
+  const renderBranches = (targetId, items, institutionKey) => {
+    const target = $(targetId);
+    target.replaceChildren();
+    for (const item of items) {
+      const row = document.createElement('article');
+      const reference = document.createElement('strong');
+      reference.textContent = item.reference;
+      const title = document.createElement('span');
+      title.textContent = item[institutionKey];
+      const kind = document.createElement('small');
+      kind.textContent = item.kind ? `${item.kind} · ${labels.sourceStatus}: ${item.sourceStatus}` : `${labels.sourceStatus}: ${item.status}`;
+      row.append(reference, title, kind);
+      target.append(row);
+    }
+  };
+  renderBranches('dd-court-branches', CZECH_PILOT.authorBranches.courtBranches, 'counterparty');
+  renderBranches('dd-institutional-branches', CZECH_PILOT.authorBranches.institutionalBranches, 'institution');
+
+  const groups = $('dd-open-groups');
+  groups.replaceChildren();
+  for (const item of CZECH_PILOT.authorBranches.openGroups) {
+    const card = document.createElement('article');
+    const title = document.createElement('strong');
+    title.textContent = item.title;
+    const description = document.createElement('p');
+    description.textContent = item.description;
+    card.append(title, description);
+    groups.append(card);
+  }
+
+  const periods = $('v3-test-periods');
+  periods.replaceChildren();
+  for (const item of CZECH_PILOT.testPeriods) {
+    const card = document.createElement('article');
+    const status = document.createElement('strong');
+    status.textContent = item.label;
+    const period = document.createElement('span');
+    period.textContent = item.period;
+    const scope = document.createElement('p');
+    scope.textContent = item.scope;
+    const boundary = document.createElement('small');
+    boundary.textContent = item.claimBoundary;
+    card.append(status, period, scope, boundary);
+    periods.append(card);
+  }
+
+  $('v3-civic-title').textContent = CZECH_PILOT.civicContext.title;
+  $('v3-civic-statement').textContent = CZECH_PILOT.civicContext.statement;
+  $('v3-civic-outreach').textContent = CZECH_PILOT.civicContext.outreach;
+}
+
+function renderDdLiveV3Update(highlightIds = []) {
+  const labels = language === 'en' ? {
+    received: 'PDFs received', known: 'already-known events', newEvents: 'new official events',
+    duplicate: 'exact duplicate', upgrades: 'primary-source upgrades', substantive: 'new or upgraded records',
+    details: 'What this record changed and where it may propagate', before: 'BEFORE INSERTION',
+    after: 'AFTER INSERTION', citation: 'SOURCE EXCERPT', targets: 'AFFECTED BRANCHES',
+    boundary: 'EVIDENCE BOUNDARY', pages: 'pages', priority: 'RELEVANCE 9/9 · EXTREME, ON FIRE'
+  } : {
+    received: 'přijatých PDF', known: 'dříve známé události', newEvents: 'nové úřední události',
+    duplicate: 'přesná duplicita', upgrades: 'povýšení na prvotní zdroj', substantive: 'nové nebo povýšené záznamy',
+    details: 'Co tato listina změnila a kam se smí propsat', before: 'PŘED VLOŽENÍM',
+    after: 'PO VLOŽENÍ', citation: 'VÝŇATEK ZE ZDROJE', targets: 'DOTČENÉ VĚTVE',
+    boundary: 'DŮKAZNÍ HRANICE', pages: 'stran', priority: 'RELEVANCE 9/9 · EXTRÉM, HOŘÍ'
+  };
+
+  $('dd-update-title').textContent = `${DD_LIVE_V3.version} · ${DD_LIVE_V3.title}`;
+  $('dd-update-summary').textContent = DD_LIVE_V3.summary;
+
+  const metrics = $('dd-update-metrics');
+  metrics.replaceChildren();
+  const metricValues = [
+    [DD_LIVE_V3.metrics.receivedFiles, labels.received],
+    [DD_LIVE_V3.metrics.knownBeforeInsertion, labels.known],
+    [DD_LIVE_V3.metrics.newEvents, labels.newEvents],
+    [DD_LIVE_V3.metrics.exactDuplicates, labels.duplicate],
+    [DD_LIVE_V3.metrics.sourceUpgrades, labels.upgrades],
+    [DD_LIVE_V3.metrics.substantiveNewOrUpgraded, labels.substantive]
+  ];
+  for (const [value, label] of metricValues) {
+    const card = document.createElement('article');
+    const number = document.createElement('strong');
+    number.textContent = String(value);
+    const description = document.createElement('span');
+    description.textContent = label;
+    card.append(number, description);
+    metrics.append(card);
+  }
+
+  const highlighted = new Set(highlightIds);
+  const documentList = $('dd-update-documents');
+  documentList.replaceChildren();
+  let firstHighlighted = null;
+  for (const item of DD_LIVE_V3.documents) {
+    const card = document.createElement('article');
+    card.id = `dd-evidence-${item.id}`;
+    card.className = `dd-update-card dd-intake-${item.intakeClass} traffic-border-${item.trafficBand}`;
+    if (highlighted.has(item.id)) {
+      card.classList.add('recognized-evidence');
+      firstHighlighted ??= card;
+    }
+
+    const heading = document.createElement('div');
+    heading.className = 'dd-update-heading';
+    const intake = document.createElement('span');
+    intake.className = 'dd-intake-label';
+    intake.textContent = item.intakeLabel;
+    const priority = document.createElement('span');
+    priority.className = `risk-badge traffic-${item.trafficBand}`;
+    priority.textContent = labels.priority;
+    heading.append(intake, priority);
+
+    const title = document.createElement('h6');
+    title.textContent = item.institution;
+    const source = document.createElement('p');
+    source.className = 'dd-update-source';
+    source.textContent = `${formatProjectDate(item.date)} · ${item.reference} · ${item.pages} ${labels.pages}`;
+    const sentence = document.createElement('p');
+    sentence.className = 'dd-update-main';
+    sentence.textContent = item.mainSentence;
+
+    const details = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.textContent = labels.details;
+    const values = [
+      [labels.before, item.before],
+      [labels.after, item.after],
+      [labels.citation, `„${item.citation}“`],
+      [labels.targets, item.targets.join(' · ')],
+      [labels.boundary, item.boundary]
+    ];
+    const content = document.createElement('dl');
+    for (const [termValue, descriptionValue] of values) {
+      const term = document.createElement('dt');
+      term.textContent = termValue;
+      const description = document.createElement('dd');
+      description.textContent = descriptionValue;
+      content.append(term, description);
+    }
+    details.append(summary, content);
+    card.append(heading, title, source, sentence, details);
+    documentList.append(card);
+  }
+
+  $('dd-update-boundary').textContent = DD_LIVE_V3.privacy;
+  $('dd-update-deadline').textContent = DD_LIVE_V3.deadlineRule;
+  return firstHighlighted;
 }
 
 function highlightAllianceEvidence(ids) {
@@ -1061,6 +1588,12 @@ function renderExactPdfUpdate(test, inputKind) {
     ? 'Source-bounded court-order extract; the original PDF is neither uploaded nor published.'
     : 'Zdrojově omezený výtah soudního usnesení; původní PDF se neodesílá ani nezveřejňuje.');
   sourceCard.append(sourceTitle, sourceStatus);
+  if (test.source.returnedJudgment) {
+    const returnedJudgment = document.createElement('p');
+    returnedJudgment.className = 'claim-text';
+    returnedJudgment.textContent = test.source.returnedJudgment;
+    sourceCard.append(returnedJudgment);
+  }
   if (test.deadline) {
     const deadline = document.createElement('div');
     deadline.className = 'document-deadline deadline-not-stated';
@@ -1806,9 +2339,13 @@ function renderRegistry() {
 const evidenceDocument = $('evidence-document');
 $('registry').before(evidenceDocument);
 renderVersion2Dashboard();
+renderCzechPilotV3();
+renderDdLiveV3Update();
+renderCasePortfolio();
 renderAllianceUpdate();
 renderPrisonerReopeningUpdate();
 renderMkJkReopeningUpdate();
+renderGfJkProceduralUpdate();
 renderRegistry();
 
 function revealEvidenceNetwork() {
@@ -1983,14 +2520,39 @@ $('analyse').addEventListener('click', () => {
           const allianceEvidenceId = identifyAllianceUpdateDigest(digest);
           const prisonerInputKind = identifyPrisonerReopeningDigest(digest);
           const mkJkEvidenceId = identifyMkJkReopeningDigest(digest);
-          const inputKind = organisationInputKind ?? policeInputKind ?? (allianceEvidenceId ? `alliance-${allianceEvidenceId}` : null) ?? (prisonerInputKind ? `prisoner-${prisonerInputKind}` : null) ?? (mkJkEvidenceId ? `mk-jk-${mkJkEvidenceId}` : null);
+          const caseBundleEvidenceId = identifyCaseBundleDigest(digest);
+          const pragueThcEvidenceId = identifyPragueThcDigest(digest);
+          const ddLiveEvidenceId = identifyDdLiveV3Digest(digest);
+          const inputKind = organisationInputKind
+            ?? policeInputKind
+            ?? (allianceEvidenceId ? `alliance-${allianceEvidenceId}` : null)
+            ?? (prisonerInputKind ? `prisoner-${prisonerInputKind}` : null)
+            ?? (mkJkEvidenceId ? `mk-jk-${mkJkEvidenceId}` : null)
+            ?? (caseBundleEvidenceId ? `case-bundle-${caseBundleEvidenceId}` : null)
+            ?? (pragueThcEvidenceId ? `prague-thc-${pragueThcEvidenceId}` : null)
+            ?? (ddLiveEvidenceId ? `dd-live-${ddLiveEvidenceId}` : null);
           return {
             name: pdfDocument.name,
             inputKind,
             allianceEvidenceId,
             prisonerInputKind,
             mkJkEvidenceId,
-            test: mkJkEvidenceId ? MK_JK_TEST : prisonerInputKind ? PRISONER_TEST : policeInputKind ? POLICE_TEST : organisationInputKind ? ORGANISATION_TEST : null
+            caseBundleEvidenceId,
+            pragueThcEvidenceId,
+            ddLiveEvidenceId,
+            test: pragueThcEvidenceId
+              ? localizePragueThcUpdate(language, pragueThcEvidenceId)
+              : caseBundleEvidenceId
+                ? GF_JK_TEST
+                : mkJkEvidenceId
+                  ? MK_JK_TEST
+                  : prisonerInputKind
+                    ? PRISONER_TEST
+                    : policeInputKind
+                      ? POLICE_TEST
+                      : organisationInputKind
+                        ? ORGANISATION_TEST
+                        : null
           };
         }));
         if (recognized.every(({ inputKind }) => inputKind)) {
@@ -2000,9 +2562,36 @@ $('analyse').addEventListener('click', () => {
           const allianceEntries = recognized.filter(({ allianceEvidenceId }) => allianceEvidenceId);
           const prisonerEntries = recognized.filter(({ prisonerInputKind }) => prisonerInputKind);
           const mkJkEntries = recognized.filter(({ mkJkEvidenceId }) => mkJkEvidenceId);
+          const caseBundleEntries = recognized.filter(({ caseBundleEvidenceId }) => caseBundleEvidenceId);
+          const ddLiveEntries = recognized.filter(({ ddLiveEvidenceId }) => ddLiveEvidenceId);
+          if (ddLiveEntries.length === recognized.length) {
+            const isSinglePoliceDuplicate = recognized.length === 1
+              && ddLiveEntries[0].ddLiveEvidenceId === 'policeExactDuplicate';
+            if (isSinglePoliceDuplicate) {
+              renderExactPdfUpdate(POLICE_TEST, ddLiveEntries[0].inputKind);
+              showStatus(UI.policeRecognized, 'info');
+              window.scrollTo({ top: $('organisation-result').offsetTop, behavior: 'smooth' });
+              return;
+            }
+            const target = renderDdLiveV3Update(ddLiveEntries.map(({ ddLiveEvidenceId }) => ddLiveEvidenceId));
+            $('dd-live-branches').open = true;
+            showStatus(UI.ddLiveRecognized, 'info');
+            window.scrollTo({ top: (target ?? $('dd-daily-update')).offsetTop, behavior: 'smooth' });
+            return;
+          }
+          if (caseBundleEntries.length === recognized.length) {
+            renderGfJkProceduralUpdate();
+            const target = $('gf-jk-procedural-update');
+            target.open = true;
+            target.classList.add('recognized-evidence');
+            showStatus(UI.gfJkRecognized, 'info');
+            window.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
+            return;
+          }
           if (mkJkEntries.length === recognized.length) {
             renderMkJkReopeningUpdate();
             const target = $('mk-jk-reopening-update');
+            target.open = true;
             target.classList.add('recognized-evidence');
             showStatus(UI.mkJkRecognized, 'info');
             window.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
@@ -2011,6 +2600,7 @@ $('analyse').addEventListener('click', () => {
           if (prisonerEntries.length === recognized.length) {
             renderPrisonerReopeningUpdate();
             const target = $('prisoner-reopening-update');
+            target.open = true;
             target.classList.add('recognized-evidence');
             showStatus(UI.prisonerRecognized, 'info');
             window.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
@@ -2018,16 +2608,18 @@ $('analyse').addEventListener('click', () => {
           }
           if (allianceEntries.length === recognized.length) {
             renderAllianceUpdate();
+            $('alliance-update').open = true;
             const target = highlightAllianceEvidence(allianceEntries.map(({ allianceEvidenceId }) => allianceEvidenceId));
             showStatus(UI.allianceRecognized, 'info');
             window.scrollTo({ top: (target ?? $('alliance-update')).offsetTop, behavior: 'smooth' });
             return;
           }
-          if (!allianceEntries.length && !prisonerEntries.length && !mkJkEntries.length) {
+          if (!allianceEntries.length && !prisonerEntries.length && !mkJkEntries.length && !caseBundleEntries.length) {
             const sorted = renderPriorityQueue(recognized);
             renderExactPdfUpdate(sorted[0].test, sorted[0].inputKind);
             const containsPolice = recognized.some(({ test }) => test === POLICE_TEST);
-            showStatus(containsPolice ? UI.policeRecognized : (language === 'en'
+            const containsPragueThc = recognized.some(({ pragueThcEvidenceId }) => pragueThcEvidenceId);
+            showStatus(containsPragueThc ? UI.pragueThcRecognized : containsPolice ? UI.policeRecognized : (language === 'en'
               ? 'Supported PDF recognized locally. Personal data remain in the private original; only the anonymized, source-bounded result is displayed.'
               : 'Podporované PDF bylo rozpoznáno lokálně. Osobní údaje zůstávají v soukromém originálu; zobrazuje se jen anonymizovaný, zdrojově omezený výsledek.'), 'info');
             window.scrollTo({ top: $('organisation-result').offsetTop, behavior: 'smooth' });

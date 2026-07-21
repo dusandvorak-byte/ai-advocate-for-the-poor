@@ -9,14 +9,16 @@ import {
   trafficScore
 } from '../web/version-2.js';
 
-test('V0, V1, and V2 preserve source data, submission baseline, and live development', () => {
-  assert.deepEqual(VERSION_HISTORY.map(({ id }) => id), ['v0', 'v1', 'v2']);
+test('V0 through V3 preserve source data, submission baseline, live memory, and the public result layer', () => {
+  assert.deepEqual(VERSION_HISTORY.map(({ id }) => id), ['v0', 'v1', 'v2', 'v3']);
   assert.equal(VERSION_HISTORY[0].date, '2026-04-20');
   assert.match(VERSION_HISTORY[0].description.cs, /Nejde o starší web.*datovou a důkazní vrstvu/i);
   assert.equal(VERSION_HISTORY[1].date, '2026-07-20');
   assert.match(VERSION_HISTORY[1].href, /archive\/submission-2026-07-20\/index\.html/);
-  assert.equal(VERSION_HISTORY[2].kind, 'current');
+  assert.equal(VERSION_HISTORY[2].kind, 'source');
   assert.match(VERSION_HISTORY[2].description.cs, /denní historii změn/i);
+  assert.equal(VERSION_HISTORY[3].kind, 'current');
+  assert.match(VERSION_HISTORY[3].description.cs, /společná relevance nového důkazu 9\/9/i);
 });
 
 test('the traffic light contains exactly three red, three amber, and three green levels', () => {
@@ -38,7 +40,7 @@ test('the first-window counts are exact where known and visibly open where not y
   const result = localizeVersion2('cs').dashboard;
   const known = new Map(result.counts.map((item) => [item.label, item.value]));
   assert.equal(known.get('veřejných důkazních PDF'), '5');
-  assert.equal(known.get('nově zkontrolovaných neveřejných souborů'), '24');
+  assert.equal(known.get('nově zkontrolovaných neveřejných věcných záznamů'), '45');
   assert.equal(known.get('všech listin v paměti'), '—');
   assert.equal(known.get('evidovaných rozhodnutí a úkonů'), '70');
   assert.equal(known.get('aktivní soudní větve'), '4');
@@ -51,34 +53,36 @@ test('the first-window counts are exact where known and visibly open where not y
 
 test('the latest reviewed evidence set is highly relevant without inventing a new deadline', () => {
   const latest = VERSION_2_DASHBOARD.latestDocument;
-  assert.equal(latest.version, 'v2.6');
+  assert.equal(latest.version, 'v3.2');
   assert.equal(latest.priority, 'red-3');
-  assert.deepEqual(latest.metrics.map(({ value }) => value), ['16', '7', '3', '0']);
+  assert.deepEqual(latest.metrics.map(({ value }) => value), ['5', '3', '2', '4', '0']);
   assert.deepEqual(latest.trafficDistribution, [
-    { band: 'red-3', count: 1 },
-    { band: 'red-2', count: 1 },
-    { band: 'red-1', count: 1 },
-    { band: 'amber-3', count: 1 },
-    { band: 'amber-2', count: 1 },
-    { band: 'green-3', count: 1 },
-    { band: 'green-2', count: 1 }
+    { band: 'red-3', count: 5 }
   ]);
   assert.equal(latest.stateDeadline.status, 'none-currently-stated');
-  assert.match(latest.stateDeadline.rule.cs, /nevytváří lhůtu.*není pravděpodobností úspěchu.*4\/9/i);
+  assert.match(latest.stateDeadline.rule.cs, /Žádná z pěti listin.*nestanoví.*lhůtu.*neurčuje budoucí výsledek.*nezakládá.*právní nárok/i);
 });
 
 test('daily V2 history grows only when a reviewed document is added', () => {
-  assert.equal(VERSION_2_DASHBOARD.dailySnapshots.length, 5);
-  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[0].version, 'v2.6');
-  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[0].date, '2026-07-20');
-  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[0].href, '#mk-jk-reopening-update');
-  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[1].version, 'v2.5');
-  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[1].href, '#prisoner-reopening-update');
-  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[2].version, 'v2.3');
-  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[3].version, 'v2.2');
-  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[3].href, '#alliance-update-v22');
-  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[4].version, 'v2.1');
-  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[4].href, '#police-update');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots.length, 9);
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[0].version, 'v3.2');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[0].date, '2026-07-21');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[0].href, '#dd-daily-update');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[1].version, 'v3.1');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[1].href, '#v3-judicial-breakthrough');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[2].version, 'v3.0');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[2].href, '#czech-pilot-v3');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[3].version, 'v2.7');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[3].href, '#gf-jk-procedural-update');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[4].version, 'v2.6');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[4].href, '#mk-jk-reopening-update');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[5].version, 'v2.5');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[5].href, '#prisoner-reopening-update');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[6].version, 'v2.3');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[7].version, 'v2.2');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[7].href, '#alliance-update-v22');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[8].version, 'v2.1');
+  assert.equal(VERSION_2_DASHBOARD.dailySnapshots[8].href, '#police-update');
   assert.match(VERSION_2_DASHBOARD.snapshotRule.cs, /zkontrolované listiny.*prázdné denní kopie se nevytvářejí/i);
 });
 
@@ -86,13 +90,13 @@ test('test memory separates the submission baseline, pre-deadline development, a
   const periods = localizeVersion2('cs').dashboard.testPeriods;
   assert.deepEqual(periods.map(({ id }) => id), ['through-submission', 'submission-to-deadline', 'deadline-to-judging']);
   assert.equal(periods[0].distinctChecks, 54);
-  assert.equal(periods[1].distinctChecks, 144);
-  assert.equal(periods[1].addedChecks, 90);
+  assert.equal(periods[1].distinctChecks, 188);
+  assert.equal(periods[1].addedChecks, 134);
   assert.match(periods[1].window, /22\. 7\. 2026.*02:00 CEST/i);
   assert.equal(periods[2].distinctChecks, 0);
   assert.match(periods[2].status, /DOSUD NEZAČALO/);
   assert.match(VERSION_2_DASHBOARD.testCountingRule.cs, /počet různých automatických kontrol.*nikoli celoživotní součet/i);
-  assert.match(VERSION_2_DASHBOARD.testCountingRule.cs, /nejméně 686/i);
+  assert.match(VERSION_2_DASHBOARD.testCountingRule.cs, /nejméně 848/i);
 });
 
 test('both public pages render the same V2 model and all nine visual levels', async () => {

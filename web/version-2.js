@@ -30,12 +30,24 @@ export const VERSION_HISTORY = Object.freeze([
     id: 'v2',
     date: '2026-07-20',
     period: text('od 20. 7. 2026 · živý vývoj', 'since 20 July 2026 · live development'),
-    title: text('Každá nová listina mění pavouka', 'Every new document changes the graph'),
+    title: text('Živá důkazní paměť', 'Living evidence memory'),
     description: text(
       'Aktuální verze řadí nové listiny podle relevance, ukazuje jejich průnik do všech větví a zachovává denní historii změn.',
       'The current version ranks new documents by relevance, shows their propagation through every branch, and preserves a dated change history.'
     ),
-    href: '#post-submission',
+    href: '#case-portfolio',
+    kind: 'source'
+  },
+  {
+    id: 'v3',
+    date: '2026-07-21',
+    period: text('21. 7. 2026 · přehledná veřejná vrstva', '21 July 2026 · clear public layer'),
+    title: text('Jedna věta, trestní spis, semafor a dopad dokumentu', 'One sentence, criminal file, traffic light, and document impact'),
+    description: text(
+      'Aktuální rozhraní staví výsledek před detail: čtyři anonymizovaně oddělené kauzy, přesný soudní spis, společná relevance nového důkazu 9/9 a teprve pod nimi rozbalené dodané důkazy.',
+      'The current interface puts the result before detail: four separately anonymized cases, the exact criminal file, 9/9 shared-new-evidence relevance, and the supplied evidence underneath in expandable layers.'
+    ),
+    href: '#czech-pilot-v3',
     kind: 'current'
   }
 ]);
@@ -89,8 +101,8 @@ export const TRAFFIC_LEVELS = Object.freeze([
 ]);
 
 export const VERSION_2_DASHBOARD = Object.freeze({
-  version: '2',
-  snapshotDate: '2026-07-20',
+  version: '3.2',
+  snapshotDate: '2026-07-21',
   caseDataStart: '2026-04-20',
   counts: [
     {
@@ -100,13 +112,13 @@ export const VERSION_2_DASHBOARD = Object.freeze({
       source: 'web/documents/manifest.json'
     },
     {
-      value: '24',
-      label: text('nově zkontrolovaných neveřejných souborů', 'newly reviewed non-public files'),
+      value: '45',
+      label: text('nově zkontrolovaných neveřejných věcných záznamů', 'newly reviewed non-public substantive records'),
       note: text(
-        'Osm dříve zkontrolovaných jedinečných PDF a šestnáct jedinečných souborů nové anonymizované revize M. K. a J. K.; duplicity se nezapočítávají.',
-        'Eight previously reviewed unique PDFs plus sixteen unique files in the new anonymized M. K. and J. K. review; duplicates are not counted.'
+        'K předchozím 41 záznamům přibyly dva nové úřední uzly a dvě dříve známé události nově doložené prvotními PDF; přesná policejní kopie počet nenavyšuje.',
+        'The previous 41 records were joined by two new official nodes and two previously known events newly established by primary PDFs; the exact police copy does not inflate the count.'
       ),
-      source: 'alliance-update.js · prisoner-reopening-update.js · mk-jk-reopening-update.js · verified SHA-256 digests'
+      source: 'alliance-update.js · prisoner-reopening-update.js · mk-jk-reopening-update.js · gf-jk-procedural-update.js · prague-thc-remand-update.js · dd-live-v3-update.js · verified SHA-256 digests'
     },
     {
       value: '—',
@@ -151,39 +163,86 @@ export const VERSION_2_DASHBOARD = Object.freeze({
     )
   },
   latestDocument: {
-    date: '2026-07-20',
-    version: 'v2.6',
+    date: '2026-07-21',
+    version: 'v3.2',
     priority: 'red-3',
     headline: text(
-      'Případ M. K. a J. K. má 9/9 prioritu důkazního prověření, ale jen 4/9 současnou připravenost nového návrhu; žádné procento úspěchu se neurčuje.',
-      'The M. K. and J. K. case has 9/9 evidential-review priority but only 4/9 current filing readiness; no success percentage is assigned.'
+      'Pět PDF dodaných 21. 7. představuje tři již známé události a dva nové úřední uzly: jedna přesná duplicita nic nenavyšuje, dvě prvotní PDF zesilují zdrojový stav a dvě úřední listiny otevírají přesně označené větve. Všechny mají pro živou mapu relevanci 9/9.',
+      'Five PDFs supplied on 21 July represent three already-known events and two new official nodes: one exact duplicate increases nothing, two primary PDFs strengthen source status, and two official records open exactly referenced branches. All have 9/9 relevance to the live map.'
     ),
     metrics: [
-      { value: '16', label: text('jedinečných zkontrolovaných souborů', 'unique reviewed files') },
-      { value: '7', label: text('rozlišených vazeb relevance', 'separate relevance links') },
-      { value: '3', label: text('červené důkazní priority', 'red evidential priorities') },
+      { value: '5', label: text('dnešních přesně zkontrolovaných PDF', 'exact PDFs reviewed today') },
+      { value: '3', label: text('dříve známé události', 'already-known events') },
+      { value: '2', label: text('nové úřední uzly', 'new official nodes') },
+      { value: '4', label: text('nové nebo zdrojově povýšené záznamy', 'new or source-upgraded records') },
       { value: '0', label: text('nově zveřejněných zdrojových PDF', 'newly published source PDFs') }
     ],
     trafficDistribution: [
-      { band: 'red-3', count: 1 },
-      { band: 'red-2', count: 1 },
-      { band: 'red-1', count: 1 },
-      { band: 'amber-3', count: 1 },
-      { band: 'amber-2', count: 1 },
-      { band: 'green-3', count: 1 },
-      { band: 'green-2', count: 1 }
+      { band: 'red-3', count: 5 }
     ],
     stateDeadline: {
       status: 'none-currently-stated',
       label: text('Aktuální lhůta k reakci', 'Current response deadline'),
       value: text('Ze zkontrolovaného návrhu ani testovacího zadání nyní neplyne', 'None currently follows from the reviewed motion or test instructions'),
       rule: text(
-        'Semafor 9/9 znamená prioritu opatřit a prověřit důkazy. Nevytváří lhůtu, není pravděpodobností úspěchu a nesmí se zaměnit se současnou připraveností návrhu 4/9.',
-        'The 9/9 traffic light means priority to obtain and review evidence. It creates no deadline, is not a likelihood of success, and must not be confused with current filing readiness of 4/9.'
+        'Žádná z pěti listin sama nestanoví novou zákonnou lhůtu. Semafor 9/9 vyjadřuje relevanci pro živé větve; neurčuje budoucí výsledek a sám nezakládá opravný prostředek ani právní nárok.',
+        'None of the five records itself sets a new statutory deadline. The 9/9 traffic light expresses relevance to live branches; it does not determine a future outcome or itself create a remedy or legal entitlement.'
       )
     }
   },
   dailySnapshots: [
+    {
+      date: '2026-07-21',
+      version: 'v3.2',
+      href: '#dd-daily-update',
+      title: text(
+        'Pět dnešních PDF: tři známé události a dva nové úřední uzly',
+        'Five PDFs supplied today: three known events and two new official nodes'
+      ),
+      change: text(
+        'Přesný policejní duplikát nezvýšil počty. Návrh na obnovu a preventivní podání byly povýšeny na události doložené prvotním PDF. Odpověď Ministerstva vnitra MV-114818-2/TP-2026 a přezkum KSZ Brno 1 KZT 475/2026-32 vytvořily dva nové úřední uzly.',
+        'The exact police duplicate increased no count. The reopening motion and preventive filing were upgraded to primary-PDF-established events. Ministry response MV-114818-2/TP-2026 and Brno prosecutor review 1 KZT 475/2026-32 created two new official nodes.'
+      )
+    },
+    {
+      date: '2026-07-21',
+      version: 'v3.1',
+      href: '#v3-judicial-breakthrough',
+      title: text(
+        'Přímý soudní zlom v otázce rozlišení legálního a zakázaného konopí',
+        'Direct judicial breakthrough on distinguishing lawful from prohibited cannabis'
+      ),
+      change: text(
+        'Usnesení Vrchního soudu v Praze ze dne 29. 7. 2025, č. j. 11 To 88/2024-2990, zrušilo rozsudek Městského soudu v Praze ze dne 7. 5. 2024, č. j. 45 T 1/2024-2430, a věc mu vrátilo k novému projednání. Autorem uváděný říjnový termín roku 2026 zůstává oddělen od obsahu usnesení.',
+        'The High Court in Prague order of 29 July 2025, ref. 11 To 88/2024-2990, quashed the Prague Municipal Court judgment of 7 May 2024, ref. 45 T 1/2024-2430, and returned the case for a new hearing. The October 2026 date reported by the creator remains separate from the order itself.'
+      )
+    },
+    {
+      date: '2026-07-21',
+      version: 'v3.0',
+      href: '#czech-pilot-v3',
+      title: text(
+        'Čtyři soudní spisy v jednom srovnatelném veřejném okně',
+        'Four court files in one comparable public window'
+      ),
+      change: text(
+        'Každá karta nyní začíná trestním soudem a spisovou značkou, pokračuje výrazným řádkem společné relevance 9/9 k přezkumu v roce 2026 a teprve poté rozbaluje dodané důkazy a jejich dopad. Samostatná živá mapa autora uvádí devět přesných aktuálních značek.',
+        'Each card now begins with the criminal court and file reference, follows with a prominent shared 9/9 relevance line for review in 2026, and only then expands the supplied evidence and its impact. A separate live creator map lists nine exact current references.'
+      )
+    },
+    {
+      date: '2026-07-21',
+      version: 'v2.7',
+      href: '#gf-jk-procedural-update',
+      title: text(
+        'Čtyři oddělené kauzy a společná přezkoumatelná důkazní otázka',
+        'Four separate cases and one shared reviewable evidence question'
+      ),
+      change: text(
+        'Osmnáct přijatých souborů bylo rozděleno na patnáct věcných záznamů ve čtyřech větvích. Nové rozhraní ukazuje jednu větu, semafor a další krok; zdroje, nejistoty a úplná laboratorní protokolace zůstávají v rozbalovacích vrstvách.',
+        'Eighteen received files were reduced to fifteen substantive records across four branches. The new interface shows one sentence, a traffic light, and the next step; sources, uncertainty, and the complete laboratory record remain in expandable layers.'
+      )
+    },
     {
       date: '2026-07-20',
       version: 'v2.6',
@@ -269,8 +328,8 @@ export const VERSION_2_DASHBOARD = Object.freeze({
       label: text('Od podání do uzávěrky', 'Submission to deadline'),
       window: text('Po podání 20. 7. 2026 až 22. 7. 2026 v 02:00 CEST', 'After submission on 20 July 2026 through 22 July 2026 at 02:00 CEST'),
       status: text('PROBÍHÁ', 'IN PROGRESS'),
-      distinctChecks: 144,
-      addedChecks: 90,
+      distinctChecks: 188,
+      addedChecks: 134,
       note: text('Aktuální sada zahrnuje původních 54 kontrol i nové regresní kontroly; přesný stav se aktualizuje po každém úplném běhu.', 'The current suite includes the original 54 checks and new regression checks; the exact state is updated after each complete run.')
     },
     {
@@ -284,8 +343,8 @@ export const VERSION_2_DASHBOARD = Object.freeze({
     }
   ],
   testCountingRule: text(
-    'Číslo znamená počet různých automatických kontrol v daném stavu sady, nikoli celoživotní součet všech opakovaných spuštění. Nejméně 686 jednotlivých úspěšných průchodů je doloženo úplnými historickými běhy; přesný celoživotní součet se od začátku nevedl a nebude se domýšlet.',
-    'The number is the count of distinct automated checks in that suite state, not the lifetime total of repeated executions. At least 686 individual successful check executions are documented by complete historical runs; the exact lifetime total was not tracked from the beginning and will not be invented.'
+    'Číslo znamená počet různých automatických kontrol v daném stavu sady, nikoli celoživotní součet všech opakovaných spuštění. Nejméně 848 jednotlivých úspěšných průchodů je doloženo úplnými historickými běhy; přesný celoživotní součet se od začátku nevedl a nebude se domýšlet.',
+    'The number is the count of distinct automated checks in that suite state, not the lifetime total of repeated executions. At least 848 individual successful check executions are documented by complete historical runs; the exact lifetime total was not tracked from the beginning and will not be invented.'
   )
 });
 

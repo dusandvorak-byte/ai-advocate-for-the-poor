@@ -74,12 +74,12 @@ test('section 278(4) is the highest-priority route but its condition is expressl
   assert.match(route.boundary, /nepravomocný.*žádnou vazbu/i);
 });
 
-test('priority, filing readiness, and likelihood of success are three different values', () => {
+test('the supplied evidence receives 9/9 relevance without manufacturing likelihood of success', () => {
   const overall = localizeMkJkReopeningUpdate('cs').overall;
   assert.equal(overall.priority.score, 9);
-  assert.equal(overall.readiness.score, 4);
   assert.equal(overall.probability, null);
-  assert.match(overall.conclusion, /reálná cesta.*nelze.*tvrdit.*povolena/i);
+  assert.match(overall.conclusion, /dvě samostatné důkazní osy 9\/9.*neurčuje.*budoucí rozhodnutí soudu/i);
+  assert.equal(Object.hasOwn(overall, 'readiness'), false);
 });
 
 test('later EU law and the 2017 medical statement are not presented as new stand-alone facts', () => {
@@ -91,13 +91,13 @@ test('later EU law and the 2017 medical statement are not presented as new stand
   assert.match(medical.boundary, /1\. 6\. 2017.*není novým důkazem/i);
 });
 
-test('the proposed evidence plan targets the yield calculation and primary digital chain', () => {
+test('the proposed evidence plan leads with shared measurement evidence and keeps section 278(4) separate', () => {
   const update = localizeMkJkReopeningUpdate('cs');
   const plan = update.nextEvidence.join(' ');
-  assert.match(plan, /Ing\. Josefa Beneše.*8\. 9\. 2015.*31\. 1\. 2017/i);
-  assert.match(plan, /botanicko-zemědělský posudek.*hranici velkého rozsahu/i);
-  assert.match(plan, /digitálně-forenzní řetězec.*hashů.*všech zpráv/i);
-  assert.match(plan, /SOP.*chromatogramy.*nejistotu měření/i);
+  assert.match(plan, /absencí povolení.*překročením limitu THC/i);
+  assert.match(plan, /neexistenci a nesjednocení závazného postupu měření.*novou samostatnou důkazní osu/i);
+  assert.match(plan, /§ 278 odst\. 4.*nepřekrývat.*metodickou osou THC/i);
+  assert.match(plan, /možný vliv na původní rozhodnutí.*citace/i);
 });
 
 test('official legal sources are linked and no success percentage is manufactured', () => {
