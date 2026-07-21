@@ -173,7 +173,7 @@ ksz_ostrava_*.txt     zdrojová ukázka, nepublikovaná Pages workflow
 
 ## Spuštění a testování
 
-Je potřeba Node.js 20 nebo novější.
+Je potřeba Node.js 24 nebo novější.
 
 ```bash
 npx serve web
