@@ -3,14 +3,18 @@
   "submissionDate": "2026-07-20",
   "sourceCommit": "2238ae2736a6e13c2c93ecf06288a9f06604903f",
   "sourceCommitUrl": "https://github.com/dusandvorak-byte/ai-advocate-for-the-poor/commit/2238ae2736a6e13c2c93ecf06288a9f06604903f",
-  "description": "Public web directory preserved from the final Build Week submission commit before post-submission evidence updates.",
+  "description": "Public web directory preserved from the final Build Week submission commit before post-submission evidence updates. The exact entry files are retained separately from the later viewer navigation.",
   "entryPoints": {
+    "cs": "index.original.html",
+    "en": "en.original.html"
+  },
+  "viewerEntryPoints": {
     "cs": "index.html",
     "en": "en.html"
   },
   "coreSha256": {
-    "index.html": "9194f6073f9eedffb973bfdc85f286b9ce0d829dbc9276672d7715356ffbd8db",
-    "en.html": "74ebcd0d745dc71f12789de621ae43ffc2ba55c71a514c23ccf2099a87e5604a",
+    "index.original.html": "9194f6073f9eedffb973bfdc85f286b9ce0d829dbc9276672d7715356ffbd8db",
+    "en.original.html": "74ebcd0d745dc71f12789de621ae43ffc2ba55c71a514c23ccf2099a87e5604a",
     "app.js": "01b60b7f7c108f98bcb629244d380a7e7d20310eb3773b59f7e7790474f28a0e",
     "styles.css": "168cea76d297671c58a3ccd75154fb1200a3a79743cff8615b7d353d2225017b"
   }

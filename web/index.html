@@ -9,14 +9,28 @@
   <link rel="stylesheet" href="traffic-light.css">
 </head>
 <body>
-  <header>
-    <nav class="header-actions" aria-label="Jazyk a archiv">
-      <a class="language" href="en.html" lang="en">English</a>
-      <a href="archive/submission-2026-07-20/index.html">Web při podání 20. 7. 2026</a>
+  <header class="news-header">
+    <div class="news-brandbar">
+      <div class="news-brand">
+        <span class="news-brand-kicker">VEŘEJNÁ DŮKAZNÍ REDAKCE</span>
+        <h1>AI Advocate</h1>
+        <strong>for the Poor</strong>
+      </div>
+      <nav class="header-actions" aria-label="Jazyk a archiv">
+        <a class="language" href="en.html" lang="en">English</a>
+        <a href="archive/submission-2026-07-20/index.html">Web při podání · 20. 7. 2026</a>
+      </nav>
+    </div>
+    <nav class="news-sections" aria-label="Hlavní rubriky">
+      <a href="#post-submission">Hlavní zpráva</a>
+      <a href="#czech-pilot-v3">Čtyři kauzy</a>
+      <a href="#case-portfolio">Důkazní paměť</a>
+      <a href="#external-test">Vyzkoušet dokument</a>
     </nav>
-    <p>OPENAI BUILD WEEK · DŮKAZNÍ PAMĚŤ PRO KAŽDODENNÍ ŽIVOT</p>
-    <h1>AI Advocate for the Poor</h1>
-    <p>Jeden dokument. Jedna srozumitelná věta. Důkazy, souvislosti a další lidský krok pod ní.</p>
+    <div class="news-strapline">
+      <span>OPENAI BUILD WEEK · ŽIVÝ WEB PO PODÁNÍ PŘIHLÁŠKY</span>
+      <strong>Jeden dokument. Jedna srozumitelná věta. Důkazy, souvislosti a další lidský krok.</strong>
+    </div>
   </header>
   <main>
     <section id="post-submission" class="live-update" aria-labelledby="latest-update-title">
@@ -24,8 +38,18 @@
         <span class="live-label"><span class="live-dot" aria-hidden="true"></span> NOVĚ PO ODESLÁNÍ PŘIHLÁŠKY</span>
         <span>Podáno 20. 7. 2026 · aplikace v3.2 · poslední důkazní stav 21. 7. 2026</span>
       </div>
-      <h2 id="latest-update-title">Vrchní soud zrušil výrok o vině: rozsudek neumožňoval rozlišit legální a zakázané konopí.</h2>
-      <p id="latest-update-summary" class="update-lede">Vrchní soud v Praze dne 29. 7. 2025 usnesením č. j. 11 To 88/2024-2990 zrušil výrok o vině, navazující tresty a zabrání věci z rozsudku Městského soudu v Praze ze dne 7. 5. 2024, č. j. 45 T 1/2024-2430, a podle § 259 odst. 1 trestního řádu věc vrátil Městskému soudu v Praze k novému projednání a rozhodnutí. Autor uvádí, že nové projednání je plánováno na říjen 2026; tento termín samotné usnesení neobsahuje. Pro společnou kontrolní otázku čtyř oddělených kauz má nový soudní důkaz relevanci 9/9 — EXTRÉM, HOŘÍ.</p>
+      <div class="editorial-lead">
+        <div class="editorial-lead-copy">
+          <p class="editorial-section-label">HLAVNÍ ZPRÁVA · SOUDNÍ DŮKAZ</p>
+          <h2 id="latest-update-title">Vrchní soud zrušil výrok o vině: rozsudek neumožňoval rozlišit legální a zakázané konopí.</h2>
+          <p id="latest-update-summary" class="update-lede">Vrchní soud v Praze dne 29. 7. 2025 usnesením č. j. 11 To 88/2024-2990 zrušil výrok o vině, navazující tresty a zabrání věci z rozsudku Městského soudu v Praze ze dne 7. 5. 2024, č. j. 45 T 1/2024-2430, a podle § 259 odst. 1 trestního řádu věc vrátil Městskému soudu v Praze k novému projednání a rozhodnutí. Autor uvádí, že nové projednání je plánováno na říjen 2026; tento termín samotné usnesení neobsahuje. Pro společnou kontrolní otázku čtyř oddělených kauz má nový soudní důkaz relevanci 9/9 — EXTRÉM, HOŘÍ.</p>
+          <div class="editorial-actions"><a href="#czech-pilot-v3">Otevřít srovnání čtyř kauz</a><a href="#external-test">Porovnat vlastní dokument</a></div>
+        </div>
+        <figure class="editorial-lead-art">
+          <img src="assets/votruba/prague.jpg" alt="Kresba Jiřího Votruby: lidé čtou a diskutují na pražském náměstí" width="350" height="239">
+          <figcaption>Ilustrace: Jiří Votruba · ilustrační vrstva, nikoli důkaz</figcaption>
+        </figure>
+      </div>
       <section class="human-story" aria-labelledby="human-story-title">
         <p class="eyebrow">PROČ TO VZNIKLO</p>
         <h2 id="human-story-title">Když víte, co se stalo, ale zatím to nemůžete dokázat</h2>
@@ -66,6 +90,17 @@
           <article><b>3</b><strong>Vy rozhodnete, co dál</strong><span>Uchovat soukromě, doplnit chybějící doklad nebo předat přehled člověku.</span></article>
         </div>
         <aside class="ordinary-example"><span class="zero-score">0/9</span><p><strong>Příklad: dopis od pojišťovny.</strong> Systém založí samostatný osobní archiv a ukáže pouze lhůtu či sankci, kterou listina skutečně uvádí. Do cizích kauz nepřenese nic.</p></aside>
+      </section>
+
+      <section class="editorial-desk" aria-labelledby="editorial-desk-title">
+        <div class="editorial-desk-heading"><p class="eyebrow">DŮKAZNÍ SERVIS</p><h3 id="editorial-desk-title">Čtyři vstupy do živé paměti</h3><span>Ilustrace: Jiří Votruba</span></div>
+        <div class="editorial-card-grid">
+          <a class="editorial-card" href="#czech-pilot-v3"><img src="assets/votruba/write-lawmakers.jpg" alt="Kreslený návod, jak napsat zákonodárcům" width="330" height="210" loading="lazy"><span>Nový důkaz</span><strong>Co změnil v síti čtyř kauz?</strong><small>Fakta, č. j., relevance a hranice závěru.</small></a>
+          <a class="editorial-card" href="#current-audience"><img src="assets/votruba/hold.jpg" alt="Kresba člověka podpírajícího velké srdce" width="310" height="193" loading="lazy"><span>Člověk v centru</span><strong>Paměť patří člověku</strong><small>Sdílení řídí uživatel, nikoli platforma.</small></a>
+          <a class="editorial-card" href="#case-portfolio"><img src="assets/votruba/friends.jpg" alt="Kresba kočky a myši, které se drží za ruce" width="310" height="219" loading="lazy"><span>Sdílené důkazy</span><strong>Cizí závěr se nepřenáší</strong><small>Přenášet lze jen zdrojovaná fakta a důkazní kandidáty.</small></a>
+          <a class="editorial-card" href="#external-test"><img src="assets/votruba/sing.jpg" alt="Kreslený návod propojující hlas, text a gesto" width="310" height="280" loading="lazy"><span>Váš dokument</span><strong>Začněte vlastní listinou</strong><small>PDF a text zůstávají pouze ve vašem prohlížeči.</small></a>
+        </div>
+        <p class="illustration-boundary">Votrubovy kresby tvoří redakční a lidskou vrstvu webu. Nejsou pramenem k žádnému právnímu nebo skutkovému závěru.</p>
       </section>
 
       <section id="czech-pilot-v3" class="czech-pilot-v3" aria-labelledby="v3-title">

@@ -11,14 +11,28 @@
   <link rel="stylesheet" href="traffic-light.css">
 </head>
 <body>
-  <header>
-    <nav class="header-actions" aria-label="Language and archive">
-      <a class="language" href="index.html" lang="cs">Česky</a>
-      <a href="archive/submission-2026-07-20/en.html">Website at submission · 20 July 2026</a>
+  <header class="news-header">
+    <div class="news-brandbar">
+      <div class="news-brand">
+        <span class="news-brand-kicker">PUBLIC EVIDENCE DESK</span>
+        <h1>AI Advocate</h1>
+        <strong>for the Poor</strong>
+      </div>
+      <nav class="header-actions" aria-label="Language and archive">
+        <a class="language" href="index.html" lang="cs">Česky</a>
+        <a href="archive/submission-2026-07-20/en.html">Website at submission · 20 July 2026</a>
+      </nav>
+    </div>
+    <nav class="news-sections" aria-label="Main sections">
+      <a href="#post-submission">Top story</a>
+      <a href="#czech-pilot-v3">Four cases</a>
+      <a href="#case-portfolio">Evidence memory</a>
+      <a href="#external-test">Try a document</a>
     </nav>
-    <p>OPENAI BUILD WEEK · EVIDENCE MEMORY FOR EVERYDAY LIFE</p>
-    <h1>AI Advocate for the Poor</h1>
-    <p>One document. One clear sentence. Evidence, context, and the next human step underneath.</p>
+    <div class="news-strapline">
+      <span>OPENAI BUILD WEEK · LIVE WEBSITE AFTER SUBMISSION</span>
+      <strong>One document. One clear sentence. Evidence, context, and the next human step.</strong>
+    </div>
   </header>
   <main>
     <section id="post-submission" class="live-update" aria-labelledby="latest-update-title">
@@ -26,8 +40,18 @@
         <span class="live-label"><span class="live-dot" aria-hidden="true"></span> NEW SINCE THE SUBMISSION</span>
         <span>Submitted 20 July 2026 · application v3.2 · latest evidence state 21 July 2026</span>
       </div>
-      <h2 id="latest-update-title">The High Court quashed the findings of guilt: the judgment did not distinguish lawful from prohibited cannabis.</h2>
-      <p id="latest-update-summary" class="update-lede">On 29 July 2025, by order ref. 11 To 88/2024-2990, the High Court in Prague quashed the findings of guilt, the related sentences and the forfeiture order in the Prague Municipal Court judgment of 7 May 2024, ref. 45 T 1/2024-2430, and returned the matter to the Prague Municipal Court for a new hearing and decision under Section 259(1) of the Code of Criminal Procedure. The creator reports that the new hearing is scheduled for October 2026; that date does not appear in the order itself. The new judicial evidence has 9/9 relevance to the shared review question across four separate cases — EXTREME, ON FIRE.</p>
+      <div class="editorial-lead">
+        <div class="editorial-lead-copy">
+          <p class="editorial-section-label">TOP STORY · JUDICIAL EVIDENCE</p>
+          <h2 id="latest-update-title">The High Court quashed the findings of guilt: the judgment did not distinguish lawful from prohibited cannabis.</h2>
+          <p id="latest-update-summary" class="update-lede">On 29 July 2025, by order ref. 11 To 88/2024-2990, the High Court in Prague quashed the findings of guilt, the related sentences and the forfeiture order in the Prague Municipal Court judgment of 7 May 2024, ref. 45 T 1/2024-2430, and returned the matter to the Prague Municipal Court for a new hearing and decision under Section 259(1) of the Code of Criminal Procedure. The creator reports that the new hearing is scheduled for October 2026; that date does not appear in the order itself. The new judicial evidence has 9/9 relevance to the shared review question across four separate cases — EXTREME, ON FIRE.</p>
+          <div class="editorial-actions"><a href="#czech-pilot-v3">Open the four-case comparison</a><a href="#external-test">Compare your document</a></div>
+        </div>
+        <figure class="editorial-lead-art">
+          <img src="assets/votruba/prague.jpg" alt="Jiří Votruba drawing of people reading and talking in a Prague square" width="350" height="239">
+          <figcaption>Illustration: Jiří Votruba · editorial layer, not evidence</figcaption>
+        </figure>
+      </div>
       <section class="human-story" aria-labelledby="human-story-title">
         <p class="eyebrow">WHY IT EXISTS</p>
         <h2 id="human-story-title">When you know what happened but cannot yet prove it</h2>
@@ -68,6 +92,17 @@
           <article><b>3</b><strong>You decide what happens next</strong><span>Keep it private, obtain a missing record, or hand a clear overview to a person.</span></article>
         </div>
         <aside class="ordinary-example"><span class="zero-score">0/9</span><p><strong>Example: a letter from an insurer.</strong> The system creates a separate personal archive and shows only a deadline or penalty actually stated in the document. It transfers nothing into another person’s case.</p></aside>
+      </section>
+
+      <section class="editorial-desk" aria-labelledby="editorial-desk-title">
+        <div class="editorial-desk-heading"><p class="eyebrow">EVIDENCE DESK</p><h3 id="editorial-desk-title">Four ways into the living memory</h3><span>Illustrations: Jiří Votruba</span></div>
+        <div class="editorial-card-grid">
+          <a class="editorial-card" href="#czech-pilot-v3"><img src="assets/votruba/write-lawmakers.jpg" alt="Drawn sequence showing how to write to lawmakers" width="330" height="210" loading="lazy"><span>New evidence</span><strong>What changed across four cases?</strong><small>Facts, references, relevance, and the boundary of the conclusion.</small></a>
+          <a class="editorial-card" href="#current-audience"><img src="assets/votruba/hold.jpg" alt="Drawing of a person supporting a large heart" width="310" height="193" loading="lazy"><span>Human first</span><strong>The memory belongs to the person</strong><small>The user, not the platform, controls sharing.</small></a>
+          <a class="editorial-card" href="#case-portfolio"><img src="assets/votruba/friends.jpg" alt="Drawing of a cat and mouse holding hands" width="310" height="219" loading="lazy"><span>Shared evidence</span><strong>Another case’s conclusion never transfers</strong><small>Only sourced facts and evidence candidates may cross cases.</small></a>
+          <a class="editorial-card" href="#external-test"><img src="assets/votruba/sing.jpg" alt="Drawn sequence connecting voice, text, and gesture" width="310" height="280" loading="lazy"><span>Your document</span><strong>Start with your own record</strong><small>PDF and text remain only in your browser.</small></a>
+        </div>
+        <p class="illustration-boundary">Votruba’s drawings form the editorial and human layer of the website. They are not a source for any legal or factual conclusion.</p>
       </section>
 
       <section id="czech-pilot-v3" class="czech-pilot-v3" aria-labelledby="v3-title">

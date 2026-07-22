@@ -61,7 +61,7 @@ npx serve web
 npm test
 ```
 
-The application has no production dependencies and requires no API key. The current suite contains **188 distinct automated checks**, all passing. The GitHub Pages workflow runs the checks before publishing only the reviewed `web/` directory.
+The application has no production dependencies and requires no API key. The suite contained **188 distinct automated checks at the deadline** and now contains **192**, all passing. The GitHub Pages workflow runs the checks before publishing only the reviewed `web/` directory.
 
 ## How Codex and GPT-5.6 were used
 

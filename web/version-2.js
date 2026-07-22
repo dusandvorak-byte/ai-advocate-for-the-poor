@@ -327,24 +327,24 @@ export const VERSION_2_DASHBOARD = Object.freeze({
       id: 'submission-to-deadline',
       label: text('Od podání do uzávěrky', 'Submission to deadline'),
       window: text('Po podání 20. 7. 2026 až 22. 7. 2026 v 02:00 CEST', 'After submission on 20 July 2026 through 22 July 2026 at 02:00 CEST'),
-      status: text('PROBÍHÁ', 'IN PROGRESS'),
+      status: text('UZAVŘENO V OKAMŽIKU UZÁVĚRKY', 'CLOSED AT THE DEADLINE'),
       distinctChecks: 188,
       addedChecks: 134,
-      note: text('Aktuální sada zahrnuje původních 54 kontrol i nové regresní kontroly; přesný stav se aktualizuje po každém úplném běhu.', 'The current suite includes the original 54 checks and new regression checks; the exact state is updated after each complete run.')
+      note: text('Ke dni uzávěrky sada zahrnovala původních 54 kontrol a 134 nových regresních kontrol.', 'At the deadline, the suite contained the original 54 checks and 134 new regression checks.')
     },
     {
       id: 'deadline-to-judging',
       label: text('Od uzávěrky do prvního doloženého hodnocení', 'Deadline to first evidenced judging'),
       window: text('Začne 22. 7. 2026 v 02:00 CEST; první skutečný přístup poroty zatím není znám', 'Starts 22 July 2026 at 02:00 CEST; the first actual judge access is not yet known'),
-      status: text('DOSUD NEZAČALO', 'NOT STARTED'),
-      distinctChecks: 0,
-      addedChecks: 0,
-      note: text('Oficiální stránky se liší o jednu hodinu v začátku hodnocení; paměť proto nebude předstírat nepozorované datum předložení porotě.', 'Official pages differ by one hour on the judging start; the memory therefore will not invent an unobserved date of presentation to judges.')
+      status: text('PROBÍHÁ', 'IN PROGRESS'),
+      distinctChecks: 192,
+      addedChecks: 4,
+      note: text('Po uzávěrce přibyly čtyři regresní kontroly redakční titulní strany, původních ilustrací a návratového odkazu z archivu. První skutečný přístup poroty není pozorovatelný, proto se jeho datum nedoplňuje.', 'After the deadline, four regression checks were added for the editorial front page, original illustrations, and the archive return link. The judges’ first actual access is not observable, so no such date is invented.')
     }
   ],
   testCountingRule: text(
-    'Číslo znamená počet různých automatických kontrol v daném stavu sady, nikoli celoživotní součet všech opakovaných spuštění. Nejméně 848 jednotlivých úspěšných průchodů je doloženo úplnými historickými běhy; přesný celoživotní součet se od začátku nevedl a nebude se domýšlet.',
-    'The number is the count of distinct automated checks in that suite state, not the lifetime total of repeated executions. At least 848 individual successful check executions are documented by complete historical runs; the exact lifetime total was not tracked from the beginning and will not be invented.'
+    'Číslo znamená počet různých automatických kontrol v daném stavu sady, nikoli celoživotní součet všech opakovaných spuštění. Nejméně 1 040 jednotlivých úspěšných průchodů je doloženo úplnými historickými běhy; přesný celoživotní součet se od začátku nevedl a nebude se domýšlet.',
+    'The number is the count of distinct automated checks in that suite state, not the lifetime total of repeated executions. At least 1,040 individual successful check executions are documented by complete historical runs; the exact lifetime total was not tracked from the beginning and will not be invented.'
   )
 });
 

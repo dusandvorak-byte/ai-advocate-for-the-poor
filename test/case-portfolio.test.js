@@ -26,7 +26,9 @@ test('testing history distinguishes the creator archive before submission from o
 
 test('the author-confirmed baseline is forceful but remains provenance-labelled', () => {
   const question = localizeCasePortfolio('cs').researchQuestion;
-  assert.match(question.motto, /Od roku 1993.*obsahu THC.*právně závazný předpis.*legální konopí od nelegálního/i);
+  assert.match(question.motto, /Od roku 1999.*trestní odpovědnost za pěstování konopí.*obsahu THC/i);
+  assert.match(question.motto, /právně závazné pravidlo policie a celní správy.*forenzní laboratoře.*legální konopí od nelegálního konopí/i);
+  assert.match(question.motto, /Žádné totiž neexistuje.*rozdíly mohou být desetinásobné.*doložili důkazy/i);
   assert.match(question.mottoContext, /čl\. 36 a 39 Listiny.*EU od roku 2004.*do roku 1999.*limit THC.*100 m² bez povolení/i);
   assert.match(question.authorPosition, /nikdo zbaven svobody.*právně určitý.*přezkoumatelný postup/i);
   assert.match(question.controlledTestBaseline, /ve všech čtyřech.*nadlimitní THC/i);

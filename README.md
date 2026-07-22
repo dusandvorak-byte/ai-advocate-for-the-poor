@@ -98,7 +98,7 @@ Pevný organizační základ k okamžiku podání je uložen v `project-memory/r
 
 Zkontrolované neveřejné zdroje je možné v prohlížeči rozpoznat pouze přesným celosouborovým otiskem. Soubor neopustí zařízení a aplikace pouze zvýrazní odpovídající předem zkontrolovaný záznam; neznámý nebo pozměněný vstup žádný připravený výklad nedostane. Exekuční listiny, osobní trestní spisy, adresy, účty, podpisová data ani osobní identifikátory nejsou součástí veřejné složky.
 
-Aktuální sada má **188 automatických kontrol**; původních 54 soutěžních kontrol zůstává zachováno a po podání přibylo 134 dalších. Nejméně 848 jednotlivých úspěšných průchodů je doloženo úplnými historickými běhy. Jde o spodní doloženou hranici, nikoli domyšlený celoživotní součet všech meziběhů.
+Ke dni uzávěrky měla sada **188 automatických kontrol**: původních 54 soutěžních kontrol a 134 kontrol přidaných po podání. Aktuální sada má **192 kontrol**; po uzávěrce přibyly čtyři kontroly redakční titulní strany, původních ilustrací a návratového odkazu z archivu. Nejméně 1 040 jednotlivých úspěšných průchodů je doloženo úplnými historickými běhy. Jde o spodní doloženou hranici, nikoli domyšlený celoživotní součet všech meziběhů.
 
 Policejní aktualizace vede tři odlišné vrstvy: doslovné výroky listiny, autorem potvrzenou chronologii a systémovou syntézu. Mgr. Dušan Dvořák jako vlastník archivu potvrzuje souběžné rozeslání předžalobní výzvy dne 14. července 2026; systém tento záznam přijímá bez požadavku, aby autor dokazoval sám sobě své jednání, ale ve veřejném výstupu jej nepřepisuje na výrok policie nebo potvrzení jednotlivých adresátů. Anglické rozhraní překládá analýzu a podstatné citace a současně zachovává české znění jako kontrolovatelný pramen.
 

@@ -93,10 +93,12 @@ test('test memory separates the submission baseline, pre-deadline development, a
   assert.equal(periods[1].distinctChecks, 188);
   assert.equal(periods[1].addedChecks, 134);
   assert.match(periods[1].window, /22\. 7\. 2026.*02:00 CEST/i);
-  assert.equal(periods[2].distinctChecks, 0);
-  assert.match(periods[2].status, /DOSUD NEZAČALO/);
+  assert.match(periods[1].status, /UZAVŘENO/);
+  assert.equal(periods[2].distinctChecks, 192);
+  assert.equal(periods[2].addedChecks, 4);
+  assert.match(periods[2].status, /PROBÍHÁ/);
   assert.match(VERSION_2_DASHBOARD.testCountingRule.cs, /počet různých automatických kontrol.*nikoli celoživotní součet/i);
-  assert.match(VERSION_2_DASHBOARD.testCountingRule.cs, /nejméně 848/i);
+  assert.match(VERSION_2_DASHBOARD.testCountingRule.cs, /nejméně 1 040/i);
 });
 
 test('both public pages render the same V2 model and all nine visual levels', async () => {

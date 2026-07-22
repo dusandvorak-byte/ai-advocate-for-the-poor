@@ -32,8 +32,8 @@ export const CASE_PORTFOLIO = Object.freeze({
   researchQuestion: {
     label: text('VÝCHOZÍ TEZE AUTORA A KONTROLNÍ OTÁZKA', 'CREATOR’S HYPOTHESIS AND REVIEW QUESTION'),
     motto: text(
-      'Od roku 1993 české soudy rozhodovaly o trestní odpovědnosti podle obsahu THC, aniž kdy vyžádaly právně závazný předpis, podle něhož policejní znalecké laboratoře odlišily legální konopí od nelegálního.',
-      'Since 1993, Czech courts have determined criminal liability by THC content without ever requiring a legally binding rule showing how police forensic laboratories distinguished lawful cannabis from unlawful cannabis.'
+      'Od roku 1999 by měly české soudy určovat trestní odpovědnost za pěstování konopí na základě obsahu THC. Do dnešního dne si soudy nikdy nevyžádaly právně závazné pravidlo policie a celní správy, které by ukazovalo, jak jejich forenzní laboratoře jednotně rozlišují legální konopí od nelegálního konopí. Žádné totiž neexistuje a rozdíly mohou být desetinásobné, což jsme doložili důkazy.',
+      'Since 1999, Czech courts should have determined criminal liability for cannabis cultivation on the basis of THC content. To this day, the courts have never required a legally binding rule of the police and customs administration showing how their forensic laboratories consistently distinguish lawful cannabis from unlawful cannabis. No such rule exists, and the differences can be tenfold, as documented by the evidence assembled by the creator.'
     ),
     mottoContext: text(
       'Autor tuto doloženou tezi řízeného českého testu poměřuje ústavním pořádkem s čl. 36 a 39 Listiny, členstvím České republiky v EU od roku 2004 a zvláštní zákonnou chronologií: podle podkladů, za které odpovídá, nebyl do roku 1999 v žádném českém právním předpisu stanoven limit THC, zatímco zákon o návykových látkách od roku 1999 umožnil občanům pěstovat konopí na ploše do 100 m² bez povolení.',
