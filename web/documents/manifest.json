@@ -1,6 +1,6 @@
 {
-  "version": 2,
-  "publishedAt": "2026-07-20",
+  "version": 3,
+  "publishedAt": "2026-07-22",
   "attribution": "Practical output of AI Advocate for the Poor, created by Mgr. Dušan Dvořák with Codex assistance.",
   "documents": [
     {
@@ -53,6 +53,62 @@
         "embedded signature data",
         "internal document identifiers unnecessary for the public test"
       ]
+    }
+  ],
+  "filedSourceDocuments": [
+    {
+      "id": "dusan-dvorak-motion-to-reopen-filed",
+      "path": "dusan-dvorak-motion-to-reopen-filed-2026-07-12.pdf",
+      "documentDate": "2026-07-12",
+      "filedDate": "2026-07-12",
+      "pages": 15,
+      "sha256": "e59f9ffde1001d232bd27d1017911d31ba85113413a8aec768d31d2c001ce691",
+      "publicationStatus": "filed exact original",
+      "copiedByteForByte": true,
+      "anonymized": false,
+      "publicationBasis": "The creator expressly authorised publication of his own complete filing."
+    }
+  ],
+  "generatedReviewedOutputs": [
+    {
+      "id": "dusan-dvorak-addendum-draft",
+      "path": "dusan-dvorak-addendum-draft-2026-07-22.pdf",
+      "outputDate": "2026-07-22",
+      "pages": 5,
+      "sha256": "903be4001b89c4a11d0432b426c6e914506357403d00891c141125ccfdf3b5bb",
+      "publicationStatus": "working addendum; not filed",
+      "anonymized": false,
+      "sourceBoundary": "Limited to records obtained or delivered after the filed motion of 12 July 2026; does not rewrite that motion."
+    },
+    {
+      "id": "lch-motion-to-reopen-working-draft",
+      "path": "lch-motion-to-reopen-working-draft-2026-07-22.pdf",
+      "outputDate": "2026-07-22",
+      "pages": 5,
+      "sha256": "c9009a5a355028a5a065429bef316436e0053481a8c4b31189139236ebfd1f6a",
+      "publicationStatus": "anonymised working draft; not filed",
+      "anonymized": true,
+      "sourceBoundary": "Compares the private 2022 motion with later sourced evidence; complete judgments, the laboratory chain, current status, consent, and human legal review remain required."
+    },
+    {
+      "id": "mk-jk-motion-to-reopen-working-draft",
+      "path": "mk-jk-motion-to-reopen-working-draft-2026-07-22.pdf",
+      "outputDate": "2026-07-22",
+      "pages": 5,
+      "sha256": "ed541c56d897a6ca83a9339f6e559c3d31ce5478332216fc734e2c7949f49e3c",
+      "publicationStatus": "anonymised working draft; not filed",
+      "anonymized": true,
+      "sourceBoundary": "The chemical, yield, digital, and conditional Section 278(4) routes remain separate; no success or statutory condition is presumed."
+    },
+    {
+      "id": "gf-jk-procedural-memorandum",
+      "path": "gf-jk-procedural-memorandum-2026-07-22.pdf",
+      "outputDate": "2026-07-22",
+      "pages": 5,
+      "sha256": "dae0aa91be83a97cb546e74d8b6951a54b394b69c1ed66d00b63c05489934b52",
+      "publicationStatus": "anonymised procedural memorandum; not a motion",
+      "anonymized": true,
+      "sourceBoundary": "Available records describe conditional discontinuance rather than conviction; the original order, finality, and post-probation outcome are required before selecting a remedy."
     }
   ]
 }

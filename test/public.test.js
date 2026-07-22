@@ -8,6 +8,7 @@ const requiredIds = [
   'version-history', 'version-0', 'case-input-metrics', 'latest-priority',
   'latest-deadline', 'traffic-scale', 'daily-version-history', 'daily-version-rule',
   'test-period-history', 'test-period-rule',
+  'reopening-outputs-v32', 'reopening-outputs-title',
   'case-portfolio', 'case-portfolio-title', 'case-portfolio-introduction', 'case-test-history',
   'case-research-label', 'case-specific-motto', 'case-specific-context', 'case-author-position', 'case-author-baseline', 'case-system-question',
   'case-answer-rule', 'case-portfolio-rows', 'shared-methodology-title',

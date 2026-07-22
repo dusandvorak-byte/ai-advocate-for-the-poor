@@ -102,13 +102,13 @@ export const TRAFFIC_LEVELS = Object.freeze([
 
 export const VERSION_2_DASHBOARD = Object.freeze({
   version: '3.2',
-  snapshotDate: '2026-07-21',
+  snapshotDate: '2026-07-22',
   caseDataStart: '2026-04-20',
   counts: [
     {
-      value: '5',
-      label: text('veřejných důkazních PDF', 'public evidence PDFs'),
-      note: text('Tři odeslané výstupy a dvě zkontrolované odvozené kopie.', 'Three sent outputs and two reviewed public derivatives.'),
+      value: '10',
+      label: text('veřejně propojených PDF', 'publicly linked PDFs'),
+      note: text('Tři odeslané výstupy, dvě zkontrolované odvozené kopie, jeden přesný podaný návrh autora a čtyři nové pracovní výstupy V3.2.', 'Three sent outputs, two reviewed public derivatives, one exact filed creator motion, and four new v3.2 working outputs.'),
       source: 'web/documents/manifest.json'
     },
     {
@@ -124,8 +124,8 @@ export const VERSION_2_DASHBOARD = Object.freeze({
       value: '—',
       label: text('všech listin v paměti', 'all documents in case memory'),
       note: text(
-        'Přesný soupis po jednotlivých listinách zatím není uzavřen; pět znamená pouze veřejně propojená PDF.',
-        'The document-by-document inventory is not yet closed; five counts only the publicly linked PDFs.'
+        'Přesný soupis po jednotlivých listinách zatím není uzavřen; deset znamená pouze veřejně propojená PDF, nikoli úplný počet dokumentů v paměti.',
+        'The document-by-document inventory is not yet closed; ten counts only the publicly linked PDFs, not every document in memory.'
       ),
       source: 'pending document inventory'
     },
@@ -191,6 +191,19 @@ export const VERSION_2_DASHBOARD = Object.freeze({
     }
   },
   dailySnapshots: [
+    {
+      date: '2026-07-22',
+      version: 'v3.2',
+      href: '#reopening-outputs-v32',
+      title: text(
+        'Pět veřejných procesních výstupů ve čtyřech oddělených kauzách',
+        'Five public procedural outputs across four separate cases'
+      ),
+      change: text(
+        'Zveřejněn byl přesný autorem podaný návrh ze dne 12. 7. 2026, samostatný nepodaný dodatek, dva anonymizované pracovní návrhy a jedno anonymizované procesní memorandum. Pouze první PDF je podané; ostatní vyžadují kontrolu úplného spisu, dotčené osoby a právníka.',
+        'The exact creator-filed motion of 12 July 2026, a separate unfiled addendum, two anonymised working motions, and one anonymised procedural memorandum were published. Only the first PDF was filed; the rest require review of the complete file, the affected person, and a lawyer.'
+      )
+    },
     {
       date: '2026-07-21',
       version: 'v3.2',
@@ -337,14 +350,14 @@ export const VERSION_2_DASHBOARD = Object.freeze({
       label: text('Od uzávěrky do prvního doloženého hodnocení', 'Deadline to first evidenced judging'),
       window: text('Začne 22. 7. 2026 v 02:00 CEST; první skutečný přístup poroty zatím není znám', 'Starts 22 July 2026 at 02:00 CEST; the first actual judge access is not yet known'),
       status: text('PROBÍHÁ', 'IN PROGRESS'),
-      distinctChecks: 192,
-      addedChecks: 4,
-      note: text('Po uzávěrce přibyly čtyři regresní kontroly redakční titulní strany, původních ilustrací a návratového odkazu z archivu. První skutečný přístup poroty není pozorovatelný, proto se jeho datum nedoplňuje.', 'After the deadline, four regression checks were added for the editorial front page, original illustrations, and the archive return link. The judges’ first actual access is not observable, so no such date is invented.')
+      distinctChecks: 200,
+      addedChecks: 12,
+      note: text('Po uzávěrce přibyly čtyři kontroly redakční titulní strany a osm kontrol pěti veřejných procesních výstupů, jejich otisků, anonymizace a důkazních hranic. První skutečný přístup poroty není pozorovatelný, proto se jeho datum nedoplňuje.', 'After the deadline, four checks were added for the editorial front page and eight for the five public procedural outputs, their fingerprints, anonymisation, and evidentiary boundaries. The judges’ first actual access is not observable, so no such date is invented.')
     }
   ],
   testCountingRule: text(
-    'Číslo znamená počet různých automatických kontrol v daném stavu sady, nikoli celoživotní součet všech opakovaných spuštění. Nejméně 1 040 jednotlivých úspěšných průchodů je doloženo úplnými historickými běhy; přesný celoživotní součet se od začátku nevedl a nebude se domýšlet.',
-    'The number is the count of distinct automated checks in that suite state, not the lifetime total of repeated executions. At least 1,040 individual successful check executions are documented by complete historical runs; the exact lifetime total was not tracked from the beginning and will not be invented.'
+    'Číslo znamená počet různých automatických kontrol v daném stavu sady, nikoli celoživotní součet všech opakovaných spuštění. Nejméně 1 240 jednotlivých úspěšných průchodů je doloženo úplnými historickými běhy; přesný celoživotní součet se od začátku nevedl a nebude se domýšlet.',
+    'The number is the count of distinct automated checks in that suite state, not the lifetime total of repeated executions. At least 1,240 individual successful check executions are documented by complete historical runs; the exact lifetime total was not tracked from the beginning and will not be invented.'
   )
 });
 

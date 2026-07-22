@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "recordType": "dated-competition-test-memory",
-  "asOf": "2026-07-20",
+  "asOf": "2026-07-22",
   "timezone": "Europe/Prague",
   "countingPolicy": {
     "primaryMetric": "distinct automated checks in the suite at the end or current state of a period",
     "submissionBaselineChecks": 54,
-    "currentDistinctChecks": 144,
-    "postSubmissionChecksAdded": 90,
-    "minimumDocumentedSuccessfulIndividualExecutions": 686,
-    "minimumCalculation": "54 + 62 + 66 + 85 + 131 + 144 + 144",
+    "currentDistinctChecks": 200,
+    "postSubmissionChecksAdded": 146,
+    "minimumDocumentedSuccessfulIndividualExecutions": 1240,
+    "minimumCalculation": "54 + 62 + 66 + 85 + 131 + 144 + 144 + 166 + 188 + 200",
     "exactLifetimeExecutionCount": null,
     "boundary": "The exact lifetime total was not recorded from the beginning. The project must not present the documented lower bound as an exact total."
   },
@@ -32,20 +32,20 @@
       "start": "after the recorded submission on 2026-07-20",
       "end": "2026-07-22T02:00:00+02:00",
       "officialDeadline": "2026-07-21T17:00:00-07:00",
-      "status": "in-progress",
-      "distinctChecksCurrent": 144,
-      "checksAddedDuringPeriodCurrent": 90,
-      "noteCs": "Uzávěrka 21. 7. 2026 v 17:00 PDT odpovídá 22. 7. 2026 v 02:00 CEST. Stav se po úplném běhu aktualizuje."
+      "status": "closed",
+      "distinctChecksAtEnd": 188,
+      "checksAddedDuringPeriod": 134,
+      "noteCs": "Uzávěrka 21. 7. 2026 v 17:00 PDT odpovídá 22. 7. 2026 v 02:00 CEST. Poslední úplný běh tohoto období měl 188 různých kontrol."
     },
     {
       "id": "deadline-to-first-observed-judging",
       "labelCs": "Od uzávěrky do prvního doloženého přístupu poroty",
       "start": "2026-07-22T02:00:00+02:00",
       "firstObservedJudgeAccess": null,
-      "status": "not-started-as-of-record-date",
-      "distinctChecksCurrent": 0,
-      "checksAddedDuringPeriodCurrent": 0,
-      "noteCs": "První skutečný přístup poroty zatím není pozorován. Oficiální stránky se liší v uvedeném začátku hodnocení, proto paměť nepředstírá neznámé datum předložení porotě."
+      "status": "in-progress",
+      "distinctChecksCurrent": 200,
+      "checksAddedDuringPeriodCurrent": 12,
+      "noteCs": "Po uzávěrce přibylo dvanáct různých kontrol. První skutečný přístup poroty zatím není pozorován. Oficiální stránky se liší v uvedeném začátku hodnocení, proto paměť nepředstírá neznámé datum předložení porotě."
     }
   ],
   "officialScheduleSources": [

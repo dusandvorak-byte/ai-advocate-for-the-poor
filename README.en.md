@@ -42,13 +42,15 @@ Each of four anonymized case rows shows the supplied source inventory, current p
 
 The controlled Czech test begins with a creator-confirmed and documented hypothesis:
 
-> Since 1993, Czech courts have determined criminal liability by THC content without ever requiring a legally binding rule showing how police forensic laboratories distinguished lawful cannabis from unlawful cannabis.
+> Since 1999, Czech courts should have determined criminal liability for cannabis cultivation on the basis of THC content. To this day, the courts have never required a legally binding rule of the police and customs administration showing how their forensic laboratories consistently distinguish lawful cannabis from unlawful cannabis. No such rule exists, and the differences can be tenfold, as documented by the evidence assembled by the creator.
 
-The interface labels this as the creator-confirmed baseline of the controlled test and assesses the supplied records separately in every file. It does not present the traffic light as a shared judicial finding or guarantee reopening.
+The interface labels this as the creator’s evidence-based thesis and baseline of the controlled test, not a general judicial finding. It assesses the supplied records separately in every file and does not present the traffic light as a guarantee of reopening.
 
 V3.1 adds a direct judicial source. On 29 July 2025, by order ref. **11 To 88/2024-2990**, the High Court in Prague quashed the findings of guilt, the related sentences, and the forfeiture order in the Prague Municipal Court judgment dated 7 May 2024, ref. **45 T 1/2024-2430**, and returned the matter to the Prague Municipal Court for a new hearing and decision under Section 259(1) of the Code of Criminal Procedure. Paragraphs 31–40 separately address lay chemical and biological reasoning, the failure to distinguish lawful from prohibited cannabis, the meaning of a 1.0% THC result, and judicial review of expert evidence; paragraph 41 identifies complete unreviewability as the central ground for quashing. The October 2026 hearing date is displayed separately as creator-confirmed because it is not stated in the order. Neither the private partially anonymized court copy nor the creator’s filing of 28 November 2024 is published.
 
-V3.2 processes five PDFs supplied on 21 July. Three concern events already known to the memory: the police record is an exact duplicate and increases no count; a fifteen-page reopening motion and a forty-nine-page preventive filing upgrade two creator-recorded events to primary-PDF-established content. Two records create new official nodes: Ministry of the Interior response **MV-114818-2/TP-2026** and Brno Regional Public Prosecutor review branch **1 KZT 475/2026-32**. The system does not present the ministry response as a merits assessment or the announced review as its outcome. All five inputs have 9/9 relevance to the live map, but none itself sets a new statutory deadline. Their private originals remain outside the public website.
+V3.2 processes five PDFs supplied on 21 July. Three concern events already known to the memory: the police record is an exact duplicate and increases no count; a fifteen-page reopening motion and a forty-nine-page preventive filing upgrade two creator-recorded events to primary-PDF-established content. Two records create new official nodes: Ministry of the Interior response **MV-114818-2/TP-2026** and Brno Regional Public Prosecutor review branch **1 KZT 475/2026-32**. The system does not present the ministry response as a merits assessment or the announced review as its outcome. All five inputs have 9/9 relevance to the live map, but none itself sets a new statutory deadline. Private originals belonging to other people remain outside the public website.
+
+The visible v3.2 output dated 22 July 2026 consists of five public Czech PDFs across four separate cases. The only document actually filed is Mgr. Dušan Dvořák’s complete, non-anonymised motion dated 12 July 2026, published unchanged with his explicit consent and a recorded SHA-256. It is accompanied by a separate unfiled addendum concerning later records, anonymised working drafts for L. CH. and M. K. / J. K., and an anonymised procedural memorandum for G. F. / J. K. The last document is not called a motion to reopen because the available records describe conditional discontinuance rather than conviction and do not establish the original order, finality, or the post-probation outcome. No working output is legal advice, a prediction of success, or ready for filing without review of the complete case file, the affected person, and a qualified lawyer.
 
 See [the exact Devpost update text](DEVPOST_UPDATE_2026-07-21.md).
 
@@ -61,7 +63,7 @@ npx serve web
 npm test
 ```
 
-The application has no production dependencies and requires no API key. The suite contained **188 distinct automated checks at the deadline** and now contains **192**, all passing. The GitHub Pages workflow runs the checks before publishing only the reviewed `web/` directory.
+The application has no production dependencies and requires no API key. The suite contained **188 distinct automated checks at the deadline** and now contains **200**, all passing. At least 1,240 successful individual check executions are documented by complete historical runs; this is a lower bound because the exact lifetime total was not tracked from the beginning. The GitHub Pages workflow runs the checks before publishing only the reviewed `web/` directory.
 
 ## How Codex and GPT-5.6 were used
 

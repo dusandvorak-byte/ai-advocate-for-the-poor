@@ -23,16 +23,16 @@
     "note": "Jde o nejnižší doložený počet průchodů. Úplný součet všech meziběhů se od začátku nevedl, proto se nesmí vydávat za přesné číslo."
   },
   "currentTestSuite": {
-    "build": "v2.6",
-    "distinctAutomatedChecks": 144,
+    "build": "v3.2",
+    "distinctAutomatedChecks": 200,
     "submissionChecks": 54,
-    "postSubmissionChecksAdded": 90,
+    "postSubmissionChecksAdded": 146,
     "latestCompleteRun": {
-      "passed": 144,
+      "passed": 200,
       "failed": 0
     },
-    "minimumDocumentedSuccessfulIndividualExecutions": 686,
-    "minimumCalculation": "54 + 62 + 66 + 85 + 131 + 144 + 144",
+    "minimumDocumentedSuccessfulIndividualExecutions": 1240,
+    "minimumCalculation": "54 + 62 + 66 + 85 + 131 + 144 + 144 + 166 + 188 + 200",
     "exactCumulativeExecutionCount": null,
     "note": "Aktuální počet znamená počet různých kontrol v sadě. Přesný celoživotní součet všech jejich spuštění nebyl od počátku veden a nesmí se domýšlet."
   },
